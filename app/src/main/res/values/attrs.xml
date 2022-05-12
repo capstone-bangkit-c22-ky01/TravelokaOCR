@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ds">
+        <attr name="customColorPrimary90" format="color"/>
+        <attr name="customColorPrimary50" format="color"/>
+        <attr name="customColorPrimary10" format="color"/>
+
+        <attr name="customColorSecondary90" format="color"/>
+        <attr name="customColorSecondary50" format="color"/>
+        <attr name="customColorSecondary10" format="color"/>
+
+        <attr name="customColorNeutral90" format="color"/>
+        <attr name="customColorNeutral50" format="color"/>
+        <attr name="customColorNeutral10" format="color"/>
+
+        <attr name="customColorFont" format="color"/>
+    </declare-styleable>
+</resources>

@@ -3,7 +3,7 @@
     <style name="Theme.TravelokaOCR" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimaryVariant">?attr/customColorSecondary90</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -12,5 +12,18 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="customColorPrimary90">@color/primary90</item>
+        <item name="customColorPrimary50">@color/primary50</item>
+        <item name="customColorPrimary10">@color/primary10</item>
+
+        <item name="customColorSecondary90">@color/secondary90</item>
+        <item name="customColorSecondary50">@color/secondary50</item>
+        <item name="customColorSecondary10">@color/secondary10</item>
+
+        <item name="customColorNeutral90">@color/neutral90</item>
+        <item name="customColorNeutral50">@color/neutral50</item>
+        <item name="customColorNeutral10">@color/neutral10</item>
+
+        <item name="customColorFont">@color/font</item>
     </style>
 </resources>

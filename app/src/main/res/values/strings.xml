@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">TravelokaOCR</string>
+    <string name="moon">Moon</string>
+    <string name="welcome_to">Welcome to...</string>
+    <string name="travelokaocr">TravelokaOCR</string>
+    <string name="logo_desc">Scan your travel identity in a flash time</string>
+    <string name="plane">Plane</string>
+    <string name="cloud">Cloud</string>
+    <string name="person_splash">Person-Splash</string>
+    <string name="success_image">Success</string>
+    <string name="success_desc">Silahkan lakukan pembayaran terkait pemesanan yang dilakukan dan harap check email anda untuk informasi E-Ticket.</string>
+    <string name="success_btn">Go to History Page</string>
+    <string name="success_title">Data berhasil disimpan</string>
+    <string name="cloud_background">Cloud Background</string>
+    <string name="receptionist">Receptionist</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="enter_full_name">Enter Full Name</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="or_sign_up_with">or sign up with</string>
+    <string name="google">Google</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="login_underline"><u>Login</u></string>
 </resources>

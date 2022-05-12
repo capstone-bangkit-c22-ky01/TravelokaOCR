@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.splashscreen.SplashScreenActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_moon"
+        android:layout_width="165dp"
+        android:layout_height="180dp"
+        android:contentDescription="@string/moon"
+        android:src="@drawable/moon"
+        android:alpha="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_plane"
+        android:layout_width="165dp"
+        android:layout_height="183dp"
+        android:layout_marginEnd="85dp"
+        android:contentDescription="@string/plane"
+        android:src="@drawable/plane"
+        android:alpha="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_cloud"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:contentDescription="@string/cloud"
+        android:src="@drawable/cloud"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_person_splash_screen"
+        android:layout_width="222dp"
+        android:layout_height="400dp"
+        android:contentDescription="@string/person_splash"
+        android:alpha="0"
+        android:src="@drawable/person_splash_screen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_welcome_to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="152dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/welcome_to"
+        android:textSize="24sp"
+        android:textColor="?attr/customColorFont"
+        android:alpha="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:fontFamily="@font/lilita_one_regular"
+        android:text="@string/travelokaocr"
+        android:textSize="40sp"
+        android:textColor="?attr/customColorSecondary90"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_welcome_to" />
+
+    <TextView
+        android:id="@+id/tv_logo_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/logo_desc"
+        android:textSize="14sp"
+        android:textColor="?attr/customColorFont"
+        android:alpha="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_logo" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

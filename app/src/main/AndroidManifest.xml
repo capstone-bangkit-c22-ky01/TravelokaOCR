@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelokaOCR">
         <activity
+            android:name=".ui.ocr.OCRScreenActivity"
+            android:exported="false" />
+        <activity
             android:name=".CobaActivity"
             android:exported="false" />
         <activity

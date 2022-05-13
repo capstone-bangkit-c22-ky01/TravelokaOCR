@@ -15,6 +15,7 @@
             android:id="@+id/rl_sign_up_banner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="-5dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -64,7 +65,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_sign_up"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
-            <com.example.travelokaocr.customview.FullNameEditTextView
+            <com.example.travelokaocr.ui.customview.FullNameEditTextView
                 android:id="@+id/etv_full_name"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -77,7 +78,7 @@
                 android:textColorHint="@color/font_hint"
                 tools:ignore="RtlSymmetry" />
 
-            <com.example.travelokaocr.customview.EmailEditTextView
+            <com.example.travelokaocr.ui.customview.EmailEditTextView
                 android:id="@+id/etv_email"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -91,7 +92,7 @@
                 android:textColorHint="@color/font_hint"
                 tools:ignore="RtlSymmetry" />
 
-            <com.example.travelokaocr.customview.PasswordEditTextView
+            <com.example.travelokaocr.ui.customview.PasswordEditTextView
                 android:id="@+id/etv_password"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -105,7 +106,7 @@
                 android:textColorHint="@color/font_hint"
                 tools:ignore="RtlSymmetry"/>
 
-            <com.example.travelokaocr.customview.AuthenticationButton
+            <com.example.travelokaocr.ui.customview.AuthenticationButton
                 android:id="@+id/btn_sign_up"
                 android:layout_width="match_parent"
                 android:layout_height="66dp"
@@ -150,7 +151,7 @@
                 android:background="@color/font"/>
         </LinearLayout>
 
-        <com.example.travelokaocr.customview.GoogleButton
+        <com.example.travelokaocr.ui.customview.GoogleButton
             android:id="@+id/btn_sign_up_with_google"
             android:layout_width="208dp"
             android:layout_height="60dp"

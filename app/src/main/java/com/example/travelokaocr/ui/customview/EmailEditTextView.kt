@@ -1,4 +1,4 @@
-package com.example.travelokaocr.customview
+package com.example.travelokaocr.ui.customview
 
 import android.content.Context
 import android.graphics.Canvas

@@ -1,4 +1,4 @@
-package com.example.travelokaocr.customview
+package com.example.travelokaocr.ui.customview
 
 import android.content.Context
 import android.graphics.Canvas
@@ -7,7 +7,7 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import com.example.travelokaocr.R
 
-class PasswordEditTextView : AppCompatEditText {
+class FullNameEditTextView : AppCompatEditText {
     constructor(context: Context) : super(context) {
     }
 

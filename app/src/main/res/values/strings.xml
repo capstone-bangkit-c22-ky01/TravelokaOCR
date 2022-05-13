@@ -21,4 +21,6 @@
     <string name="google">Google</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="login_underline"><u>Login</u></string>
+    <string name="scan_ktp_title">Scan ID Card (KTP)</string>
+    <string name="scan_ktp_desc">Adjust your ID Card (KTP) according to the box above to start scanning</string>
 </resources>

@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    android:layout_height="wrap_content"
+    tools:context=".ui.register.RegisterActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
             android:id="@+id/rl_sign_up_banner"
@@ -23,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/cloud_background"
-                android:src="@drawable/cloud" />
+                android:src="@drawable/clouds" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -41,6 +42,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/sign_up"
+            android:textColor="@color/font"
+            android:fontFamily="@font/nunito_bold"
             android:textSize="34sp"
             android:textStyle="bold"
             android:layout_marginTop="20dp"
@@ -67,10 +70,11 @@
                 android:layout_height="60dp"
                 android:gravity="start|center"
                 android:paddingStart="20dp"
-                android:background="@drawable/edit_text_background"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/nunito_semi_bold"
                 android:hint="@string/enter_full_name"
                 android:textSize="14sp"
-                android:textColorHint="@color/text_hint_color"
+                android:textColorHint="@color/font_hint"
                 tools:ignore="RtlSymmetry" />
 
             <com.example.travelokaocr.customview.EmailEditTextView
@@ -80,10 +84,11 @@
                 android:layout_marginTop="16dp"
                 android:gravity="start|center"
                 android:paddingStart="20dp"
-                android:background="@drawable/edit_text_background"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/nunito_semi_bold"
                 android:hint="@string/enter_email"
                 android:textSize="14sp"
-                android:textColorHint="@color/text_hint_color"
+                android:textColorHint="@color/font_hint"
                 tools:ignore="RtlSymmetry" />
 
             <com.example.travelokaocr.customview.PasswordEditTextView
@@ -93,10 +98,11 @@
                 android:layout_marginTop="16dp"
                 android:gravity="start|center"
                 android:paddingStart="20dp"
-                android:background="@drawable/edit_text_background"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/nunito_semi_bold"
                 android:hint="@string/enter_password"
                 android:textSize="14sp"
-                android:textColorHint="@color/text_hint_color"
+                android:textColorHint="@color/font_hint"
                 tools:ignore="RtlSymmetry"/>
 
             <com.example.travelokaocr.customview.AuthenticationButton
@@ -104,8 +110,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="66dp"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/button_disabled_background"
+                android:background="@drawable/bg_button_disabled"
                 android:enabled="false"
+                android:fontFamily="@font/nunito_bold"
                 android:text="@string/sign_up"
                 android:textColor="@color/white" />
         </LinearLayout>
@@ -124,21 +131,23 @@
             <View
                 android:layout_width="80dp"
                 android:layout_height="1dp"
-                android:background="@color/line_sign_up_with"/>
+                android:background="@color/font"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_bold"
                 android:text="@string/or_sign_up_with"
-                android:paddingStart="35dp"
-                android:paddingEnd="35dp"
+                android:textColor="@color/font"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
                 android:textSize="14sp"
                 android:textStyle="bold"/>
 
             <View
                 android:layout_width="80dp"
                 android:layout_height="1dp"
-                android:background="@color/line_sign_up_with"/>
+                android:background="@color/font"/>
         </LinearLayout>
 
         <com.example.travelokaocr.customview.GoogleButton
@@ -146,11 +155,13 @@
             android:layout_width="208dp"
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/button_google_background"
+            android:background="@drawable/bg_button_google"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:drawableStart="@drawable/ic_google"
+            android:fontFamily="@font/nunito_bold"
             android:text="@string/google"
+            android:textColor="@color/font"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -171,7 +182,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textSize="14sp"
-                android:text="@string/already_have_an_account"/>
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/already_have_an_account"
+                android:textColor="@color/font"/>
             <TextView
                 android:id="@+id/login"
                 android:layout_width="wrap_content"
@@ -179,7 +192,9 @@
                 android:layout_marginStart="4dp"
                 android:textStyle="bold"
                 android:textSize="14sp"
-                android:text="@string/login_underline"/>
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/login_underline"
+                android:textColor="@color/font"/>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

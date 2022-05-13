@@ -32,7 +32,7 @@ class AuthenticationButton: AppCompatButton {
     }
 
     private fun init() {
-        enabledBackground = ContextCompat.getDrawable(context, R.drawable.button_enabled_background) as Drawable
-        disabledBackground = ContextCompat.getDrawable(context, R.drawable.button_disabled_background) as Drawable
+        enabledBackground = ContextCompat.getDrawable(context, R.drawable.bg_button) as Drawable
+        disabledBackground = ContextCompat.getDrawable(context, R.drawable.bg_button_disabled) as Drawable
     }
 }

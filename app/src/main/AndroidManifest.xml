@@ -10,16 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelokaOCR">
         <activity
-            android:name=".ui.ocr.OCRResultActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.ocr.OCRScreenActivity"
             android:exported="false" />
         <activity
-            android:name=".CobaActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RegisterActivity"
+            android:name=".ui.ocr.OCRResultActivity"
             android:exported="false" />
         <activity
             android:name=".ui.ocr.SuccessPageActivity"
@@ -28,7 +22,7 @@
             android:name=".ui.homescreen.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.splashscreen.SplashScreenActivity"
+            android:name=".ui.register.RegisterActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

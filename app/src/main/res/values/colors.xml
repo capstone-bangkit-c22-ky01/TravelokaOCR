@@ -7,11 +7,6 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="red_orange">#EC6432</color>
-    <color name="text_hint_color">#7F8385</color>
-    <color name="disabled_button_auth">#F6B299</color>
-    <color name="line_sign_up_with">#263238</color>
-    <color name="btn_google">#E8E7E7</color>
 
     <!--CUSTOM COLOR-->
     <color name="primary90">#E8E7E7</color>
@@ -27,4 +22,5 @@
     <color name="neutral10">#F6B299</color>
 
     <color name="font">#263238</color>
+    <color name="font_hint">#93999C</color>
 </resources>

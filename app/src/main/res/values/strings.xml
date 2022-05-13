@@ -23,4 +23,7 @@
     <string name="login_underline"><u>Login</u></string>
     <string name="scan_ktp_title">Scan ID Card (KTP)</string>
     <string name="scan_ktp_desc">Adjust your ID Card (KTP) according to the box above to start scanning</string>
+    <string name="back">Back</string>
+    <string name="flashlight">Flashlight</string>
+    <string name="turn_camera">Turn back camera</string>
 </resources>

@@ -28,4 +28,7 @@
     <string name="dont_have_an_account">Don\'t have an account?</string>
     <string name="sign_up_underline"><u>Sign up</u></string>
     <string name="vacation">user vacation image</string>
+    <string name="back">Back</string>
+    <string name="flashlight">Flashlight</string>
+    <string name="turn_camera">Turn back camera</string>
 </resources>

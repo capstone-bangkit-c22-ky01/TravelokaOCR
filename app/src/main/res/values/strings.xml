@@ -28,9 +28,4 @@
     <string name="dont_have_an_account">Don\'t have an account?</string>
     <string name="sign_up_underline"><u>Sign up</u></string>
     <string name="vacation">user vacation image</string>
-    <string name="bg_header_profile">background header profile</string>
-    <string name="profile">Profile</string>
-    <string name="content_profile">content profile</string>
-    <string name="logout">Logout</string>
-    <string name="about_traveloka"><u>About Traveloka</u></string>
 </resources>

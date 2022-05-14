@@ -33,4 +33,7 @@
     <string name="content_profile">content profile</string>
     <string name="logout">Logout</string>
     <string name="about_traveloka"><u>About Traveloka</u></string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="edit_profile">Edit Profile</string>
 </resources>

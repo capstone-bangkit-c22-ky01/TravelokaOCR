@@ -54,13 +54,49 @@
                     android:layout_height="match_parent"
                     android:background="@color/white"
                     android:contentDescription="@string/content_profile" />
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="235dp"
                     android:layout_height="235dp"
                     android:layout_marginTop="40dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/avatar"/>
+                    android:src="@drawable/avatar"
+                    app:civ_border_width="5dp"
+                    app:civ_border_color="@color/secondary50"/>
+                <TextView
+                    android:id="@+id/tv_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    tools:text="@string/username"
+                    android:textColor="@color/font"
+                    android:fontFamily="@font/nunito_bold"
+                    android:textSize="20sp"
+                    android:layout_marginTop="300dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp" />
+
+                <TextView
+                    android:id="@+id/tv_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    tools:text="@string/email"
+                    android:textColor="@color/font"
+                    android:fontFamily="@font/nunito_bold"
+                    android:textSize="20sp"
+                    android:layout_marginTop="336dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp" />
+
+                <Button
+                    android:layout_width="230dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="390dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/edit_profile"
+                    android:background="@drawable/bg_button_edit_profile"/>
             </androidx.cardview.widget.CardView>
+
         </RelativeLayout>
 
         <com.example.travelokaocr.ui.customview.AuthenticationButton

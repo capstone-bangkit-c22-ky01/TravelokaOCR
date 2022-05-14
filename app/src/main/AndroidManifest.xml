@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.travelokaocr">
-
-    <!--PERMISSION USED-->
+    <!-- PERMISSION USED -->
     <uses-feature android:name="android.hardware.camera" />
+
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelokaOCR">
         <activity
+            android:name=".ui.profile.EditProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.profile.ProfileActivity"
             android:exported="false" />
         <activity
@@ -21,8 +24,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.ocr.OCRScreenActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".ui.ocr.OCRResultActivity"
             android:exported="false" />
@@ -34,8 +36,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.register.RegisterActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".dummyActivity"
             android:exported="false" />

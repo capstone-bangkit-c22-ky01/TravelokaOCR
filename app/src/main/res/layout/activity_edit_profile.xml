@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_page"
-    tools:context=".ui.profile.ProfileActivity">
+    tools:context=".ui.profile.EditProfileActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -25,26 +25,36 @@
                 android:src="@drawable/bg_header_profile"
                 android:contentDescription="@string/bg_header_profile" />
 
-            <TextView
-                android:id="@+id/tv_profile"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="50dp"
-                android:layout_marginEnd="50dp"
-                android:fontFamily="@font/nunito_extra_bold"
-                android:text="@string/profile"
-                android:textColor="@color/white"
-                android:textSize="34sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginEnd="50dp">
+
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:contentDescription="@string/ic_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_back"/>
+
+                <TextView
+                    android:id="@+id/tv_edit_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_extra_bold"
+                    android:text="@string/edit_profile"
+                    android:textColor="@color/white"
+                    android:textSize="34sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_profile_container"
                 android:layout_width="328dp"
-                android:layout_height="496dp"
+                android:layout_height="520dp"
                 android:layout_marginTop="110dp"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
@@ -54,6 +64,7 @@
                     android:layout_height="match_parent"
                     android:background="@color/white"
                     android:contentDescription="@string/content_profile" />
+
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="235dp"
                     android:layout_height="235dp"
@@ -62,41 +73,21 @@
                     android:src="@drawable/avatar"
                     app:civ_border_width="5dp"
                     app:civ_border_color="@color/secondary50"/>
+
                 <TextView
-                    android:id="@+id/tv_username"
+                    android:id="@+id/tv_upload_image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    tools:text="@string/username"
-                    android:textColor="@color/font"
-                    android:fontFamily="@font/nunito_bold"
+                    tools:text="@string/upload_image"
+                    android:textColor="@color/secondary50"
+                    android:fontFamily="@font/nunito_semi_bold"
                     android:textSize="20sp"
-                    android:layout_marginTop="300dp"
+                    android:layout_marginTop="280dp"
                     android:layout_marginStart="50dp"
                     android:layout_marginEnd="50dp" />
 
-                <TextView
-                    android:id="@+id/tv_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    tools:text="@string/email"
-                    android:textColor="@color/font"
-                    android:fontFamily="@font/nunito_bold"
-                    android:textSize="20sp"
-                    android:layout_marginTop="336dp"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginEnd="50dp" />
-
-                <com.example.travelokaocr.ui.customview.GoogleButton
-                    android:layout_width="230dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="390dp"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/edit_profile"
-                    android:textColor="@color/white"
-                    android:background="@drawable/bg_button_edit_profile"/>
-            </androidx.cardview.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
         </RelativeLayout>
 
@@ -111,25 +102,8 @@
             android:background="@drawable/bg_button"
             android:enabled="false"
             android:fontFamily="@font/nunito_bold"
-            android:text="@string/logout"
+            android:text="@string/save"
             android:textColor="@color/white" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_logout"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="80dp"
-            android:fontFamily="@font/nunito_bold"
-            android:text="@string/about_traveloka"
-            android:textColor="@color/font"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:textSize="14sp"
-            android:textStyle="bold"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

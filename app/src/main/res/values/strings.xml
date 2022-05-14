@@ -36,4 +36,7 @@
     <string name="username">Username</string>
     <string name="email">Email</string>
     <string name="edit_profile">Edit Profile</string>
+    <string name="ic_back">icon back</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="save">Save</string>
 </resources>

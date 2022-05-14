@@ -21,4 +21,178 @@
     <string name="google">Google</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="login_underline"><u>Login</u></string>
+
+    <!-- HomeActivity -->
+    <string name="Flight_HomeActivity">Flight</string>
+
+    <!-- Data Dummy -->
+    <string-array name="data_dummy_city">
+        <item>Malang-MLG</item>
+        <item>Ransiki-RSK</item>
+        <item>Semarang-SRG</item>
+        <item>Yogyakarta-JOG</item>
+        <item>Solo-SOC</item>
+        <item>Padang Sidempuan-AEG</item>
+        <item>Pulau Alor-ARD</item>
+        <item>Amahai-AHI</item>
+        <item>Masamba-MXB</item>
+        <item>Anggi-AGD</item>
+        <item>Apalapsili-AAS</item>
+        <item>Arso-ARJ</item>
+        <item>Ayawasi-AYW</item>
+        <item>Babo-BXB</item>
+        <item>Bade-BXD</item>
+        <item>Batom-BXM</item>
+        <item>Batulicin-BTW</item>
+        <item>Tanjung Redeb-BEJ</item>
+        <item>Bau Bau-BUW</item>
+        <item>Gunungsitoli-GNS</item>
+        <item>Bokondini-BUI</item>
+        <item>Bolaang Mogondow-BJG</item>
+        <item>Bontang-BXT</item>
+        <item>Luwuk-LUW</item>
+        <item>Tanjung Pandan-TJQ</item>
+        <item>Pulau Bunyu-BYQ</item>
+        <item>Tasikmalaya-TSY</item>
+        <item>Cirebon-CBN</item>
+        <item>Meulaboh-MEQ</item>
+        <item>Singkep-SIQ</item>
+        <item>Dobo-DOB</item>
+        <item>Langgur-LUV</item>
+        <item>Kupang-KOE</item>
+        <item>Enarotali-EWI</item>
+        <item>Biak-BIK</item>
+        <item>Galela-GLX</item>
+        <item>Larantuka-LKA</item>
+        <item>Astraksetra-AKQ</item>
+        <item>Jakarta-HLP</item>
+        <item>Atambua-ABU</item>
+        <item>Batam-BTH</item>
+        <item>Sampit-SMQ</item>
+        <item>Makassar-UPG</item>
+        <item>Bandung-BDO</item>
+        <item>Ilaga-ILA</item>
+        <item>Inanwatan-INX</item>
+        <item>Ende-ENE</item>
+        <item>Pangkalan Bun-PKN</item>
+        <item>Jakarta-JKT</item>
+        <item>Rengat-RGT</item>
+        <item>Sorong-SOQ</item>
+        <item>Numfor-FOO</item>
+        <item>Surabaya-SUB</item>
+        <item>Long Bawan-LBW</item>
+        <item>Tarakan-TRK</item>
+        <item>Kaimana-KNG</item>
+        <item>Poso-PSJ</item>
+        <item>Kebar-KEQ</item>
+        <item>Keluang-KLQ</item>
+        <item>Kepi-KEI</item>
+        <item>Tanjung Pinang-TNJ</item>
+        <item>Labuhan Bajo-LBJ</item>
+        <item>Toli Toli-TLI</item>
+        <item>Lereh-LHI</item>
+        <item>Lhok Sukon (Lhoksukon)-LSX</item>
+        <item>Long Apung-LPU</item>
+        <item>Sabang-SBG</item>
+        <item>Mangole-MAL</item>
+        <item>Melangguane-MNA</item>
+        <item>Merdei-RDE</item>
+        <item>Ketaping / Padang-PDG</item>
+        <item>Mindiptana-MDP</item>
+        <item>Moanamani-ONI</item>
+        <item>Merauke-MKQ</item>
+        <item>Bima-BMU</item>
+        <item>Bengkulu-MPC</item>
+        <item>Mulia-LII</item>
+        <item>Palu-PLW</item>
+        <item>Nabire-NBX</item>
+        <item>Naha-NAH</item>
+        <item>Namlea-NAM</item>
+        <item>Melawi-NPO</item>
+        <item>Benjina-BJK</item>
+        <item>Cepu-CPF</item>
+        <item>Denpasar-DPS</item>
+        <item>Nunukan-NNX</item>
+        <item>Okaba-OKQ</item>
+        <item>Oksibil-OKL</item>
+        <item>Jambi-DJB</item>
+        <item>Bengkulu-BKS</item>
+        <item>Bajawa-BJW</item>
+        <item>Pangkal Pinang-PGK</item>
+        <item>Putusibau-PSU</item>
+        <item>Ambon-AMQ</item>
+        <item>Pendopo-PDO</item>
+        <item>Dumai-DUM</item>
+        <item>Morotai-OTI</item>
+        <item>Medan-MES</item>
+        <item>Jakarta-PCB</item>
+        <item>Bandar Lampung-TKG</item>
+        <item>Ketapang-KTG</item>
+        <item>Natuna-NTX</item>
+        <item>Manokwari-MKW</item>
+        <item>Sipora-RKO</item>
+        <item>Manado-MDC</item>
+        <item>Sanana-SQN</item>
+        <item>Sangir-SAE</item>
+        <item>Tanjung Santan-TSX</item>
+        <item>Ruteng-RTG</item>
+        <item>Saumlaki-SXK</item>
+        <item>Mataram-AMI</item>
+        <item>Senggeh-SEH</item>
+        <item>Jayapura-DJJ</item>
+        <item>Balikpapan-BPN</item>
+        <item>Kotabaru-KBU</item>
+        <item>Lubuk Linggau-LLG</item>
+        <item>Siborong-borong-SQT</item>
+        <item>Cengkareng-CGK</item>
+        <item>Soroako-SQR</item>
+        <item>Ternate-TTE</item>
+        <item>Banda Aceh-BTJ</item>
+        <item>Palembang-PLM</item>
+        <item>Pekanbaru-PKU</item>
+        <item>Sumbawa-SWQ</item>
+        <item>Tanjung Balai-TJB</item>
+        <item>Pontianak-PNK</item>
+        <item>Sintang-SQG</item>
+        <item>Banjarmasin-BDJ</item>
+        <item>Taliabu-TAX</item>
+        <item>Waikabubak-TMC</item>
+        <item>Mamuju-MJU</item>
+        <item>Tanah Grogot-TNB</item>
+        <item>Tanah Merah-TMH</item>
+        <item>Teminabuan-TXM</item>
+        <item>Samarinda-SRI</item>
+        <item>Tapak Tuan-TPK</item>
+        <item>Tembagapura-TIM</item>
+        <item>Palangkaraya-PKY</item>
+        <item>Fak Fak-FKQ</item>
+        <item>Sumenep-SUP</item>
+        <item>Cilacap-CXP</item>
+        <item>Wagethe-WET</item>
+        <item>Maumere-MOF</item>
+        <item>Waingapu-WGP</item>
+        <item>Wamena-WMX</item>
+        <item>Waris-WAR</item>
+        <item>Tanjung Selor-TJS</item>
+        <item>Wasior-WSR</item>
+        <item>Kendari-KDI</item>
+    </string-array>
+
+    <string-array name="data_dummy_passengers">
+        <item>1 passenger</item>
+        <item>2 passengers</item>
+        <item>3 passengers</item>
+        <item>4 passengers</item>
+        <item>5 passengers</item>
+        <item>6 passengers</item>
+        <item>7 passengers</item>
+    </string-array>
+
+    <string-array name="data_dummy_seatClass">
+        <item>Economy</item>
+        <item>Premium Economy</item>
+        <item>Business</item>
+        <item>First Class</item>
+    </string-array>
+
 </resources>

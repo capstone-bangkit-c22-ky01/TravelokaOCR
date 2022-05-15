@@ -100,7 +100,7 @@
 
         </RelativeLayout>
 
-        <com.example.travelokaocr.ui.customview.MyButton
+        <com.example.travelokaocr.ui.customview.CustomButton
             android:id="@+id/btn_logout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

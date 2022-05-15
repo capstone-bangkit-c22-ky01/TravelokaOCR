@@ -3,7 +3,6 @@
     package="com.example.travelokaocr">
     <!-- PERMISSION USED -->
     <uses-feature android:name="android.hardware.camera" />
-
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -30,7 +29,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.ocr.OCRScreenActivity"
-            android:exported="false"></activity>
+            android:exported="false"/>
         <activity
             android:name=".ui.ocr.OCRResultActivity"
             android:exported="false" />
@@ -42,9 +41,12 @@
             android:exported="false" />
         <activity
             android:name=".ui.register.RegisterActivity"
-            android:exported="false"></activity>
+            android:exported="false"/>
         <activity
             android:name=".MainActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".ui.splashscreen.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -53,5 +55,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

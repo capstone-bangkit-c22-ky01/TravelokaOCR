@@ -1,18 +1,14 @@
-package com.example.travelokaocr.customview
+package com.example.travelokaocr.ui.customview
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import android.view.Gravity
-import androidx.appcompat.widget.AppCompatButton
-import androidx.core.content.ContextCompat
+import android.view.View
+import androidx.appcompat.widget.AppCompatEditText
 import com.example.travelokaocr.R
 
-class GoogleButton: AppCompatButton {
-
+class PasswordEditTextView : AppCompatEditText {
     constructor(context: Context) : super(context) {
-
     }
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {

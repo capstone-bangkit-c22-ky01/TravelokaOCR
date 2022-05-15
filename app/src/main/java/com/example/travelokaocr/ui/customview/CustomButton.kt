@@ -9,7 +9,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import com.example.travelokaocr.R
 
-class MyButton : AppCompatButton {
+class CustomButton : AppCompatButton {
     private lateinit var enabledBackground: Drawable
     private lateinit var disabledBackground: Drawable
     private var txtColor: Int = 0

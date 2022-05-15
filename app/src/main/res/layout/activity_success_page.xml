@@ -48,7 +48,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_success_title" />
 
-    <com.example.travelokaocr.ui.customview.MyButton
+    <com.example.travelokaocr.ui.customview.CustomButton
         android:id="@+id/cv_btn_success"
         android:layout_width="0dp"
         android:layout_height="55dp"

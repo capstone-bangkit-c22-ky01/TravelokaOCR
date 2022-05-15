@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_page"
+    tools:context=".ui.profile.EditProfileActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/rl_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:src="@drawable/bg_header_profile"
+                android:contentDescription="@string/bg_header_profile" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="50dp">
+
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:contentDescription="@string/ic_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_back"/>
+
+                <TextView
+                    android:id="@+id/tv_edit_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_extra_bold"
+                    android:text="@string/edit_profile"
+                    android:textColor="@color/white"
+                    android:textSize="34sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_profile_container"
+                android:layout_width="328dp"
+                android:layout_height="520dp"
+                android:layout_marginTop="110dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                app:cardCornerRadius="10dp">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:contentDescription="@string/content_profile" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="235dp"
+                    android:layout_height="235dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/avatar"
+                    app:civ_border_width="5dp"
+                    app:civ_border_color="@color/secondary50"/>
+
+                <TextView
+                    android:id="@+id/tv_upload_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    tools:text="@string/upload_image"
+                    android:textColor="@color/secondary50"
+                    android:fontFamily="@font/nunito_semi_bold"
+                    android:textSize="20sp"
+                    android:layout_marginTop="280dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp" />
+
+                <com.example.travelokaocr.ui.customview.CustomEditText
+                    android:id="@+id/edt_username"
+                    android:layout_width="190dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="300dp"
+                    android:layout_marginStart="60dp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:layout_gravity="start|center_horizontal"
+                    android:hint="@string/username"
+                    android:inputType="text"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/secondary90"/>
+
+                <com.example.travelokaocr.ui.customview.CustomEditText
+                    android:id="@+id/edt_email"
+                    android:layout_width="190dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="390dp"
+                    android:layout_marginStart="60dp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:layout_gravity="start|center_horizontal"
+                    android:hint="@string/email"
+                    android:inputType="text"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/secondary90" />
+            </androidx.cardview.widget.CardView>
+
+
+        </RelativeLayout>
+
+        <com.example.travelokaocr.ui.customview.CustomButton
+            android:id="@+id/btn_save_changes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rl_profile"
+            android:layout_width="328dp"
+            android:layout_height="66dp"
+            android:layout_marginBottom="80dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/bg_button"
+            android:enabled="false"
+            android:fontFamily="@font/nunito_bold"
+            android:text="@string/save_changes"
+            android:textColor="@color/white" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

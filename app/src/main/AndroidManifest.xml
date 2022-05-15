@@ -44,9 +44,6 @@
             android:name=".ui.register.RegisterActivity"
             android:exported="false"></activity>
         <activity
-            android:name=".dummyActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

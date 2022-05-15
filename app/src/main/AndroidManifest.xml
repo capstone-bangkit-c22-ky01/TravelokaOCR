@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelokaOCR">
         <activity
+            android:name=".ui.historyscreen.HistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.flightsearchresult.FlightSearchResultActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.ocr.OCRScreenActivity"
             android:exported="false" />
         <activity

@@ -10,6 +10,25 @@
     <string name="cloud">Cloud</string>
     <string name="person_splash">Person-Splash</string>
 
+    <!--SIGN UP ACTIVITY-->
+    <string name="cloud_background">Cloud Background</string>
+    <string name="receptionist">Receptionist</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="enter_full_name">Enter Full Name</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="google">Google</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="login_underline"><u>Login</u></string>
+
+    <!--LOGIN ACTIVITY-->
+    <string name="login">Login</string>
+    <string name="or_login_with">or login with</string>
+    <string name="dont_have_an_account">Don\'t have an account?</string>
+    <string name="sign_up_underline"><u>Sign up</u></string>
+    <string name="vacation">user vacation image</string>
+    <string name="or_sign_up_with">or sign up with</string>
+
     <!--SUCCESS PAGE ACTIVITY-->
     <string name="success_image">Success</string>
     <string name="success_desc">Please make a payment according to the booked ticket and please check your email for E-Ticket information.</string>
@@ -41,22 +60,7 @@
     <string name="edit_email">Edit</string>
     <string name="submit">Submit</string>
 
-    <string name="cloud_background">Cloud Background</string>
-    <string name="receptionist">Receptionist</string>
-    <string name="sign_up">Sign Up</string>
-    <string name="enter_full_name">Enter Full Name</string>
-    <string name="enter_email">Enter Email</string>
-    <string name="enter_password">Enter Password</string>
-    <string name="or_sign_up_with">or sign up with</string>
-    <string name="google">Google</string>
-    <string name="already_have_an_account">Already have an account?</string>
-    <string name="login_underline"><u>Login</u></string>
-
-    <string name="login">Login</string>
-    <string name="or_login_with">or login with</string>
-    <string name="dont_have_an_account">Don\'t have an account?</string>
-    <string name="sign_up_underline"><u>Sign up</u></string>
-    <string name="vacation">user vacation image</string>
+    <!--PROFILE ACTIVITY-->
     <string name="bg_header_profile">background header profile</string>
     <string name="profile">Profile</string>
     <string name="content_profile">content profile</string>
@@ -67,7 +71,6 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="turn_camera">Switch Camera</string>
     <string name="flashlight">Flashlight</string>
-
     <string name="ic_back">icon back</string>
     <string name="upload_image">Upload Image</string>
     <string name="save_changes">Save Changes</string>

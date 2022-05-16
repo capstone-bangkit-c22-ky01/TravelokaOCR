@@ -53,65 +53,88 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_receptionist" />
 
-        <com.example.travelokaocr.ui.customview.FullNameEditTextView
-            android:id="@+id/etv_full_name"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_full_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:gravity="start|center"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:background="@drawable/bg_edit_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_sign_up"
-            android:fontFamily="@font/nunito_semi_bold"
-            android:hint="@string/enter_full_name"
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
-            android:textSize="14sp"
-            android:textColorHint="@color/font_hint"
-            tools:ignore="RtlSymmetry" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_up">
 
-        <com.example.travelokaocr.ui.customview.EmailEditTextView
-            android:id="@+id/etv_email"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:gravity="start|center"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:background="@drawable/bg_edit_text"
-            android:fontFamily="@font/nunito_semi_bold"
-            android:hint="@string/enter_email"
-            android:textSize="14sp"
-            android:textColorHint="@color/font_hint"
-            tools:ignore="RtlSymmetry"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etv_full_name"/>
+            <com.example.travelokaocr.ui.customview.FullNameEditTextView
+                android:id="@+id/etv_full_name"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="start|center"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:hint="@string/enter_full_name"
+                android:textSize="14sp"
+                android:textColorHint="@color/font_hint"
+                tools:ignore="RtlSymmetry" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.example.travelokaocr.ui.customview.PasswordEditTextView
-            android:id="@+id/etv_password"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_email"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:gravity="start|center"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:background="@drawable/bg_edit_text"
-            android:fontFamily="@font/nunito_semi_bold"
-            android:hint="@string/enter_password"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
-            android:textSize="14sp"
-            android:textColorHint="@color/font_hint"
-            tools:ignore="RtlSymmetry"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etv_email"/>
+            app:layout_constraintTop_toBottomOf="@id/til_full_name">
+
+            <com.example.travelokaocr.ui.customview.EmailEditTextView
+                android:id="@+id/etv_email"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="start|center"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:hint="@string/enter_email"
+                android:textSize="14sp"
+                android:textColorHint="@color/font_hint"
+                tools:ignore="RtlSymmetry"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_password"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            app:passwordToggleEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_email">
+
+            <com.example.travelokaocr.ui.customview.PasswordEditTextView
+                android:id="@+id/etv_password"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:gravity="start|center"
+                android:hint="@string/enter_password"
+                android:inputType="textPassword"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textColorHint="@color/font_hint"
+                android:textSize="14sp"
+                tools:ignore="RtlSymmetry" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.example.travelokaocr.ui.customview.AuthenticationButton
             android:id="@+id/btn_sign_up"
@@ -128,7 +151,7 @@
             android:layout_marginEnd="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etv_password"/>
+            app:layout_constraintTop_toBottomOf="@id/til_password"/>
 
         <View
             android:id="@+id/v_left_line"

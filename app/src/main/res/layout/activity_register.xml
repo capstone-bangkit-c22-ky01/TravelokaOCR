@@ -13,8 +13,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_cloud"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="428dp"
+            android:layout_height="match_parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +28,7 @@
             android:layout_alignStart="@id/iv_cloud"
             android:layout_alignEnd="@id/iv_cloud"
             android:layout_alignBottom="@id/iv_cloud"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="60dp"
             android:contentDescription="@string/receptionist"
             android:src="@drawable/receptionist"
             app:layout_constraintEnd_toEndOf="parent"

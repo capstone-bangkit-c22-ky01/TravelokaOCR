@@ -12,7 +12,6 @@
         android:layout_height="180dp"
         android:contentDescription="@string/moon"
         android:src="@drawable/moon"
-        android:alpha="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,17 +22,15 @@
         android:layout_marginEnd="85dp"
         android:contentDescription="@string/plane"
         android:src="@drawable/plane"
-        android:alpha="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_cloud"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="410dp"
         android:contentDescription="@string/cloud"
         android:src="@drawable/cloud"
-        android:alpha="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -42,7 +39,6 @@
         android:layout_width="222dp"
         android:layout_height="400dp"
         android:contentDescription="@string/person_splash"
-        android:alpha="0"
         android:src="@drawable/person_splash_screen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -57,7 +53,6 @@
         android:text="@string/welcome_to"
         android:textSize="24sp"
         android:textColor="?attr/customColorFont"
-        android:alpha="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -80,9 +75,8 @@
         android:layout_marginStart="50dp"
         android:fontFamily="@font/nunito_bold"
         android:text="@string/logo_desc"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textColor="?attr/customColorFont"
-        android:alpha="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_logo" />
 

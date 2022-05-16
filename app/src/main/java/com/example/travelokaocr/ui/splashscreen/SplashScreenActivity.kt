@@ -4,12 +4,12 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import com.example.travelokaocr.databinding.ActivitySplashScreenBinding
 import com.example.travelokaocr.ui.homescreen.HomeActivity
 
@@ -25,37 +25,6 @@ class SplashScreenActivity : AppCompatActivity() {
         //ANIMATION
         setupView()
         setupAction()
-        playAnimation()
-    }
-
-    private fun playAnimation() {
-        ObjectAnimator
-            .ofFloat(
-                binding.tvWelcomeTo,
-                View.ALPHA, 1f)
-            .apply {
-                duration = 2000
-            }.start()
-
-        val ivMoon = ObjectAnimator.ofFloat(binding.ivMoon, View.ALPHA, 1f).setDuration(2000)
-        val ivPlane = ObjectAnimator.ofFloat(binding.ivPlane, View.ALPHA, 1f).setDuration(2000)
-        val ivCloud = ObjectAnimator.ofFloat(binding.ivCloud, View.ALPHA, 1f).setDuration(2000)
-        val ivPerson = ObjectAnimator.ofFloat(binding.ivPersonSplashScreen, View.ALPHA, 1f).setDuration(2000)
-        val tvLogoDesc = ObjectAnimator.ofFloat(binding.tvLogoDesc, View.ALPHA, 1f).setDuration(2000)
-        val tvLogo = ObjectAnimator
-            .ofFloat(
-                binding.tvLogo,
-                View.TRANSLATION_X, -20f, 20f)
-            .apply {
-                duration = 3000
-                repeatCount = ObjectAnimator.INFINITE
-                repeatMode = ObjectAnimator.REVERSE
-            }
-
-        AnimatorSet().apply {
-            playTogether(ivMoon, ivPlane, ivCloud, ivPerson, tvLogoDesc, tvLogo)
-            start()
-        }
     }
 
     @Suppress("DEPRECATION")
@@ -64,7 +33,7 @@ class SplashScreenActivity : AppCompatActivity() {
             val intent = Intent(this@SplashScreenActivity, HomeActivity::class.java)
             startActivity(intent)
             finish()
-        }, 5000)
+        }, 2000)
     }
 
     private fun setupView() {

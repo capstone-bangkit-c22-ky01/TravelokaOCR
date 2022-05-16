@@ -126,7 +126,7 @@
                 android:layout_width="328dp"
                 android:layout_height="66dp"
                 android:layout_marginTop="30dp"
-                android:background="@drawable/bg_button"
+                android:background="@drawable/bg_button_logout"
                 android:fontFamily="@font/nunito_bold"
                 android:textAllCaps="false"
                 android:textSize="16sp"

@@ -234,4 +234,77 @@
         <item>First Class</item>
     </string-array>
 
+    <string-array name="data_dummy_timeDepart">
+        <item>16:55</item>
+        <item>08:55</item>
+        <item>10:55</item>
+        <item>07:00</item>
+        <item>08:00</item>
+    </string-array>
+
+    <string-array name="data_dummy_cityDepartCode">
+        <item>BPN</item>
+        <item>BPN</item>
+        <item>BPN</item>
+        <item>BPN</item>
+        <item>BPN</item>
+    </string-array>
+
+    <string-array name="data_dummy_flightDuration">
+        <item>2h 5m</item>
+        <item>2h 5m</item>
+        <item>2h 5m</item>
+        <item>2h 10m</item>
+        <item>2h 5m</item>
+    </string-array>
+
+    <string-array name="data_dummy_flightType">
+        <item>Direct</item>
+        <item>Direct</item>
+        <item>Direct</item>
+        <item>Direct</item>
+        <item>Direct</item>
+    </string-array>
+
+    <string-array name="data_dummy_timeArrive">
+        <item>18:00</item>
+        <item>10:00</item>
+        <item>12:00</item>
+        <item>08:10</item>
+        <item>09:05</item>
+    </string-array>
+
+    <string-array name="data_dummy_cityArriveCode">
+        <item>CGK</item>
+        <item>CGK</item>
+        <item>CGK</item>
+        <item>CGK</item>
+        <item>CGK</item>
+    </string-array>
+
+    <string-array name="data_dummy_price">
+        <item>Rp 877.500</item>
+        <item>Rp 890.400</item>
+        <item>Rp 890.400</item>
+        <item>Rp 954.100</item>
+        <item>Rp 890.400</item>
+    </string-array>
+
+    <string-array name="data_dummy_airplaneImage">
+        <item>@drawable/lion_air</item>
+        <item>@drawable/lion_air</item>
+        <item>@drawable/lion_air</item>
+        <item>@drawable/super_air_jet</item>
+        <item>@drawable/lion_air</item>
+    </string-array>
+
+    <string-array name="data_dummy_airplaneName">
+        <item>Lion Air</item>
+        <item>Lion Air</item>
+        <item>Lion Air</item>
+        <item>Super Air Jet</item>
+        <item>Lion Air</item>
+    </string-array>
+
+
 </resources>

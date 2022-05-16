@@ -2,6 +2,7 @@ package com.example.travelokaocr.ui.homescreen
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowInsets
@@ -10,6 +11,7 @@ import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.example.travelokaocr.R
 import com.example.travelokaocr.databinding.ActivityHomeBinding
+import com.example.travelokaocr.ui.flightsearchresult.FlightSearchResultActivity
 import com.google.android.material.textfield.TextInputEditText
 import java.text.SimpleDateFormat
 import java.util.*
@@ -26,6 +28,12 @@ class HomeActivity : AppCompatActivity() {
 
         setupView()
         setupDateEditText()
+
+        binding.searchBtn.setOnClickListener{
+            val intent = Intent(this, FlightSearchResultActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     override fun onResume() {

@@ -81,6 +81,13 @@
     <string name="flight">Flights</string>
     <string name="history">History</string>
     <string name="account">Account</string>
+    <string name="textview_dummy">TextView</string>
+    <string name="mr_dummy">Mr.</string>
+    <string name="wni_dummy">WNI</string>
+    <string name="nik_dummy">1234567890123456</string>
+    <string name="man_dummy">Man</string>
+    <string name="single_dummy">Single</string>
+    <string name="retry_button">Retry Button</string>
 
     <!-- Data Dummy -->
     <string-array name="data_dummy_city">
@@ -252,4 +259,29 @@
         <item>First Class</item>
     </string-array>
 
+    <!--OCR SCREEN RESULT-->
+    <!--TITLE DATA-->
+    <string-array name="data_title">
+        <item>Mr.</item>
+        <item>Ms.</item>
+        <item>Mrs.</item>
+    </string-array>
+
+    <!--NATIONALITY DATA-->
+    <string-array name="data_nationality">
+        <item>WNI</item>
+        <item>WNA</item>
+    </string-array>
+
+    <!--GENDER DATA-->
+    <string-array name="data_gender">
+        <item>Man</item>
+        <item>Woman</item>
+    </string-array>
+
+    <!--MARITAL STATUS DATA-->
+    <string-array name="data_marital_status">
+        <item>Single</item>
+        <item>Married</item>
+    </string-array>
 </resources>

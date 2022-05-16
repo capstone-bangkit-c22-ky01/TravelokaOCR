@@ -69,6 +69,7 @@
     <string name="username">Username</string>
     <string name="email">Email</string>
     <string name="edit_profile">Edit Profile</string>
+    <string name="card_profile">Card Profile</string>
     <string name="turn_camera">Switch Camera</string>
     <string name="flashlight">Flashlight</string>
     <string name="ic_back">icon back</string>
@@ -77,6 +78,9 @@
 
     <!-- HomeActivity -->
     <string name="Flight_HomeActivity">Flight</string>
+    <string name="flight">Flights</string>
+    <string name="history">History</string>
+    <string name="account">Account</string>
 
     <!-- Data Dummy -->
     <string-array name="data_dummy_city">

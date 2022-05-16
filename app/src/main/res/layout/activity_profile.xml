@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,23 +7,30 @@
     android:background="@color/bg_page"
     tools:context=".ui.profile.ProfileActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RelativeLayout
-            android:id="@+id/rl_profile"
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <ImageView
-                android:layout_width="match_parent"
+                android:layout_width="427dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="-5dp"
+                android:contentDescription="@string/bg_header_profile"
                 android:src="@drawable/bg_header_profile"
-                android:contentDescription="@string/bg_header_profile" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_profile"
@@ -41,96 +48,175 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv_profile_container"
+            <ImageView
+                android:id="@+id/iv_card_profile"
                 android:layout_width="328dp"
-                android:layout_height="496dp"
-                android:layout_marginTop="110dp"
+                android:layout_height="446dp"
+                android:contentDescription="@string/card_profile"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_card_profile"
+                app:layout_constraintTop_toBottomOf="@id/tv_profile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_profile_picture"
+                android:layout_width="235dp"
+                android:layout_height="235dp"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/avatar"
+                app:civ_border_width="5dp"
+                app:civ_border_color="@color/secondary50"
+                app:layout_constraintTop_toTopOf="@id/iv_card_profile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                tools:text="@string/username"
+                android:textColor="@color/font"
+                android:fontFamily="@font/nunito_bold"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
-                app:cardCornerRadius="10dp">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white"
-                    android:contentDescription="@string/content_profile" />
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="235dp"
-                    android:layout_height="235dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_gravity="center_horizontal"
-                    android:src="@drawable/avatar"
-                    app:civ_border_width="5dp"
-                    app:civ_border_color="@color/secondary50"/>
-                <TextView
-                    android:id="@+id/tv_username"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    tools:text="@string/username"
-                    android:textColor="@color/font"
-                    android:fontFamily="@font/nunito_bold"
-                    android:textSize="20sp"
-                    android:layout_marginTop="300dp"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginEnd="50dp" />
+                app:layout_constraintTop_toBottomOf="@id/iv_profile_picture"
+                app:layout_constraintStart_toStartOf="@id/iv_card_profile"
+                app:layout_constraintEnd_toEndOf="@id/iv_card_profile"/>
 
-                <TextView
-                    android:id="@+id/tv_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    tools:text="@string/email"
-                    android:textColor="@color/font"
-                    android:fontFamily="@font/nunito_bold"
-                    android:textSize="20sp"
-                    android:layout_marginTop="336dp"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginEnd="50dp" />
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                tools:text="@string/email"
+                android:textColor="@color/font"
+                android:fontFamily="@font/nunito_bold"
+                android:textSize="20sp"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                app:layout_constraintTop_toBottomOf="@id/tv_username"
+                app:layout_constraintStart_toStartOf="@id/iv_card_profile"
+                app:layout_constraintEnd_toEndOf="@id/iv_card_profile"/>
 
-                <com.example.travelokaocr.ui.customview.GoogleButton
-                    android:layout_width="230dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="390dp"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/edit_profile"
-                    android:textColor="@color/white"
-                    android:background="@drawable/bg_button_edit_profile"/>
-            </androidx.cardview.widget.CardView>
+            <com.example.travelokaocr.ui.customview.GoogleButton
+                android:id="@+id/btn_edit_profile"
+                android:layout_width="230dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/edit_profile"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_button_edit_profile"
+                app:layout_constraintTop_toBottomOf="@id/tv_email"
+                app:layout_constraintStart_toStartOf="@id/iv_card_profile"
+                app:layout_constraintEnd_toEndOf="@id/iv_card_profile"/>
 
-        </RelativeLayout>
+            <com.example.travelokaocr.ui.customview.CustomButton
+                android:id="@+id/btn_logout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_card_profile"
+                android:layout_width="328dp"
+                android:layout_height="66dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/bg_button"
+                android:fontFamily="@font/nunito_bold"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:text="@string/logout"
+                android:textColor="@color/white" />
 
-        <com.example.travelokaocr.ui.customview.CustomButton
-            android:id="@+id/btn_logout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rl_profile"
-            android:layout_width="328dp"
-            android:layout_height="66dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/bg_button"
-            android:enabled="false"
-            android:fontFamily="@font/nunito_bold"
-            android:text="@string/logout"
-            android:textColor="@color/white" />
+            <TextView
+                android:id="@+id/tv_about_traveloka"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_logout"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="120dp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/about_traveloka"
+                android:textColor="@color/font"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
-        <TextView
-            android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/footer"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/flightMenu"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_logout"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:drawableTop="@drawable/ic_flight_menu"
+            android:backgroundTint="@android:color/transparent"
+            android:padding="0dp"
+            android:text="@string/flight"
+            android:textAllCaps="false"
+            android:fontFamily="@font/nunito_semi_bold"
+            android:textColor="@color/font_hint"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="80dp"
-            android:fontFamily="@font/nunito_bold"
-            android:text="@string/about_traveloka"
-            android:textColor="@color/font"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:textSize="14sp"
-            android:textStyle="bold"/>
+            android:layout_marginStart="30dp"
+            android:drawablePadding="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/historyMenu"/>
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/historyMenu"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_history_menu"
+            android:backgroundTint="@android:color/transparent"
+            android:padding="0dp"
+            android:text="@string/history"
+            android:textAllCaps="false"
+            android:fontFamily="@font/nunito_semi_bold"
+            android:textColor="@color/font_hint"
+            android:layout_marginTop="20dp"
+            android:drawablePadding="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/flightMenu"
+            app:layout_constraintEnd_toEndOf="@id/profileMenu"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/profileMenu"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_user_menu_on_click"
+            android:backgroundTint="@android:color/transparent"
+            android:padding="0dp"
+            android:text="@string/account"
+            android:textAllCaps="false"
+            android:fontFamily="@font/nunito_semi_bold"
+            android:textColor="@color/secondary50"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            android:drawablePadding="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/historyMenu"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

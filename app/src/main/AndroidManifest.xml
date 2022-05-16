@@ -22,10 +22,10 @@
             android:name=".ui.profile.EditProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.profile.ProfileActivity"
+            android:name=".ui.ocr.SuccessPageActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name=".ui.profile.ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".ui.ocr.OCRScreenActivity"
@@ -34,7 +34,7 @@
             android:name=".ui.ocr.OCRResultActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.ocr.SuccessPageActivity"
+            android:name=".ui.register.RegisterActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,7 +46,7 @@
             android:name=".ui.homescreen.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.register.RegisterActivity"
+            android:name=".ui.login.LoginActivity"
             android:exported="false"/>
         <activity
             android:name=".MainActivity"

@@ -9,6 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:focusable="true"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -54,48 +55,57 @@
 
         <com.example.travelokaocr.ui.customview.FullNameEditTextView
             android:id="@+id/etv_full_name"
-            android:layout_width="328dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:gravity="start|center"
             android:layout_marginTop="10dp"
             android:paddingStart="20dp"
+            android:paddingEnd="20dp"
             android:background="@drawable/bg_edit_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_sign_up"
             android:fontFamily="@font/nunito_semi_bold"
             android:hint="@string/enter_full_name"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
             android:textSize="14sp"
             android:textColorHint="@color/font_hint"
             tools:ignore="RtlSymmetry" />
 
         <com.example.travelokaocr.ui.customview.EmailEditTextView
             android:id="@+id/etv_email"
-            android:layout_width="328dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="10dp"
             android:gravity="start|center"
             android:paddingStart="20dp"
+            android:paddingEnd="20dp"
             android:background="@drawable/bg_edit_text"
             android:fontFamily="@font/nunito_semi_bold"
             android:hint="@string/enter_email"
             android:textSize="14sp"
             android:textColorHint="@color/font_hint"
             tools:ignore="RtlSymmetry"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etv_full_name"/>
 
         <com.example.travelokaocr.ui.customview.PasswordEditTextView
             android:id="@+id/etv_password"
-            android:layout_width="328dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="10dp"
             android:gravity="start|center"
             android:paddingStart="20dp"
+            android:paddingEnd="20dp"
             android:background="@drawable/bg_edit_text"
             android:fontFamily="@font/nunito_semi_bold"
             android:hint="@string/enter_password"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
             android:textSize="14sp"
             android:textColorHint="@color/font_hint"
             tools:ignore="RtlSymmetry"
@@ -105,8 +115,8 @@
 
         <com.example.travelokaocr.ui.customview.AuthenticationButton
             android:id="@+id/btn_sign_up"
-            android:layout_width="328dp"
-            android:layout_height="66dp"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/bg_button_disabled"
             android:enabled="false"
@@ -114,13 +124,15 @@
             android:text="@string/sign_up"
             android:textAllCaps="false"
             android:textColor="@color/white"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etv_password"/>
 
         <View
             android:id="@+id/v_left_line"
-            android:layout_width="80dp"
+            android:layout_width="60dp"
             android:layout_height="1dp"
             android:background="@color/font"
             android:layout_marginTop="27dp"
@@ -147,7 +159,7 @@
 
         <View
             android:id="@+id/v_right_line"
-            android:layout_width="80dp"
+            android:layout_width="60dp"
             android:layout_height="1dp"
             android:layout_marginEnd="50dp"
             android:background="@color/font"
@@ -158,8 +170,8 @@
 
         <com.example.travelokaocr.ui.customview.GoogleButton
             android:id="@+id/btn_sign_up_with_google"
-            android:layout_width="208dp"
-            android:layout_height="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/bg_button_google"
             android:drawableStart="@drawable/ic_google"
@@ -171,6 +183,8 @@
             android:textColor="@color/font"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:layout_marginStart="90dp"
+            android:layout_marginEnd="90dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_or_sign_up" />

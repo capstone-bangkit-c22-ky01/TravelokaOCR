@@ -1,47 +1,49 @@
 <resources>
+
+    <!--SPLASH SCREEN ACTIVITY-->
     <string name="app_name">TravelokaOCR</string>
     <string name="moon">Moon</string>
-    <string name="welcome_to">Welcome to...</string>
+    <string name="welcome_to">Welcome to…</string>
     <string name="travelokaocr">TravelokaOCR</string>
     <string name="logo_desc">Scan your travel identity in a flash time</string>
     <string name="plane">Plane</string>
     <string name="cloud">Cloud</string>
     <string name="person_splash">Person-Splash</string>
-    <string name="success_image">Success</string>
-    <string name="success_desc">Please make a payment regarding the booking made and please check your email for E-Ticket information.</string>
-    <string name="success_btn">Go to History Page</string>
-    <string name="success_title">Data saved successfully</string>
+
+    <!--SIGN UP ACTIVITY-->
     <string name="cloud_background">Cloud Background</string>
     <string name="receptionist">Receptionist</string>
     <string name="sign_up">Sign Up</string>
     <string name="enter_full_name">Enter Full Name</string>
     <string name="enter_email">Enter Email</string>
     <string name="enter_password">Enter Password</string>
-    <string name="or_sign_up_with">or sign up with</string>
     <string name="google">Google</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="login_underline"><u>Login</u></string>
-    <string name="scan_ktp_title">Scan ID Card (KTP)</string>
-    <string name="scan_ktp_desc">Adjust your ID Card (KTP) according to the box above to start scanning</string>
+
+    <!--LOGIN ACTIVITY-->
     <string name="login">Login</string>
     <string name="or_login_with">or login with</string>
     <string name="dont_have_an_account">Don\'t have an account?</string>
     <string name="sign_up_underline"><u>Sign up</u></string>
     <string name="vacation">user vacation image</string>
-    <string name="bg_header_profile">background header profile</string>
-    <string name="profile">Profile</string>
-    <string name="content_profile">content profile</string>
-    <string name="logout">Logout</string>
-    <string name="about_traveloka"><u>About Traveloka</u></string>
-    <string name="username">Username</string>
-    <string name="email">Email</string>
-    <string name="edit_profile">Edit Profile</string>
-    <string name="turn_camera">Switch Camera</string>
-    <string name="flashlight">Flashlight</string>
+    <string name="or_sign_up_with">or sign up with</string>
+
+    <!--SUCCESS PAGE ACTIVITY-->
+    <string name="success_image">Success</string>
+    <string name="success_desc">Please make a payment according to the booked ticket and please check your email for E-Ticket information.</string>
+    <string name="success_btn">Go to History Page</string>
+    <string name="success_title">Data saved successfully</string>
+
+    <!--OCR SCREEN ACTIVITY-->
+    <string name="scan_ktp_title">Scan ID Card (KTP)</string>
+    <string name="scan_ktp_desc">Adjust your ID Card (KTP) according to the box above to start scanning</string>
     <string name="back">Back</string>
     <string name="error_image">Error Image</string>
     <string name="error_text_ocr">An error occurred while scanning, please do a re-scan</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
+
+    <!--OCR RESULT ACTIVITY-->
     <string name="scan_result">Scan Result</string>
     <string name="scan_result_desc">Please check the data listed down below.</string>
     <string name="title">Title</string>
@@ -57,12 +59,40 @@
     <string name="dummy_email">greentea99@gmail.com</string>
     <string name="edit_email">Edit</string>
     <string name="submit">Submit</string>
+
+    <!--PROFILE ACTIVITY-->
+    <string name="bg_header_profile">background header profile</string>
+    <string name="profile">Profile</string>
+    <string name="content_profile">content profile</string>
+    <string name="logout">Logout</string>
+    <string name="about_traveloka"><u>About Traveloka</u></string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="card_profile">Card Profile</string>
+    <string name="turn_camera">Switch Camera</string>
+    <string name="flashlight">Flashlight</string>
     <string name="ic_back">icon back</string>
     <string name="upload_image">Upload Image</string>
     <string name="save_changes">Save Changes</string>
 
     <!-- HomeActivity -->
     <string name="Flight_HomeActivity">Flight</string>
+    <string name="flight">Flights</string>
+    <string name="history">History</string>
+    <string name="account">Account</string>
+    <string name="textview_dummy">TextView</string>
+    <string name="mr_dummy">Mr.</string>
+    <string name="wni_dummy">WNI</string>
+    <string name="nik_dummy">1234567890123456</string>
+    <string name="man_dummy">Man</string>
+    <string name="single_dummy">Single</string>
+    <string name="retry_button">Retry Button</string>
+    <string name="email_user">user54@gmail.com</string>
+    <string name="username_user">Username</string>
+    <string name="error_password_message">Your password must have at least 6 characters long</string>
+    <string name="error_empty_message">This field can not be empty</string>
+    <string name="error_invalid_email_message">Invalid Email Address</string>
 
     <!-- Data Dummy -->
     <string-array name="data_dummy_city">
@@ -354,4 +384,29 @@
         <item>Purchase Successful</item>
     </string-array>
 
+    <!--OCR SCREEN RESULT-->
+    <!--TITLE DATA-->
+    <string-array name="data_title">
+        <item>Mr.</item>
+        <item>Ms.</item>
+        <item>Mrs.</item>
+    </string-array>
+
+    <!--NATIONALITY DATA-->
+    <string-array name="data_nationality">
+        <item>WNI</item>
+        <item>WNA</item>
+    </string-array>
+
+    <!--GENDER DATA-->
+    <string-array name="data_gender">
+        <item>Man</item>
+        <item>Woman</item>
+    </string-array>
+
+    <!--MARITAL STATUS DATA-->
+    <string-array name="data_marital_status">
+        <item>Single</item>
+        <item>Married</item>
+    </string-array>
 </resources>

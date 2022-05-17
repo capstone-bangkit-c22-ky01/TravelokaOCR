@@ -39,7 +39,7 @@ class CustomEditText: AppCompatEditText, View.OnTouchListener {
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         textAlignment = View.TEXT_ALIGNMENT_VIEW_START
-        // setBackgroundDrawable(test)
+//        setBackgroundDrawable(test)
     }
 
     //when EditText is being clicked
@@ -137,7 +137,7 @@ class CustomEditText: AppCompatEditText, View.OnTouchListener {
                 //if yes, then show the delete icon
                 //if not, then hide the delete icon
                 if(p0.toString().isNotEmpty()){
-                    // setBackgroundDrawable(test)
+//                    setBackgroundDrawable(test)
                     showDeleteButton()
                 } else{
                     hideDeleteButton()

@@ -11,6 +11,9 @@ import androidx.camera.core.ImageCapture
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import com.budiyev.android.codescanner.CodeScanner
+import com.budiyev.android.codescanner.CodeScannerView
+import com.example.travelokaocr.R
 import com.example.travelokaocr.databinding.ActivityOcrscreenBinding
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -19,71 +22,54 @@ class OCRScreenActivity : AppCompatActivity() {
     //BINDING
     private lateinit var binding: ActivityOcrscreenBinding
 
-    private lateinit var cameraExecutor: ExecutorService
-
-    private var imageCapture: ImageCapture? = null
-    private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+    private lateinit var codeScanner: CodeScanner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOcrscreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        cameraExecutor = Executors.newSingleThreadExecutor()
+        hideSystemUI()
 
-        binding.ivFlashlight.setOnClickListener {
+        val scannerView = findViewById<CodeScannerView>(R.id.scanner_view)
 
-            cameraSelector = if (cameraSelector.equals(CameraSelector.DEFAULT_BACK_CAMERA)) CameraSelector.DEFAULT_FRONT_CAMERA
-            else CameraSelector.DEFAULT_BACK_CAMERA
+        codeScanner = CodeScanner(this, scannerView)
 
-            startCamera()
+        // Parameters (default values)
+        codeScanner.camera = CodeScanner.CAMERA_BACK // or CAMERA_FRONT or specific camera id
+        codeScanner.formats = CodeScanner.ALL_FORMATS // list of type BarcodeFormat,
+        // ex. listOf(BarcodeFormat.QR_CODE)
+//        codeScanner.autoFocusMode = AutoFocusMode.SAFE // or CONTINUOUS
+//        codeScanner.scanMode = ScanMode.SINGLE // or CONTINUOUS or PREVIEW
+//        codeScanner.isAutoFocusEnabled = false// Whether to enable auto focus or not
+        codeScanner.isFlashEnabled = false // Whether to enable flash or not
 
+        // Callbacks
+//        codeScanner.decodeCallback = DecodeCallback {
+//            runOnUiThread {
+//                Toast.makeText(this, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
+//            }
+//        }
+//        codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS
+//            runOnUiThread {
+//                Toast.makeText(this, "Camera initialization error: ${it.message}",
+//                    Toast.LENGTH_LONG).show()
+//            }
+//        }
+
+        scannerView.setOnClickListener {
+            codeScanner.startPreview()
         }
     }
 
-    public override fun onResume() {
+    override fun onResume() {
         super.onResume()
-        hideSystemUI()
-        startCamera()
+        codeScanner.startPreview()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        cameraExecutor.shutdown()
-    }
-
-    private fun startCamera() {
-
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
-
-        cameraProviderFuture.addListener({
-            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
-            val preview = Preview.Builder()
-                .build()
-                .also {
-                    it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
-                }
-
-            imageCapture = ImageCapture.Builder().build()
-
-            try {
-                cameraProvider.unbindAll()
-                cameraProvider.bindToLifecycle(
-                    this,
-                    cameraSelector,
-                    preview,
-                    imageCapture
-                )
-            } catch (exc: Exception){
-                Toast.makeText(
-                    this@OCRScreenActivity,
-                    "Gagal memunculkan kamera.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-        }, ContextCompat.getMainExecutor(this))
-
+    override fun onPause() {
+        codeScanner.releaseResources()
+        super.onPause()
     }
 
     private fun hideSystemUI() {
@@ -98,5 +84,4 @@ class OCRScreenActivity : AppCompatActivity() {
         }
         supportActionBar?.hide()
     }
-
 }

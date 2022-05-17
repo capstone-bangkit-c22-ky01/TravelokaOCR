@@ -3,6 +3,7 @@
     package="com.example.travelokaocr">
     <!-- PERMISSION USED -->
     <uses-feature android:name="android.hardware.camera" />
+
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -28,7 +29,7 @@
             android:name=".ui.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.register.RegisterActivity"
+            android:name=".ui.profile.ProfileActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,24 +39,28 @@
         </activity>
         <activity
             android:name=".ui.ocr.OCRResultActivity"
-            android:exported="false">
-
-        </activity>
-        <activity
-            android:name=".ui.ocr.SuccessPageActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".ui.homescreen.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.ocr.OCRScreenActivity"
-            android:exported="false"/>
+            android:name=".ui.ocr.SuccessPageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.flightscreen.FlightActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.register.RegisterActivity"
+            android:exported="false"></activity>
         <activity
             android:name=".MainActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".ui.splashscreen.SplashScreenActivity"
-            android:exported="false">
+            android:exported="false" />
+
+        <activity android:name=".ui.splashscreen.SplashScreenActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
+
 </manifest>

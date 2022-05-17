@@ -1,7 +1,8 @@
-package com.example.travelokaocr.ui.homescreen
+package com.example.travelokaocr.ui.flightscreen
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowInsets
@@ -9,23 +10,42 @@ import android.view.WindowManager
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.example.travelokaocr.R
-import com.example.travelokaocr.databinding.ActivityHomeBinding
+import com.example.travelokaocr.databinding.ActivityFlightBinding
+import com.example.travelokaocr.ui.flightsearchresult.FlightSearchResultActivity
+import com.example.travelokaocr.ui.historyscreen.HistoryActivity
+import com.example.travelokaocr.ui.profile.ProfileActivity
 import com.google.android.material.textfield.TextInputEditText
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class HomeActivity : AppCompatActivity() {
+class FlightActivity : AppCompatActivity() {
     //BINDING
-    private lateinit var binding: ActivityHomeBinding
+    private lateinit var binding: ActivityFlightBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityHomeBinding.inflate(layoutInflater)
+        binding = ActivityFlightBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setupView()
         setupDateEditText()
+
+        binding.searchBtn.setOnClickListener{
+            val intent = Intent(this, FlightSearchResultActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.historyMenu.setOnClickListener{
+            val intent = Intent(this, HistoryActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.profileMenu.setOnClickListener{
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     override fun onResume() {
@@ -102,7 +122,7 @@ private fun TextInputEditText.transformIntoDatePicker(context: Context, format: 
 
     setOnClickListener {
         DatePickerDialog(
-            context, datePickerOnDataSetListener, myCalendar
+            context, R.style.DialogTheme, datePickerOnDataSetListener, myCalendar
                 .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
             myCalendar.get(Calendar.DAY_OF_MONTH)
         ).run {

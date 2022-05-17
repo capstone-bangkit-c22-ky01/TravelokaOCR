@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/ticketMonth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nunito_bold"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="April 2022"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/ticketContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:background="@color/white"
+        app:cardElevation="3dp"
+        app:cardCornerRadius="10dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/ticketMonth"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ticketContainerHeader"
+                android:layout_width="match_parent"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                android:layout_height="40dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/ticketBookingID_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Booking ID "
+                    android:textSize="12sp"
+                    android:textColor="#7F8385"
+                    android:fontFamily="@font/nunito_semi_bold"
+                    app:layout_constraintTop_toTopOf="@id/ticketPrice_tv"
+                    app:layout_constraintBottom_toBottomOf="@id/ticketPrice_tv"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/ticketBookingIDNumber_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#7F8385"
+                    android:fontFamily="@font/nunito_semi_bold"
+                    app:layout_constraintTop_toTopOf="@id/ticketPrice_tv"
+                    app:layout_constraintBottom_toBottomOf="@id/ticketPrice_tv"
+                    app:layout_constraintStart_toEndOf="@id/ticketBookingID_tv"
+                    tools:text="721123654" />
+
+                <TextView
+                    android:id="@+id/ticketPrice_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/nunito_bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="Rp 623.700"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ticketContainerMain"
+                android:layout_width="match_parent"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                android:layout_height="80dp"
+                android:background="@color/primary90"
+                app:layout_constraintTop_toBottomOf="@id/ticketContainerHeader"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:id="@+id/planeHistoryTicket_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/plane_history_ticket"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/cityDepartHistoryTicket_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/nunito_semi_bold"
+                    android:layout_marginStart="10dp"
+                    app:layout_constraintTop_toTopOf="@id/planeHistoryTicket_iv"
+                    app:layout_constraintBottom_toBottomOf="@id/planeHistoryTicket_iv"
+                    app:layout_constraintStart_toEndOf="@id/planeHistoryTicket_iv"
+                    tools:text="Jakarta"/>
+
+                <TextView
+                    android:id="@+id/toCharacterHistoryTicket_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" → "
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/nunito_semi_bold"
+                    app:layout_constraintTop_toTopOf="@id/cityDepartHistoryTicket_tv"
+                    app:layout_constraintBottom_toBottomOf="@id/cityDepartHistoryTicket_tv"
+                    app:layout_constraintStart_toEndOf="@id/cityDepartHistoryTicket_tv" />
+
+                <TextView
+                    android:id="@+id/cityArriveHistoryTicket_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/nunito_semi_bold"
+                    app:layout_constraintTop_toTopOf="@id/planeHistoryTicket_iv"
+                    app:layout_constraintBottom_toBottomOf="@id/planeHistoryTicket_iv"
+                    app:layout_constraintStart_toEndOf="@id/toCharacterHistoryTicket_tv"
+                    tools:text="Batam"/>
+
+                <ImageView
+                    android:id="@+id/shieldHistoryTicket_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/shield_history_ticket"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintTop_toBottomOf="@id/planeHistoryTicket_iv"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/travelInsuranceHistoryTicket_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Travel Insurance (Flight)"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/nunito_semi_bold"
+                    android:layout_marginStart="10dp"
+                    app:layout_constraintTop_toTopOf="@id/shieldHistoryTicket_iv"
+                    app:layout_constraintBottom_toBottomOf="@id/shieldHistoryTicket_iv"
+                    app:layout_constraintStart_toEndOf="@id/shieldHistoryTicket_iv" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ticketContainerFooter"
+                android:layout_width="match_parent"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                android:layout_height="40dp"
+                app:layout_constraintTop_toBottomOf="@id/ticketContainerMain"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/statusHistoryTicket_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/nunito_bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="Purchase Pending"/>
+
+                <ImageView
+                    android:id="@+id/moreBtnHistoryTicket_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/more_button_horizontal"
+                    android:layout_marginEnd="10sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

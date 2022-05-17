@@ -26,4 +26,9 @@
 
         <item name="customColorFont">@color/font</item>
     </style>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/secondary50</item>
+    </style>
+
 </resources>

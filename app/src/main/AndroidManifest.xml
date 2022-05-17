@@ -38,7 +38,7 @@
             android:name=".ui.ocr.SuccessPageActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.homescreen.HomeActivity"
+            android:name=".ui.flightscreen.HomeActivity"
             android:exported="false" />
         <activity
             android:name=".ui.register.RegisterActivity"

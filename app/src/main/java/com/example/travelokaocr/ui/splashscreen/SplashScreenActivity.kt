@@ -11,7 +11,7 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import com.example.travelokaocr.databinding.ActivitySplashScreenBinding
-import com.example.travelokaocr.ui.homescreen.HomeActivity
+import com.example.travelokaocr.ui.flightscreen.HomeActivity
 
 class SplashScreenActivity : AppCompatActivity() {
     //BINDING

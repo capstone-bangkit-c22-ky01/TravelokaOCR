@@ -8,12 +8,9 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travelokaocr.R
-import com.example.travelokaocr.data.FlightTicket
 import com.example.travelokaocr.data.HistoryTicket
 import com.example.travelokaocr.databinding.ActivityHistoryBinding
-import com.example.travelokaocr.ui.flightsearchresult.FlightSearchResultAdapter
-import com.example.travelokaocr.ui.homescreen.HomeActivity
-import com.example.travelokaocr.ui.ocr.OCRScreenActivity
+import com.example.travelokaocr.ui.flightscreen.HomeActivity
 import com.example.travelokaocr.ui.profile.ProfileActivity
 
 class HistoryActivity : AppCompatActivity() {

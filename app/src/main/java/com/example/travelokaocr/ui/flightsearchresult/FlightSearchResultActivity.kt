@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travelokaocr.R
 import com.example.travelokaocr.data.FlightTicket
 import com.example.travelokaocr.databinding.ActivityFlightSearchResultBinding
-import com.example.travelokaocr.ui.homescreen.HomeActivity
+import com.example.travelokaocr.ui.flightscreen.HomeActivity
 import com.example.travelokaocr.ui.ocr.OCRScreenActivity
 
 class FlightSearchResultActivity : AppCompatActivity() {

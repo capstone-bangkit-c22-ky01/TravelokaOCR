@@ -33,11 +33,7 @@ class PasswordEditTextView : AppCompatEditText {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s?.isEmpty()!!) {
-                    error = context.getString(R.string.error_empty_message)
-                }  else if (s.length < 6) {
-                    error = context.getString(R.string.error_password_message)
-                }
+
             }
 
             override fun afterTextChanged(s: Editable?) {

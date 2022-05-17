@@ -54,11 +54,16 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:helperText=""
+            app:helperTextTextColor="@color/bg_btn_logout"
+            app:hintEnabled="false"
+            app:endIconMode="clear_text"
+            app:errorIconDrawable="@drawable/ic_error"
             app:layout_constraintTop_toBottomOf="@id/tv_login">
 
             <com.example.travelokaocr.ui.customview.EmailEditTextView
@@ -72,8 +77,7 @@
                 android:fontFamily="@font/nunito_semi_bold"
                 android:hint="@string/enter_email"
                 android:textSize="14sp"
-                android:textColorHint="@color/font_hint"
-                tools:ignore="RtlSymmetry"/>
+                android:textColorHint="@color/font_hint"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -81,12 +85,15 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
-            app:passwordToggleEnabled="true"
+            app:endIconMode="password_toggle"
+            app:helperText=""
+            app:helperTextTextColor="@color/bg_btn_logout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:hintEnabled="false"
             app:layout_constraintTop_toBottomOf="@id/til_email">
 
             <com.example.travelokaocr.ui.customview.PasswordEditTextView

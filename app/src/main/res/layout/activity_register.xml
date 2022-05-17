@@ -63,8 +63,11 @@
             android:layout_marginEnd="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:errorEnabled="true"
+            app:errorIconDrawable="@drawable/ic_error"
             app:helperText=""
+            app:helperTextTextColor="@color/bg_btn_logout"
+            app:hintEnabled="false"
+            app:endIconMode="clear_text"
             app:layout_constraintTop_toBottomOf="@id/tv_sign_up">
 
             <com.example.travelokaocr.ui.customview.FullNameEditTextView
@@ -75,10 +78,10 @@
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:background="@drawable/bg_edit_text"
-                android:fontFamily="@font/nunito_semi_bold"
                 android:hint="@string/enter_full_name"
-                android:textSize="14sp"
                 android:textColorHint="@color/font_hint"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:textSize="14sp"
                 tools:ignore="RtlSymmetry" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -87,12 +90,16 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:errorEnabled="true"
             app:helperText=""
+            app:helperTextTextColor="@color/bg_btn_logout"
+            app:hintEnabled="false"
+            app:endIconMode="clear_text"
+            app:errorIconDrawable="@drawable/ic_error"
             app:layout_constraintTop_toBottomOf="@id/til_full_name">
 
             <com.example.travelokaocr.ui.customview.EmailEditTextView
@@ -106,8 +113,7 @@
                 android:fontFamily="@font/nunito_semi_bold"
                 android:hint="@string/enter_email"
                 android:textSize="14sp"
-                android:textColorHint="@color/font_hint"
-                tools:ignore="RtlSymmetry"/>
+                android:textColorHint="@color/font_hint"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -115,12 +121,15 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
-            app:passwordToggleEnabled="true"
+            app:endIconMode="password_toggle"
+            app:helperText=""
+            app:helperTextTextColor="@color/bg_btn_logout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:errorEnabled="true"
+            app:hintEnabled="false"
             app:layout_constraintTop_toBottomOf="@id/til_email">
 
             <com.example.travelokaocr.ui.customview.PasswordEditTextView
@@ -143,6 +152,7 @@
             android:id="@+id/btn_sign_up"
             android:layout_width="match_parent"
             android:layout_height="55dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/bg_button_disabled"
             android:enabled="false"
             android:fontFamily="@font/nunito_bold"

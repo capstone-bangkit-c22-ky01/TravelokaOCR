@@ -76,6 +76,12 @@
     <string name="upload_image">Upload Image</string>
     <string name="save_changes">Save Changes</string>
 
+    <!-- Error Messages -->
+    <string name="error_password_message">Your password must have at least 6 characters long</string>
+    <string name="error_empty_message">This field can not be empty</string>
+    <string name="error_invalid_email_message">Invalid Email Address</string>
+
+
     <!-- HomeActivity -->
     <string name="Flight_HomeActivity">Flight</string>
     <string name="flight">Flights</string>
@@ -90,9 +96,6 @@
     <string name="retry_button">Retry Button</string>
     <string name="email_user">user54@gmail.com</string>
     <string name="username_user">Username</string>
-    <string name="error_password_message">Your password must have at least 6 characters long</string>
-    <string name="error_empty_message">This field can not be empty</string>
-    <string name="error_invalid_email_message">Invalid Email Address</string>
 
     <!-- Data Dummy -->
     <string-array name="data_dummy_city">

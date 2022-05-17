@@ -16,11 +16,7 @@ import com.example.travelokaocr.databinding.ActivityLoginBinding
 import com.example.travelokaocr.databinding.ActivityRegisterBinding
 import com.google.android.material.textfield.TextInputLayout
 
-class EmailEditTextView : AppCompatEditText, View.OnTouchListener {
-
-    private lateinit var bindingRegister: ActivityRegisterBinding
-    private lateinit var bindingLogin: ActivityLoginBinding
-    private lateinit var clearButtonImage: Drawable
+class EmailEditTextView : AppCompatEditText {
 
     constructor(context: Context) : super(context) {
         init()
@@ -39,94 +35,80 @@ class EmailEditTextView : AppCompatEditText, View.OnTouchListener {
     }
 
     private fun init() {
-        clearButtonImage = ContextCompat.getDrawable(context, R.drawable.ic_clear_button) as Drawable
-        setOnTouchListener(this)
-
         addTextChangedListener(object  : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (s.toString().isNotEmpty()) {
-                    showClearButton()
-                } else if (s.toString().isEmpty()) {
-                    error = context.getString(R.string.error_empty_message)
-//                    bindingRegister.etvEmail.error = context.getString(R.string.error_empty_message)
-//                    bindingLogin.etvEmail.error = context.getString(R.string.error_empty_message)
-                } else if (!Patterns.EMAIL_ADDRESS.matcher(s).matches()) {
-                    error = context.getString(R.string.error_invalid_email_message)
-//                    bindingRegister.etvEmail.error = context.getString(R.string.error_invalid_email_message)
-//                    bindingLogin.etvEmail.error = context.getString(R.string.error_invalid_email_message)
-                } else {
-                    hideClearButton()
-                }
+
             }
 
             override fun afterTextChanged(s: Editable?) {
+
             }
         })
     }
 
-    private fun showClearButton() {
-        setButtonDrawables(endOfTheText = clearButtonImage)
-    }
+//    private fun showClearButton() {
+//        setButtonDrawables(endOfTheText = clearButtonImage)
+//    }
+//
+//    private fun hideClearButton() {
+//        setButtonDrawables()
+//    }
 
-    private fun hideClearButton() {
-        setButtonDrawables()
-    }
+//    private fun setButtonDrawables(
+//        startOfTheText: Drawable? = null,
+//        topOfTheText: Drawable? = null,
+//        endOfTheText: Drawable? = null,
+//        bottomOfTheText: Drawable? = null
+//    ) {
+//        setCompoundDrawablesWithIntrinsicBounds(
+//            startOfTheText,
+//            topOfTheText,
+//            endOfTheText,
+//            bottomOfTheText
+//        )
+//    }
 
-    private fun setButtonDrawables(
-        startOfTheText: Drawable? = null,
-        topOfTheText: Drawable? = null,
-        endOfTheText: Drawable? = null,
-        bottomOfTheText: Drawable? = null
-    ) {
-        setCompoundDrawablesWithIntrinsicBounds(
-            startOfTheText,
-            topOfTheText,
-            endOfTheText,
-            bottomOfTheText
-        )
-    }
-
-    override fun onTouch(p0: View?, event: MotionEvent?): Boolean {
-        if (compoundDrawables[2] != null) {
-            val clearButtonStart: Float
-            val clearButtonEnd: Float
-            var isClearButtonClicked = false
-
-            if (layoutDirection == View.LAYOUT_DIRECTION_RTL) {
-                clearButtonEnd = (clearButtonImage.intrinsicWidth + paddingStart).toFloat()
-                when {
-                    event?.x!! < clearButtonEnd -> isClearButtonClicked = true
-                }
-            } else {
-                clearButtonStart = (width - paddingEnd - clearButtonImage.intrinsicWidth).toFloat()
-                when {
-                    event?.x!! > clearButtonStart -> isClearButtonClicked = true
-                }
-            }
-
-            if (isClearButtonClicked) {
-                when (event?.action) {
-                    MotionEvent.ACTION_DOWN -> {
-                        clearButtonImage = ContextCompat.getDrawable(context, R.drawable.ic_clear_button) as Drawable
-                        showClearButton()
-                        return true
-                    }
-                    MotionEvent.ACTION_UP -> {
-                        clearButtonImage = ContextCompat.getDrawable(context, R.drawable.ic_clear_button) as Drawable
-                        when {
-                            text != null -> text?.clear()
-                        }
-                        hideClearButton()
-                        return true
-                    }
-                    else-> return false
-                }
-            }
-        }
-        return false
-    }
+//    override fun onTouch(p0: View?, event: MotionEvent?): Boolean {
+//        if (compoundDrawables[2] != null) {
+//            val clearButtonStart: Float
+//            val clearButtonEnd: Float
+//            var isClearButtonClicked = false
+//
+//            if (layoutDirection == View.LAYOUT_DIRECTION_RTL) {
+//                clearButtonEnd = (clearButtonImage.intrinsicWidth + paddingStart).toFloat()
+//                when {
+//                    event?.x!! < clearButtonEnd -> isClearButtonClicked = true
+//                }
+//            } else {
+//                clearButtonStart = (width - paddingEnd - clearButtonImage.intrinsicWidth).toFloat()
+//                when {
+//                    event?.x!! > clearButtonStart -> isClearButtonClicked = true
+//                }
+//            }
+//
+//            if (isClearButtonClicked) {
+//                when (event?.action) {
+//                    MotionEvent.ACTION_DOWN -> {
+//                        clearButtonImage = ContextCompat.getDrawable(context, R.drawable.ic_clear_button) as Drawable
+//                        showClearButton()
+//                        return true
+//                    }
+//                    MotionEvent.ACTION_UP -> {
+//                        clearButtonImage = ContextCompat.getDrawable(context, R.drawable.ic_clear_button) as Drawable
+//                        when {
+//                            text != null -> text?.clear()
+//                        }
+//                        hideClearButton()
+//                        return true
+//                    }
+//                    else-> return false
+//                }
+//            }
+//        }
+//        return false
+//    }
 }

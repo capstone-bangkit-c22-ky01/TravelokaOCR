@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class HomeActivity : AppCompatActivity() {
+class FlightActivity : AppCompatActivity() {
     //BINDING
     private lateinit var binding: ActivityFlightBinding
 

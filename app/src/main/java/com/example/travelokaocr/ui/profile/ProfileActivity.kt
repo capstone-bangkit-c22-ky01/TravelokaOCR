@@ -10,7 +10,7 @@ import android.view.WindowManager
 import com.example.travelokaocr.R
 import com.example.travelokaocr.databinding.ActivityProfileBinding
 import com.example.travelokaocr.ui.historyscreen.HistoryActivity
-import com.example.travelokaocr.ui.homescreen.HomeActivity
+import com.example.travelokaocr.ui.flightscreen.FlightActivity
 import com.example.travelokaocr.ui.login.LoginActivity
 
 class ProfileActivity : AppCompatActivity(), View.OnClickListener {
@@ -60,7 +60,7 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.flightMenu -> {
-                startActivity(Intent(this, HomeActivity::class.java))
+                startActivity(Intent(this, FlightActivity::class.java))
             }
             R.id.historyMenu -> {
                 startActivity(Intent(this, HistoryActivity::class.java))

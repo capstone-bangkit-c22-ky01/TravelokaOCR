@@ -12,7 +12,7 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.travelokaocr.databinding.ActivitySplashScreenBinding
-import com.example.travelokaocr.ui.flightscreen.HomeActivity
+import com.example.travelokaocr.ui.flightscreen.FlightActivity
 
 class SplashScreenActivity : AppCompatActivity() {
     //BINDING
@@ -31,7 +31,7 @@ class SplashScreenActivity : AppCompatActivity() {
     @Suppress("DEPRECATION")
     private fun setupAction() {
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this@SplashScreenActivity, HomeActivity::class.java)
+            val intent = Intent(this@SplashScreenActivity, FlightActivity::class.java)
             startActivity(intent)
             finish()
         }, 2000)

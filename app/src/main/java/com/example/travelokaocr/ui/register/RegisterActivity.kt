@@ -9,7 +9,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.travelokaocr.R
 import com.example.travelokaocr.databinding.ActivityRegisterBinding
-import com.example.travelokaocr.ui.homescreen.HomeActivity
+import com.example.travelokaocr.ui.flightscreen.FlightActivity
 import com.example.travelokaocr.ui.login.LoginActivity
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {
@@ -45,7 +45,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btn_sign_up -> {
-                startActivity(Intent(this, HomeActivity::class.java))
+                startActivity(Intent(this, FlightActivity::class.java))
             }
             R.id.btn_login_with_google -> {
 

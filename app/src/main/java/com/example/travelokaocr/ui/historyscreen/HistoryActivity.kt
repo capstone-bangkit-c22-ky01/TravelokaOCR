@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travelokaocr.R
 import com.example.travelokaocr.data.HistoryTicket
 import com.example.travelokaocr.databinding.ActivityHistoryBinding
-import com.example.travelokaocr.ui.flightscreen.HomeActivity
+import com.example.travelokaocr.ui.flightscreen.FlightActivity
 import com.example.travelokaocr.ui.profile.ProfileActivity
 
 class HistoryActivity : AppCompatActivity() {
@@ -54,7 +54,7 @@ class HistoryActivity : AppCompatActivity() {
         setupRecycleView()
 
         binding.flightMenu.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
+            val intent = Intent(this, FlightActivity::class.java)
             startActivity(intent)
         }
 

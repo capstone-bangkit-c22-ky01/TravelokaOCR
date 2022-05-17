@@ -306,5 +306,52 @@
         <item>Lion Air</item>
     </string-array>
 
+    <string-array name="data_dummy_monthHistoryTicket">
+        <item>April 2022</item>
+        <item>April 2022</item>
+        <item>March 2022</item>
+        <item>March 2022</item>
+        <item>March 2022</item>
+    </string-array>
+
+    <string-array name="data_dummy_bookingIDHistoryTicket">
+        <item>721123654</item>
+        <item>448123654</item>
+        <item>123456654</item>
+        <item>953812456</item>
+        <item>231983132</item>
+    </string-array>
+
+    <string-array name="data_dummy_priceHistoryTicket">
+        <item>Rp 623.700</item>
+        <item>Rp 977.000</item>
+        <item>Rp 683.200</item>
+        <item>Rp 877.500</item>
+        <item>Rp 931.800</item>
+    </string-array>
+
+    <string-array name="data_dummy_departCityHistoryTicket">
+        <item>Jakarta</item>
+        <item>Denpasar</item>
+        <item>Batam</item>
+        <item>Balikpapan</item>
+        <item>Makassar</item>
+    </string-array>
+
+    <string-array name="data_dummy_arriveCityHistoryTicket">
+        <item>Batam</item>
+        <item>Jakarta</item>
+        <item>Jakarta</item>
+        <item>Jakarta</item>
+        <item>Jakarta</item>
+    </string-array>
+
+    <string-array name="data_dummy_purchaseStatusHistoryTicket">
+        <item>Purchase Pending</item>
+        <item>Purchase Successful</item>
+        <item>Purchase Successful</item>
+        <item>Purchase Successful</item>
+        <item>Purchase Successful</item>
+    </string-array>
 
 </resources>

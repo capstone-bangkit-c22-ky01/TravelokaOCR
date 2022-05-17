@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.travelokaocr.R
 import com.example.travelokaocr.databinding.ActivityHomeBinding
 import com.example.travelokaocr.ui.flightsearchresult.FlightSearchResultActivity
+import com.example.travelokaocr.ui.historyscreen.HistoryActivity
+import com.example.travelokaocr.ui.profile.ProfileActivity
 import com.google.android.material.textfield.TextInputEditText
 import java.text.SimpleDateFormat
 import java.util.*
@@ -31,6 +33,11 @@ class HomeActivity : AppCompatActivity() {
 
         binding.searchBtn.setOnClickListener{
             val intent = Intent(this, FlightSearchResultActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.historyMenu.setOnClickListener{
+            val intent = Intent(this, HistoryActivity::class.java)
             startActivity(intent)
         }
 

@@ -88,6 +88,8 @@
     <string name="man_dummy">Man</string>
     <string name="single_dummy">Single</string>
     <string name="retry_button">Retry Button</string>
+    <string name="email_user">user54@gmail.com</string>
+    <string name="username_user">Username</string>
 
     <!-- Data Dummy -->
     <string-array name="data_dummy_city">

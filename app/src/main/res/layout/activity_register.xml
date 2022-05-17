@@ -63,6 +63,8 @@
             android:layout_marginEnd="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:errorEnabled="true"
+            app:helperText=""
             app:layout_constraintTop_toBottomOf="@id/tv_sign_up">
 
             <com.example.travelokaocr.ui.customview.FullNameEditTextView
@@ -85,11 +87,12 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:errorEnabled="true"
+            app:helperText=""
             app:layout_constraintTop_toBottomOf="@id/til_full_name">
 
             <com.example.travelokaocr.ui.customview.EmailEditTextView
@@ -112,12 +115,12 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
             app:passwordToggleEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:errorEnabled="true"
             app:layout_constraintTop_toBottomOf="@id/til_email">
 
             <com.example.travelokaocr.ui.customview.PasswordEditTextView
@@ -140,7 +143,6 @@
             android:id="@+id/btn_sign_up"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:layout_marginTop="10dp"
             android:background="@drawable/bg_button_disabled"
             android:enabled="false"
             android:fontFamily="@font/nunito_bold"

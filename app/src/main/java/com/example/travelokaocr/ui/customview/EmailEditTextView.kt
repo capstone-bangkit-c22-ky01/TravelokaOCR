@@ -6,14 +6,20 @@ import android.graphics.drawable.Drawable
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
+import android.util.Patterns
 import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import com.example.travelokaocr.R
+import com.example.travelokaocr.databinding.ActivityLoginBinding
+import com.example.travelokaocr.databinding.ActivityRegisterBinding
+import com.google.android.material.textfield.TextInputLayout
 
 class EmailEditTextView : AppCompatEditText, View.OnTouchListener {
 
+    private lateinit var bindingRegister: ActivityRegisterBinding
+    private lateinit var bindingLogin: ActivityLoginBinding
     private lateinit var clearButtonImage: Drawable
 
     constructor(context: Context) : super(context) {
@@ -41,14 +47,24 @@ class EmailEditTextView : AppCompatEditText, View.OnTouchListener {
 
             }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s.toString().isNotEmpty()) showClearButton() else hideClearButton()
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if (s.toString().isNotEmpty()) {
+                    showClearButton()
+                } else if (s.toString().isEmpty()) {
+                    error = context.getString(R.string.error_empty_message)
+//                    bindingRegister.etvEmail.error = context.getString(R.string.error_empty_message)
+//                    bindingLogin.etvEmail.error = context.getString(R.string.error_empty_message)
+                } else if (!Patterns.EMAIL_ADDRESS.matcher(s).matches()) {
+                    error = context.getString(R.string.error_invalid_email_message)
+//                    bindingRegister.etvEmail.error = context.getString(R.string.error_invalid_email_message)
+//                    bindingLogin.etvEmail.error = context.getString(R.string.error_invalid_email_message)
+                } else {
+                    hideClearButton()
+                }
             }
 
             override fun afterTextChanged(s: Editable?) {
-
             }
-
         })
     }
 

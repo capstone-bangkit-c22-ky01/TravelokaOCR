@@ -15,6 +15,10 @@ import com.example.travelokaocr.ui.login.LoginActivity
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityRegisterBinding
+    private var nameInput = ""
+    private var emailInput = ""
+    private var passwordInput = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)

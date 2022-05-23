@@ -8,13 +8,26 @@ import android.util.Patterns
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.example.travelokaocr.R
+import com.example.travelokaocr.data.api.ApiService
+import com.example.travelokaocr.data.repository.AuthenticationRepository
 import com.example.travelokaocr.databinding.ActivityLoginBinding
 import com.example.travelokaocr.ui.flightscreen.FlightActivity
 import com.example.travelokaocr.ui.register.RegisterActivity
+import com.example.travelokaocr.utils.Constants
+import com.example.travelokaocr.viewmodel.AuthenticationViewModel
+import com.example.travelokaocr.viewmodel.factory.AuthenticationViewModelFactory
+import com.example.travelokaocr.viewmodel.preferences.UserPreference
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityLoginBinding
+
+    private lateinit var authenticationViewModel: AuthenticationViewModel
+    private lateinit var userPreference: UserPreference
+    private lateinit var apiService: ApiService
+
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -23,6 +36,67 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         setupView()
         setupAction()
         itemOnClickListener()
+
+        //CREATE API CONNECTION
+        val authenticationViewModelFactory = AuthenticationViewModelFactory(AuthenticationRepository(apiService))
+        authenticationViewModel = ViewModelProvider(
+            this, authenticationViewModelFactory
+        )[AuthenticationViewModel::class.java]
+
+        userPreference = UserPreference(this)
+
+        binding.btnLogin.setOnClickListener {
+            loginForm()
+        }
+
+    }
+
+    private fun loginForm(){
+        val email = binding.etvEmail.text.toString()
+        val password = binding.etvPassword.text.toString()
+
+        authenticationViewModel.getLoginUsersResponse(email, password)
+        observeLogin()
+    }
+
+    private fun observeLogin(){
+        authenticationViewModel.loginUsers.observe(this){ response ->
+            if (response.isSuccessful){
+                if(response.body()?.status.equals("success")){
+                    val accessToken = response.body()?.data?.accessToken.toString()
+                    val refreshToken = response.body()?.data?.refreshToken.toString()
+
+                    saveLoginSession(accessToken, refreshToken)
+
+                    Toast.makeText(
+                        this,
+                        "${response.body()?.message}",
+                        Toast.LENGTH_LONG)
+                        .show()
+
+                    val intent = Intent(this@LoginActivity, FlightActivity::class.java)
+                    startActivity(intent)
+                }else{
+                    Toast.makeText(
+                        this,
+                        "${response.body()?.status}, Message : Failed to login, email/password doesn't match",
+                        Toast.LENGTH_LONG)
+                        .show()
+                }
+            }else{
+                Toast.makeText(
+                    this,
+                    "Code : ${response.code()}",
+                    Toast.LENGTH_LONG)
+                    .show()
+            }
+        }
+    }
+
+    private fun saveLoginSession(accessToken: String, refreshToken: String){
+        userPreference.putDataLogin(Constants.ACCESS_TOKEN, accessToken)
+        userPreference.putDataLogin(Constants.REFRESH_TOKEN, refreshToken)
+        userPreference.putSessionLogin(Constants.IS_LOGIN, true)
     }
 
     private fun setupView() {

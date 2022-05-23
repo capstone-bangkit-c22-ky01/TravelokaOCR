@@ -62,7 +62,7 @@ dependencies {
     //RETROFIT
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
-    implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.3"
 
     //CIRCLE IMG
     implementation 'de.hdodenhof:circleimageview:3.1.0'
@@ -71,4 +71,10 @@ dependencies {
     dependencies {
         implementation 'com.github.yuriy-budiyev:code-scanner:2.1.2'
     }
+
+    //LIFECYCLE
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
+    implementation "androidx.activity:activity-ktx:1.4.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1"
+
 }

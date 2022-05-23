@@ -12,12 +12,14 @@ import com.example.travelokaocr.R
 import com.example.travelokaocr.databinding.ActivityRegisterBinding
 import com.example.travelokaocr.ui.flightscreen.FlightActivity
 import com.example.travelokaocr.ui.login.LoginActivity
+import java.io.File
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityRegisterBinding
     private var nameInput = ""
     private var emailInput = ""
     private var passwordInput = ""
+    private var profilePicture: File? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

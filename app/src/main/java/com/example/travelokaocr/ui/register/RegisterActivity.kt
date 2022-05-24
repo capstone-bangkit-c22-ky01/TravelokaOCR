@@ -17,18 +17,12 @@ import com.example.travelokaocr.databinding.ActivityRegisterBinding
 import com.example.travelokaocr.ui.flightscreen.FlightActivity
 import com.example.travelokaocr.ui.login.LoginActivity
 import com.example.travelokaocr.viewmodel.AuthenticationViewModel
-import com.example.travelokaocr.viewmodel.ViewModelFactory
 import com.example.travelokaocr.viewmodel.factory.AuthenticationViewModelFactory
-import java.io.File
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var viewModel: AuthenticationViewModel
     private lateinit var apiService: ApiService
-    private var nameInput = ""
-    private var emailInput = ""
-    private var passwordInput = ""
-    private var profilePicture: File? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

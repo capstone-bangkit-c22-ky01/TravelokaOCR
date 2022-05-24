@@ -12,10 +12,12 @@ import com.example.travelokaocr.R
 import com.example.travelokaocr.databinding.ActivityRegisterBinding
 import com.example.travelokaocr.ui.flightscreen.FlightActivity
 import com.example.travelokaocr.ui.login.LoginActivity
+import com.example.travelokaocr.viewmodel.AuthenticationViewModel
 import java.io.File
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityRegisterBinding
+    private lateinit var viewModel: AuthenticationViewModel
     private var nameInput = ""
     private var emailInput = ""
     private var passwordInput = ""
@@ -25,6 +27,8 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //viewModel = ViewModelProvider(this, ViewModelFactory.getInstance(this))[AuthenticationViewModel::class.java]
 
         setupView()
         setupAction()

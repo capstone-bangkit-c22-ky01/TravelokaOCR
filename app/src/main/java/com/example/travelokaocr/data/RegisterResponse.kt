@@ -19,7 +19,7 @@ data class RegisterResponse(
 
 )
 
-data class UserData(
+data class UserDataRegister(
 
     @field:SerializedName("status")
     val status: String,

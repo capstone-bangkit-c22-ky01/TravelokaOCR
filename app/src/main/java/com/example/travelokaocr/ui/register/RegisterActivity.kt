@@ -7,17 +7,24 @@ import android.util.Patterns
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.travelokaocr.R
+import com.example.travelokaocr.data.api.ApiService
+import com.example.travelokaocr.data.repository.AuthenticationRepository
 import com.example.travelokaocr.databinding.ActivityRegisterBinding
 import com.example.travelokaocr.ui.flightscreen.FlightActivity
 import com.example.travelokaocr.ui.login.LoginActivity
 import com.example.travelokaocr.viewmodel.AuthenticationViewModel
+import com.example.travelokaocr.viewmodel.ViewModelFactory
+import com.example.travelokaocr.viewmodel.factory.AuthenticationViewModelFactory
 import java.io.File
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var viewModel: AuthenticationViewModel
+    private lateinit var apiService: ApiService
     private var nameInput = ""
     private var emailInput = ""
     private var passwordInput = ""
@@ -28,7 +35,10 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //viewModel = ViewModelProvider(this, ViewModelFactory.getInstance(this))[AuthenticationViewModel::class.java]
+        val authenticationViewModelFactory = AuthenticationViewModelFactory(AuthenticationRepository(apiService))
+        viewModel = ViewModelProvider(
+            this, authenticationViewModelFactory
+        )[AuthenticationViewModel::class.java]
 
         setupView()
         setupAction()
@@ -115,7 +125,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(Intent(this, FlightActivity::class.java))
             }
             R.id.btn_login_with_google -> {
-
+                registerForm()
             }
             R.id.login -> {
                 startActivity(Intent(this, LoginActivity::class.java))
@@ -127,5 +137,46 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         binding.btnSignUp.setOnClickListener(this)
         binding.btnSignUpWithGoogle.setOnClickListener(this)
         binding.login.setOnClickListener(this)
+    }
+
+    private fun registerForm() {
+        binding.tilFullName.helperText = validateFullName()
+        binding.tilEmail.helperText = validateEmail()
+        binding.tilPassword.helperText = validatePassword()
+
+        val validName = binding.tilFullName.helperText == null
+        val validEmail = binding.tilEmail.helperText == null
+        val validPassword = binding.tilPassword.helperText == null
+
+        val fullName = binding.etvFullName.text.toString()
+        val email = binding.etvEmail.text.toString()
+        val password = binding.etvPassword.text.toString()
+
+        if(validName && validEmail && validPassword){
+            viewModel.getRegisterUsersResponse(fullName, email, password)
+            observeRegister()
+        }
+    }
+
+    private fun observeRegister() {
+        viewModel.registerUsers.observe(this){ response ->
+            if (response!!.isSuccessful) {
+                if(response.body()?.status.equals("success")){
+                    startActivity(Intent(this, LoginActivity::class.java))
+                } else {
+                    Toast.makeText(
+                        this,
+                        "${response.body()?.status}, Message : Failed to register",
+                        Toast.LENGTH_LONG)
+                        .show()
+                }
+            } else {
+                Toast.makeText(
+                    this,
+                    "Code : ${response.code()}",
+                    Toast.LENGTH_LONG)
+                    .show()
+            }
+        }
     }
 }

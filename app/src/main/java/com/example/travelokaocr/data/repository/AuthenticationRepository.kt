@@ -15,25 +15,9 @@ import java.lang.Exception
 
 class AuthenticationRepository(private val apiService: ApiService) {
 
-    fun register(name: String, email: String, password: String, profile_picture: File? = null): LiveData<Result<UserDataRegister?>?> = liveData{
-        emit(Result.Loading)
-        try {
-            val returnValue = MutableLiveData<Result<UserDataRegister?>?>()
-            val response = apiService.registerUser(name, email, password, profile_picture)
-            if(response.isSuccessful) {
-                returnValue.value = Result.Success(response.body())
-                emitSource(returnValue)
-            } else {
-                val error = Gson().fromJson(response.errorBody()?.stringSuspending(), UserDataRegister::class.java)
-                response.errorBody()?.close()
-                returnValue.value = Result.Success(error)
-                emitSource(returnValue)
-            }
-        }
-        catch (e: Exception) {
-            emit(Result.Error(e.toString()))
-        }
-    }
+    suspend fun register(name: String, email: String, password: String, profile_picture: File? = null) =
+        apiService.registerUser(name, email, password, profile_picture)
+
 
     suspend fun loginUser(email: String, password: String) =
         apiService.loginUser(email, password)

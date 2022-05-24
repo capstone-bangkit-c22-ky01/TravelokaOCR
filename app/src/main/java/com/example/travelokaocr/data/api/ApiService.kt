@@ -1,5 +1,6 @@
 package com.example.travelokaocr.data.api
 
+import com.example.travelokaocr.data.RegisterResponse
 import com.example.travelokaocr.data.UserDataRegister
 import com.example.travelokaocr.data.models.LoginResponse
 import retrofit2.Response
@@ -25,7 +26,7 @@ interface ApiService {
         @Field(EMAIL_FIELD) email: String,
         @Field(PASSWORD_FIELD) password: String,
         @Field(PROFILE_PICTURE) profile_picture: File? = null
-    ): Response<UserDataRegister>
+    ): Response<RegisterResponse>
 
     //LOGIN USER
     @FormUrlEncoded

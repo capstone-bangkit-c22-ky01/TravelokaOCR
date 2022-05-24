@@ -5,6 +5,21 @@ import java.io.File
 
 data class RegisterResponse(
 
+    @field:SerializedName("status")
+    val status: String,
+
+    @field:SerializedName("message")
+    val message: String,
+
+    @field:SerializedName("user_id")
+    val user_id: String,
+
+    @field:SerializedName("data")
+    val data: UserDataRegister? = null
+
+)
+
+data class UserDataRegister(
     @field:SerializedName("name")
     val name: String,
 
@@ -16,18 +31,5 @@ data class RegisterResponse(
 
     @field:SerializedName("foto_profil")
     val profile_picture: File? = null
-
-)
-
-data class UserDataRegister(
-
-    @field:SerializedName("status")
-    val status: String,
-
-    @field:SerializedName("message")
-    val message: String,
-
-    @field:SerializedName("user_id")
-    val user_id: String
 
 )

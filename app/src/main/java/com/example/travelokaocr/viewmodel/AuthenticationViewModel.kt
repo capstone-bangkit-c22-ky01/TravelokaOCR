@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.travelokaocr.data.RegisterResponse
 import com.example.travelokaocr.data.UserDataRegister
+import com.example.travelokaocr.data.models.LoginGoogleResponse
 import com.example.travelokaocr.data.models.LoginResponse
 import com.example.travelokaocr.data.repository.AuthenticationRepository
 import kotlinx.coroutines.launch
@@ -16,6 +17,15 @@ class AuthenticationViewModel(private val authenticationRepository: Authenticati
     val loginUsers: MutableLiveData<Response<LoginResponse>> = MutableLiveData()
 
     fun getLoginUsersResponse(email: String, password: String) =
+        viewModelScope.launch {
+            val response = authenticationRepository.loginUser(email, password)
+            loginUsers.value = response
+        }
+
+    //LOGIN WITH GOOGLE
+    val loginGoogleUsers: MutableLiveData<Response<LoginGoogleResponse>> = MutableLiveData()
+
+    fun getLoginGoogleUsersResponse(email: String, password: String) =
         viewModelScope.launch {
             val response = authenticationRepository.loginUser(email, password)
             loginUsers.value = response

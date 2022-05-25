@@ -23,6 +23,10 @@ class UserPreference (context: Context) {
         return preferences.getBoolean(key, false)
     }
 
+    fun putDataGoogleLogin(key: String, value: String){
+        editor.putString(key, value).apply()
+    }
+
     fun clear(){
         editor.clear()
             .apply()

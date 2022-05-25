@@ -1,7 +1,6 @@
 package com.example.travelokaocr.ui.register
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -18,8 +17,10 @@ import com.example.travelokaocr.data.repository.AuthenticationRepository
 import com.example.travelokaocr.databinding.ActivityRegisterBinding
 import com.example.travelokaocr.ui.flightscreen.FlightActivity
 import com.example.travelokaocr.ui.login.LoginActivity
+import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.viewmodel.AuthenticationViewModel
 import com.example.travelokaocr.viewmodel.factory.AuthenticationViewModelFactory
+import com.example.travelokaocr.viewmodel.preferences.UserPreference
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -33,6 +34,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var viewModel: AuthenticationViewModel
     private lateinit var apiService: ApiService
+    private lateinit var userPreference: UserPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -141,17 +143,33 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                 // Build a GoogleSignInClient with the options specified by gso.
                 val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
-                val acct = GoogleSignIn.getLastSignedInAccount(this)
-                if (acct != null) {
-                    val personName = acct.displayName
-                    val personGivenName = acct.givenName
-                    val personFamilyName = acct.familyName
-                    val personEmail = acct.email
-                    val personId = acct.id
-                    val personPhoto: Uri? = acct.photoUrl
-                }
+//                val acct = GoogleSignIn.getLastSignedInAccount(this)
+//                if (acct != null) {
+//                    viewModel.loginGoogleUsers.observe(this) { response ->
+//                        if (response.isSuccessful){
+//                            if(response.body()?.status.equals("success")){
+////                                val id = acct.id
+//                                var email = acct.email
+//                                var name = acct.displayName
+////                                val photo: Uri? = acct.photoUrl
+//
+//                                email = response.body()?.data?.profile?.email.toString()
+//                                name = response.body()?.data?.profile?.name.toString()
+//
+//                                saveLoginGoogleSession(email, name)
+//                            }
+//                        }
+//                    }
+//
+////                    val personName = acct.displayName
+////                    val personGivenName = acct.givenName
+////                    val personFamilyName = acct.familyName
+////                    val personEmail = acct.email
+////                    val personId = acct.id
+////                    val personPhoto: Uri? = acct.photoUrl
+//                }
 
-                val signInIntent: Intent = mGoogleSignInClient.getSignInIntent()
+                val signInIntent: Intent = mGoogleSignInClient.signInIntent
                 startActivityForResult(signInIntent, RC_SIGN_IN)
             }
             R.id.login -> {
@@ -206,6 +224,11 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
+
+//    private fun saveLoginGoogleSession(email: String, name: String){
+//        userPreference.putDataGoogleLogin(Constants.EMAIL, email)
+//        userPreference.putDataGoogleLogin(Constants.NAME, name)
+//    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

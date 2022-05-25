@@ -37,7 +37,7 @@
             android:name=".ui.ocr.SuccessPageActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.flightscreen.FlightActivity"
+            android:name=".ui.register.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".ui.profile.ProfileActivity"
@@ -46,7 +46,8 @@
             android:name=".MainActivity"
             android:exported="false" />
 
-        <activity android:name=".ui.register.RegisterActivity"
+        <activity android:name=".ui.flightscreen.FlightActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

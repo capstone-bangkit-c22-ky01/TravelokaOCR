@@ -2,6 +2,7 @@ package com.example.travelokaocr.data.api
 
 import com.example.travelokaocr.data.RegisterResponse
 import com.example.travelokaocr.data.UserDataRegister
+import com.example.travelokaocr.data.models.LoginGoogleResponse
 import com.example.travelokaocr.data.models.LoginResponse
 import retrofit2.Response
 import retrofit2.http.Field

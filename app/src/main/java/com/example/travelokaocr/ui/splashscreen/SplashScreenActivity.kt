@@ -22,7 +22,6 @@ class SplashScreenActivity : AppCompatActivity() {
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //ANIMATION
         setupView()
         setupAction()
     }

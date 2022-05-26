@@ -9,14 +9,14 @@
         android:id="@+id/ticketMonth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textColor="?attr/customColorFont"
         android:fontFamily="@font/nunito_bold"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="April 2022"/>
+        tools:text="@string/date_default"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/ticketContainer"
@@ -49,7 +49,7 @@
                     android:id="@+id/ticketBookingID_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Booking ID "
+                    android:text="@string/booking_id"
                     android:textSize="12sp"
                     android:textColor="#7F8385"
                     android:fontFamily="@font/nunito_semi_bold"
@@ -67,13 +67,13 @@
                     app:layout_constraintTop_toTopOf="@id/ticketPrice_tv"
                     app:layout_constraintBottom_toBottomOf="@id/ticketPrice_tv"
                     app:layout_constraintStart_toEndOf="@id/ticketBookingID_tv"
-                    tools:text="721123654" />
+                    tools:text="@string/booking_id_value" />
 
                 <TextView
                     android:id="@+id/ticketPrice_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/customColorFont"
                     android:textSize="14sp"
                     android:fontFamily="@font/nunito_bold"
                     app:layout_constraintTop_toTopOf="parent"
@@ -86,7 +86,7 @@
                 android:id="@+id/ticketContainerMain"
                 android:layout_width="match_parent"
                 android:paddingHorizontal="20dp"
-                android:paddingVertical="10dp"
+                android:paddingVertical="5dp"
                 android:layout_height="80dp"
                 android:background="@color/primary90"
                 app:layout_constraintTop_toBottomOf="@id/ticketContainerHeader"
@@ -96,7 +96,8 @@
                     android:id="@+id/planeHistoryTicket_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/plane_history_ticket"
+                    android:contentDescription="@string/plane_logo"
+                    android:src="@drawable/ic_airplane"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -104,21 +105,21 @@
                     android:id="@+id/cityDepartHistoryTicket_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/customColorFont"
                     android:textSize="14sp"
                     android:fontFamily="@font/nunito_semi_bold"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="5dp"
                     app:layout_constraintTop_toTopOf="@id/planeHistoryTicket_iv"
                     app:layout_constraintBottom_toBottomOf="@id/planeHistoryTicket_iv"
                     app:layout_constraintStart_toEndOf="@id/planeHistoryTicket_iv"
-                    tools:text="Jakarta"/>
+                    tools:text="@string/departure_default"/>
 
                 <TextView
                     android:id="@+id/toCharacterHistoryTicket_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" → "
-                    android:textColor="@color/black"
+                    android:text="@string/route_icon"
+                    android:textColor="?attr/customColorFont"
                     android:textSize="14sp"
                     android:fontFamily="@font/nunito_semi_bold"
                     app:layout_constraintTop_toTopOf="@id/cityDepartHistoryTicket_tv"
@@ -129,32 +130,34 @@
                     android:id="@+id/cityArriveHistoryTicket_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/customColorFont"
                     android:textSize="14sp"
                     android:fontFamily="@font/nunito_semi_bold"
                     app:layout_constraintTop_toTopOf="@id/planeHistoryTicket_iv"
                     app:layout_constraintBottom_toBottomOf="@id/planeHistoryTicket_iv"
                     app:layout_constraintStart_toEndOf="@id/toCharacterHistoryTicket_tv"
-                    tools:text="Batam"/>
+                    tools:text="@string/destination_default"/>
 
                 <ImageView
                     android:id="@+id/shieldHistoryTicket_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/shield_history_ticket"
+                    android:layout_marginStart="3dp"
                     android:layout_marginTop="12dp"
-                    app:layout_constraintTop_toBottomOf="@id/planeHistoryTicket_iv"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    android:contentDescription="@string/verified"
+                    android:src="@drawable/ic_verified"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/planeHistoryTicket_iv" />
 
                 <TextView
                     android:id="@+id/travelInsuranceHistoryTicket_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Travel Insurance (Flight)"
-                    android:textColor="@color/black"
+                    android:text="@string/travel_insurance_flight"
+                    android:textColor="?attr/customColorFont"
                     android:textSize="14sp"
                     android:fontFamily="@font/nunito_semi_bold"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="7dp"
                     app:layout_constraintTop_toTopOf="@id/shieldHistoryTicket_iv"
                     app:layout_constraintBottom_toBottomOf="@id/shieldHistoryTicket_iv"
                     app:layout_constraintStart_toEndOf="@id/shieldHistoryTicket_iv" />
@@ -180,16 +183,6 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:text="Purchase Pending"/>
-
-                <ImageView
-                    android:id="@+id/moreBtnHistoryTicket_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/more_button_horizontal"
-                    android:layout_marginEnd="10sp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

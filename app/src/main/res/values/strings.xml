@@ -125,6 +125,16 @@
     <string name="luggage">luggage</string>
     <string name="buy_btn">Buy</string>
 
+    <!-- Flight History Activity -->
+    <string name="booking_id">Booking ID</string>
+    <string name="booking_id_value">721123654</string>
+    <string name="date_default">April 2022</string>
+    <string name="departure_default">Jakarta</string>
+    <string name="route_icon">→</string>
+    <string name="destination_default">Batam</string>
+    <string name="verified">verified</string>
+    <string name="travel_insurance_flight">Travel Insurance (Flight)</string>
+
     <!-- Data Dummy -->
     <string-array name="data_dummy_city">
         <item>Malang-MLG</item>

@@ -14,7 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="40dp"
+        android:paddingTop="20dp"
         android:paddingHorizontal="20dp"
         android:paddingBottom="10dp">
 
@@ -22,12 +22,12 @@
             android:id="@+id/timeDepart_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="?attr/customColorFont"
             android:textSize="16sp"
             android:fontFamily="@font/nunito_bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="16:55" />
+            tools:text="@string/time_departure_default" />
 
         <TextView
             android:id="@+id/cityDepartCode_tv"
@@ -42,13 +42,14 @@
             android:paddingHorizontal="7dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/timeDepart_tv"
-            tools:text="BPN" />
+            tools:text="@string/code_city_departure_default" />
 
         <ImageView
             android:id="@+id/flightRoute_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_route"
+            android:contentDescription="@string/destination_icon"
             android:layout_marginStart="10dp"
             app:layout_constraintStart_toEndOf="@id/timeDepart_tv"
             app:layout_constraintTop_toBottomOf="@id/timeDepart_tv" />
@@ -64,7 +65,7 @@
             app:layout_constraintStart_toStartOf="@id/flightRoute_iv"
             app:layout_constraintEnd_toEndOf="@id/flightRoute_iv"
             app:layout_constraintBottom_toTopOf="@id/flightRoute_iv"
-            tools:text="2h 5m"/>
+            tools:text="@string/time_total"/>
 
         <TextView
             android:id="@+id/flightType_tv"
@@ -77,19 +78,19 @@
             app:layout_constraintStart_toStartOf="@id/flightRoute_iv"
             app:layout_constraintEnd_toEndOf="@id/flightRoute_iv"
             app:layout_constraintTop_toBottomOf="@id/flightRoute_iv"
-            tools:text="Direct" />
+            tools:text="@string/direct" />
 
         <TextView
             android:id="@+id/timeArrive_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="?attr/customColorFont"
             android:textSize="16sp"
             android:fontFamily="@font/nunito_bold"
             android:layout_marginStart="10dp"
             app:layout_constraintStart_toEndOf="@id/flightRoute_iv"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="18:00" />
+            tools:text="@string/time_destination_default" />
 
         <TextView
             android:id="@+id/cityArriveCode_tv"
@@ -105,7 +106,7 @@
             android:paddingHorizontal="7dp"
             app:layout_constraintStart_toEndOf="@id/flightRoute_iv"
             app:layout_constraintTop_toBottomOf="@id/timeArrive_tv"
-            tools:text="CGK" />
+            tools:text="@string/code_city_destination_default" />
 
         <TextView
             android:id="@+id/price_tv"
@@ -116,42 +117,25 @@
             android:fontFamily="@font/nunito_bold"
             app:layout_constraintEnd_toStartOf="@id/pax_tv"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Rp 877.500" />
+            tools:text="@string/ticket_price_default" />
 
         <TextView
             android:id="@+id/pax_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="/pax"
+            android:text="@string/pax"
             android:textColor="#7F8385"
-            android:textSize="14sp"
+            android:textSize="13sp"
             android:fontFamily="@font/nunito_semi_bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/star_points"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/star_points"
-            android:layout_marginEnd="5dp"
-            app:layout_constraintEnd_toStartOf="@id/earn_1000_points_tv"
-            app:layout_constraintBottom_toBottomOf="@id/earn_1000_points_tv" />
-
-        <TextView
-            android:id="@+id/earn_1000_points_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Earn 1000 Points"
-            android:layout_marginTop="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/price_tv" />
 
         <ImageView
             android:id="@+id/airplaneImage_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:contentDescription="@string/plane_logo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cityDepartCode_tv"
             tools:src="@drawable/lion_air" />
@@ -160,14 +144,14 @@
             android:id="@+id/airplaneName_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textColor="?attr/customColorFont"
+            android:textSize="14sp"
             android:fontFamily="@font/nunito_bold"
             android:layout_marginTop="20dp"
             android:layout_marginStart="10dp"
             app:layout_constraintStart_toEndOf="@id/airplaneImage_iv"
             app:layout_constraintTop_toBottomOf="@+id/cityDepartCode_tv"
-            tools:text="Lion Air" />
+            tools:text="@string/plane_name_default" />
 
         <ImageView
             android:id="@+id/luggage_iv"
@@ -175,27 +159,30 @@
             android:layout_height="wrap_content"
             android:textColor="#7F8385"
             android:textSize="14sp"
-            android:fontFamily="@font/nunito_semi_bold"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:contentDescription="@string/luggage"
             android:paddingHorizontal="12dp"
             android:paddingVertical="2dp"
             android:background="@drawable/primary50_background_layout_with_50_radius"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:src="@drawable/luggage" />
+            app:layout_constraintTop_toBottomOf="@id/airplaneName_tv"
+            android:src="@drawable/luggage" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buyBtn"
             android:layout_width="0dp"
             android:layout_height="35dp"
-            android:text="Buy"
+            android:text="@string/buy_btn"
             android:fontFamily="@font/nunito_bold"
-            android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textColor="?attr/customColorPrimary10"
+            android:textSize="14sp"
+            android:textAllCaps="false"
             android:background="@drawable/rounded_button_5_radius"
             android:layout_marginTop="50dp"
-            app:layout_constraintStart_toStartOf="@id/star_points"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/earn_1000_points_tv" />
+            app:layout_constraintTop_toBottomOf="@id/price_tv" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

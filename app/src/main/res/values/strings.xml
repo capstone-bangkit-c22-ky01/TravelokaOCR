@@ -112,6 +112,18 @@
     <!-- Flight Search Activity -->
     <string name="city_default">Balikpapan</string>
     <string name="destination_icon">destination icon</string>
+    <string name="time_departure_default">16:55</string>
+    <string name="code_city_departure_default">BPN</string>
+    <string name="direct">Direct</string>
+    <string name="time_destination_default">18:00</string>
+    <string name="time_total">2h 5m</string>
+    <string name="code_city_destination_default">CGK</string>
+    <string name="ticket_price_default">Rp 877.500</string>
+    <string name="pax">/pax</string>
+    <string name="plane_logo">plane logo</string>
+    <string name="plane_name_default">Lion Air</string>
+    <string name="luggage">luggage</string>
+    <string name="buy_btn">Buy</string>
 
     <!-- Data Dummy -->
     <string-array name="data_dummy_city">

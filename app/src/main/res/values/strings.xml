@@ -109,6 +109,10 @@
     <string name="seat_class_default">Economy</string>
     <string name="search_btn">Search</string>
 
+    <!-- Flight Search Activity -->
+    <string name="city_default">Balikpapan</string>
+    <string name="destination_icon">destination icon</string>
+
     <!-- Data Dummy -->
     <string-array name="data_dummy_city">
         <item>Malang-MLG</item>

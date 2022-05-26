@@ -81,7 +81,6 @@
     <string name="error_empty_message">This field can not be empty</string>
     <string name="error_invalid_email_message">Invalid Email Address</string>
 
-
     <!-- HomeActivity -->
     <string name="Flight_HomeActivity">Flight</string>
     <string name="flight">Flights</string>
@@ -96,6 +95,19 @@
     <string name="retry_button">Retry Button</string>
     <string name="email_user">user54@gmail.com</string>
     <string name="username_user">Username</string>
+
+    <!-- Flight Screen Activity -->
+    <string name="city_departure">Select City Departure</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="city_destination">Select City Destination</string>
+    <string name="date">Date</string>
+    <string name="select_date">Select Date</string>
+    <string name="passengers">Passengers</string>
+    <string name="passenger_default">1 passenger</string>
+    <string name="seat_class">Seat Class</string>
+    <string name="seat_class_default">Economy</string>
+    <string name="search_btn">Search</string>
 
     <!-- Data Dummy -->
     <string-array name="data_dummy_city">

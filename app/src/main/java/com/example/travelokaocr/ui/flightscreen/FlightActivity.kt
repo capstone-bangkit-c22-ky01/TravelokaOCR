@@ -122,7 +122,7 @@ private fun TextInputEditText.transformIntoDatePicker(context: Context, format: 
 
     setOnClickListener {
         DatePickerDialog(
-            context, R.style.DialogTheme, datePickerOnDataSetListener, myCalendar
+            context, datePickerOnDataSetListener, myCalendar
                 .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
             myCalendar.get(Calendar.DAY_OF_MONTH)
         ).run {

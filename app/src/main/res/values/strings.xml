@@ -28,6 +28,8 @@
     <string name="sign_up_underline"><u>Sign up</u></string>
     <string name="vacation">user vacation image</string>
     <string name="or_sign_up_with">or sign up with</string>
+    <string name="error_action_dialog_login_desc">Email/Password doesn\'t match, please try again</string>
+    <string name="erro_action_login_server">Please try again later</string>
 
     <!--SUCCESS PAGE ACTIVITY-->
     <string name="success_image">Success</string>

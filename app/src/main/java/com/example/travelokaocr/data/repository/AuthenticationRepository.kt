@@ -6,7 +6,7 @@ import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
 import java.io.File
 
-class AuthenticationRepository() {
+class AuthenticationRepository {
 
     suspend fun register(
         name: String,

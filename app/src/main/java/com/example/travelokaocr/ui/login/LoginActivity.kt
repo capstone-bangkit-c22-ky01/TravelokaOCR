@@ -2,16 +2,16 @@ package com.example.travelokaocr.ui.login
 
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.travelokaocr.R
-import com.example.travelokaocr.data.api.ApiService
 import com.example.travelokaocr.data.repository.AuthenticationRepository
 import com.example.travelokaocr.databinding.ActivityLoginBinding
 import com.example.travelokaocr.ui.flightscreen.FlightActivity
@@ -37,62 +37,70 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         itemOnClickListener()
 
 //        CREATE API CONNECTION
-        val authenticationViewModelFactory = AuthenticationViewModelFactory(AuthenticationRepository())
+        val authenticationViewModelFactory =
+            AuthenticationViewModelFactory(AuthenticationRepository())
         authenticationViewModel = ViewModelProvider(
             this, authenticationViewModelFactory
         )[AuthenticationViewModel::class.java]
 
         userPreference = UserPreference(this)
 
-//        binding.btnLogin.setOnClickListener {
-//            loginForm()
-//        }
-
     }
 
-    private fun loginForm(){
+    private fun loginForm() {
+        binding.tilEmail.helperText = validateEmail()
+        binding.tilPassword.helperText = validatePassword()
+
+        val validEmail = binding.tilEmail.helperText == null
+        val validPassword = binding.tilPassword.helperText == null
+
         val email = binding.etvEmail.text.toString()
         val password = binding.etvPassword.text.toString()
 
-        authenticationViewModel.getLoginUsersResponse(email, password)
-        observeLogin()
+        if (validEmail && validPassword) {
+            authenticationViewModel.getLoginUsersResponse(email, password)
+            observeLogin()
+        }
     }
 
-    private fun observeLogin(){
-        authenticationViewModel.loginUsers.observe(this){ response ->
-            if (response.isSuccessful){
-                if(response.body()?.status.equals("success")){
+    private fun observeLogin() {
+        authenticationViewModel.loginUsers.observe(this) { response ->
+            if (response.isSuccessful) {
+                if (response.body()?.status.equals("success")) {
                     val accessToken = response.body()?.data?.accessToken.toString()
                     val refreshToken = response.body()?.data?.refreshToken.toString()
 
                     saveLoginSession(accessToken, refreshToken)
 
-                    Toast.makeText(
-                        this,
-                        "${response.body()?.message}",
-                        Toast.LENGTH_LONG)
-                        .show()
+                    Log.d("LOGIN", "${response.body()?.message}")
+                    binding.progressBar.visibility = View.INVISIBLE
 
-                    val intent = Intent(this@LoginActivity, FlightActivity::class.java)
-                    startActivity(intent)
-                }else{
-                    Toast.makeText(
-                        this,
-                        "${response.body()?.status}, Message : Failed to login, email/password doesn't match",
-                        Toast.LENGTH_LONG)
-                        .show()
+                } else {
+                    invalidLoginForm()
                 }
-            }else{
-                Toast.makeText(
-                    this,
-                    "Code : ${response.code()}",
-                    Toast.LENGTH_LONG)
-                    .show()
+            } else {
+                val view = View.inflate(this, R.layout.error_action_dialog_login_server, null)
+
+                AlertDialog.Builder(this)
+                    .setView(view)
+                    .setPositiveButton("Back to Login, Code : ${response.code()}") { _, _ ->
+                        //DO NOTHING
+                    }.show()
             }
         }
     }
 
-    private fun saveLoginSession(accessToken: String, refreshToken: String){
+    private fun invalidLoginForm() {
+        val view = View.inflate(this, R.layout.error_action_dialog_login, null)
+
+        AlertDialog.Builder(this)
+            .setView(view)
+            .setPositiveButton("Back to Login") { _, _ ->
+                //DO NOTHING
+            }.show()
+    }
+
+    private fun saveLoginSession(accessToken: String, refreshToken: String) {
         userPreference.putDataLogin(Constants.ACCESS_TOKEN, accessToken)
         userPreference.putDataLogin(Constants.REFRESH_TOKEN, refreshToken)
         userPreference.putSessionLogin(Constants.IS_LOGIN, true)
@@ -118,7 +126,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun focusEmail() {
         binding.etvEmail.setOnFocusChangeListener { _, focus ->
-            if(!focus){
+            if (!focus) {
                 binding.tilEmail.helperText = validateEmail()
             }
         }
@@ -126,7 +134,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun focusPassword() {
         binding.etvPassword.setOnFocusChangeListener { _, focus ->
-            if(!focus){
+            if (!focus) {
                 binding.tilPassword.helperText = validatePassword()
             }
         }
@@ -154,7 +162,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         return null
     }
 
-    private fun itemOnClickListener(){
+    private fun itemOnClickListener() {
         binding.btnLogin.setOnClickListener(this)
         binding.btnLoginWithGoogle.setOnClickListener(this)
         binding.signUp.setOnClickListener(this)
@@ -163,6 +171,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btn_login -> {
+                binding.progressBar.visibility = View.VISIBLE
+                loginForm()
                 startActivity(Intent(this, FlightActivity::class.java))
             }
             R.id.btn_sign_up_with_google -> {

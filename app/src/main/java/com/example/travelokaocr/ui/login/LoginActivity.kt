@@ -26,7 +26,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var authenticationViewModel: AuthenticationViewModel
     private lateinit var userPreference: UserPreference
-    private lateinit var apiService: ApiService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -37,17 +36,17 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         setupAction()
         itemOnClickListener()
 
-        //CREATE API CONNECTION
-        val authenticationViewModelFactory = AuthenticationViewModelFactory(AuthenticationRepository(apiService))
+//        CREATE API CONNECTION
+        val authenticationViewModelFactory = AuthenticationViewModelFactory(AuthenticationRepository())
         authenticationViewModel = ViewModelProvider(
             this, authenticationViewModelFactory
         )[AuthenticationViewModel::class.java]
 
         userPreference = UserPreference(this)
 
-        binding.btnLogin.setOnClickListener {
-            loginForm()
-        }
+//        binding.btnLogin.setOnClickListener {
+//            loginForm()
+//        }
 
     }
 

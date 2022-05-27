@@ -41,7 +41,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val authenticationViewModelFactory = AuthenticationViewModelFactory(AuthenticationRepository(apiService))
+        val authenticationViewModelFactory = AuthenticationViewModelFactory(AuthenticationRepository())
         viewModel = ViewModelProvider(
             this, authenticationViewModelFactory
         )[AuthenticationViewModel::class.java]

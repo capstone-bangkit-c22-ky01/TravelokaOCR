@@ -8,16 +8,14 @@ import android.util.Patterns
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.travelokaocr.R
 import com.example.travelokaocr.data.api.ApiService
 import com.example.travelokaocr.data.repository.AuthenticationRepository
 import com.example.travelokaocr.databinding.ActivityRegisterBinding
-import com.example.travelokaocr.ui.flightscreen.FlightActivity
 import com.example.travelokaocr.ui.login.LoginActivity
-import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.viewmodel.AuthenticationViewModel
 import com.example.travelokaocr.viewmodel.factory.AuthenticationViewModelFactory
 import com.example.travelokaocr.viewmodel.preferences.UserPreference
@@ -129,7 +127,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         when (v?.id) {
             R.id.btn_sign_up -> {
                 registerForm()
-                startActivity(Intent(this, FlightActivity::class.java))
+                startActivity(Intent(this, LoginActivity::class.java))
             }
             R.id.btn_login_with_google -> {
                 // Configure sign-in to request the user's ID, email address, and basic
@@ -209,20 +207,28 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                 if(response.body()?.status.equals("success")){
                     startActivity(Intent(this, LoginActivity::class.java))
                 } else {
-                    Toast.makeText(
-                        this,
-                        "${response.body()?.status}, Message : Failed to register",
-                        Toast.LENGTH_LONG)
-                        .show()
+                    invalidRegisterForm()
                 }
             } else {
-                Toast.makeText(
-                    this,
-                    "Code : ${response.code()}",
-                    Toast.LENGTH_LONG)
-                    .show()
+                val view = View.inflate(this, R.layout.error_action_dialog_login_server, null)
+
+                AlertDialog.Builder(this)
+                    .setView(view)
+                    .setPositiveButton("Back to Registration, Code : ${response.code()}") { _, _ ->
+                        //DO NOTHING
+                    }.show()
             }
         }
+    }
+
+    private fun invalidRegisterForm() {
+        val view = View.inflate(this, R.layout.error_action_dialog_register, null)
+
+        AlertDialog.Builder(this)
+            .setView(view)
+            .setPositiveButton("Back to Register") { _, _ ->
+                //DO NOTHING
+            }.show()
     }
 
 //    private fun saveLoginGoogleSession(email: String, name: String){

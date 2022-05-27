@@ -20,6 +20,7 @@
     <string name="google">Google</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="login_underline"><u>Login</u></string>
+    <string name="error_action_dialog_register_desc">Failed to register, please try again</string>
 
     <!--LOGIN ACTIVITY-->
     <string name="login">Login</string>

@@ -256,5 +256,20 @@
             app:layout_constraintEnd_toEndOf="@+id/btn_sign_up_with_google"
             app:layout_constraintStart_toEndOf="@+id/tv_already_have_an_account"
             app:layout_constraintTop_toBottomOf="@+id/btn_sign_up_with_google" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="208dp"
+            android:layout_height="20dp"
+            android:indeterminate="true"
+            android:indeterminateTint="?attr/customColorNeutral50"
+            android:indeterminateTintMode="src_atop"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login"
+            app:layout_constraintVertical_bias="0.3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

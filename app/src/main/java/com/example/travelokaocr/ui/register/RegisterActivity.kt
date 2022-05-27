@@ -126,6 +126,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btn_sign_up -> {
+                binding.progressBar.visibility = View.VISIBLE
                 registerForm()
                 startActivity(Intent(this, LoginActivity::class.java))
             }
@@ -205,6 +206,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         viewModel.registerUsers.observe(this){ response ->
             if (response!!.isSuccessful) {
                 if(response.body()?.status.equals("success")){
+                    binding.progressBar.visibility = View.INVISIBLE
                     startActivity(Intent(this, LoginActivity::class.java))
                 } else {
                     invalidRegisterForm()

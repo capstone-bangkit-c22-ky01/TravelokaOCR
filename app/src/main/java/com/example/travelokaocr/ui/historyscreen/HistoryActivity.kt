@@ -4,14 +4,21 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowInsets
 import android.view.WindowManager
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travelokaocr.R
 import com.example.travelokaocr.data.HistoryTicket
+import com.example.travelokaocr.data.repository.TravelokaOCRRepository
 import com.example.travelokaocr.databinding.ActivityHistoryBinding
 import com.example.travelokaocr.ui.flightscreen.FlightActivity
 import com.example.travelokaocr.ui.profile.ProfileActivity
+import com.example.travelokaocr.utils.Constants
+import com.example.travelokaocr.viewmodel.TravelokaOCRViewModel
+import com.example.travelokaocr.viewmodel.factory.TravelokaOCRViewModelFactory
+import com.example.travelokaocr.viewmodel.preferences.UserPreference
 
 class HistoryActivity : AppCompatActivity() {
 
@@ -44,6 +51,12 @@ class HistoryActivity : AppCompatActivity() {
             return listTicket
         }
 
+    //ADAPTER NEW
+    private lateinit var historyAdapter: HistoryAdapter
+
+    private lateinit var ocrViewModel: TravelokaOCRViewModel
+    private lateinit var userPreference: UserPreference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -63,6 +76,30 @@ class HistoryActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        //CREATE CONNECTION ->
+        val ocrViewModelFactory = TravelokaOCRViewModelFactory(TravelokaOCRRepository())
+        ocrViewModel = ViewModelProvider(
+            this, ocrViewModelFactory
+        )[TravelokaOCRViewModel::class.java]
+
+        //GET TOKEN
+        userPreference = UserPreference(this)
+        val tokenFromPreference = userPreference.getDataLogin(Constants.ACCESS_TOKEN)
+        val accessToken = "Bearer $tokenFromPreference"
+
+        ocrViewModel.getHistory(accessToken)
+        observeHistory()
+
+    }
+
+    private fun observeHistory() {
+        ocrViewModel.history.observe(this){ response ->
+            if(response.isSuccessful){
+                historyAdapter.differAsync.submitList(response.body()?.data)
+            } else{
+                Log.d("HISTORY", "${response.code()}")
+            }
+        }
     }
 
     private fun setupView() {

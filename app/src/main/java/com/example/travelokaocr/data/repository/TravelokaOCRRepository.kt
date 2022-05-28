@@ -6,4 +6,7 @@ class TravelokaOCRRepository {
     suspend fun getOCRResult(accessToken: String) =
         RetrofitInstance.API_OBJECT.getOCRResult(accessToken)
 
+    suspend fun getHistory(accessToken: String) =
+        RetrofitInstance.API_OBJECT.getHistory(accessToken)
+
 }

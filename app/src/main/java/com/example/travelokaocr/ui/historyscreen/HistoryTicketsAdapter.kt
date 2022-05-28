@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.travelokaocr.data.HistoryTicket
 import com.example.travelokaocr.databinding.ItemRowHistoryTicketsBinding
 
-
 class HistoryTicketsAdapter(private val listTickets: ArrayList<HistoryTicket>): RecyclerView.Adapter<HistoryTicketsAdapter.ListViewHolder>(){
 
     private val checkMonth = ArrayList<String>()

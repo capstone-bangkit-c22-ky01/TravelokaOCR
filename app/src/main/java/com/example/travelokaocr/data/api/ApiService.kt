@@ -2,10 +2,7 @@ package com.example.travelokaocr.data.api
 
 import com.example.travelokaocr.data.RegisterResponse
 import com.example.travelokaocr.data.UserDataRegister
-import com.example.travelokaocr.data.models.KTPResultResponse
-import com.example.travelokaocr.data.models.LoginGoogleResponse
-import com.example.travelokaocr.data.models.LoginResponse
-import com.example.travelokaocr.data.models.UpdateTokenResponse
+import com.example.travelokaocr.data.models.*
 import retrofit2.Response
 import retrofit2.http.*
 import java.io.File
@@ -23,6 +20,9 @@ const val REFRESH_TOKEN = "refreshToken"
 
 //OCR
 const val KTP_RESULT_ENDPOINT = "ktpresult"
+
+//HISTORY
+const val HISTORY_ENDPOINT = "" //coming soon, still waiting for CC
 
 interface ApiService {
 
@@ -64,4 +64,10 @@ interface ApiService {
     suspend fun getOCRResult(
         @Header(TOKEN_HEADER) accessToken: String
     ): Response<KTPResultResponse>
+
+    //GET LIST HISTORY
+    @GET(HISTORY_ENDPOINT)
+    suspend fun getHistory(
+        @Header(TOKEN_HEADER) accessToken: String
+    ): Response<HistoryResponse>
 }

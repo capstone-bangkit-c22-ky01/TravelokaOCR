@@ -38,14 +38,16 @@ class FlightActivity : AppCompatActivity() {
 
         binding.historyMenu.setOnClickListener{
             val intent = Intent(this, HistoryActivity::class.java)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
             startActivity(intent)
         }
 
         binding.profileMenu.setOnClickListener{
             val intent = Intent(this, ProfileActivity::class.java)
+            overridePendingTransition(
+                android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             startActivity(intent)
         }
-
     }
 
     override fun onResume() {

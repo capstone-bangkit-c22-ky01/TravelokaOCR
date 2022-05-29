@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.travelokaocr.data.models.UserDataHistory
-import com.example.travelokaocr.data.models.UserDataHistoryNew
+import com.example.travelokaocr.data.model.UserDataHistory
+import com.example.travelokaocr.data.model.UserDataHistoryNew
 import com.example.travelokaocr.databinding.ItemRowHistoryTicketsBinding
 
 class HistoryAdapter(

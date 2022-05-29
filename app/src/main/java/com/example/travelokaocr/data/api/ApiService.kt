@@ -1,8 +1,7 @@
 package com.example.travelokaocr.data.api
 
 import com.example.travelokaocr.data.RegisterResponse
-import com.example.travelokaocr.data.UserDataRegister
-import com.example.travelokaocr.data.models.*
+import com.example.travelokaocr.data.model.*
 import retrofit2.Response
 import retrofit2.http.*
 import java.io.File

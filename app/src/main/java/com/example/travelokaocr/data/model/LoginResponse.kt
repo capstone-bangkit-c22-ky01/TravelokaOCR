@@ -1,4 +1,4 @@
-package com.example.travelokaocr.data.models
+package com.example.travelokaocr.data.model
 
 import com.google.gson.annotations.SerializedName
 
@@ -18,5 +18,8 @@ data class UserDataLogin(
     val accessToken: String? = null,
 
     @field:SerializedName("refreshToken")
-    val refreshToken: String? = null
+    val refreshToken: String? = null,
+
+    //LOGIN SESSION
+    var isLogin: Boolean = false
 )

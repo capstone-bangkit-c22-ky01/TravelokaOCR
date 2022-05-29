@@ -7,9 +7,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitInstance {
     companion object {
-
-        private const val Base_URL = ""
-
         private val retrofit by lazy {
             val logging = HttpLoggingInterceptor()
             val level = HttpLoggingInterceptor.Level.BODY
@@ -20,7 +17,7 @@ class RetrofitInstance {
                 .addInterceptor(logging)
                 .build()
             Retrofit.Builder()
-                .baseUrl(Base_URL)
+                .baseUrl("") //still waiting for the url
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

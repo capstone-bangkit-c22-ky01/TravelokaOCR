@@ -1,9 +1,9 @@
-package com.example.travelokaocr.viewmodel.preferences
+package com.example.travelokaocr.viewmodel.preference
 
 import android.content.Context
 import android.content.SharedPreferences
 
-class UserPreference (context: Context) {
+class SavedPreference (context: Context) {
     private var preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
     private val editor: SharedPreferences.Editor = preferences.edit()
 

@@ -15,10 +15,10 @@ import com.example.travelokaocr.R
 import com.example.travelokaocr.data.api.ApiService
 import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.databinding.ActivityRegisterBinding
-import com.example.travelokaocr.ui.login.LoginActivity
-import com.example.travelokaocr.viewmodel.AuthenticationViewModel
-import com.example.travelokaocr.viewmodel.factory.AuthenticationViewModelFactory
-import com.example.travelokaocr.viewmodel.preferences.UserPreference
+import com.example.travelokaocr.ui.authentication.LoginActivity
+import com.example.travelokaocr.viewmodel.AuthViewModel
+import com.example.travelokaocr.viewmodel.factory.AuthViewModelFactory
+import com.example.travelokaocr.viewmodel.preference.SavedPreference
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -30,19 +30,19 @@ const val RC_SIGN_IN = 123
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityRegisterBinding
-    private lateinit var viewModel: AuthenticationViewModel
+    private lateinit var viewModel: AuthViewModel
     private lateinit var apiService: ApiService
-    private lateinit var userPreference: UserPreference
+    private lateinit var savedPreference: SavedPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val authenticationViewModelFactory = AuthenticationViewModelFactory(AuthRepository())
+        val authViewModelFactory = AuthViewModelFactory(AuthRepository())
         viewModel = ViewModelProvider(
-            this, authenticationViewModelFactory
-        )[AuthenticationViewModel::class.java]
+            this, authViewModelFactory
+        )[AuthViewModel::class.java]
 
         setupView()
         setupAction()
@@ -234,8 +234,8 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 //    private fun saveLoginGoogleSession(email: String, name: String){
-//        userPreference.putDataGoogleLogin(Constants.EMAIL, email)
-//        userPreference.putDataGoogleLogin(Constants.NAME, name)
+//        savedPreference.putDataGoogleLogin(Constants.EMAIL, email)
+//        savedPreference.putDataGoogleLogin(Constants.NAME, name)
 //    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

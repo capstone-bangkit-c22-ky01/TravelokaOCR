@@ -14,14 +14,14 @@ import com.example.travelokaocr.databinding.ActivityOcrresultBinding
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.viewmodel.TravelokaOCRViewModel
 import com.example.travelokaocr.viewmodel.factory.TravelokaOCRViewModelFactory
-import com.example.travelokaocr.viewmodel.preferences.UserPreference
+import com.example.travelokaocr.viewmodel.preference.SavedPreference
 
 class OCRResultActivity : AppCompatActivity() {
     //BINDING
     private lateinit var binding: ActivityOcrresultBinding
 
     private lateinit var travelokaOCRViewModel: TravelokaOCRViewModel
-    private lateinit var userPreference: UserPreference
+    private lateinit var savedPreference: SavedPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +37,8 @@ class OCRResultActivity : AppCompatActivity() {
             this, travelokaOCRViewModelFactory
         )[TravelokaOCRViewModel::class.java]
 
-        userPreference = UserPreference(this)
-        val tokenFromPreferences = userPreference.getDataLogin(Constants.ACCESS_TOKEN)
+        savedPreference = SavedPreference(this)
+        val tokenFromPreferences = savedPreference.getDataLogin(Constants.ACCESS_TOKEN)
         val accessToken = "Bearer $tokenFromPreferences"
 
         travelokaOCRViewModel.getKTPResultResponse(accessToken)

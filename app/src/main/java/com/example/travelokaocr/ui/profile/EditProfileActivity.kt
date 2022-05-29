@@ -9,7 +9,6 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import com.example.travelokaocr.R
 import com.example.travelokaocr.databinding.ActivityEditProfileBinding
-import com.example.travelokaocr.ui.login.LoginActivity
 
 class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityEditProfileBinding

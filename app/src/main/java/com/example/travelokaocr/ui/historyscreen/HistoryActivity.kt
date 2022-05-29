@@ -18,7 +18,7 @@ import com.example.travelokaocr.ui.profile.ProfileActivity
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.viewmodel.TravelokaOCRViewModel
 import com.example.travelokaocr.viewmodel.factory.TravelokaOCRViewModelFactory
-import com.example.travelokaocr.viewmodel.preferences.UserPreference
+import com.example.travelokaocr.viewmodel.preference.SavedPreference
 
 class HistoryActivity : AppCompatActivity() {
 
@@ -55,7 +55,7 @@ class HistoryActivity : AppCompatActivity() {
     private lateinit var historyAdapter: HistoryAdapter
 
     private lateinit var ocrViewModel: TravelokaOCRViewModel
-    private lateinit var userPreference: UserPreference
+    private lateinit var savedPreference: SavedPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,8 +83,8 @@ class HistoryActivity : AppCompatActivity() {
         )[TravelokaOCRViewModel::class.java]
 
         //GET TOKEN
-        userPreference = UserPreference(this)
-        val tokenFromPreference = userPreference.getDataLogin(Constants.ACCESS_TOKEN)
+        savedPreference = SavedPreference(this)
+        val tokenFromPreference = savedPreference.getDataLogin(Constants.ACCESS_TOKEN)
         val accessToken = "Bearer $tokenFromPreference"
 
         ocrViewModel.getHistory(accessToken)

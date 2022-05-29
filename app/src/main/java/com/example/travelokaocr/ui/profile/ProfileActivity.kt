@@ -11,7 +11,7 @@ import com.example.travelokaocr.R
 import com.example.travelokaocr.databinding.ActivityProfileBinding
 import com.example.travelokaocr.ui.historyscreen.HistoryActivity
 import com.example.travelokaocr.ui.flightscreen.FlightActivity
-import com.example.travelokaocr.ui.login.LoginActivity
+import com.example.travelokaocr.ui.authentication.LoginActivity
 
 class ProfileActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding : ActivityProfileBinding

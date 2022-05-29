@@ -12,7 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.travelokaocr.R
-import com.example.travelokaocr.data.repository.AuthenticationRepository
+import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.databinding.ActivityLoginBinding
 import com.example.travelokaocr.ui.flightscreen.FlightActivity
 import com.example.travelokaocr.ui.register.RegisterActivity
@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
 //        CREATE API CONNECTION
         val authenticationViewModelFactory =
-            AuthenticationViewModelFactory(AuthenticationRepository())
+            AuthenticationViewModelFactory(AuthRepository())
         authenticationViewModel = ViewModelProvider(
             this, authenticationViewModelFactory
         )[AuthenticationViewModel::class.java]

@@ -6,18 +6,18 @@ import androidx.lifecycle.viewModelScope
 import com.example.travelokaocr.data.RegisterResponse
 import com.example.travelokaocr.data.model.LoginGoogleResponse
 import com.example.travelokaocr.data.model.LoginResponse
-import com.example.travelokaocr.data.repository.AuthenticationRepository
+import com.example.travelokaocr.data.repository.AuthRepository
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.io.File
 
-class AuthenticationViewModel(private val authenticationRepository: AuthenticationRepository): ViewModel() {
+class AuthenticationViewModel(private val authRepository: AuthRepository): ViewModel() {
     //LOGIN
     val loginUsers: MutableLiveData<Response<LoginResponse>> = MutableLiveData()
 
     fun getLoginUsersResponse(email: String, password: String) =
         viewModelScope.launch {
-            val response = authenticationRepository.loginUser(email, password)
+            val response = authRepository.loginUser(email, password)
             loginUsers.value = response
         }
 
@@ -26,7 +26,7 @@ class AuthenticationViewModel(private val authenticationRepository: Authenticati
 
     fun getLoginGoogleUsersResponse(email: String, password: String) =
         viewModelScope.launch {
-            val response = authenticationRepository.loginUser(email, password)
+            val response = authRepository.loginUser(email, password)
             loginUsers.value = response
         }
 
@@ -35,7 +35,7 @@ class AuthenticationViewModel(private val authenticationRepository: Authenticati
 
     fun getRegisterUsersResponse(name: String, email: String, password: String, profile_picture: File? = null) =
         viewModelScope.launch {
-            val response = authenticationRepository.register(name, email, password, profile_picture)
+            val response = authRepository.register(name, email, password, profile_picture)
             registerUsers.value = response
         }
 }

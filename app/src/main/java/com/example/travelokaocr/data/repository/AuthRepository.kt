@@ -6,7 +6,7 @@ import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
 import java.io.File
 
-class AuthenticationRepository {
+class AuthRepository {
 
     suspend fun register(
         name: String,
@@ -16,9 +16,11 @@ class AuthenticationRepository {
     ) =
         RetrofitInstance.API_OBJECT.registerUser(name, email, password, profile_picture)
 
-
     suspend fun loginUser(email: String, password: String) =
         RetrofitInstance.API_OBJECT.loginUser(email, password)
+
+    suspend fun googleLogin() =
+        RetrofitInstance.API_OBJECT.googleLogin()
 }
 
 @Suppress("BlockingMethodInNonBlockingContext")

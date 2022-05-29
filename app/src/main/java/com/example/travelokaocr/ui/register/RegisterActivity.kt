@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.travelokaocr.R
 import com.example.travelokaocr.data.api.ApiService
-import com.example.travelokaocr.data.repository.AuthenticationRepository
+import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.databinding.ActivityRegisterBinding
 import com.example.travelokaocr.ui.login.LoginActivity
 import com.example.travelokaocr.viewmodel.AuthenticationViewModel
@@ -39,7 +39,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val authenticationViewModelFactory = AuthenticationViewModelFactory(AuthenticationRepository())
+        val authenticationViewModelFactory = AuthenticationViewModelFactory(AuthRepository())
         viewModel = ViewModelProvider(
             this, authenticationViewModelFactory
         )[AuthenticationViewModel::class.java]

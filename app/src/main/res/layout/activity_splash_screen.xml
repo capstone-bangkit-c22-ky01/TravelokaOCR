@@ -11,7 +11,7 @@
         android:layout_width="165dp"
         android:layout_height="180dp"
         android:contentDescription="@string/moon"
-        android:src="@drawable/moon"
+        android:src="@drawable/moon_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,7 +21,7 @@
         android:layout_height="183dp"
         android:layout_marginEnd="85dp"
         android:contentDescription="@string/plane"
-        android:src="@drawable/plane"
+        android:src="@drawable/plane_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="410dp"
         android:contentDescription="@string/cloud"
-        android:src="@drawable/cloud"
+        android:src="@drawable/cloud_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -39,7 +39,7 @@
         android:layout_width="222dp"
         android:layout_height="400dp"
         android:contentDescription="@string/person_splash"
-        android:src="@drawable/person_splash_screen"
+        android:src="@drawable/person_splash_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

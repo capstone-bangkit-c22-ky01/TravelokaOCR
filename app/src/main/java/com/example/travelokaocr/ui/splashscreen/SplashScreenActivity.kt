@@ -10,7 +10,7 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.travelokaocr.databinding.ActivitySplashScreenBinding
-import com.example.travelokaocr.ui.flightscreen.FlightActivity
+import com.example.travelokaocr.ui.authentication.LoginActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
@@ -22,24 +22,25 @@ class SplashScreenActivity : AppCompatActivity() {
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupView()
-        setupAction()
+        //SETUP
+        setUpAction()
+        setUpView()
     }
 
-    @Suppress("DEPRECATION")
-    private fun setupAction() {
+    private fun setUpAction() {
+        //start this activity for 2 seconds before jumping into Login Activity
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this@SplashScreenActivity, FlightActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this@SplashScreenActivity, LoginActivity::class.java))
             finish()
         }, 2000)
     }
 
-    private fun setupView() {
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+    @Suppress("DEPRECATION")
+    private fun setUpView(){
+        //hide the action bar
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
             window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
+        }else{
             window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN

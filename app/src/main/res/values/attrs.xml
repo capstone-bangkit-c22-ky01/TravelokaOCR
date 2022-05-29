@@ -14,5 +14,6 @@
         <attr name="customColorNeutral10" format="color"/>
 
         <attr name="customColorFont" format="color"/>
+        <attr name="customColorHint" format="color"/>
     </declare-styleable>
 </resources>

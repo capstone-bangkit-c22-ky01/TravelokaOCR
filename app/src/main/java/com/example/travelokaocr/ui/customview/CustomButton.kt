@@ -47,7 +47,7 @@ class CustomButton : AppCompatButton {
     }
 
     private fun init(){
-        enabledBackground = ContextCompat.getDrawable(context, R.drawable.bg_button) as Drawable
+        enabledBackground = ContextCompat.getDrawable(context, R.drawable.bg_button_enabled) as Drawable
         disabledBackground = ContextCompat.getDrawable(context, R.drawable.bg_button_disabled)
                 as Drawable
     }

@@ -10,27 +10,27 @@
     <string name="cloud">Cloud</string>
     <string name="person_splash">Person-Splash</string>
 
+    <!--AUTH TEXT-->
+    <string name="enter_email">Please enter your email</string>
+    <string name="enter_password">Please enter your password</string>
+    <string name="google">Google</string>
+
     <!--SIGN UP ACTIVITY-->
     <string name="cloud_background">Cloud Background</string>
     <string name="receptionist">Receptionist</string>
     <string name="sign_up">Sign Up</string>
     <string name="enter_full_name">Enter Full Name</string>
-    <string name="enter_email">Enter Email</string>
-    <string name="enter_password">Enter Password</string>
-    <string name="google">Google</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="login_underline"><u>Login</u></string>
     <string name="error_action_dialog_register_desc">Failed to register, please try again</string>
 
-    <!--LOGIN ACTIVITY-->
+    <!--LOGIN TEXT-->
+    <string name="cloud_login">Cloud Icon in Login</string>
+    <string name="person_login">Person in Login Icon</string>
     <string name="login">Login</string>
     <string name="or_login_with">or login with</string>
     <string name="dont_have_an_account">Don\'t have an account?</string>
-    <string name="sign_up_underline"><u>Sign up</u></string>
-    <string name="vacation">user vacation image</string>
-    <string name="or_sign_up_with">or sign up with</string>
-    <string name="error_action_dialog_login_desc">Email/Password doesn\'t match, please try again</string>
-    <string name="erro_action_login_server">Please try again later</string>
+    <string name="sign_up_underline">Sign Up</string>
 
     <!--SUCCESS PAGE ACTIVITY-->
     <string name="success_image">Success</string>

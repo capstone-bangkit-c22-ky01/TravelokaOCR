@@ -10,7 +10,7 @@ import java.io.File
 //AUTH
 const val REGISTER_ENDPOINT = "users"
 const val LOGIN_ENDPOINT = "authentications"
-const val LOGIN_GOOGLE_ENDPOINT = "auth/google"
+const val GOOGLE_LOGIN_ENDPOINT = "auth/google"
 const val NAME_FIELD = "name"
 const val EMAIL_FIELD = "email"
 const val PASSWORD_FIELD = "password"
@@ -44,13 +44,9 @@ interface ApiService {
         @Field(PASSWORD_FIELD) password: String
     ): Response<LoginResponse>
 
-    //LOGIN GOOGLE
-    @FormUrlEncoded
-    @POST(LOGIN_GOOGLE_ENDPOINT)
-    suspend fun loginGoogleUser(
-        @Field(EMAIL_FIELD) email: String,
-        @Field(PASSWORD_FIELD) password: String
-    ): Response<LoginGoogleResponse>
+    //LOGIN WITH GOOGLE
+    @GET(GOOGLE_LOGIN_ENDPOINT)
+    suspend fun googleLogin(): Response<LoginResponse>
 
     //UPDATE TOKEN
     @FormUrlEncoded

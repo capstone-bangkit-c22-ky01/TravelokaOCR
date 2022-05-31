@@ -10,7 +10,7 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.travelokaocr.databinding.ActivitySplashScreenBinding
-import com.example.travelokaocr.ui.authentication.LoginActivity
+import com.example.travelokaocr.ui.auth.LoginActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {

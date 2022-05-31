@@ -3,86 +3,70 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".ui.register.RegisterActivity">
+    android:layout_height="match_parent"
+    tools:context=".ui.auth.RegisterActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:focusable="true"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusable="true">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_cloud"
-            android:layout_width="428dp"
-            android:layout_height="match_parent"
+            android:id="@+id/iv_register"
+            android:layout_width="440dp"
+            android:layout_height="300dp"
+            android:contentDescription="@string/person_icon"
+            android:src="@drawable/regis_person_icon"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:contentDescription="@string/cloud_background"
-            android:src="@drawable/clouds" />
-
-        <ImageView
-            android:id="@+id/iv_receptionist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@id/iv_cloud"
-            android:layout_alignEnd="@id/iv_cloud"
-            android:layout_alignBottom="@id/iv_cloud"
-            android:layout_marginTop="60dp"
-            android:contentDescription="@string/receptionist"
-            android:src="@drawable/receptionist"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
-            android:id="@+id/tv_sign_up"
+            android:id="@+id/tv_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/sign_up"
-            android:textColor="@color/font"
+            android:text="@string/regis_title"
+            android:textColor="?attr/customColorFont"
             android:fontFamily="@font/nunito_bold"
             android:textSize="34sp"
             android:textStyle="bold"
             android:layout_marginTop="20dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_receptionist" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_register" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_full_name"
+            android:id="@+id/til_name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:errorIconDrawable="@drawable/ic_error"
             app:helperText=""
-            app:helperTextTextColor="@color/bg_btn_logout"
+            app:helperTextTextColor="@android:color/holo_red_light"
             app:hintEnabled="false"
             app:endIconMode="clear_text"
-            app:layout_constraintTop_toBottomOf="@id/tv_sign_up">
+            app:layout_constraintTop_toBottomOf="@id/tv_register">
 
-            <com.example.travelokaocr.ui.customview.FullNameEditTextView
-                android:id="@+id/etv_full_name"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etv_name"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:gravity="start|center"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
+                android:inputType="textPersonName"
                 android:background="@drawable/bg_edit_text"
-                android:hint="@string/enter_full_name"
-                android:textColorHint="@color/font_hint"
                 android:fontFamily="@font/nunito_semi_bold"
-                android:textSize="14sp"
-                tools:ignore="RtlSymmetry" />
+                android:hint="@string/regis_enter_name"
+                android:textSize="16sp"
+                android:textColorHint="?attr/customColorHint"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -90,30 +74,30 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:helperText=""
-            app:helperTextTextColor="@color/bg_btn_logout"
+            app:helperTextTextColor="@android:color/holo_red_light"
             app:hintEnabled="false"
             app:endIconMode="clear_text"
-            app:errorIconDrawable="@drawable/ic_error"
-            app:layout_constraintTop_toBottomOf="@id/til_full_name">
+            app:layout_constraintTop_toBottomOf="@id/til_name">
 
-            <com.example.travelokaocr.ui.customview.EmailEditTextView
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etv_email"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:gravity="start|center"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
+                android:inputType="textEmailAddress"
                 android:background="@drawable/bg_edit_text"
                 android:fontFamily="@font/nunito_semi_bold"
                 android:hint="@string/enter_email"
-                android:textSize="14sp"
-                android:textColorHint="@color/font_hint"/>
+                android:textSize="16sp"
+                android:textColorHint="?attr/customColorHint"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -121,18 +105,18 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             app:endIconMode="password_toggle"
             app:helperText=""
-            app:helperTextTextColor="@color/bg_btn_logout"
+            app:helperTextTextColor="@android:color/holo_red_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:hintEnabled="false"
             app:layout_constraintTop_toBottomOf="@id/til_email">
 
-            <com.example.travelokaocr.ui.customview.PasswordEditTextView
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etv_password"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -143,119 +127,59 @@
                 android:inputType="textPassword"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:textColorHint="@color/font_hint"
-                android:textSize="14sp"
+                android:textColorHint="?attr/customColorHint"
+                android:textSize="16sp"
                 tools:ignore="RtlSymmetry" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.example.travelokaocr.ui.customview.AuthenticationButton
-            android:id="@+id/btn_sign_up"
+        <com.example.travelokaocr.ui.customview.CustomButton
+            android:id="@+id/btn_signup"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_button_disabled"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
             android:enabled="false"
             android:fontFamily="@font/nunito_bold"
-            android:text="@string/sign_up"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
+            android:text="@string/regis_title"
+            android:textSize="18sp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/til_password"/>
 
-        <View
-            android:id="@+id/v_left_line"
-            android:layout_width="60dp"
-            android:layout_height="1dp"
-            android:background="@color/font"
-            android:layout_marginTop="27dp"
-            android:layout_marginStart="50dp"
-            app:layout_constraintEnd_toStartOf="@id/tv_or_sign_up"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_sign_up"/>
-
-        <TextView
-            android:id="@+id/tv_or_sign_up"
+        <LinearLayout
+            android:id="@+id/ll_sign_up_hyperlink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/nunito_bold"
-            android:text="@string/or_sign_up_with"
-            android:layout_marginTop="16dp"
-            android:textColor="@color/font"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/v_right_line"
-            app:layout_constraintStart_toEndOf="@id/v_left_line"
-            app:layout_constraintTop_toBottomOf="@id/btn_sign_up"/>
-
-        <View
-            android:id="@+id/v_right_line"
-            android:layout_width="60dp"
-            android:layout_height="1dp"
-            android:layout_marginEnd="50dp"
-            android:background="@color/font"
-            android:layout_marginTop="27dp"
-            app:layout_constraintStart_toEndOf="@id/tv_or_sign_up"
-            app:layout_constraintTop_toBottomOf="@id/btn_sign_up"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <com.example.travelokaocr.ui.customview.GoogleButton
-            android:id="@+id/btn_sign_up_with_google"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/bg_button_google"
-            android:drawableStart="@drawable/ic_google"
-            android:fontFamily="@font/nunito_bold"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:text="@string/google"
-            android:textAllCaps="false"
-            android:textColor="@color/font"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginStart="90dp"
-            android:layout_marginEnd="90dp"
+            android:layout_marginBottom="80dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_or_sign_up" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_signup">
 
-        <TextView
-            android:id="@+id/tv_already_have_an_account"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="80dp"
-            android:fontFamily="@font/nunito_bold"
-            android:text="@string/already_have_an_account"
-            android:textColor="@color/font"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/login"
-            app:layout_constraintHorizontal_bias="0.586"
-            app:layout_constraintStart_toStartOf="@+id/btn_sign_up_with_google"
-            app:layout_constraintTop_toBottomOf="@+id/btn_sign_up_with_google" />
+            <TextView
+                android:id="@+id/tv_already_have_an_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/regis_options"
+                android:textColor="?attr/customColorFont"
+                android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/login"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="80dp"
-            android:fontFamily="@font/nunito_bold"
-            android:text="@string/login_underline"
-            android:textColor="@color/font"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/btn_sign_up_with_google"
-            app:layout_constraintStart_toEndOf="@+id/tv_already_have_an_account"
-            app:layout_constraintTop_toBottomOf="@+id/btn_sign_up_with_google" />
+            <TextView
+                android:id="@+id/login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/nunito_extra_bold"
+                android:text="@string/regis_redirect_login"
+                android:textColor="?attr/customColorFont"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -269,7 +193,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login"
+            app:layout_constraintTop_toBottomOf="@+id/ll_sign_up_hyperlink"
             app:layout_constraintVertical_bias="0.3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

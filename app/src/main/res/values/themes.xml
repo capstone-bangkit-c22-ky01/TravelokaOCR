@@ -26,10 +26,13 @@
 
         <item name="customColorFont">@color/font</item>
         <item name="customColorHint">@color/font_hint</item>
+
+        <item name="customColorBackground">@color/background</item>
     </style>
 
-    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorAccent">@color/secondary50</item>
+    <style name="MyAlertDialogTheme" parent="Theme.MaterialComponents.DayNight.Dialog.Alert">
+        <item name="colorPrimary">@color/secondary50</item>
+        <item name="colorAccent">@color/secondary90</item>
+        <item name="fontFamily">@font/nunito_bold</item>
     </style>
-
 </resources>

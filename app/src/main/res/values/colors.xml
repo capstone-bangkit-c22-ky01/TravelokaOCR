@@ -24,7 +24,7 @@
     <color name="font">#263238</color>
     <color name="font_hint">#93999C</color>
 
-    <color name="bg_page">#E8E7E7</color>
+    <color name="background">#E8E7E7</color>
 
     <color name="bg_btn_logout">#EA4335</color>
 </resources>

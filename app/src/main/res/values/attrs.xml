@@ -15,5 +15,6 @@
 
         <attr name="customColorFont" format="color"/>
         <attr name="customColorHint" format="color"/>
+        <attr name="customColorBackground" format="color"/>
     </declare-styleable>
 </resources>

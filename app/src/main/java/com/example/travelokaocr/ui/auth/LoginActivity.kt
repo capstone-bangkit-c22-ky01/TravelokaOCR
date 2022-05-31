@@ -18,13 +18,15 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.travelokaocr.R
+import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.databinding.ActivityLoginBinding
 import com.example.travelokaocr.ui.flightscreen.FlightActivity
-import com.example.travelokaocr.ui.register.RegisterActivity
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
 import com.example.travelokaocr.viewmodel.AuthViewModel
+import com.example.travelokaocr.viewmodel.factory.AuthViewModelFactory
 import com.example.travelokaocr.viewmodel.preference.SavedPreference
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
@@ -56,6 +58,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         setUpButton()
         setUpEditText()
         itemOnClickListener()
+
+        //CREATE API CONNECTION
+        val factory = AuthViewModelFactory(AuthRepository())
+        viewModel = ViewModelProvider(this, factory)[AuthViewModel::class.java]
+        savedPref = SavedPreference(this)
     }
 
     override fun onBackPressed() {

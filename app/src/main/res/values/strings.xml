@@ -1,36 +1,34 @@
 <resources>
-
-    <!--SPLASH SCREEN ACTIVITY-->
+    <!--ALL-->
     <string name="app_name">TravelokaOCR</string>
-    <string name="moon">Moon</string>
-    <string name="welcome_to">Welcome to…</string>
-    <string name="travelokaocr">TravelokaOCR</string>
-    <string name="logo_desc">Scan your travel identity in a flash time</string>
-    <string name="plane">Plane</string>
-    <string name="cloud">Cloud</string>
-    <string name="person_splash">Person-Splash</string>
-
-    <!--AUTH TEXT-->
+    <string name="person_icon">Person Icon</string>
     <string name="enter_email">Please enter your email</string>
     <string name="enter_password">Please enter your password</string>
-    <string name="google">Google</string>
+    <string name="error_password_message">Your password must have at least 6 characters long</string>
+    <string name="error_empty_message">This field can not be empty</string>
+    <string name="error_invalid_email_message">Invalid Email Address</string>
+
+    <!--SPLASH SCREEN ACTIVITY-->
+    <string name="splash_moon_icon">Moon Icon</string>
+    <string name="splash_welcome_to">Welcome to…</string>
+    <string name="splash_logo_desc">Scan your travel identity in a flash time</string>
+    <string name="splash_plane_icon">Plane Icon</string>
+    <string name="splash_cloud_icon">Cloud Icon</string>
+    <string name="splash_person">Person-Splash</string>
 
     <!--SIGN UP ACTIVITY-->
-    <string name="cloud_background">Cloud Background</string>
-    <string name="receptionist">Receptionist</string>
-    <string name="sign_up">Sign Up</string>
-    <string name="enter_full_name">Enter Full Name</string>
-    <string name="already_have_an_account">Already have an account?</string>
-    <string name="login_underline"><u>Login</u></string>
-    <string name="error_action_dialog_register_desc">Failed to register, please try again</string>
+    <string name="regis_title">Sign Up</string>
+    <string name="regis_enter_name">Please enter your name</string>
+    <string name="regis_options">Already have an account?</string>
+    <string name="regis_redirect_login">Login</string>
 
     <!--LOGIN TEXT-->
-    <string name="cloud_login">Cloud Icon in Login</string>
-    <string name="person_login">Person in Login Icon</string>
-    <string name="login">Login</string>
-    <string name="or_login_with">or login with</string>
-    <string name="dont_have_an_account">Don\'t have an account?</string>
-    <string name="sign_up_underline">Sign Up</string>
+    <string name="login_clouds_icon">Clouds Icon</string>
+    <string name="login_title">Login</string>
+    <string name="login_options">or login with</string>
+    <string name="login_google">Google</string>
+    <string name="login_redirect">Don\'t have an account?</string>
+    <string name="login_redirect_signup">SignUp</string>
 
     <!--SUCCESS PAGE ACTIVITY-->
     <string name="success_image">Success</string>
@@ -78,11 +76,6 @@
     <string name="ic_back">icon back</string>
     <string name="upload_image">Upload Image</string>
     <string name="save_changes">Save Changes</string>
-
-    <!-- Error Messages -->
-    <string name="error_password_message">Your password must have at least 6 characters long</string>
-    <string name="error_empty_message">This field can not be empty</string>
-    <string name="error_invalid_email_message">Invalid Email Address</string>
 
     <!-- HomeActivity -->
     <string name="Flight_HomeActivity">Flight</string>
@@ -137,6 +130,11 @@
     <string name="destination_default">Batam</string>
     <string name="verified">verified</string>
     <string name="travel_insurance_flight">Travel Insurance (Flight)</string>
+
+    <!--ERROR TEXT-->
+    <string name="error_400">400 Error</string>
+    <string name="error">Something went wrong</string>
+    <string name="error_401">Error 401</string>
 
     <!-- Data Dummy -->
     <string-array name="data_dummy_city">

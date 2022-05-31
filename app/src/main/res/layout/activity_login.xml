@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.authentication.LoginActivity">
+    tools:context=".ui.auth.LoginActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,11 +13,11 @@
         android:focusable="true">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_cloud"
+            android:id="@+id/iv_clouds"
             android:layout_width="440dp"
             android:layout_height="340dp"
-            android:contentDescription="@string/cloud_login"
-            android:src="@drawable/clouds_icon"
+            android:contentDescription="@string/login_clouds_icon"
+            android:src="@drawable/login_clouds_icon"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -27,8 +27,8 @@
             android:layout_width="440dp"
             android:layout_height="300dp"
             android:layout_marginTop="40dp"
-            android:contentDescription="@string/person_login"
-            android:src="@drawable/person_login_icon"
+            android:contentDescription="@string/person_icon"
+            android:src="@drawable/login_person_icon"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -37,7 +37,7 @@
             android:id="@+id/tv_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/login"
+            android:text="@string/login_title"
             android:textColor="?attr/customColorFont"
             android:fontFamily="@font/nunito_bold"
             android:textSize="34sp"
@@ -76,7 +76,7 @@
                 android:background="@drawable/bg_edit_text"
                 android:fontFamily="@font/nunito_semi_bold"
                 android:hint="@string/enter_email"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textColorHint="?attr/customColorHint"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -108,7 +108,7 @@
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:textColorHint="?attr/customColorHint"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 tools:ignore="RtlSymmetry" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,7 +119,7 @@
             android:layout_marginTop="15dp"
             android:enabled="false"
             android:fontFamily="@font/nunito_bold"
-            android:text="@string/login"
+            android:text="@string/login_title"
             android:textSize="18sp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
@@ -143,7 +143,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nunito_bold"
-            android:text="@string/or_login_with"
+            android:text="@string/login_options"
             android:layout_marginTop="16dp"
             android:textColor="?attr/customColorFont"
             android:paddingStart="20dp"
@@ -165,11 +165,21 @@
             app:layout_constraintTop_toBottomOf="@id/btn_login"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <com.google.android.gms.common.SignInButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login_with_google"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_marginTop="20dp"
+            android:background="@drawable/bg_button_google"
+            android:drawableStart="@drawable/ic_google"
+            android:fontFamily="@font/nunito_bold"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="@string/login_google"
+            android:textAllCaps="false"
+            android:textColor="@color/font"
+            android:textSize="16sp"
+            android:textStyle="bold"
             android:layout_marginStart="90dp"
             android:layout_marginEnd="90dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -193,7 +203,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito_bold"
-                android:text="@string/dont_have_an_account"
+                android:text="@string/login_redirect"
                 android:textColor="?attr/customColorFont"
                 android:textSize="14sp" />
 
@@ -203,11 +213,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:fontFamily="@font/nunito_extra_bold"
-                android:text="@string/sign_up_underline"
+                android:text="@string/login_redirect_signup"
                 android:textColor="?attr/customColorFont"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-
         </LinearLayout>
 
         <ProgressBar

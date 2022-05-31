@@ -1,26 +1,49 @@
 package com.example.travelokaocr.data.repository
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.liveData
 import com.example.travelokaocr.data.api.RetrofitInstance
+import com.example.travelokaocr.utils.Resources
+import com.google.gson.Gson
+import com.greentea.travelokaocr_gt.data.model.LoginResponse
+import com.greentea.travelokaocr_gt.data.model.RegisResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
-import java.io.File
 
 class AuthRepository {
+    //REGIS
+    fun regisUser(data: HashMap<String, String>): LiveData<Resources<RegisResponse?>> = liveData {
+        emit(Resources.Loading)
+        val returnValue = MutableLiveData<Resources<RegisResponse?>>()
+        val response = RetrofitInstance.API_OBJECT.registerUser(data)
+        if(response.isSuccessful) {
+            returnValue.value = Resources.Success(response.body())
+            emitSource(returnValue)
+        } else {
+            val error = Gson().fromJson(response.errorBody()?.stringSuspending(), RegisResponse::class.java)
+            response.errorBody()?.close()
+            returnValue.value = Resources.Success(error)
+            emitSource(returnValue)
+        }
+    }
 
-    suspend fun register(
-        name: String,
-        email: String,
-        password: String,
-        profile_picture: File? = null
-    ) =
-        RetrofitInstance.API_OBJECT.registerUser(name, email, password, profile_picture)
-
-    suspend fun loginUser(email: String, password: String) =
-        RetrofitInstance.API_OBJECT.loginUser(email, password)
-
-    suspend fun googleLogin() =
-        RetrofitInstance.API_OBJECT.googleLogin()
+    //LOGIN
+    fun loginUser(data: HashMap<String, String>): LiveData<Resources<LoginResponse?>> = liveData {
+        emit(Resources.Loading)
+        val returnValue = MutableLiveData<Resources<LoginResponse?>>()
+        val response = RetrofitInstance.API_OBJECT.loginUser(data)
+        if(response.isSuccessful) {
+            returnValue.value = Resources.Success(response.body())
+            emitSource(returnValue)
+        } else {
+            val error = Gson().fromJson(response.errorBody()?.stringSuspending(), LoginResponse::class.java)
+            response.errorBody()?.close()
+            returnValue.value = Resources.Success(error)
+            emitSource(returnValue)
+        }
+    }
 }
 
 @Suppress("BlockingMethodInNonBlockingContext")

@@ -2,37 +2,30 @@ package com.example.travelokaocr.viewmodel.preference
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.travelokaocr.utils.Constants
 
 class SavedPreference (context: Context) {
-    private var preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-    private val editor: SharedPreferences.Editor = preferences.edit()
+    private var pref = context.getSharedPreferences(Constants.PREFS_NAME, Context.MODE_PRIVATE)
+    private val editor: SharedPreferences.Editor = pref.edit()
 
-    fun putDataLogin(key: String, value: String){
+    fun putData(key: String, value: String){
         editor.putString(key, value).apply()
     }
 
-    fun putSessionLogin(key: String, value: Boolean){
+    fun putSession(key: String, value: Boolean){
         editor.putBoolean(key, value).apply()
     }
 
-    fun getDataLogin(key: String): String? {
-        return preferences.getString(key, null)
+    fun getData(key: String): String? {
+        return pref.getString(key, null)
     }
 
-    fun getSessionLogin(key: String): Boolean{
-        return preferences.getBoolean(key, false)
-    }
-
-    fun putDataGoogleLogin(key: String, value: String){
-        editor.putString(key, value).apply()
+    fun getSession(key: String): Boolean{
+        return pref.getBoolean(key, false)
     }
 
     fun clear(){
         editor.clear()
             .apply()
-    }
-
-    companion object{
-        const val PREFS_NAME = "user_pref"
     }
 }

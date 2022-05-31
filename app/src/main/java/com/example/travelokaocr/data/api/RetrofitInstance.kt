@@ -17,7 +17,7 @@ class RetrofitInstance {
                 .addInterceptor(logging)
                 .build()
             Retrofit.Builder()
-                .baseUrl("") //still waiting for the url
+                .baseUrl("https://ocr-app-eoyzxrvqla-et.a.run.app/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

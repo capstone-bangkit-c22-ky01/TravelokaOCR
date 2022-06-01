@@ -9,10 +9,27 @@ import com.example.travelokaocr.utils.Resources
 import com.google.gson.Gson
 
 class AccessProfileRepository {
+    //ACCESS PROFILE
     fun profileUser(data: HashMap<String, String>): LiveData<Resources<AccessProfileResponse?>> = liveData{
         emit(Resources.Loading)
         val returnValue = MutableLiveData<Resources<AccessProfileResponse?>>()
         val response = RetrofitInstance.API_OBJECT.getProfile(data)
+        if(response.isSuccessful) {
+            returnValue.value = Resources.Success(response.body())
+            emitSource(returnValue)
+        } else {
+            val error = Gson().fromJson(response.errorBody()?.stringSuspending(), AccessProfileResponse::class.java)
+            response.errorBody()?.close()
+            returnValue.value = Resources.Success(error)
+            emitSource(returnValue)
+        }
+    }
+
+    //EDIT PROFILE
+    fun updateUser(data: HashMap<String, String>): LiveData<Resources<AccessProfileResponse?>> = liveData{
+        emit(Resources.Loading)
+        val returnValue = MutableLiveData<Resources<AccessProfileResponse?>>()
+        val response = RetrofitInstance.API_OBJECT.updateProfile(data)
         if(response.isSuccessful) {
             returnValue.value = Resources.Success(response.body())
             emitSource(returnValue)

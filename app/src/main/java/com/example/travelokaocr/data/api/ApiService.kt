@@ -68,4 +68,10 @@ interface ApiService {
     suspend fun getProfile(
         @Body data: HashMap<String, String>
     ): Response<AccessProfileResponse>
+
+//    //UPDATE PROFILE
+    @PUT (ACCESS_PROFILE)
+    suspend fun updateProfile(
+            @Body data: HashMap<String, String>
+    ): Response<AccessProfileResponse>
 }

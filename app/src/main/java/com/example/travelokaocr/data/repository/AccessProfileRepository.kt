@@ -4,11 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.example.travelokaocr.data.api.RetrofitInstance
-import com.example.travelokaocr.data.model.AccessProfileData
 import com.example.travelokaocr.data.model.AccessProfileResponse
 import com.example.travelokaocr.utils.Resources
 import com.google.gson.Gson
-import com.greentea.travelokaocr_gt.data.model.RegisResponse
 
 class AccessProfileRepository {
     fun profileUser(data: HashMap<String, String>): LiveData<Resources<AccessProfileResponse?>> = liveData{

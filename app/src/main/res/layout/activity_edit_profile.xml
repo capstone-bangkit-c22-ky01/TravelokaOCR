@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_page"
     tools:context=".ui.profile.EditProfileActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,7 +28,8 @@
             app:layout_constraintEnd_toStartOf="@id/tv_edit_profile"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/ic_back"/>
+            android:background="@drawable/ic_back"
+            android:contentDescription="@string/button_back" />
 
         <TextView
             android:id="@+id/tv_edit_profile"
@@ -149,7 +149,7 @@
             android:layout_height="55dp"
             android:layout_marginBottom="80dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/bg_button"
+            android:background="@drawable/bg_button_enabled"
             android:enabled="false"
             android:fontFamily="@font/nunito_bold"
             android:text="@string/save_changes"

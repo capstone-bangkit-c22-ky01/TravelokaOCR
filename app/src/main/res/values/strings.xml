@@ -135,6 +135,7 @@
     <string name="error_400">400 Error</string>
     <string name="error">Something went wrong</string>
     <string name="error_401">Error 401</string>
+    <string name="button_back">button back image</string>
 
     <!-- Data Dummy -->
     <string-array name="data_dummy_city">

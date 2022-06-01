@@ -1,5 +1,6 @@
 package com.example.travelokaocr.data.api
 
+import com.example.travelokaocr.data.model.AccessProfileResponse
 import com.example.travelokaocr.data.model.HistoryResponse
 import com.example.travelokaocr.data.model.KTPResultResponse
 import com.example.travelokaocr.data.model.UpdateTokenResponse
@@ -13,6 +14,7 @@ import retrofit2.http.*
 const val REGIS_ENDPOINT = "users"
 const val LOGIN_ENDPOINT = "/authentications"
 const val GOOGLE_LOGIN_ENDPOINT = "auth/google"
+const val ACCESS_PROFILE = "users"
 const val PROFILE_PICTURE = "foto_profil"
 const val TOKEN_HEADER = "Authorization"
 const val REFRESH_TOKEN = "refreshToken"
@@ -60,4 +62,10 @@ interface ApiService {
     suspend fun getHistory(
         @Header(TOKEN_HEADER) accessToken: String
     ): Response<HistoryResponse>
+
+    //GET PROFILE
+    @GET(ACCESS_PROFILE)
+    suspend fun getProfile(
+        @Body data: HashMap<String, String>
+    ): Response<AccessProfileResponse>
 }

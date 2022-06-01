@@ -11,10 +11,12 @@ import com.example.travelokaocr.R
 import com.example.travelokaocr.databinding.ActivityProfileBinding
 import com.example.travelokaocr.ui.historyscreen.HistoryActivity
 import com.example.travelokaocr.ui.flightscreen.FlightActivity
-import com.example.travelokaocr.ui.authentication.LoginActivity
+import com.example.travelokaocr.ui.auth.LoginActivity
 
 class ProfileActivity : AppCompatActivity(), View.OnClickListener {
+    //BIDNING
     private lateinit var binding : ActivityProfileBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)

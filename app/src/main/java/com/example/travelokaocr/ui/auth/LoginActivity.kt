@@ -28,6 +28,11 @@ import com.example.travelokaocr.utils.Resources
 import com.example.travelokaocr.viewmodel.AuthViewModel
 import com.example.travelokaocr.viewmodel.factory.AuthViewModelFactory
 import com.example.travelokaocr.viewmodel.preference.SavedPreference
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+
+
+
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
     //BINDING
@@ -99,7 +104,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_login_with_google -> {
                 //go to login auth
                 enableProgressBar()
-
+                loginWithGoogle()
             }
             R.id.sign_up -> {
                 //go to sign up activity
@@ -202,6 +207,48 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 //DO NOTHING
             }
         })
+    }
+
+    private fun googleLogin(dataLogin: HashMap<String, String>) {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build()
+
+        // Build a GoogleSignInClient with the options specified by gso.
+        val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        val acct = GoogleSignIn.getLastSignedInAccount(this)
+        if (acct != null) {
+            viewModel.loginUser(dataLogin).observe(this) { response ->
+                if (response is Resources.Loading) {
+                    enableProgressBar()
+                }
+                else if (response is Resources.Error) {
+                    disableProgressBar()
+                    Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
+                }
+                else if (response is Resources.Success) {
+                    disableProgressBar()
+                    val result = response.data
+                    if (result?.status.equals("success")) {
+                        //get Token
+                    }
+                }
+            }
+        }
+    }
+
+    private fun loginWithGoogle() {
+
+        val email = binding.etvEmail.text.toString()
+        val password = binding.etvPassword.text.toString()
+
+        val dataLogin = hashMapOf(
+                "email" to email,
+                "password" to password
+        )
+
+        googleLogin(dataLogin)
     }
 
     private fun validateButton() {

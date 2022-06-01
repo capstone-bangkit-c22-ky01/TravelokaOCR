@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.travelokaocr.data.repository.AccessProfileRepository
 import com.example.travelokaocr.viewmodel.AccessProfileViewModel
-import com.example.travelokaocr.viewmodel.AuthViewModel
 
 class AccessProfileFactory(private val repo: AccessProfileRepository)
     : ViewModelProvider.Factory{

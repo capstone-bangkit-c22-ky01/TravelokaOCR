@@ -10,7 +10,7 @@ data class AccessProfileResponse(
     val message: String? = null,
 
     @field:SerializedName("data")
-    val data: List<AccessProfileData>? = null
+    val data: AccessProfileData? = null
 )
 
 data class AccessProfileData(

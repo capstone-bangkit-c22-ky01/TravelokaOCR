@@ -153,6 +153,22 @@
                 android:textSize="14sp"
                 android:textStyle="bold"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="208dp"
+            android:layout_height="20dp"
+            android:indeterminate="true"
+            android:indeterminateTint="?attr/customColorNeutral50"
+            android:indeterminateTintMode="src_atop"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_sign_up_hyperlink"
+            app:layout_constraintVertical_bias="0.3" />
+
     </ScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout

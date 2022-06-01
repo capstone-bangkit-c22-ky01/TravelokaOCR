@@ -31,8 +31,7 @@ import com.example.travelokaocr.viewmodel.preference.SavedPreference
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 
-
-
+const val RC_SIGN_IN = 200
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
     //BINDING
@@ -236,6 +235,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
         }
+        val signInIntent = mGoogleSignInClient.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
     private fun loginWithGoogle() {

@@ -4,8 +4,10 @@ import com.example.travelokaocr.data.model.AccessProfileResponse
 import com.example.travelokaocr.data.model.HistoryResponse
 import com.example.travelokaocr.data.model.KTPResultResponse
 import com.example.travelokaocr.data.model.UpdateTokenResponse
+import com.example.travelokaocr.data.model.flight.FlightSearchResponse
 import com.greentea.travelokaocr_gt.data.model.LoginResponse
 import com.greentea.travelokaocr_gt.data.model.RegisResponse
+import com.example.travelokaocr.data.model.auth.LogoutResponse
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -24,6 +26,11 @@ const val KTP_RESULT_ENDPOINT = "ktpresult"
 
 //HISTORY
 const val HISTORY_ENDPOINT = "" //coming soon, still waiting for CC
+
+//FLIGHT
+const val FLIGHT_ENDPOINT = "flights"
+const val DEPARTURE_QUERY = "departure"
+const val DESTINATION_QUERY = "destination"
 
 interface ApiService {
 
@@ -48,7 +55,7 @@ interface ApiService {
     @FormUrlEncoded
     @PUT(LOGIN_ENDPOINT)
     suspend fun updateToken(
-        @Field(REFRESH_TOKEN) refreshToken: String
+        @Field(REFRESH_TOKEN) refreshToken: HashMap<String, String?>
     ): Response<UpdateTokenResponse>
 
     //GET OCR RESULT
@@ -74,4 +81,18 @@ interface ApiService {
     suspend fun updateProfile(
             @Body data: HashMap<String, String>
     ): Response<AccessProfileResponse>
+
+    //GET FLIGHT SEARCH
+    @GET(FLIGHT_ENDPOINT)
+    suspend fun getFlightSearch(
+        @Header(TOKEN_HEADER) accessToken: String,
+        @Query(DEPARTURE_QUERY) departure: String,
+        @Query(DESTINATION_QUERY) destination: String,
+    ): Response<FlightSearchResponse>
+
+    //LOGOUT USER
+    @HTTP(method = "DELETE", path = LOGIN_ENDPOINT, hasBody = true)
+    suspend fun logoutUser(
+        @Body data: HashMap<String, String?>
+    ): Response<LogoutResponse>
 }

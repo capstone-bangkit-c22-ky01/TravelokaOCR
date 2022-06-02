@@ -1,18 +1,185 @@
 package com.example.travelokaocr.ui.main.fragment
 
+import android.app.DatePickerDialog
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import com.example.travelokaocr.R
+import com.example.travelokaocr.databinding.FragmentFlightBinding
+import com.example.travelokaocr.ui.flightsearchresult.FlightSearchResultActivity
+import com.example.travelokaocr.utils.Constants
+import com.example.travelokaocr.viewmodel.preference.SavedPreference
+import com.google.android.material.textfield.TextInputEditText
+import java.text.SimpleDateFormat
+import java.util.*
 
-class FlightFragment : Fragment() {
+class FlightFragment : Fragment(), View.OnClickListener {
+    //BINDING
+    private var _binding: FragmentFlightBinding? = null
+
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
+
+    //SESSION
+    private lateinit var savedPref: SavedPreference
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_flight, container, false)
+        _binding = FragmentFlightBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //SETUP
+        savedPref = SavedPreference(requireContext())
+        setupDateEditText()
+        itemOnClickListener()
+    }
+
+    override fun onClick(p0: View?) {
+        when (p0?.id) {
+            R.id.searchBtn -> {
+                //logout, go to flight search result
+                startActivity(Intent(requireActivity(), FlightSearchResultActivity::class.java))
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setupAutoTextView()
+    }
+
+    private fun setupAutoTextView() {
+        val city = resources.getStringArray(R.array.data_city)
+        val code = resources.getStringArray(R.array.code_city)
+        val cityCode = city.zip(code) { ct, cd -> "$ct-$cd" }
+
+        val adapterCity: ArrayAdapter<String> =
+            ArrayAdapter<String>(requireContext(), android.R.layout.select_dialog_item, cityCode)
+
+        //FROM
+        binding.fromEditText.threshold = 1 //will start working from first character
+        binding.fromEditText.setAdapter(adapterCity) //setting the adapter data into the AutoCompleteTextView
+        //when clicked
+        binding.fromEditText.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, _, position, _ ->
+                val getFromMix = parent.getItemAtPosition(position).toString()
+                val onlyFromCity = city[position]
+                val onlyFromCode = code[position]
+                saveDataFromCity(getFromMix, onlyFromCity, onlyFromCode)
+            }
+
+        //TO
+        binding.toEditText.threshold = 1 //will start working from first character
+        binding.toEditText.setAdapter(adapterCity) //setting the adapter data into the AutoCompleteTextView
+        //when clicked
+        binding.toEditText.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, _, position, _ ->
+                val getToMix = parent.getItemAtPosition(position).toString()
+                val onlyToCity = city[position]
+                val onlyToCode = code[position]
+                saveDataToCity(getToMix, onlyToCity, onlyToCode)
+            }
+
+        //PASSENGERS
+        val dataPassengers = resources.getStringArray(R.array.data_dummy_passengers)
+        val dataNumber = resources.getStringArray(R.array.data_number_passengers)
+        val adapterPassengers: ArrayAdapter<String> =
+            ArrayAdapter<String>(requireContext(), R.layout.dropdown_item, dataPassengers)
+        //when clicked
+        binding.passengersEditText.threshold = 1 //will start working from first character
+        binding.passengersEditText.setAdapter(adapterPassengers) //setting the adapter data into the AutoCompleteTextView
+        binding.passengersEditText.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, _, position, _ ->
+//            val passenger = parent.getItemAtPosition(position).toString()
+                val pax = dataPassengers[position]
+                savedPref.putData(Constants.PAX, pax)
+            }
+
+        //SEAT CLASS
+        val dataSeatClass = resources.getStringArray(R.array.data_dummy_seatClass)
+        val adapterSeatClass: ArrayAdapter<String> =
+            ArrayAdapter<String>(requireContext(), R.layout.dropdown_item, dataSeatClass)
+        //when clicked
+        binding.seatClassEditText.threshold = 1 //will start working from first character
+        binding.seatClassEditText.setAdapter(adapterSeatClass) //setting the adapter data into the AutoCompleteTextView
+        binding.seatClassEditText.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, _, position, _ ->
+                val seatClass = parent.getItemAtPosition(position).toString()
+                savedPref.putData(Constants.SEAT, seatClass)
+            }
+    }
+
+    private fun saveDataToCity(toMix: String, onlyToCity: String?, codeTo: String?) {
+        savedPref.putData(Constants.TO_MIX, toMix)
+        savedPref.putData(Constants.TO_ONLY_CITY, onlyToCity!!)
+        savedPref.putData(Constants.TO_CODE, codeTo!!)
+    }
+
+    private fun saveDataFromCity(fromMix: String, fromOnlyCity: String?, codeFrom: String?) {
+        savedPref.putData(Constants.FROM_MIX, fromMix)
+        savedPref.putData(Constants.FROM_ONLY_CITY, fromOnlyCity!!)
+        savedPref.putData(Constants.FROM_CODE, codeFrom!!)
+    }
+
+    private fun setupDateEditText() {
+        binding.dateEditText.transformIntoDatePicker(requireContext(), "EEEE, dd MMM yyyy", Date())
+        val date = binding.dateEditText.text.toString()
+        Log.d("FLIGHT DATE", "setupDateEditText: $date")
+        savedPref.putData(Constants.DATE, date)
+    }
+
+    private fun TextInputEditText.transformIntoDatePicker(
+        context: Context,
+        format: String,
+        minDate: Date? = null
+    ) {
+        isFocusableInTouchMode = false
+        isClickable = true
+        isFocusable = false
+
+        val myCalendar = Calendar.getInstance()
+        val datePickerOnDataSetListener =
+            DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+                myCalendar.set(Calendar.YEAR, year)
+                myCalendar.set(Calendar.MONTH, monthOfYear)
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                val sdf = SimpleDateFormat(format, Locale.US)
+                setText(sdf.format(myCalendar.time))
+            }
+
+        setOnClickListener {
+            DatePickerDialog(
+                context, datePickerOnDataSetListener, myCalendar
+                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)
+            ).run {
+                minDate?.time?.also { datePicker.minDate = it }
+                show()
+            }
+        }
+    }
+
+    private fun itemOnClickListener() {
+        binding.searchBtn.setOnClickListener(this)
     }
 }

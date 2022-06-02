@@ -138,6 +138,20 @@
     <string name="button_back">button back image</string>
 
     <!-- Data Dummy -->
+    <string-array name="data_city">
+        <item>Jakarta</item>
+        <item>Jakarta</item>
+        <item>Jakarta</item>
+        <item>Bali</item>
+    </string-array>
+
+    <string-array name="code_city">
+        <item>HLP</item>
+        <item>JKT</item>
+        <item>PCB</item>
+        <item>DPS</item>
+    </string-array>
+
     <string-array name="data_dummy_city">
         <item>Malang-MLG</item>
         <item>Ransiki-RSK</item>
@@ -298,6 +312,16 @@
         <item>5 passengers</item>
         <item>6 passengers</item>
         <item>7 passengers</item>
+    </string-array>
+
+    <string-array name="data_number_passengers">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
     </string-array>
 
     <string-array name="data_dummy_seatClass">

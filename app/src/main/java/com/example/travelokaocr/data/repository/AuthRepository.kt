@@ -4,10 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.example.travelokaocr.data.api.RetrofitInstance
+import com.example.travelokaocr.data.model.UpdateTokenResponse
 import com.example.travelokaocr.utils.Resources
 import com.google.gson.Gson
 import com.greentea.travelokaocr_gt.data.model.LoginResponse
 import com.greentea.travelokaocr_gt.data.model.RegisResponse
+import com.example.travelokaocr.data.model.auth.LogoutResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
@@ -39,6 +41,38 @@ class AuthRepository {
             emitSource(returnValue)
         } else {
             val error = Gson().fromJson(response.errorBody()?.stringSuspending(), LoginResponse::class.java)
+            response.errorBody()?.close()
+            returnValue.value = Resources.Success(error)
+            emitSource(returnValue)
+        }
+    }
+
+    //UPDATE TOKEN
+    fun updateToken(data: HashMap<String, String?>): LiveData<Resources<UpdateTokenResponse?>> = liveData {
+        emit(Resources.Loading)
+        val returnValue = MutableLiveData<Resources<UpdateTokenResponse?>>()
+        val response = RetrofitInstance.API_OBJECT.updateToken(data)
+        if(response.isSuccessful) {
+            returnValue.value = Resources.Success(response.body())
+            emitSource(returnValue)
+        } else {
+            val error = Gson().fromJson(response.errorBody()?.stringSuspending(), UpdateTokenResponse::class.java)
+            response.errorBody()?.close()
+            returnValue.value = Resources.Success(error)
+            emitSource(returnValue)
+        }
+    }
+
+    //LOGOUT
+    fun logoutUser(data: HashMap<String, String?>): LiveData<Resources<LogoutResponse?>> = liveData {
+        emit(Resources.Loading)
+        val returnValue = MutableLiveData<Resources<LogoutResponse?>>()
+        val response = RetrofitInstance.API_OBJECT.logoutUser(data)
+        if(response.isSuccessful) {
+            returnValue.value = Resources.Success(response.body())
+            emitSource(returnValue)
+        } else {
+            val error = Gson().fromJson(response.errorBody()?.stringSuspending(), LogoutResponse::class.java)
             response.errorBody()?.close()
             returnValue.value = Resources.Success(error)
             emitSource(returnValue)

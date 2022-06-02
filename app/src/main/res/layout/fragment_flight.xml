@@ -248,7 +248,7 @@
                         tools:ignore="LabelFor" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.greentea.travelokaocr_gt.ui.customview.CustomButton
+                <com.example.travelokaocr.ui.customview.CustomButton
                     android:id="@+id/searchBtn"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"

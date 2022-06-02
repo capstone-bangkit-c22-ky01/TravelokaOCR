@@ -9,4 +9,10 @@ class AuthViewModel(private val repo: AuthRepository): ViewModel() {
 
     //LOGIN
     fun loginUser(data: HashMap<String, String>) = repo.loginUser(data)
+
+    //UPDATE TOKEN
+    fun updateToken(data: HashMap<String, String?>) = repo.updateToken(data)
+
+    //LOGOUT
+    fun logoutUser(data: HashMap<String, String?>) = repo.logoutUser(data)
 }

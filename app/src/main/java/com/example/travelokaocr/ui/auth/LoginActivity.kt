@@ -230,13 +230,26 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     disableProgressBar()
                     val result = response.data
                     if (result?.status.equals("success")) {
-                        //get Token
+                        //saved userid
+                        val accessToken = result?.data?.accessToken.toString()
+                        val refreshToken = result?.data?.refreshToken.toString()
+                        saveSessionLogin(accessToken, refreshToken)
+
+                        Toast.makeText(this, result?.message, Toast.LENGTH_SHORT).show()
+                        Log.d("REGIS", result?.message.toString())
+
+                        val signInIntent = mGoogleSignInClient.signInIntent
+                        startActivityForResult(signInIntent, RC_SIGN_IN)
+
+                        //intent to home directly
+                        //home activity still under the development
+                        val intent = Intent(this@LoginActivity, FlightActivity::class.java)
+                        startActivity(intent)
+                        killActivity()
                     }
                 }
             }
         }
-        val signInIntent = mGoogleSignInClient.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
     private fun loginWithGoogle() {

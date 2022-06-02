@@ -33,6 +33,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 
 const val RC_SIGN_IN = 200
 
+@Suppress("DEPRECATION")
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
     //BINDING
     private lateinit var binding: ActivityLoginBinding
@@ -333,7 +334,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             .setTitle(message)
             .setView(view)
             .setPositiveButton("Back to Register") { _, _ ->
-                startActivity(Intent(this@LoginActivity, LoginActivity::class.java))
+                //DO NOTHING
             }.show()
     }
 

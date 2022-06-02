@@ -38,7 +38,7 @@ class OCRResultActivity : AppCompatActivity() {
         )[TravelokaOCRViewModel::class.java]
 
         savedPreference = SavedPreference(this)
-        val tokenFromPreferences = savedPreference.getDataLogin(Constants.ACCESS_TOKEN)
+        val tokenFromPreferences = savedPreference.getData(Constants.ACCESS_TOKEN)
         val accessToken = "Bearer $tokenFromPreferences"
 
         travelokaOCRViewModel.getKTPResultResponse(accessToken)

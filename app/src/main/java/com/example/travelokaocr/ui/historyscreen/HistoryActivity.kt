@@ -84,7 +84,7 @@ class HistoryActivity : AppCompatActivity() {
 
         //GET TOKEN
         savedPreference = SavedPreference(this)
-        val tokenFromPreference = savedPreference.getDataLogin(Constants.ACCESS_TOKEN)
+        val tokenFromPreference = savedPreference.getData(Constants.ACCESS_TOKEN)
         val accessToken = "Bearer $tokenFromPreference"
 
         ocrViewModel.getHistory(accessToken)

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.travelokaocr.data.model.flight.Flights
-import com.greentea.travelokaocr_gt.databinding.ItemRowFlightBinding
+import com.example.travelokaocr.databinding.ItemRowFlightBinding
 
 class SearchListAdapter(
     val context: Context

@@ -216,6 +216,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         // Build a GoogleSignInClient with the options specified by gso.
         val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
+        val signInIntent = mGoogleSignInClient.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+
         val acct = GoogleSignIn.getLastSignedInAccount(this)
         if (acct != null) {
             viewModel.loginUser(dataLogin).observe(this) { response ->
@@ -237,9 +240,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
                         Toast.makeText(this, result?.message, Toast.LENGTH_SHORT).show()
                         Log.d("REGIS", result?.message.toString())
-
-                        val signInIntent = mGoogleSignInClient.signInIntent
-                        startActivityForResult(signInIntent, RC_SIGN_IN)
 
                         //intent to home directly
                         //home activity still under the development

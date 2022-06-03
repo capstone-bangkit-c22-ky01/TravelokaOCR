@@ -138,6 +138,20 @@
     <string name="button_back">button back image</string>
 
     <!-- Data Dummy -->
+    <string-array name="data_city">
+        <item>Jakarta</item>
+        <item>Jakarta</item>
+        <item>Jakarta</item>
+        <item>Bali</item>
+    </string-array>
+
+    <string-array name="code_city">
+        <item>HLP</item>
+        <item>JKT</item>
+        <item>PCB</item>
+        <item>DPS</item>
+    </string-array>
+
     <string-array name="data_dummy_city">
         <item>Malang-MLG</item>
         <item>Ransiki-RSK</item>
@@ -300,6 +314,16 @@
         <item>7 passengers</item>
     </string-array>
 
+    <string-array name="data_number_passengers">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+
     <string-array name="data_dummy_seatClass">
         <item>Economy</item>
         <item>Premium Economy</item>
@@ -452,4 +476,26 @@
         <item>Single</item>
         <item>Married</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--HOMEPAGE TEXT-->
+    <string name="fragment_flight">Flight</string>
+    <string name="fragment_history">History</string>
+    <string name="fragment_profile">Profile</string>
+
+    <!--FLIGHT TEXT-->
+    <string name="flight_title">Flight</string>
+    <string name="flight_from">From</string>
+    <string name="flight_city_departure">City Departure</string>
+    <string name="flight_to">To</string>
+    <string name="flight_city_destination">City Destination</string>
+    <string name="flight_date">Date</string>
+    <string name="flight_select_date">Select Date</string>
+    <string name="flight_passengers">Passengers</string>
+    <string name="flight_passenger_default">1 Passenger</string>
+    <string name="flight_seat_class">Seat Class</string>
+    <string name="flight_seat_class_default">Economy</string>
+    <string name="flight_btn_search">Search</string>
 </resources>

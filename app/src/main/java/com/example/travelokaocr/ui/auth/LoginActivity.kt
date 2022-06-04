@@ -23,6 +23,7 @@ import com.example.travelokaocr.R
 import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.databinding.ActivityLoginBinding
 import com.example.travelokaocr.ui.flightscreen.FlightActivity
+import com.example.travelokaocr.ui.main.HomeActivity
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
 import com.example.travelokaocr.viewmodel.AuthViewModel
@@ -48,7 +49,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         super.onStart()
         if(savedPref.getSession(Constants.IS_LOGIN)){
             //for the home activity still under the development
-            startActivity(Intent(this@LoginActivity, FlightActivity::class.java))
+            startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
             killActivity()
         }
     }
@@ -244,7 +245,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
                         //intent to home directly
                         //home activity still under the development
-                        val intent = Intent(this@LoginActivity, FlightActivity::class.java)
+                        val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                         startActivity(intent)
                         killActivity()
                     }

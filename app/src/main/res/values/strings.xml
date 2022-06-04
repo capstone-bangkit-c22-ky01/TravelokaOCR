@@ -137,6 +137,28 @@
     <string name="error_401">Error 401</string>
     <string name="button_back">button back image</string>
 
+    <!--FLIGHT SEARCH TEXT-->
+    <string name="search_back">Back Icon</string>
+    <string name="search_city_default">Jakarta</string>
+    <string name="search_destination_icon">Arrow Icon</string>
+    <string name="search_city_destination_default">Bali</string>
+    <string name="search_date_default">Wed, 11 May</string>
+    <string name="search_default_pack">· 1 pax ·</string>
+    <string name="search_class_default">Economy</string>
+    <string name="search_time_departure_default">12.53</string>
+    <string name="search_code_departure_default">HLP</string>
+    <string name="search_route_icon">Route Icon</string>
+    <string name="search_total_time">2h 5m</string>
+    <string name="search_direct">Direct</string>
+    <string name="search_time_destination_default">14.58</string>
+    <string name="search_code_destination_default">DPN</string>
+    <string name="search_price_default">Rp. 877.500</string>
+    <string name="search_pax">/pax</string>
+    <string name="search_plane_logo">Plane Logo</string>
+    <string name="search_plane_default">Lion Air</string>
+    <string name="search_luggage">Luggage</string>
+    <string name="search_btn_buy">Buy</string>
+
     <!-- Data Dummy -->
     <string-array name="data_city">
         <item>Jakarta</item>
@@ -498,7 +520,4 @@
     <string name="flight_seat_class">Seat Class</string>
     <string name="flight_seat_class_default">Economy</string>
     <string name="flight_btn_search">Search</string>
-    <string name="retry_text_ocr">Our system unable to recognize your Identity Card. Are you sure want to scan it?</string>
-    <string name="please_retry">Please Retry</string>
-    <string name="retry_image">retry image</string>
 </resources>

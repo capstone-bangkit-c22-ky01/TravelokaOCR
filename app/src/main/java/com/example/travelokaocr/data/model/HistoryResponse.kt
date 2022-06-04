@@ -10,39 +10,30 @@ data class HistoryResponse(
     val message: String? = null,
 
     @field:SerializedName("data")
-    val data: List<UserDataHistoryNew>? = null
+    val data: UserDataHistory? = null
 )
 
-data class UserDataHistory( //adjusted to the OLD History API
-    @field:SerializedName("idResult")
-    val idResult: String? = null,
-
-    @field:SerializedName("time_departure")
-    val time_departure: String? = null,
-
-    @field:SerializedName("time_arrived")
-    val time_arrived: String? = null,
-
-    @field:SerializedName("price")
-    val price: String? = null
+data class UserDataHistory(
+    @field:SerializedName("bookings")
+    val bookings: List<Bookings>? = null,
 )
 
-data class UserDataHistoryNew( //adjusted to the NEW History API
-    @field:SerializedName("purchaseMonth")
-    val purchaseMonth: String? = null,
+data class Bookings(
+    @field:SerializedName("id")
+    val id: String? = null,
 
-    @field:SerializedName("bookingID")
-    val bookingID: String? = null,
+    @field:SerializedName("departure")
+    val departure: String? = null,
+
+    @field:SerializedName("destination")
+    val destination: String? = null,
+
+    @field:SerializedName("booking_code")
+    val booking_code: Int? = null,
 
     @field:SerializedName("price")
-    val price: String? = null,
+    val price: Int? = null,
 
-    @field:SerializedName("cityDepart")
-    val cityDepart: String? = null,
-
-    @field:SerializedName("cityArrive")
-    val cityArrive: String? = null,
-
-    @field:SerializedName("purchaseStatus")
-    val purchaseStatus: Boolean? = null
+    @field:SerializedName("status")
+    val status: String? = null
 )

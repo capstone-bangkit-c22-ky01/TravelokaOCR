@@ -1,4 +1,4 @@
-package com.example.travelokaocr.ui.flightsearchresult
+package com.example.travelokaocr.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,38 +7,40 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.travelokaocr.data.model.Bookings
 import com.example.travelokaocr.data.model.flight.Flights
 import com.example.travelokaocr.databinding.ItemRowFlightBinding
+import com.example.travelokaocr.databinding.ItemRowHistoryTicketsBinding
 
-class SearchListAdapter(
+class HistoryAdapter(
     val context: Context
-) : RecyclerView.Adapter<SearchListAdapter.ListUsersViewHolder>() {
+) : RecyclerView.Adapter<HistoryAdapter.ListUsersViewHolder>() {
 
-    private val differCallback = object: DiffUtil.ItemCallback<Flights>(){
+    private val differCallback = object: DiffUtil.ItemCallback<Bookings>(){
         override fun areItemsTheSame(
-            oldItem: Flights,
-            newItem: Flights
+            oldItem: Bookings,
+            newItem: Bookings
         ): Boolean {
             //COMPARE ID BECAUSE IT'S UNIQUE
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: Flights,
-            newItem: Flights
+            oldItem: Bookings,
+            newItem: Bookings
         ): Boolean {
             return oldItem == newItem
         }
     }
 
     val differAsync = AsyncListDiffer(this, differCallback)
-    private var onItemClickListener: ((Flights) -> Unit)? = null
+    private var onItemClickListener: ((Bookings) -> Unit)? = null
 
-    inner class ListUsersViewHolder(var binding: ItemRowFlightBinding): RecyclerView
+    inner class ListUsersViewHolder(var binding: ItemRowHistoryTicketsBinding): RecyclerView
     .ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListUsersViewHolder {
-        val binding = ItemRowFlightBinding
+        val binding = ItemRowHistoryTicketsBinding
             .inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -50,6 +52,7 @@ class SearchListAdapter(
         val data = differAsync.currentList[position]
 
         holder.itemView.apply {
+            holder.binding.
             Glide.with(this)
                 .load(data.icon)
                 .into(holder.binding.airplaneImageIv)

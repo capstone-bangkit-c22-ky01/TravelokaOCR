@@ -25,7 +25,7 @@ const val REFRESH_TOKEN = "refreshToken"
 const val KTP_RESULT_ENDPOINT = "ktpresult"
 
 //HISTORY
-const val HISTORY_ENDPOINT = "" //coming soon, still waiting for CC
+const val HISTORY_ENDPOINT = "flights/booking"
 
 //FLIGHT
 const val FLIGHT_ENDPOINT = "flights"

@@ -36,24 +36,15 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener {
         //SETUP
         setupView()
         itemOnClickListener()
-
-        val username = binding.tvUsername.text.toString()
-        val email = binding.tvEmail.text.toString()
-        val fotoProfil = binding.ivProfilePicture.toString()
-
-        val dataUser = hashMapOf(
-            "name" to username,
-            "email" to email,
-            "foto_profil" to fotoProfil
-        )
-        showDataUser(dataUser)
+//
+//        showDataUser(dataUser)
 
         //CREATE API CONNECTION
         val factory = AccessProfileFactory(AccessProfileRepository())
         viewModel = ViewModelProvider(this, factory)[AccessProfileViewModel::class.java]
     }
 
-    private fun showDataUser(dataUser: HashMap<String, String>){
+    private fun showDataUser(dataUser: String){
         viewModel.profileUser(dataUser).observe(this){ response ->
             if (response is Resources.Loading) {
                 progressBar(true)

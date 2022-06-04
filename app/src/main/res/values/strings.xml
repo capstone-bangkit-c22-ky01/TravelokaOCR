@@ -525,4 +525,14 @@
     <string name="please_retry">Please Retry</string>
     <string name="textview">text</string>
     <string name="history_title">History</string>
+
+    <!--PROFILE TEXT-->
+    <string name="profile_header">Profile Header</string>
+    <string name="profile_title">Profile</string>
+    <string name="profile_card">Card Profile</string>
+    <string name="profile_name">Name</string>
+    <string name="profile_email">xxx@gmail.com</string>
+    <string name="profile_btn_edit_profile">Edit Profile</string>
+    <string name="profile_btn_logout">Logout</string>
+    <string name="profile_about"><u>About Traveloka OCR</u></string>
 </resources>

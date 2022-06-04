@@ -77,7 +77,7 @@ interface ApiService {
     //GET PROFILE
     @GET(ACCESS_PROFILE)
     suspend fun getProfile(
-        @Body data: HashMap<String, String>
+        @Header (TOKEN_HEADER) accessToken: String
     ): Response<AccessProfileResponse>
 
     //UPDATE PROFILE

@@ -12,27 +12,36 @@ import com.bumptech.glide.Glide
 import com.example.travelokaocr.R
 import com.example.travelokaocr.data.repository.AccessProfileRepository
 import com.example.travelokaocr.databinding.ActivityProfileBinding
+import com.example.travelokaocr.databinding.FragmentFlightBinding
+import com.example.travelokaocr.databinding.FragmentProfileBinding
 import com.example.travelokaocr.ui.auth.LoginActivity
 import com.example.travelokaocr.ui.flightscreen.FlightActivity
 import com.example.travelokaocr.ui.historyscreen.HistoryActivity
 import com.example.travelokaocr.ui.profile.EditProfileActivity
+import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
 import com.example.travelokaocr.viewmodel.AccessProfileViewModel
 import com.example.travelokaocr.viewmodel.factory.AccessProfileFactory
+import com.example.travelokaocr.viewmodel.preference.SavedPreference
 
 class ProfileFragment : Fragment(), View.OnClickListener {
     //BIDNING
-    private lateinit var binding : ActivityProfileBinding
+    private var _binding : FragmentProfileBinding? = null
+
+    private val binding get() = _binding!!
 
     //API
     private lateinit var viewModel: AccessProfileViewModel
+
+    private lateinit var savedPreference: SavedPreference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,23 +50,17 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         //SETUP
         itemOnClickListener()
 
-        val username = binding.tvUsername.text.toString()
-        val email = binding.tvEmail.text.toString()
-        val fotoProfil = binding.ivProfilePicture.toString()
-
-        val dataUser = hashMapOf(
-            "name" to username,
-            "email" to email,
-            "foto_profil" to fotoProfil
-        )
-        showDataUser(dataUser)
-
         //CREATE API CONNECTION
         val factory = AccessProfileFactory(AccessProfileRepository())
         viewModel = ViewModelProvider(this, factory)[AccessProfileViewModel::class.java]
+
+        savedPreference = SavedPreference(requireContext())
+
+        val dataUser = savedPreference.getData(Constants.ACCESS_TOKEN)
+        showDataUser(dataUser!!)
     }
 
-    private fun showDataUser(dataUser: HashMap<String, String>){
+    private fun showDataUser(dataUser: String){
         viewModel.profileUser(dataUser).observe(viewLifecycleOwner){ response ->
             if (response is Resources.Loading) {
                 progressBar(true)
@@ -75,12 +78,12 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                         val fotoProfil = result.data?.foto_profil.toString()
 
                         //SHOW DATA
-                        binding.tvUsername.text = username
-                        binding.tvEmail.text = email
+                        binding!!.tvUsername.text = username
+                        binding!!.tvEmail.text = email
                         Glide.with(this)
                             .load(fotoProfil)
                             .centerCrop()
-                            .into(binding.ivProfilePicture)
+                            .into(binding!!.ivProfilePicture)
                     } else {
                         Log.d("PROFILE", result.message.toString())
                     }
@@ -92,9 +95,9 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     }
 
     private fun itemOnClickListener(){
-        binding.btnEditProfile.setOnClickListener(this)
-        binding.btnLogout.setOnClickListener(this)
-        binding.tvAboutTraveloka.setOnClickListener(this)
+        binding!!.btnEditProfile.setOnClickListener(this)
+        binding!!.btnLogout.setOnClickListener(this)
+        binding!!.tvAboutTraveloka.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -104,7 +107,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             }
             R.id.btn_logout -> {
                 startActivity(Intent(requireActivity(), LoginActivity::class.java))
-//                finish()
+                activity?.finish()
             }
             R.id.tv_about_traveloka -> {
 
@@ -114,9 +117,9 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
     private fun progressBar(isLoading: Boolean) = with(binding){
         if (isLoading) {
-            progressBar.visibility = View.VISIBLE
+            this?.progressBar?.visibility = View.VISIBLE
         } else {
-            progressBar.visibility = View.GONE
+            this?.progressBar?.visibility = View.GONE
         }
     }
 }

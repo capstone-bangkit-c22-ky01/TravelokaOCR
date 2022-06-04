@@ -11,7 +11,7 @@ import retrofit2.http.Url
 
 class AccessProfileRepository {
     //ACCESS PROFILE
-    fun profileUser(data: HashMap<String, String>): LiveData<Resources<AccessProfileResponse?>> = liveData{
+    fun profileUser(data: String): LiveData<Resources<AccessProfileResponse?>> = liveData{
         emit(Resources.Loading)
         val returnValue = MutableLiveData<Resources<AccessProfileResponse?>>()
         val response = RetrofitInstance.API_OBJECT.getProfile(data)

@@ -17,7 +17,6 @@ const val REGIS_ENDPOINT = "users"
 const val LOGIN_ENDPOINT = "/authentications"
 const val GOOGLE_LOGIN_ENDPOINT = "auth/google"
 const val ACCESS_PROFILE = "users"
-const val PROFILE_PICTURE = "foto_profil"
 const val TOKEN_HEADER = "Authorization"
 const val REFRESH_TOKEN = "refreshToken"
 
@@ -31,6 +30,11 @@ const val HISTORY_ENDPOINT = "flights/booking"
 const val FLIGHT_ENDPOINT = "flights"
 const val DEPARTURE_QUERY = "departure"
 const val DESTINATION_QUERY = "destination"
+
+//EDIT PROFIL
+const val NAME = "name"
+const val EMAIL = "email"
+const val PROFILE_PICTURE = "foto_profil"
 
 interface ApiService {
 
@@ -76,10 +80,13 @@ interface ApiService {
         @Body data: HashMap<String, String>
     ): Response<AccessProfileResponse>
 
-//    //UPDATE PROFILE
+    //UPDATE PROFILE
+    @FormUrlEncoded
     @PUT (ACCESS_PROFILE)
     suspend fun updateProfile(
-            @Body data: HashMap<String, String>
+        @Field(NAME) name: String?,
+        @Field(EMAIL) email: String?,
+        @Field(PROFILE_PICTURE) foto_profil: Url?
     ): Response<AccessProfileResponse>
 
     //GET FLIGHT SEARCH

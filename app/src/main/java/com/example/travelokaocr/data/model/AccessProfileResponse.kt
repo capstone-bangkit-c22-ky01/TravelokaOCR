@@ -1,6 +1,7 @@
 package com.example.travelokaocr.data.model
 
 import com.google.gson.annotations.SerializedName
+import retrofit2.http.Url
 
 data class AccessProfileResponse(
     @field:SerializedName("status")
@@ -27,5 +28,5 @@ data class AccessProfileData(
     val password: String? = null,
 
     @field:SerializedName("foto_profil")
-    val foto_profil: String? = null
+    val foto_profil: Url? = null
 )

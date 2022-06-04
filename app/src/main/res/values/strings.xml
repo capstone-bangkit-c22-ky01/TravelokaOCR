@@ -161,17 +161,309 @@
 
     <!-- Data Dummy -->
     <string-array name="data_city">
+        <item>Malang</item>
+        <item>Ransiki</item>
+        <item>Semarang</item>
+        <item>Yogyakarta</item>
+        <item>Solo</item>
+        <item>Padang Sidempuan</item>
+        <item>Pulau Alor</item>
+        <item>Amahai</item>
+        <item>Masamba</item>
+        <item>Anggi</item>
+        <item>Apalapsili</item>
+        <item>Arso</item>
+        <item>Ayawasi</item>
+        <item>Babo</item>
+        <item>Bade</item>
+        <item>Batom</item>
+        <item>Batulicin</item>
+        <item>Tanjung Redeb</item>
+        <item>Bau Bau</item>
+        <item>Gunungsitoli</item>
+        <item>Bokondini</item>
+        <item>Bolaang Mogondow</item>
+        <item>Bontang</item>
+        <item>Luwuk</item>
+        <item>Tanjung Pandan</item>
+        <item>Pulau Bunyu</item>
+        <item>Tasikmalaya</item>
+        <item>Cirebon</item>
+        <item>Meulaboh</item>
+        <item>Singkep</item>
+        <item>Dobo</item>
+        <item>Langgur</item>
+        <item>Kupang</item>
+        <item>Enarotali</item>
+        <item>Biak</item>
+        <item>Galela</item>
+        <item>Larantuka</item>
+        <item>Astraksetra</item>
         <item>Jakarta</item>
+        <item>Atambua</item>
+        <item>Batam</item>
+        <item>Sampit</item>
+        <item>Makassar</item>
+        <item>Bandung</item>
+        <item>Ilaga</item>
+        <item>Inanwatan</item>
+        <item>Ende</item>
+        <item>Pangkalan Bun</item>
         <item>Jakarta</item>
-        <item>Jakarta</item>
+        <item>Rengat</item>
+        <item>Sorong</item>
+        <item>Numfor</item>
+        <item>Surabaya</item>
+        <item>Long Bawan</item>
+        <item>Tarakan</item>
+        <item>Kaimana</item>
+        <item>Poso</item>
+        <item>Kebar</item>
+        <item>Keluang</item>
+        <item>Kepi</item>
+        <item>Tanjung Pinang</item>
+        <item>Labuhan Bajo</item>
+        <item>Toli Toli</item>
+        <item>Lereh</item>
+        <item>Lhok Sukon (Lhoksukon)</item>
+        <item>Long Apung</item>
+        <item>Sabang</item>
+        <item>Mangole</item>
+        <item>Melangguane</item>
+        <item>Merdei</item>
+        <item>Ketaping / Padang</item>
+        <item>Mindiptana</item>
+        <item>Moanamani</item>
+        <item>Merauke</item>
+        <item>Bima</item>
+        <item>Bengkulu</item>
+        <item>Mulia</item>
+        <item>Palu</item>
+        <item>Nabire</item>
+        <item>Naha</item>
+        <item>Namlea</item>
+        <item>Melawi</item>
+        <item>Benjina</item>
+        <item>Cepu</item>
         <item>Bali</item>
+        <item>Nunukan</item>
+        <item>Okaba</item>
+        <item>Oksibil</item>
+        <item>Jambi</item>
+        <item>Bengkulu</item>
+        <item>Bajawa</item>
+        <item>Pangkal Pinang</item>
+        <item>Putusibau</item>
+        <item>Ambon</item>
+        <item>Pendopo</item>
+        <item>Dumai</item>
+        <item>Morotai</item>
+        <item>Medan</item>
+        <item>Jakarta</item>
+        <item>Primapun</item>
+        <item>Bandar Lampung</item>
+        <item>Ketapang</item>
+        <item>Natuna</item>
+        <item>Manokwari</item>
+        <item>Sipora</item>
+        <item>Manado</item>
+        <item>Sanana</item>
+        <item>Sangir</item>
+        <item>Tanjung Santan</item>
+        <item>Ruteng</item>
+        <item>Saumlaki</item>
+        <item>Mataram</item>
+        <item>Senggeh</item>
+        <item>Jayapura</item>
+        <item>Balikpapan</item>
+        <item>Kotabaru</item>
+        <item>Lubuk Linggau</item>
+        <item>Siborong-borong</item>
+        <item>Cengkareng</item>
+        <item>Soroako</item>
+        <item>Ternate</item>
+        <item>Banda Aceh</item>
+        <item>Palembang</item>
+        <item>Pekanbaru</item>
+        <item>Sumbawa</item>
+        <item>Tanjung Balai</item>
+        <item>Pontianak</item>
+        <item>Sintang</item>
+        <item>Banjarmasin</item>
+        <item>Taliabu</item>
+        <item>Waikabubak</item>
+        <item>Mamuju</item>
+        <item>Tanah Grogot</item>
+        <item>Tanah Merah</item>
+        <item>Teminabuan</item>
+        <item>Samarinda</item>
+        <item>Tapak Tuan</item>
+        <item>Tembagapura</item>
+        <item>Palangkaraya</item>
+        <item>Fak Fak</item>
+        <item>Sumenep</item>
+        <item>Cilacap</item>
+        <item>Wagethe</item>
+        <item>Maumere</item>
+        <item>Waingapu</item>
+        <item>Wamena</item>
+        <item>Waris</item>
+        <item>Tanjung Selor</item>
+        <item>Wasior</item>
+        <item>Kendari</item>
     </string-array>
 
     <string-array name="code_city">
+        <item>MLG</item>
+        <item>RSK</item>
+        <item>SRG</item>
+        <item>JOG</item>
+        <item>SOC</item>
+        <item>AEG</item>
+        <item>ARD</item>
+        <item>AHI</item>
+        <item>MXB</item>
+        <item>AGD</item>
+        <item>AAS</item>
+        <item>ARJ</item>
+        <item>AYW</item>
+        <item>BXB</item>
+        <item>BXD</item>
+        <item>BXM</item>
+        <item>BTW</item>
+        <item>BEJ</item>
+        <item>BUW</item>
+        <item>GNS</item>
+        <item>BUI</item>
+        <item>BJG</item>
+        <item>BXT</item>
+        <item>LUW</item>
+        <item>TJQ</item>
+        <item>BYQ</item>
+        <item>TSY</item>
+        <item>CBN</item>
+        <item>MEQ</item>
+        <item>SIQ</item>
+        <item>DOB</item>
+        <item>LUV</item>
+        <item>KOE</item>
+        <item>EWI</item>
+        <item>BIK</item>
+        <item>GLX</item>
+        <item>LKA</item>
+        <item>AKQ</item>
         <item>HLP</item>
+        <item>ABU</item>
+        <item>BTH</item>
+        <item>SMQ</item>
+        <item>UPG</item>
+        <item>BDO</item>
+        <item>ILA</item>
+        <item>INX</item>
+        <item>ENE</item>
+        <item>PKN</item>
         <item>JKT</item>
-        <item>PCB</item>
+        <item>RGT</item>
+        <item>SOQ</item>
+        <item>FOO</item>
+        <item>SUB</item>
+        <item>LBW</item>
+        <item>TRK</item>
+        <item>KNG</item>
+        <item>PSJ</item>
+        <item>KEQ</item>
+        <item>KLQ</item>
+        <item>KEI</item>
+        <item>TNJ</item>
+        <item>LBJ</item>
+        <item>TLI</item>
+        <item>LHI</item>
+        <item>LSX</item>
+        <item>LPU</item>
+        <item>SBG</item>
+        <item>MAL</item>
+        <item>MNA</item>
+        <item>RDE</item>
+        <item>PDG</item>
+        <item>MDP</item>
+        <item>ONI</item>
+        <item>MKQ</item>
+        <item>BMU</item>
+        <item>MPC</item>
+        <item>LII</item>
+        <item>PLW</item>
+        <item>NBX</item>
+        <item>NAH</item>
+        <item>NAM</item>
+        <item>NPO</item>
+        <item>BJK</item>
+        <item>CPF</item>
         <item>DPS</item>
+        <item>NNX</item>
+        <item>OKQ</item>
+        <item>OKL</item>
+        <item>DJB</item>
+        <item>BKS</item>
+        <item>BJW</item>
+        <item>PGK</item>
+        <item>PSU</item>
+        <item>AMQ</item>
+        <item>PDO</item>
+        <item>DUM</item>
+        <item>OTI</item>
+        <item>MES</item>
+        <item>PCB</item>
+        <item></item>
+        <item>TKG</item>
+        <item>KTG</item>
+        <item>NTX</item>
+        <item>MKW</item>
+        <item>RKO</item>
+        <item>MDC</item>
+        <item>SQN</item>
+        <item>SAE</item>
+        <item>TSX</item>
+        <item>RTG</item>
+        <item>SXK</item>
+        <item>AMI</item>
+        <item>SEH</item>
+        <item>DJJ</item>
+        <item>BPN</item>
+        <item>KBU</item>
+        <item>LLG</item>
+        <item>SQT</item>
+        <item>CGK</item>
+        <item>SQR</item>
+        <item>TTE</item>
+        <item>BTJ</item>
+        <item>PLM</item>
+        <item>PKU</item>
+        <item>SWQ</item>
+        <item>TJB</item>
+        <item>PNK</item>
+        <item>SQG</item>
+        <item>BDJ</item>
+        <item>TAX</item>
+        <item>TMC</item>
+        <item>MJU</item>
+        <item>TNB</item>
+        <item>TMH</item>
+        <item>TXM</item>
+        <item>SRI</item>
+        <item>TPK</item>
+        <item>TIM</item>
+        <item>PKY</item>
+        <item>FKQ</item>
+        <item>SUP</item>
+        <item>CXP</item>
+        <item>WET</item>
+        <item>MOF</item>
+        <item>WGP</item>
+        <item>WMX</item>
+        <item>WAR</item>
+        <item>TJS</item>
+        <item>WSR</item>
+        <item>KDI</item>
     </string-array>
 
     <string-array name="data_dummy_city">

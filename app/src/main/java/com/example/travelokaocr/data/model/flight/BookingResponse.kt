@@ -1,8 +1,8 @@
-package com.greentea.travelokaocr_gt.data.model
+package com.example.travelokaocr.data.model.flight
 
 import com.google.gson.annotations.SerializedName
 
-data class RegisResponse(
+data class BookingResponse(
     @field:SerializedName("status")
     val status: String? = null,
 
@@ -10,10 +10,11 @@ data class RegisResponse(
     val message: String? = null,
 
     @field:SerializedName("data")
-    val data: UserDataRegister? = null
+    val data: DataBooking? = null
 )
 
-data class UserDataRegister(
-    @field:SerializedName("user_id")
-    val user_id: String? = null,
+data class DataBooking(
+    @field:SerializedName("bookingId")
+    val bookingId: String? = null,
+
 )

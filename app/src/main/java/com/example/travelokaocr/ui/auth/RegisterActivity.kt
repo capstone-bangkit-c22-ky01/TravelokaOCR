@@ -22,7 +22,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.travelokaocr.R
 import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.databinding.ActivityRegisterBinding
-import com.example.travelokaocr.ui.flightscreen.FlightActivity
+import com.example.travelokaocr.ui.main.HomeActivity
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
 import com.example.travelokaocr.viewmodel.AuthViewModel
@@ -178,7 +178,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                         Log.d("REGIS", result.message.toString())
 
                         //intent to home directly
-                        val intent = Intent(this@RegisterActivity, FlightActivity::class.java)
+                        val intent = Intent(this@RegisterActivity, HomeActivity::class.java)
                         startActivity(intent)
                         killActivity()
 

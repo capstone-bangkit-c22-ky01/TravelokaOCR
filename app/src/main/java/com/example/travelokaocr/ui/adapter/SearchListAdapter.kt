@@ -1,4 +1,4 @@
-package com.example.travelokaocr.ui.flightsearchresult
+package com.example.travelokaocr.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

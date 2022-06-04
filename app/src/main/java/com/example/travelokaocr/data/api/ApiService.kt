@@ -3,33 +3,31 @@ package com.example.travelokaocr.data.api
 import com.example.travelokaocr.data.model.AccessProfileResponse
 import com.example.travelokaocr.data.model.HistoryResponse
 import com.example.travelokaocr.data.model.KTPResultResponse
-import com.example.travelokaocr.data.model.UpdateTokenResponse
 import com.example.travelokaocr.data.model.flight.FlightSearchResponse
-import com.greentea.travelokaocr_gt.data.model.LoginResponse
-import com.greentea.travelokaocr_gt.data.model.RegisResponse
+import com.example.travelokaocr.data.model.auth.LoginResponse
 import com.example.travelokaocr.data.model.auth.LogoutResponse
+import com.example.travelokaocr.data.model.flight.BookingResponse
+import com.greentea.travelokaocr_gt.data.model.auth.RegisResponse
+import com.example.travelokaocr.data.model.auth.UpdateTokenResponse
 import retrofit2.Response
 import retrofit2.http.*
 
 /* Endpoint */
 //AUTH
 const val REGIS_ENDPOINT = "users"
-const val LOGIN_ENDPOINT = "/authentications"
+const val LOGIN_ENDPOINT = "authentications"
 const val GOOGLE_LOGIN_ENDPOINT = "auth/google"
-const val ACCESS_PROFILE = "users"
 const val TOKEN_HEADER = "Authorization"
-const val REFRESH_TOKEN = "refreshToken"
-
-//OCR
-const val KTP_RESULT_ENDPOINT = "ktpresult"
-
-//HISTORY
-const val HISTORY_ENDPOINT = "flights/booking"
 
 //FLIGHT
 const val FLIGHT_ENDPOINT = "flights"
+const val FLIGHT_BOOKING = "flights/booking"
 const val DEPARTURE_QUERY = "departure"
 const val DESTINATION_QUERY = "destination"
+const val ID_QUERY = "id"
+
+//OCR
+const val KTP_RESULT_ENDPOINT = "ktpresult"
 
 //EDIT PROFIL
 const val NAME = "name"
@@ -42,7 +40,6 @@ interface ApiService {
     @POST(REGIS_ENDPOINT)
     suspend fun registerUser(
         @Body data: HashMap<String, String>
-//        @Part foto_profil: MultipartBody.Part? coming soon
     ): Response<RegisResponse>
 
     //LOGIN USER
@@ -51,38 +48,32 @@ interface ApiService {
         @Body data: HashMap<String, String>
     ): Response<LoginResponse>
 
+    //UPDATE TOKEN
+    @PUT(LOGIN_ENDPOINT)
+    suspend fun updateToken(
+        @Body data: HashMap<String, String?>
+    ): Response<UpdateTokenResponse>
+
+    //LOGOUT USER
+    @HTTP(method = "DELETE", path = LOGIN_ENDPOINT, hasBody = true)
+    suspend fun logoutUser(
+        @Body data: HashMap<String, String?>
+    ): Response<LogoutResponse>
+
     //LOGIN WITH GOOGLE
     @GET(GOOGLE_LOGIN_ENDPOINT)
     suspend fun googleLogin(): Response<LoginResponse>
 
-    //UPDATE TOKEN
-    @FormUrlEncoded
-    @PUT(LOGIN_ENDPOINT)
-    suspend fun updateToken(
-        @Field(REFRESH_TOKEN) refreshToken: HashMap<String, String?>
-    ): Response<UpdateTokenResponse>
-
-    //GET OCR RESULT
-    @GET(KTP_RESULT_ENDPOINT)
-    suspend fun getOCRResult(
-        @Header(TOKEN_HEADER) accessToken: String
-    ): Response<KTPResultResponse>
-
-    //GET LIST HISTORY
-    @GET(HISTORY_ENDPOINT)
-    suspend fun getHistory(
-        @Header(TOKEN_HEADER) accessToken: String
-    ): Response<HistoryResponse>
-
     //GET PROFILE
-    @GET(ACCESS_PROFILE)
+    @GET(REGIS_ENDPOINT)
     suspend fun getProfile(
         @Header (TOKEN_HEADER) accessToken: String
     ): Response<AccessProfileResponse>
 
     //UPDATE PROFILE
+    //still confused, because should we use raw json on here too?
     @FormUrlEncoded
-    @PUT (ACCESS_PROFILE)
+    @PUT (REGIS_ENDPOINT)
     suspend fun updateProfile(
         @Field(NAME) name: String?,
         @Field(EMAIL) email: String?,
@@ -90,16 +81,54 @@ interface ApiService {
     ): Response<AccessProfileResponse>
 
     //GET FLIGHT SEARCH
+    //still under the development
     @GET(FLIGHT_ENDPOINT)
     suspend fun getFlightSearch(
+        @Header(TOKEN_HEADER) accessToken: String,
+    ): Response<FlightSearchResponse>
+
+    //GET FLIGHT SEARCH BASED ON QUERY
+    @GET(FLIGHT_ENDPOINT)
+    suspend fun getFlightSearchWithQuery(
         @Header(TOKEN_HEADER) accessToken: String,
         @Query(DEPARTURE_QUERY) departure: String,
         @Query(DESTINATION_QUERY) destination: String,
     ): Response<FlightSearchResponse>
 
-    //LOGOUT USER
-    @HTTP(method = "DELETE", path = LOGIN_ENDPOINT, hasBody = true)
-    suspend fun logoutUser(
-        @Body data: HashMap<String, String?>
-    ): Response<LogoutResponse>
+    //POST BOOKING
+    //still under development
+    @POST(FLIGHT_BOOKING)
+    suspend fun flightBooking(
+        @Header(TOKEN_HEADER) accessToken: String,
+        @Body data: HashMap<String, String>
+    ): Response<BookingResponse>
+
+    //GET LIST HISTORY
+    @GET(FLIGHT_BOOKING)
+    suspend fun getHistory(
+        @Header(TOKEN_HEADER) accessToken: String
+    ): Response<HistoryResponse>
+
+    //UPDATE BOOKING STATUS
+    //still under development
+    @GET(FLIGHT_BOOKING)
+    suspend fun updateBooking(
+        @Header(TOKEN_HEADER) accessToken: String,
+        @Query(ID_QUERY) id: String
+    ): Response<BookingResponse>
+
+    //SCAN ID CARD
+    //still under development
+
+    //RE-SCAN ID CARD
+    //still under development
+
+    //GET OCR RESULT
+    @GET(KTP_RESULT_ENDPOINT)
+    suspend fun getOCRResult(
+        @Header(TOKEN_HEADER) accessToken: String
+    ): Response<KTPResultResponse>
+
+    //UPDATE OCR RESULT
+    //still under development
 }

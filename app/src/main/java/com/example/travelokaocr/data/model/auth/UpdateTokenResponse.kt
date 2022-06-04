@@ -1,4 +1,4 @@
-package com.greentea.travelokaocr_gt.data.model.auth
+package com.example.travelokaocr.data.model.auth
 
 import com.google.gson.annotations.SerializedName
 

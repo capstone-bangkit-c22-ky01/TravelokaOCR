@@ -13,6 +13,7 @@ import com.example.travelokaocr.R
 import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.data.repository.FlightRepository
 import com.example.travelokaocr.databinding.ActivityFlightSearchResultBinding
+import com.example.travelokaocr.ui.adapter.SearchListAdapter
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
 import com.example.travelokaocr.viewmodel.AuthViewModel
@@ -83,6 +84,8 @@ class FlightSearchResultActivity : AppCompatActivity() {
                         val dataToken = hashMapOf(
                             "refreshToken" to savedPref.getData(Constants.REFRESH_TOKEN)
                         )
+                        Log.d("REFRESH TOKEN", "observerFlightSearch: $dataToken")
+                        Log.d("ACCESS TOKEN", "observerFlightSearch: $accessToken")
                         observeUpdateToken(dataToken)
                     }
                 } else {
@@ -117,6 +120,8 @@ class FlightSearchResultActivity : AppCompatActivity() {
                         //get new token
                         val tokenFromAPI = (savedPref.getData(Constants.ACCESS_TOKEN))
                         val accessToken = "Bearer $tokenFromAPI"
+
+                        Log.d("NEW ACCESS TOKEN", "observeUpdateToken: $accessToken")
 
                         observerFlightSearch(accessToken, cityFrom, cityTo)
                     }

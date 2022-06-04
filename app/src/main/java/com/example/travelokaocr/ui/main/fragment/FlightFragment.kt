@@ -4,13 +4,12 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.fragment.app.Fragment
 import com.example.travelokaocr.R
 import com.example.travelokaocr.databinding.FragmentFlightBinding
 import com.example.travelokaocr.ui.flightsearchresult.FlightSearchResultActivity
@@ -23,9 +22,6 @@ import java.util.*
 class FlightFragment : Fragment(), View.OnClickListener {
     //BINDING
     private var _binding: FragmentFlightBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     //SESSION
@@ -83,9 +79,15 @@ class FlightFragment : Fragment(), View.OnClickListener {
         binding.fromEditText.onItemClickListener =
             AdapterView.OnItemClickListener { parent, _, position, _ ->
                 val getFromMix = parent.getItemAtPosition(position).toString()
+                println("getFromMix: $getFromMix")
+
                 val onlyFromCity = city[position]
+                println("onlyFromCity: $onlyFromCity")
+
                 val onlyFromCode = code[position]
-                saveDataFromCity(getFromMix, onlyFromCity, onlyFromCode)
+                println("onlyFromCode: $onlyFromCode")
+
+                saveDataFromCity(onlyFromCity, onlyFromCode)
             }
 
         //TO
@@ -95,9 +97,15 @@ class FlightFragment : Fragment(), View.OnClickListener {
         binding.toEditText.onItemClickListener =
             AdapterView.OnItemClickListener { parent, _, position, _ ->
                 val getToMix = parent.getItemAtPosition(position).toString()
+                println("getToMix : $getToMix")
+
                 val onlyToCity = city[position]
+                println("onlyToCity : $onlyToCity")
+
                 val onlyToCode = code[position]
-                saveDataToCity(getToMix, onlyToCity, onlyToCode)
+                println("onlyToCode : $onlyToCode")
+
+                saveDataToCity(onlyToCity, onlyToCode)
             }
 
         //PASSENGERS
@@ -110,8 +118,12 @@ class FlightFragment : Fragment(), View.OnClickListener {
         binding.passengersEditText.setAdapter(adapterPassengers) //setting the adapter data into the AutoCompleteTextView
         binding.passengersEditText.onItemClickListener =
             AdapterView.OnItemClickListener { parent, _, position, _ ->
-//            val passenger = parent.getItemAtPosition(position).toString()
-                val pax = dataPassengers[position]
+                val passenger = parent.getItemAtPosition(position).toString()
+                println("passenger: $passenger")
+
+                val pax = dataNumber[position]
+                println("pax : $pax")
+
                 savedPref.putData(Constants.PAX, pax)
             }
 
@@ -125,18 +137,18 @@ class FlightFragment : Fragment(), View.OnClickListener {
         binding.seatClassEditText.onItemClickListener =
             AdapterView.OnItemClickListener { parent, _, position, _ ->
                 val seatClass = parent.getItemAtPosition(position).toString()
+                println("searClass : $seatClass")
+
                 savedPref.putData(Constants.SEAT, seatClass)
             }
     }
 
-    private fun saveDataToCity(toMix: String, onlyToCity: String?, codeTo: String?) {
-        savedPref.putData(Constants.TO_MIX, toMix)
+    private fun saveDataToCity(onlyToCity: String?, codeTo: String?) {
         savedPref.putData(Constants.TO_ONLY_CITY, onlyToCity!!)
         savedPref.putData(Constants.TO_CODE, codeTo!!)
     }
 
-    private fun saveDataFromCity(fromMix: String, fromOnlyCity: String?, codeFrom: String?) {
-        savedPref.putData(Constants.FROM_MIX, fromMix)
+    private fun saveDataFromCity(fromOnlyCity: String?, codeFrom: String?) {
         savedPref.putData(Constants.FROM_ONLY_CITY, fromOnlyCity!!)
         savedPref.putData(Constants.FROM_CODE, codeFrom!!)
     }
@@ -144,7 +156,7 @@ class FlightFragment : Fragment(), View.OnClickListener {
     private fun setupDateEditText() {
         binding.dateEditText.transformIntoDatePicker(requireContext(), "EEEE, dd MMM yyyy", Date())
         val date = binding.dateEditText.text.toString()
-        Log.d("FLIGHT DATE", "setupDateEditText: $date")
+        println("date : $date")
         savedPref.putData(Constants.DATE, date)
     }
 

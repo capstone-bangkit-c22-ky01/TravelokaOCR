@@ -9,10 +9,8 @@ class Constants {
         const val IS_LOGIN = "is_login"
 
         //FLIGHT
-        const val FROM_MIX = "from_mix"
         const val FROM_ONLY_CITY = "from_only_city"
         const val FROM_CODE = "from_code"
-        const val TO_MIX = "to_mix"
         const val TO_ONLY_CITY = "to_only_city"
         const val TO_CODE = "to_code"
         const val DATE = "date"

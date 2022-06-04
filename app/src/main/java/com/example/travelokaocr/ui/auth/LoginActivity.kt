@@ -22,7 +22,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.travelokaocr.R
 import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.databinding.ActivityLoginBinding
-import com.example.travelokaocr.ui.flightscreen.FlightActivity
 import com.example.travelokaocr.ui.main.HomeActivity
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
@@ -48,7 +47,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     override fun onStart() {
         super.onStart()
         if(savedPref.getSession(Constants.IS_LOGIN)){
-            //for the home activity still under the development
             startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
             killActivity()
         }
@@ -158,8 +156,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         Log.d("REGIS", result.message.toString())
 
                         //intent to home directly
-                        //home activity still under the development
-                        val intent = Intent(this@LoginActivity, FlightActivity::class.java)
+                        val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                         startActivity(intent)
                         killActivity()
 

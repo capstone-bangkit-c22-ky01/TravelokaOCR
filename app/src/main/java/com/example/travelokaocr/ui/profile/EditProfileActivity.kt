@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide
 import com.example.travelokaocr.R
 import com.example.travelokaocr.data.repository.AccessProfileRepository
 import com.example.travelokaocr.databinding.ActivityEditProfileBinding
+import com.example.travelokaocr.ui.main.fragment.ProfileFragment
 import com.example.travelokaocr.utils.Resources
 import com.example.travelokaocr.utils.reduceFileImage
 import com.example.travelokaocr.utils.uriToFile
@@ -273,7 +274,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.tv_edit_profile -> {
-                startActivity(Intent(this, ProfileActivity::class.java))
+                startActivity(Intent(this, ProfileFragment::class.java))
             }
             R.id.tv_upload_image -> {
                 startGallery()
@@ -281,7 +282,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_save_changes -> {
                 update()
                 uploadImage(dataUser)
-                startActivity(Intent(this, ProfileActivity::class.java))
+                startActivity(Intent(this, ProfileFragment::class.java))
             }
         }
     }

@@ -11,11 +11,14 @@ import com.example.travelokaocr.data.model.flight.FlightSearchResponse
 
 class FlightRepository {
     //FLIGHT SEARCH
+    //still under development
+
+    //FLIGHT SEARCH WITH QUERY
     fun flightSearch(accessToken: String, departure: String, destination: String):
             LiveData<Resources<FlightSearchResponse?>> = liveData {
         emit(Resources.Loading)
         val returnValue = MutableLiveData<Resources<FlightSearchResponse?>>()
-        val response = RetrofitInstance.API_OBJECT.getFlightSearch(accessToken, departure, destination)
+        val response = RetrofitInstance.API_OBJECT.getFlightSearchWithQuery(accessToken, departure, destination)
         if(response.isSuccessful) {
             returnValue.value = Resources.Success(response.body())
             emitSource(returnValue)
@@ -26,6 +29,9 @@ class FlightRepository {
             emitSource(returnValue)
         }
     }
+
+    //POST BOOKING
+    //still under the development
 
     //HISTORY
     fun history(accessToken: String):
@@ -43,5 +49,8 @@ class FlightRepository {
             emitSource(returnValue)
         }
     }
+
+    //UPDATE BOOKING
+    //still under development
 }
 

@@ -7,14 +7,16 @@ data class AccessProfileResponse(
     @field:SerializedName("status")
     val status: String? = null,
 
-    @field:SerializedName("message")
-    val message: String? = null,
-
     @field:SerializedName("data")
     val data: AccessProfileData? = null
 )
 
 data class AccessProfileData(
+    @field:SerializedName("user")
+    val user: User? = null,
+)
+
+data class User(
     @field:SerializedName("id")
     val id: String? = null,
 

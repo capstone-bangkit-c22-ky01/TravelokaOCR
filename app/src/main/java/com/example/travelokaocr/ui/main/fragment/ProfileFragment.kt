@@ -1,22 +1,19 @@
 package com.example.travelokaocr.ui.main.fragment
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.*
-import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.travelokaocr.R
 import com.example.travelokaocr.data.repository.AccessProfileRepository
-import com.example.travelokaocr.databinding.ActivityProfileBinding
-import com.example.travelokaocr.databinding.FragmentFlightBinding
 import com.example.travelokaocr.databinding.FragmentProfileBinding
 import com.example.travelokaocr.ui.auth.LoginActivity
-import com.example.travelokaocr.ui.flightscreen.FlightActivity
-import com.example.travelokaocr.ui.historyscreen.HistoryActivity
 import com.example.travelokaocr.ui.profile.EditProfileActivity
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
@@ -38,7 +35,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
@@ -73,19 +70,19 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                 if (result != null) {
                     if (result.status.equals("success")) {
 
-                        val username = result.data?.name.toString()
-                        val email = result.data?.email.toString()
-                        val fotoProfil = result.data?.foto_profil.toString()
+                        val username = result.data?.user?.name.toString()
+                        val email = result.data?.user?.email.toString()
+                        val fotoProfil = result.data?.user?.foto_profil.toString()
 
                         //SHOW DATA
-                        binding!!.tvUsername.text = username
-                        binding!!.tvEmail.text = email
+                        binding.tvUsername.text = username
+                        binding.tvEmail.text = email
                         Glide.with(this)
                             .load(fotoProfil)
                             .centerCrop()
-                            .into(binding!!.ivProfilePicture)
+                            .into(binding.ivProfilePicture)
                     } else {
-                        Log.d("PROFILE", result.message.toString())
+                        Log.d("PROFILE", result.status.toString())
                     }
                 } else {
                     Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show()
@@ -95,9 +92,9 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     }
 
     private fun itemOnClickListener(){
-        binding!!.btnEditProfile.setOnClickListener(this)
-        binding!!.btnLogout.setOnClickListener(this)
-        binding!!.tvAboutTraveloka.setOnClickListener(this)
+        binding.btnEditProfile.setOnClickListener(this)
+        binding.btnLogout.setOnClickListener(this)
+        binding.tvAboutTraveloka.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -117,9 +114,9 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
     private fun progressBar(isLoading: Boolean) = with(binding){
         if (isLoading) {
-            this?.progressBar?.visibility = View.VISIBLE
+            this.progressBar.visibility = View.VISIBLE
         } else {
-            this?.progressBar?.visibility = View.GONE
+            this.progressBar.visibility = View.GONE
         }
     }
 }

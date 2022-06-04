@@ -6,10 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.travelokaocr.data.model.Bookings
-import com.example.travelokaocr.data.model.flight.Flights
-import com.example.travelokaocr.databinding.ItemRowFlightBinding
 import com.example.travelokaocr.databinding.ItemRowHistoryTicketsBinding
 
 class HistoryAdapter(
@@ -34,7 +31,6 @@ class HistoryAdapter(
     }
 
     val differAsync = AsyncListDiffer(this, differCallback)
-    private var onItemClickListener: ((Bookings) -> Unit)? = null
 
     inner class ListUsersViewHolder(var binding: ItemRowHistoryTicketsBinding): RecyclerView
     .ViewHolder(binding.root)
@@ -52,19 +48,12 @@ class HistoryAdapter(
         val data = differAsync.currentList[position]
 
         holder.itemView.apply {
-            holder.binding.
-            Glide.with(this)
-                .load(data.icon)
-                .into(holder.binding.airplaneImageIv)
-            holder.binding.timeDepartTv.text = data.depart_time
-            holder.binding.timeArriveTv.text = data.arrival_time
-            holder.binding.airplaneNameTv.text = data.airline
-            holder.binding.priceTv.text = data.price.toString()
+            holder.binding.ticketBookingIDNumberTv.text = data.booking_code.toString()
+            holder.binding.ticketPriceTv.text = data.price.toString()
+            holder.binding.cityDepartHistoryTicketTv.text = data.departure
+            holder.binding.cityArriveHistoryTicketTv.text = data.destination
+            holder.binding.statusHistoryTicketTv.text = data.status
 
-            setOnClickListener {
-                onItemClickListener?.let {
-                    it(data) }
-            }
         }
     }
 

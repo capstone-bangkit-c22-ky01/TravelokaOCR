@@ -1,25 +1,22 @@
 package com.example.travelokaocr.ui.main.fragment
 
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.*
-import androidx.fragment.app.Fragment
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.travelokaocr.R
 import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.data.repository.FlightRepository
-import com.example.travelokaocr.databinding.FragmentFlightBinding
 import com.example.travelokaocr.databinding.FragmentHistoryBinding
-import com.example.travelokaocr.ui.flightsearchresult.SearchListAdapter
+import com.example.travelokaocr.ui.adapter.HistoryAdapter
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
 import com.example.travelokaocr.viewmodel.AuthViewModel
 import com.example.travelokaocr.viewmodel.FlightViewModel
-import com.example.travelokaocr.viewmodel.TravelokaOCRViewModel
 import com.example.travelokaocr.viewmodel.factory.AuthViewModelFactory
 import com.example.travelokaocr.viewmodel.factory.FlightViewModelFactory
 import com.example.travelokaocr.viewmodel.preference.SavedPreference
@@ -38,11 +35,12 @@ class HistoryFragment : Fragment() {
     //API
     private lateinit var viewModel: FlightViewModel
     private lateinit var authViewModel: AuthViewModel
+    private lateinit var list: HistoryAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentHistoryBinding.inflate(inflater, container, false)
         return binding.root
@@ -75,24 +73,27 @@ class HistoryFragment : Fragment() {
     private fun observerHistory(accessToken: String) {
         viewModel.history(accessToken).observe(viewLifecycleOwner) { response ->
             if (response is Resources.Loading) {
-//                enableProgressBar()
+                //DO NOTHING
             }
             else if (response is Resources.Error) {
-//                disableProgressBar()
                 Toast.makeText(requireContext(), response.error, Toast.LENGTH_SHORT).show()
             }
             else if (response is Resources.Success) {
-//                disableProgressBar()
                 val result = response.data
                 if (result != null) {
                     if (result.status.equals("success")) {
-                        list.differAsync.submitList(result.data?.flights)
+                        list.differAsync.submitList(result.data?.bookings)
                     }
                     else {
-                        Log.d("REGIS", result.status.toString())
+                        println("Result : ${result.status.toString()}")
+
+                        val tokenFromApi = savedPref.getData(Constants.REFRESH_TOKEN)
+                        println("refresh token : $tokenFromApi")
+
                         val dataToken = hashMapOf(
-                            "refreshToken" to savedPref.getData(Constants.REFRESH_TOKEN)
+                            "refreshToken" to tokenFromApi
                         )
+
                         observeUpdateToken(dataToken)
                     }
                 } else {
@@ -103,58 +104,39 @@ class HistoryFragment : Fragment() {
     }
 
     private fun observeUpdateToken(dataToken: HashMap<String, String?>) {
-        authViewModel.updateToken(dataToken).observe(this) { response ->
+        authViewModel.updateToken(dataToken).observe(viewLifecycleOwner) { response ->
             if (response is Resources.Loading) {
-//                enableProgressBar()
+                //DO NOTHING
             }
             else if (response is Resources.Error) {
-//                disableProgressBar()
-                Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), response.error, Toast.LENGTH_SHORT).show()
             }
             else if (response is Resources.Success) {
-//                disableProgressBar()
                 val result = response.data
                 if (result != null) {
                     if (result.status.equals("success")) {
-                        val cityTo = (savedPref.getData(Constants.TO_ONLY_CITY))?.lowercase()
-                        val cityFrom = (savedPref.getData(Constants.FROM_ONLY_CITY))?.lowercase()
-                        Log.d("CITY RESULT", "onCreate: $cityTo and $cityFrom")
-
                         val newAccessToken = result.data?.accessToken.toString()
+                        println("new access token : $newAccessToken")
+
                         //save new token
                         savedPref.putData(Constants.ACCESS_TOKEN, newAccessToken)
 
                         //get new token
                         val tokenFromAPI = (savedPref.getData(Constants.ACCESS_TOKEN))
-                        val accessToken = "Bearer $tokenFromAPI"
+                        println("token from api : $tokenFromAPI")
 
-                        observerFlightSearch(accessToken, cityFrom, cityTo)
+                        val accessToken = "Bearer $tokenFromAPI"
+                        println("access token : $accessToken")
+
+                        observerHistory(accessToken)
                     }
                     else {
                         Log.d("REGIS", result.status.toString())
                     }
                 } else {
-                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
-
-    @Suppress("DEPRECATION")
-    private fun setUpView(){
-        list = SearchListAdapter(this)
-
-        //hide the action bar
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        }else{
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
-        supportActionBar?.hide()
-    }
-}
-
 }

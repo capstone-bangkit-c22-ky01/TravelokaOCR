@@ -27,6 +27,7 @@ class AccessProfileRepository {
     }
 
     //EDIT PROFILE
+    //still under development
     fun updateUser(name: String, email: String, foto_profil: Url): LiveData<Resources<AccessProfileResponse?>> = liveData{
         emit(Resources.Loading)
         val returnValue = MutableLiveData<Resources<AccessProfileResponse?>>()

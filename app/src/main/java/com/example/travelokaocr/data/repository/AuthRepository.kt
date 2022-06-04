@@ -4,12 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.example.travelokaocr.data.api.RetrofitInstance
-import com.example.travelokaocr.data.model.UpdateTokenResponse
+import com.example.travelokaocr.data.model.auth.LoginResponse
 import com.example.travelokaocr.utils.Resources
 import com.google.gson.Gson
-import com.greentea.travelokaocr_gt.data.model.LoginResponse
-import com.greentea.travelokaocr_gt.data.model.RegisResponse
 import com.example.travelokaocr.data.model.auth.LogoutResponse
+import com.greentea.travelokaocr_gt.data.model.auth.RegisResponse
+import com.example.travelokaocr.data.model.auth.UpdateTokenResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody

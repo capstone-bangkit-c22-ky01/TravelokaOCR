@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.core.view.get
+import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import com.example.travelokaocr.R
 import com.example.travelokaocr.databinding.FragmentFlightBinding
@@ -65,12 +67,12 @@ class FlightFragment : Fragment(), View.OnClickListener {
     }
 
     private fun setupAutoTextView() {
-        val city = resources.getStringArray(R.array.data_city)
-        val code = resources.getStringArray(R.array.code_city)
-        val cityCode = city.zip(code) { ct, cd -> "$ct-$cd" }
+        val city = resources.getStringArray(R.array.data_dummy_city)
+//        val code = resources.getStringArray(R.array.code_city)
+//        val cityCode = city.zip(code) { ct, cd -> "$ct-$cd" }
 
         val adapterCity: ArrayAdapter<String> =
-            ArrayAdapter<String>(requireContext(), android.R.layout.select_dialog_item, cityCode)
+            ArrayAdapter<String>(requireContext(), android.R.layout.select_dialog_item, city)
 
         //FROM
         binding.fromEditText.threshold = 1 //will start working from first character
@@ -79,12 +81,15 @@ class FlightFragment : Fragment(), View.OnClickListener {
         binding.fromEditText.onItemClickListener =
             AdapterView.OnItemClickListener { parent, _, position, _ ->
                 val getFromMix = parent.getItemAtPosition(position).toString()
+                val getCity: List<String> = getFromMix.split("-")
+
                 println("getFromMix: $getFromMix")
 
-                val onlyFromCity = city[position]
+                val onlyFromCity = getCity[0]
+//                val tes = city.
                 println("onlyFromCity: $onlyFromCity")
 
-                val onlyFromCode = code[position]
+                val onlyFromCode = getCity[1]
                 println("onlyFromCode: $onlyFromCode")
 
                 saveDataFromCity(onlyFromCity, onlyFromCode)
@@ -97,12 +102,14 @@ class FlightFragment : Fragment(), View.OnClickListener {
         binding.toEditText.onItemClickListener =
             AdapterView.OnItemClickListener { parent, _, position, _ ->
                 val getToMix = parent.getItemAtPosition(position).toString()
+                val getCity: List<String> = getToMix.split("-")
+
                 println("getToMix : $getToMix")
 
-                val onlyToCity = city[position]
+                val onlyToCity = getCity[0]
                 println("onlyToCity : $onlyToCity")
 
-                val onlyToCode = code[position]
+                val onlyToCode = getCity[1]
                 println("onlyToCode : $onlyToCode")
 
                 saveDataToCity(onlyToCity, onlyToCode)

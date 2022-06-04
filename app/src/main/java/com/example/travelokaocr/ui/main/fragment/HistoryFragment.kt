@@ -63,6 +63,7 @@ class HistoryFragment : Fragment() {
 
         //SETUP
         savedPref = SavedPreference(requireContext())
+        list = HistoryAdapter(requireContext())
 
         val tokenFromApi = savedPref.getData(Constants.ACCESS_TOKEN)
         val accessToken = "Bearer $tokenFromApi"

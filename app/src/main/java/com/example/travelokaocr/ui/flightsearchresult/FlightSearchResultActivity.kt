@@ -1,14 +1,18 @@
 package com.example.travelokaocr.ui.flightsearchresult
 
 import android.annotation.SuppressLint
+import android.content.res.Configuration
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travelokaocr.R
 import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.data.repository.FlightRepository
@@ -17,10 +21,10 @@ import com.example.travelokaocr.ui.adapter.SearchListAdapter
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
 import com.example.travelokaocr.viewmodel.AuthViewModel
+import com.example.travelokaocr.viewmodel.FlightViewModel
 import com.example.travelokaocr.viewmodel.factory.AuthViewModelFactory
 import com.example.travelokaocr.viewmodel.factory.FlightViewModelFactory
 import com.example.travelokaocr.viewmodel.preference.SavedPreference
-import com.example.travelokaocr.viewmodel.FlightViewModel
 
 class FlightSearchResultActivity : AppCompatActivity() {
 
@@ -41,7 +45,9 @@ class FlightSearchResultActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         savedPref = SavedPreference(this)
+        configRecyclerView()
         setUpView()
+
         val cityTo = (savedPref.getData(Constants.TO_ONLY_CITY))?.lowercase()
         val cityFrom = (savedPref.getData(Constants.FROM_ONLY_CITY))?.lowercase()
         Log.d("CITY RESULT", "onCreate: $cityTo and $cityFrom")
@@ -66,14 +72,14 @@ class FlightSearchResultActivity : AppCompatActivity() {
     private fun observerFlightSearch(accessToken: String, cityFrom: String?, cityTo: String?) {
         viewModel.flightSearch(accessToken, cityFrom!!, cityTo!!).observe(this) { response ->
             if (response is Resources.Loading) {
-//                enableProgressBar()
+                enableProgressBar()
             }
             else if (response is Resources.Error) {
-//                disableProgressBar()
+                disableProgressBar()
                 Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
             }
             else if (response is Resources.Success) {
-//                disableProgressBar()
+                disableProgressBar()
                 val result = response.data
                 if (result != null) {
                     if (result.status.equals("success")) {
@@ -98,14 +104,14 @@ class FlightSearchResultActivity : AppCompatActivity() {
     private fun observeUpdateToken(dataToken: HashMap<String, String?>) {
         authViewModel.updateToken(dataToken).observe(this) { response ->
             if (response is Resources.Loading) {
-//                enableProgressBar()
+                enableProgressBar()
             }
             else if (response is Resources.Error) {
-//                disableProgressBar()
+                disableProgressBar()
                 Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
             }
             else if (response is Resources.Success) {
-//                disableProgressBar()
+                disableProgressBar()
                 val result = response.data
                 if (result != null) {
                     if (result.status.equals("success")) {
@@ -135,10 +141,21 @@ class FlightSearchResultActivity : AppCompatActivity() {
         }
     }
 
+    private fun configRecyclerView() {
+        list = SearchListAdapter(this)
+        binding.rvSearchResultTickets.apply {
+            adapter = list
+            layoutManager =
+                if (this.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    GridLayoutManager(context, 2)
+                } else {
+                    LinearLayoutManager(context)
+                }
+        }
+    }
+
     @Suppress("DEPRECATION")
     private fun setUpView(){
-        list = SearchListAdapter(this)
-
         //hide the action bar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
             window.insetsController?.hide(WindowInsets.Type.statusBars())
@@ -149,5 +166,13 @@ class FlightSearchResultActivity : AppCompatActivity() {
             )
         }
         supportActionBar?.hide()
+    }
+
+    private fun enableProgressBar(){
+        binding.progressBar.visibility = View.VISIBLE
+    }
+
+    private fun disableProgressBar(){
+        binding.progressBar.visibility = View.INVISIBLE
     }
 }

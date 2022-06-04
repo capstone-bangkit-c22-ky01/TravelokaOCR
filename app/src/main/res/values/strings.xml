@@ -498,4 +498,7 @@
     <string name="flight_seat_class">Seat Class</string>
     <string name="flight_seat_class_default">Economy</string>
     <string name="flight_btn_search">Search</string>
+    <string name="retry_text_ocr">Our system unable to recognize your Identity Card. Are you sure want to scan it?</string>
+    <string name="please_retry">Please Retry</string>
+    <string name="retry_image">retry image</string>
 </resources>

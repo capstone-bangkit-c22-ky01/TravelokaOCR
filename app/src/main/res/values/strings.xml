@@ -523,4 +523,6 @@
     <string name="retry_image">retry image</string>
     <string name="retry_text_ocr">Our system unable to recognize your Identity Card, are you sure want to scan it?</string>
     <string name="please_retry">Please Retry</string>
+    <string name="textview">text</string>
+    <string name="history_title">History</string>
 </resources>

@@ -55,7 +55,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         itemOnClickListener()
 
 
-        showDataUser(dataUser)
+//        showDataUser(dataUser)
 
         //CREATE API CONNECTION
         val factory = AccessProfileFactory(AccessProfileRepository())
@@ -63,128 +63,128 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     //SHOW DATA
-    private fun showDataUser(dataUser: HashMap<String, String>){
-        viewModel.updateUser(dataUser).observe(this){ response ->
-            if (response is Resources.Loading) {
-                progressBar(true)
-            } else if (response is Resources.Error) {
-                progressBar(false)
-                Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
-            } else if (response is Resources.Success) {
-                progressBar(false)
-                val result = response.data
-                if (result != null) {
-                    if (result.status.equals("success")) {
-
-                        val username = result.data?.name.toString()
-                        val email = result.data?.email.toString()
-                        val fotoProfil = result.data?.foto_profil.toString()
-
-                        binding.edtUsername.hint = username
-                        binding.edtEmail.hint = email
-                        Glide.with(this)
-                                .load(fotoProfil)
-                                .centerCrop()
-                                .into(binding.ivProfilePicture)
-                    } else {
-                        Log.d("PROFILE", result.message.toString())
-                    }
-                } else {
-                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-    }
+//    private fun showDataUser(dataUser: HashMap<String, String>){
+//        viewModel.updateUser(dataUser).observe(this){ response ->
+//            if (response is Resources.Loading) {
+//                progressBar(true)
+//            } else if (response is Resources.Error) {
+//                progressBar(false)
+//                Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
+//            } else if (response is Resources.Success) {
+//                progressBar(false)
+//                val result = response.data
+//                if (result != null) {
+//                    if (result.status.equals("success")) {
+//
+//                        val username = result.data?.name.toString()
+//                        val email = result.data?.email.toString()
+//                        val fotoProfil = result.data?.foto_profil.toString()
+//
+//                        binding.edtUsername.hint = username
+//                        binding.edtEmail.hint = email
+//                        Glide.with(this)
+//                                .load(fotoProfil)
+//                                .centerCrop()
+//                                .into(binding.ivProfilePicture)
+//                    } else {
+//                        Log.d("PROFILE", result.message.toString())
+//                    }
+//                } else {
+//                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//        }
+//    }
 
     //USERNAME CHANGED
-    private fun isUsernameChange(dataUser: HashMap<String, String>) {
-        viewModel.updateUser(dataUser).observe(this){ response ->
-            if (response is Resources.Loading) {
-                progressBar(true)
-            } else if (response is Resources.Error) {
-                progressBar(false)
-                Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
-            } else if (response is Resources.Success) {
-                progressBar(false)
-                val result = response.data
-                if (result != null) {
-                    if (result.status.equals("success")) {
-
-                        val username = result.data?.name.toString()
-
-                        if (!binding.edtUsername.hint.equals(username)) {
-                            binding.edtUsername.hint = username
-                            return@observe
-                        }
-                    } else {
-                        Log.d("PROFILE", result.message.toString())
-                    }
-                } else {
-                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-    }
+//    private fun isUsernameChange(dataUser: HashMap<String, String>) {
+//        viewModel.updateUser(dataUser).observe(this){ response ->
+//            if (response is Resources.Loading) {
+//                progressBar(true)
+//            } else if (response is Resources.Error) {
+//                progressBar(false)
+//                Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
+//            } else if (response is Resources.Success) {
+//                progressBar(false)
+//                val result = response.data
+//                if (result != null) {
+//                    if (result.status.equals("success")) {
+//
+//                        val username = result.data?.name.toString()
+//
+//                        if (!binding.edtUsername.hint.equals(username)) {
+//                            binding.edtUsername.hint = username
+//                            return@observe
+//                        }
+//                    } else {
+//                        Log.d("PROFILE", result.message.toString())
+//                    }
+//                } else {
+//                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//        }
+//    }
 
     //EMAIL CHANGED
-    private fun isEmailChange(dataUser: HashMap<String, String>) {
-        viewModel.updateUser(dataUser).observe(this){ response ->
-            if (response is Resources.Loading) {
-                progressBar(true)
-            } else if (response is Resources.Error) {
-                progressBar(false)
-                Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
-            } else if (response is Resources.Success) {
-                progressBar(false)
-                val result = response.data
-                if (result != null) {
-                    if (result.status.equals("success")) {
-
-                        val email = result.data?.email.toString()
-
-                        if (!binding.edtEmail.hint.equals(email)) {
-                            binding.edtEmail.hint = email
-                            return@observe
-                        }
-                    } else {
-                        Log.d("PROFILE", result.message.toString())
-                    }
-                } else {
-                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-    }
+//    private fun isEmailChange(dataUser: HashMap<String, String>) {
+//        viewModel.updateUser(dataUser).observe(this){ response ->
+//            if (response is Resources.Loading) {
+//                progressBar(true)
+//            } else if (response is Resources.Error) {
+//                progressBar(false)
+//                Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
+//            } else if (response is Resources.Success) {
+//                progressBar(false)
+//                val result = response.data
+//                if (result != null) {
+//                    if (result.status.equals("success")) {
+//
+//                        val email = result.data?.email.toString()
+//
+//                        if (!binding.edtEmail.hint.equals(email)) {
+//                            binding.edtEmail.hint = email
+//                            return@observe
+//                        }
+//                    } else {
+//                        Log.d("PROFILE", result.message.toString())
+//                    }
+//                } else {
+//                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//        }
+//    }
 
     //PHOTO PROFILE CHANGED
-    private fun isPhotoChange(dataUser: HashMap<String, String>) {
-        viewModel.updateUser(dataUser).observe(this){ response ->
-            if (response is Resources.Loading) {
-                progressBar(true)
-            } else if (response is Resources.Error) {
-                progressBar(false)
-                Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
-            } else if (response is Resources.Success) {
-                progressBar(false)
-                val result = response.data
-                if (result != null) {
-                    if (result.status.equals("success")) {
-
-                        val email = result.data?.email.toString()
-
-                        if (!binding.edtEmail.hint.equals(email)) {
-                            binding.edtEmail.hint = email
-                            return@observe
-                        }
-                    } else {
-                        Log.d("PROFILE", result.message.toString())
-                    }
-                } else {
-                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-    }
+//    private fun isPhotoChange(dataUser: HashMap<String, String>) {
+//        viewModel.updateUser(dataUser).observe(this){ response ->
+//            if (response is Resources.Loading) {
+//                progressBar(true)
+//            } else if (response is Resources.Error) {
+//                progressBar(false)
+//                Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
+//            } else if (response is Resources.Success) {
+//                progressBar(false)
+//                val result = response.data
+//                if (result != null) {
+//                    if (result.status.equals("success")) {
+//
+//                        val email = result.data?.email.toString()
+//
+//                        if (!binding.edtEmail.hint.equals(email)) {
+//                            binding.edtEmail.hint = email
+//                            return@observe
+//                        }
+//                    } else {
+//                        Log.d("PROFILE", result.message.toString())
+//                    }
+//                } else {
+//                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//        }
+//    }
 
     private fun startGallery() {
         val intent = Intent()
@@ -219,44 +219,34 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
                 requestImageFile
             )
 
-            viewModel.updateUser(dataUser).observe(this){response ->
-                if (response is Resources.Loading) {
-                    progressBar(true)
-                } else if (response is Resources.Error) {
-                    progressBar(false)
-                    Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
-                } else if (response is Resources.Success) {
-                    progressBar(false)
-                    val result = response.data
-                    if (result != null) {
-                        if (result.status.equals("success")) {
-                            val image = result.data?.foto_profil.toString()
-                            Toast.makeText(this@EditProfileActivity, "success", Toast.LENGTH_SHORT).show()
-                        } else {
-                            Log.d("PROFILE", result.message.toString())
-                        }
-                    } else {
-                        Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
+//            viewModel.updateUser(dataUser).observe(this){response ->
+//                if (response is Resources.Loading) {
+//                    progressBar(true)
+//                } else if (response is Resources.Error) {
+//                    progressBar(false)
+//                    Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
+//                } else if (response is Resources.Success) {
+//                    progressBar(false)
+//                    val result = response.data
+//                    if (result != null) {
+//                        if (result.status.equals("success")) {
+//                            val image = result.data?.foto_profil.toString()
+//                            Toast.makeText(this@EditProfileActivity, "success", Toast.LENGTH_SHORT).show()
+//                        } else {
+//                            Log.d("PROFILE", result.message.toString())
+//                        }
+//                    } else {
+//                        Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
+//                    }
+//                }
+//            }
         }
     }
 
     private fun update() {
-        val username = binding.edtUsername.text.toString()
-        val email = binding.edtEmail.text.toString()
-        val fotoProfil = binding.ivProfilePicture.toString()
-
-        val dataUser = hashMapOf(
-                "name" to username,
-                "email" to email,
-                "foto_profil" to fotoProfil
-        )
-
-        isUsernameChange(dataUser)
-        isEmailChange(dataUser)
-        isPhotoChange(dataUser)
+//        isUsernameChange(dataUser)
+//        isEmailChange(dataUser)
+//        isPhotoChange(dataUser)
 
         Toast.makeText(this, "Changes Saved", Toast.LENGTH_SHORT).show()
     }

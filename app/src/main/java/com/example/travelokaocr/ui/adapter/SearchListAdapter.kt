@@ -79,9 +79,14 @@ class SearchListAdapter(
             val getTimeArrive: List<String> = timeArrive!!.split(":")
 
             val timeDepartToInt = (getTimeDepart[0] + getTimeDepart[1]).toInt()
+            println("time depart [0] : $timeDepartToInt")
+            println("time depart [1]: ${getTimeDepart[1]}")
+
             val timeArriveToInt = (getTimeArrive[0] + getTimeArrive[1]).toInt()
 
             val durationTotal = (timeArriveToInt - timeDepartToInt).toString()
+            println("$timeArriveToInt - $timeDepartToInt = $durationTotal")
+            println(durationTotal.length)
 
             var hour = ""
             var minute = ""

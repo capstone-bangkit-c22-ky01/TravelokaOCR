@@ -86,7 +86,6 @@ class FlightFragment : Fragment(), View.OnClickListener {
                 println("getFromMix: $getFromMix")
 
                 val onlyFromCity = getCity[0]
-//                val tes = city.
                 println("onlyFromCity: $onlyFromCity")
 
                 val onlyFromCode = getCity[1]

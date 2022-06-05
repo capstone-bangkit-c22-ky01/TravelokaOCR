@@ -72,7 +72,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
                         val username = result.data?.user?.name.toString()
                         val email = result.data?.user?.email.toString()
-                        val fotoProfil = result.data?.user?.foto_profil.toString()
+                        val fotoProfil = result.data?.user?.foto_profil
 
                         //SHOW DATA
                         binding.tvUsername.text = username

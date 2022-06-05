@@ -11,20 +11,24 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.travelokaocr.R
 import com.example.travelokaocr.data.repository.AccessProfileRepository
 import com.example.travelokaocr.databinding.ActivityEditProfileBinding
 import com.example.travelokaocr.ui.main.fragment.ProfileFragment
+import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
 import com.example.travelokaocr.utils.reduceFileImage
 import com.example.travelokaocr.utils.uriToFile
 import com.example.travelokaocr.viewmodel.AccessProfileViewModel
 import com.example.travelokaocr.viewmodel.factory.AccessProfileFactory
+import com.example.travelokaocr.viewmodel.preference.SavedPreference
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import retrofit2.http.Url
 import java.io.File
 
 class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
@@ -35,17 +39,19 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
     //API
     private lateinit var viewModel: AccessProfileViewModel
 
+    private lateinit var savedPreference: SavedPreference
+
     private var getFile: File? = null
 
-    private val username = binding.edtUsername.text.toString()
+    private val name = binding.edtUsername.text.toString()
     private val email = binding.edtEmail.text.toString()
-    private val fotoProfil = binding.ivProfilePicture.toString()
+    private val foto_profil = binding.ivProfilePicture as Url
 
-    private val dataUser = hashMapOf(
-        "name" to username,
-        "email" to email,
-        "foto_profil" to fotoProfil
-    )
+//    private val dataUser = hashMapOf(
+//        "name" to username,
+//        "email" to email,
+//        "foto_profil" to fotoProfil
+//    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
@@ -55,47 +61,49 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         setupView()
         itemOnClickListener()
 
-
-//        showDataUser(dataUser)
-
         //CREATE API CONNECTION
         val factory = AccessProfileFactory(AccessProfileRepository())
         viewModel = ViewModelProvider(this, factory)[AccessProfileViewModel::class.java]
+
+        savedPreference = SavedPreference(this)
+
+        val dataUser = savedPreference.getData(Constants.ACCESS_TOKEN)
+        showDataUser(name, email, foto_profil)
     }
 
     //SHOW DATA
-//    private fun showDataUser(dataUser: HashMap<String, String>){
-//        viewModel.updateUser(dataUser).observe(this){ response ->
-//            if (response is Resources.Loading) {
-//                progressBar(true)
-//            } else if (response is Resources.Error) {
-//                progressBar(false)
-//                Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
-//            } else if (response is Resources.Success) {
-//                progressBar(false)
-//                val result = response.data
-//                if (result != null) {
-//                    if (result.status.equals("success")) {
-//
-//                        val username = result.data?.name.toString()
-//                        val email = result.data?.email.toString()
-//                        val fotoProfil = result.data?.foto_profil.toString()
-//
-//                        binding.edtUsername.hint = username
-//                        binding.edtEmail.hint = email
-//                        Glide.with(this)
-//                                .load(fotoProfil)
-//                                .centerCrop()
-//                                .into(binding.ivProfilePicture)
-//                    } else {
-//                        Log.d("PROFILE", result.message.toString())
-//                    }
-//                } else {
-//                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        }
-//    }
+    private fun showDataUser(name: String, email: String, foto_profil: Url){
+        viewModel.updateUser(name, email, foto_profil).observe(this){ response ->
+            if (response is Resources.Loading) {
+                progressBar(true)
+            } else if (response is Resources.Error) {
+                progressBar(false)
+                Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
+            } else if (response is Resources.Success) {
+                progressBar(false)
+                val result = response.data
+                if (result != null) {
+                    if (result.status.equals("success")) {
+
+                        val username = result.data?.user?.name.toString()
+                        val email = result.data?.user?.email.toString()
+                        val fotoProfil = result.data?.user?.foto_profil
+
+                        binding.edtUsername.hint = username
+                        binding.edtEmail.hint = email
+                        Glide.with(this)
+                                .load(fotoProfil)
+                                .centerCrop()
+                                .into(binding.ivProfilePicture)
+                    } else {
+                        Log.d("PROFILE", result.status.toString())
+                    }
+                } else {
+                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
 
     //USERNAME CHANGED
 //    private fun isUsernameChange(dataUser: HashMap<String, String>) {
@@ -209,7 +217,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun uploadImage(dataUser: HashMap<String, String>) {
+    private fun uploadImage(name: String, email: String, foto_profil: Url) {
         if (getFile != null) {
             val file = reduceFileImage(getFile as File)
 
@@ -220,27 +228,42 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
                 requestImageFile
             )
 
-//            viewModel.updateUser(dataUser).observe(this){response ->
-//                if (response is Resources.Loading) {
-//                    progressBar(true)
-//                } else if (response is Resources.Error) {
-//                    progressBar(false)
-//                    Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
-//                } else if (response is Resources.Success) {
-//                    progressBar(false)
-//                    val result = response.data
-//                    if (result != null) {
-//                        if (result.status.equals("success")) {
-//                            val image = result.data?.foto_profil.toString()
-//                            Toast.makeText(this@EditProfileActivity, "success", Toast.LENGTH_SHORT).show()
-//                        } else {
-//                            Log.d("PROFILE", result.message.toString())
-//                        }
-//                    } else {
-//                        Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//            }
+            viewModel.updateUser(name, email, foto_profil).observe(this){response ->
+                if (response is Resources.Loading) {
+                    progressBar(true)
+                } else if (response is Resources.Error) {
+                    progressBar(false)
+                    Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
+                } else if (response is Resources.Success) {
+                    progressBar(false)
+                    val result = response.data
+                    if (result != null) {
+                        if (result.status.equals("success")) {
+
+                            val username = result.data?.user?.name.toString()
+                            val email = result.data?.user?.email.toString()
+                            val fotoProfil = result.data?.user?.foto_profil
+
+                            if (!binding.edtUsername.hint.equals(username)) {
+                                binding.edtUsername.hint = username
+                                return@observe
+                            } else if (!binding.edtEmail.hint.equals(email)) {
+                                binding.edtEmail.hint = email
+                                return@observe
+                            } else if (!binding.ivProfilePicture.equals(fotoProfil)) {
+//                                binding.ivProfilePicture = fotoProfil
+                                return@observe
+                            }
+
+                            Toast.makeText(this@EditProfileActivity, "success", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Log.d("PROFILE", result.status.toString())
+                        }
+                    } else {
+                        Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
         }
     }
 
@@ -281,7 +304,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.btn_save_changes -> {
                 update()
-                uploadImage(dataUser)
+                uploadImage(name, email, foto_profil)
                 startActivity(Intent(this, ProfileFragment::class.java))
             }
         }

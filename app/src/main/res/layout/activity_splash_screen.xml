@@ -52,7 +52,7 @@
         android:fontFamily="@font/nunito_bold"
         android:text="@string/splash_welcome_to"
         android:textSize="24sp"
-        android:textColor="?attr/customColorFont"
+        android:textColor="@color/customColorFont"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -64,7 +64,7 @@
         android:fontFamily="@font/lilita_one_regular"
         android:text="@string/app_name"
         android:textSize="40sp"
-        android:textColor="?attr/customColorSecondary90"
+        android:textColor="@color/customColorSecondary90"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_welcome_to" />
 
@@ -76,7 +76,7 @@
         android:fontFamily="@font/nunito_bold"
         android:text="@string/splash_logo_desc"
         android:textSize="16sp"
-        android:textColor="?attr/customColorFont"
+        android:textColor="@color/customColorFont"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_logo" />
 

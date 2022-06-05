@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary50"
+    android:background="@color/customColorPrimary50"
     tools:context=".ui.main.fragment.HistoryFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="?attr/customColorSecondary50"
+        android:background="@color/customColorSecondary50"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/history_title"
-            android:textColor="?attr/customColorPrimary50"
+            android:textColor="@color/customColorPrimary50"
             android:textSize="34sp"
             android:fontFamily="@font/nunito_extra_bold"
             android:layout_marginStart="20dp"

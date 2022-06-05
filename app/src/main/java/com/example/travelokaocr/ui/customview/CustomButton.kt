@@ -39,7 +39,7 @@ class CustomButton : AppCompatButton {
             disabledBackground
         }
 
-        txtColor = ContextCompat.getColor(context, R.color.primary10)
+        txtColor = ContextCompat.getColor(context, R.color.customColorPrimary10)
         setTextColor(txtColor)
 
         isAllCaps = false

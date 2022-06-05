@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary50"
+    android:background="@color/customColorPrimary50"
     tools:context=".ui.flightsearchresult.FlightSearchResultActivity" >
     
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="@color/secondary50"
+        android:background="@color/customColorSecondary50"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -116,7 +116,7 @@
         android:layout_width="208dp"
         android:layout_height="20dp"
         android:indeterminate="true"
-        android:indeterminateTint="?attr/customColorNeutral50"
+        android:indeterminateTint="@color/customColorNeutral50"
         android:indeterminateTintMode="src_atop"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"

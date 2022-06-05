@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/login_title"
-            android:textColor="?attr/customColorFont"
+            android:textColor="@color/customColorFont"
             android:fontFamily="@font/nunito_bold"
             android:textSize="34sp"
             android:textStyle="bold"
@@ -77,7 +77,7 @@
                 android:fontFamily="@font/nunito_semi_bold"
                 android:hint="@string/enter_email"
                 android:textSize="16sp"
-                android:textColorHint="?attr/customColorHint"/>
+                android:textColorHint="@color/customColorHint"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -107,7 +107,7 @@
                 android:inputType="textPassword"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:textColorHint="?attr/customColorHint"
+                android:textColorHint="@color/customColorHint"
                 android:textSize="16sp"
                 tools:ignore="RtlSymmetry" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -131,7 +131,7 @@
             android:id="@+id/v_left_line"
             android:layout_width="80dp"
             android:layout_height="2dp"
-            android:background="?attr/customColorFont"
+            android:background="@color/customColorFont"
             android:layout_marginTop="27dp"
             android:layout_marginStart="30dp"
             app:layout_constraintEnd_toStartOf="@id/tv_or_login_with"
@@ -145,7 +145,7 @@
             android:fontFamily="@font/nunito_bold"
             android:text="@string/login_options"
             android:layout_marginTop="16dp"
-            android:textColor="?attr/customColorFont"
+            android:textColor="@color/customColorFont"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:textSize="14sp"
@@ -159,7 +159,7 @@
             android:layout_width="80dp"
             android:layout_height="2dp"
             android:layout_marginEnd="30dp"
-            android:background="?attr/customColorFont"
+            android:background="@color/customColorFont"
             android:layout_marginTop="27dp"
             app:layout_constraintStart_toEndOf="@id/tv_or_login_with"
             app:layout_constraintTop_toBottomOf="@id/btn_login"
@@ -177,7 +177,7 @@
             android:paddingEnd="20dp"
             android:text="@string/login_google"
             android:textAllCaps="false"
-            android:textColor="@color/font"
+            android:textColor="@color/customColorFont"
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginStart="90dp"
@@ -204,7 +204,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito_bold"
                 android:text="@string/login_redirect"
-                android:textColor="?attr/customColorFont"
+                android:textColor="@color/customColorFont"
                 android:textSize="14sp" />
 
             <TextView
@@ -214,7 +214,7 @@
                 android:layout_marginStart="4dp"
                 android:fontFamily="@font/nunito_extra_bold"
                 android:text="@string/login_redirect_signup"
-                android:textColor="?attr/customColorFont"
+                android:textColor="@color/customColorFont"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -225,7 +225,7 @@
             android:layout_width="208dp"
             android:layout_height="20dp"
             android:indeterminate="true"
-            android:indeterminateTint="?attr/customColorNeutral50"
+            android:indeterminateTint="@color/customColorNeutral50"
             android:indeterminateTintMode="src_atop"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"

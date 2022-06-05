@@ -4,6 +4,6 @@
     android:layout_height="wrap_content"
     android:text="@string/textview_dummy"
     android:fontFamily="@font/nunito_bold"
-    android:textColor="?attr/customColorFont"
+    android:textColor="@color/customColorFont"
     android:textSize="14sp"
     android:padding="14dp" />

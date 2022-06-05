@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/regis_title"
-            android:textColor="?attr/customColorFont"
+            android:textColor="@color/customColorFont"
             android:fontFamily="@font/nunito_bold"
             android:textSize="34sp"
             android:textStyle="bold"
@@ -66,7 +66,7 @@
                 android:fontFamily="@font/nunito_semi_bold"
                 android:hint="@string/regis_enter_name"
                 android:textSize="16sp"
-                android:textColorHint="?attr/customColorHint"/>
+                android:textColorHint="@color/customColorHint"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -97,7 +97,7 @@
                 android:fontFamily="@font/nunito_semi_bold"
                 android:hint="@string/enter_email"
                 android:textSize="16sp"
-                android:textColorHint="?attr/customColorHint"/>
+                android:textColorHint="@color/customColorHint"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -127,7 +127,7 @@
                 android:inputType="textPassword"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:textColorHint="?attr/customColorHint"
+                android:textColorHint="@color/customColorHint"
                 android:textSize="16sp"
                 tools:ignore="RtlSymmetry" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -165,7 +165,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito_bold"
                 android:text="@string/regis_options"
-                android:textColor="?attr/customColorFont"
+                android:textColor="@color/customColorFont"
                 android:textSize="14sp" />
 
             <TextView
@@ -175,7 +175,7 @@
                 android:layout_marginStart="4dp"
                 android:fontFamily="@font/nunito_extra_bold"
                 android:text="@string/regis_redirect_login"
-                android:textColor="?attr/customColorFont"
+                android:textColor="@color/customColorFont"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -187,7 +187,7 @@
             android:layout_width="208dp"
             android:layout_height="20dp"
             android:indeterminate="true"
-            android:indeterminateTint="?attr/customColorNeutral50"
+            android:indeterminateTint="@color/customColorNeutral50"
             android:indeterminateTintMode="src_atop"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"

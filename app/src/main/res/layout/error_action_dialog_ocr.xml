@@ -22,7 +22,7 @@
         android:fontFamily="@font/nunito_bold"
         android:text="@string/error_text_ocr"
         android:textAlignment="center"
-        android:textColor="?attr/customColorFont"
+        android:textColor="@color/customColorFont"
         android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

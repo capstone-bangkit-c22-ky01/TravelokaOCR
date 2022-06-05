@@ -9,8 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.core.view.get
-import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import com.example.travelokaocr.R
 import com.example.travelokaocr.databinding.FragmentFlightBinding
@@ -20,6 +18,7 @@ import com.example.travelokaocr.viewmodel.preference.SavedPreference
 import com.google.android.material.textfield.TextInputEditText
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class FlightFragment : Fragment(), View.OnClickListener {
     //BINDING
@@ -161,9 +160,6 @@ class FlightFragment : Fragment(), View.OnClickListener {
 
     private fun setupDateEditText() {
         binding.dateEditText.transformIntoDatePicker(requireContext(), "EEEE, dd MMM yyyy", Date())
-        val date = binding.dateEditText.text.toString()
-        println("date : $date")
-        savedPref.putData(Constants.DATE, date)
     }
 
     private fun TextInputEditText.transformIntoDatePicker(
@@ -183,6 +179,10 @@ class FlightFragment : Fragment(), View.OnClickListener {
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                 val sdf = SimpleDateFormat(format, Locale.US)
                 setText(sdf.format(myCalendar.time))
+
+                val date = binding.dateEditText.text.toString()
+                savedPref.putData(Constants.DATE, date)
+                println("date : $date")
             }
 
         setOnClickListener {
@@ -195,6 +195,20 @@ class FlightFragment : Fragment(), View.OnClickListener {
                 show()
             }
         }
+    }
+
+    private fun datePicker() {
+        val calendar = Calendar.getInstance()
+        val dateFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+        val datePickerDialog = DatePickerDialog(
+            requireActivity(),
+            { view, year, monthOfYear, dayOfMonth ->
+                val newDate = Calendar.getInstance()
+                newDate[year, monthOfYear] = dayOfMonth
+                print(dateFormatter.format(newDate.time))
+            }, calendar[Calendar.YEAR], calendar[Calendar.MONTH], calendar[Calendar.DAY_OF_MONTH]
+        )
+        datePickerDialog.show()
     }
 
     private fun itemOnClickListener() {

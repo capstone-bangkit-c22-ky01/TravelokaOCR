@@ -22,7 +22,7 @@ val timeStamp: String = SimpleDateFormat(
 
 fun createTempFile(context: Context): File {
     val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-    return File.createTempFile(timeStamp, ".jpg", storageDir)
+    return File.createTempFile(com.example.travelokaocr.utils.imageanalysis.timeStamp, ".jpg", storageDir)
 }
 
 fun createFile(application: Application): File {
@@ -34,7 +34,7 @@ fun createFile(application: Application): File {
         mediaDir != null && mediaDir.exists()
     ) mediaDir else application.filesDir
 
-    return File(outputDirectory, "$timeStamp.jpg")
+    return File(outputDirectory, "${com.example.travelokaocr.utils.imageanalysis.timeStamp}.jpg")
 }
 
 fun rotateBitmap(bitmap: Bitmap, isBackCamera: Boolean = false): Bitmap {
@@ -68,7 +68,7 @@ fun rotateBitmap(bitmap: Bitmap, isBackCamera: Boolean = false): Bitmap {
 
 fun createCustomTempFile(context: Context): File {
     val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-    return File.createTempFile(timeStamp, ".jpg", storageDir)
+    return File.createTempFile(com.example.travelokaocr.utils.imageanalysis.timeStamp, ".jpg", storageDir)
 }
 
 fun uriToFile(selectedImg: Uri, context: Context): File {

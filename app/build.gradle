@@ -78,11 +78,6 @@ dependencies {
     //CIRCLE IMG
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-    //CODE SCANNER
-    dependencies {
-        implementation 'com.github.yuriy-budiyev:code-scanner:2.1.2'
-    }
-
     //LIFECYCLE
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
     implementation "androidx.activity:activity-ktx:1.4.0"

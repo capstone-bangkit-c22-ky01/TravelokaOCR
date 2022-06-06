@@ -1,4 +1,4 @@
-package com.example.travelokaocr.data.model
+package com.example.travelokaocr.data.model.ocr
 
 import com.google.gson.annotations.SerializedName
 

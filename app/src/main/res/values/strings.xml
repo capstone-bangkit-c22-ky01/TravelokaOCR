@@ -827,4 +827,5 @@
     <string name="profile_btn_edit_profile">Edit Profile</string>
     <string name="profile_btn_logout">Logout</string>
     <string name="profile_about"><u>About Traveloka OCR</u></string>
+    <string name="history_empty">Your travel journey is still empty</string>
 </resources>

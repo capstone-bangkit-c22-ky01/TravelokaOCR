@@ -1,6 +1,6 @@
 package com.example.travelokaocr.data.api
 
-import com.example.travelokaocr.data.model.AccessProfileResponse
+import com.example.travelokaocr.data.model.profile.AccessProfileResponse
 import com.example.travelokaocr.data.model.HistoryResponse
 import com.example.travelokaocr.data.model.KTPResultResponse
 import com.example.travelokaocr.data.model.flight.FlightSearchResponse

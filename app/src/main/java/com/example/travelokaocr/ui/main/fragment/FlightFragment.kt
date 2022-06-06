@@ -197,20 +197,6 @@ class FlightFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun datePicker() {
-        val calendar = Calendar.getInstance()
-        val dateFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.US)
-        val datePickerDialog = DatePickerDialog(
-            requireActivity(),
-            { view, year, monthOfYear, dayOfMonth ->
-                val newDate = Calendar.getInstance()
-                newDate[year, monthOfYear] = dayOfMonth
-                print(dateFormatter.format(newDate.time))
-            }, calendar[Calendar.YEAR], calendar[Calendar.MONTH], calendar[Calendar.DAY_OF_MONTH]
-        )
-        datePickerDialog.show()
-    }
-
     private fun itemOnClickListener() {
         binding.searchBtn.setOnClickListener(this)
     }

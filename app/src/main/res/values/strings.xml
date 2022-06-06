@@ -827,4 +827,15 @@
     <string name="profile_btn_edit_profile">Edit Profile</string>
     <string name="profile_btn_logout">Logout</string>
     <string name="profile_about"><u>About Traveloka OCR</u></string>
+
+    <!--ON BOARDING TEXT-->
+    <string name="title_menu_1">Why are we here?</string>
+    <string name="desc_menu_1">TravelokaOCR’s main goal is to tackle the problem where you need to type your personal information for administrative purposes manually that can be inconvenient and prone to error.</string>
+    <string name="title_menu_2">Easy, Accurate, Realtime</string>
+    <string name="desc_menu_2">TravelokaOCR wants to make it easier for you by only capturing your ID Cards with accurate and realtime output.</string>
+    <string name="title_menu_3">Secured Data</string>
+    <string name="desc_menu_3">We ensure your privacy and data are secured.</string>
+    <string name="register_now">Register Now</string>
+    <string name="logo_menu_1">logo menu 1</string>
+    <string name="title_menu_4">Ready to Start?</string>
 </resources>

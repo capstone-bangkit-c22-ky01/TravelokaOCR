@@ -1,5 +1,6 @@
 package com.example.travelokaocr.ui.auth
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
@@ -29,7 +30,11 @@ import com.example.travelokaocr.viewmodel.AuthViewModel
 import com.example.travelokaocr.viewmodel.factory.AuthViewModelFactory
 import com.example.travelokaocr.viewmodel.preference.SavedPreference
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 
 const val RC_SIGN_IN = 200
 
@@ -43,6 +48,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     //SESSION
     private lateinit var savedPref: SavedPreference
+
+    private lateinit var gsc: GoogleSignInClient
 
     override fun onStart() {
         super.onStart()
@@ -67,6 +74,19 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         val factory = AuthViewModelFactory(AuthRepository())
         viewModel = ViewModelProvider(this, factory)[AuthViewModel::class.java]
         savedPref = SavedPreference(this)
+
+        //GOOGLE
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build()
+
+        // Build a GoogleSignInClient with the options specified by gso.
+        gsc = GoogleSignIn.getClient(this, gso)
+
+        val acct = GoogleSignIn.getLastSignedInAccount(this)
+        if (acct != null) {
+            loginWithGoogle()
+        }
     }
 
     override fun onBackPressed() {
@@ -103,7 +123,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_login_with_google -> {
                 //go to login auth
                 enableProgressBar()
-                loginWithGoogle()
+                googleLogin()
             }
             R.id.sign_up -> {
                 //go to sign up activity
@@ -207,48 +227,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         })
     }
 
-    private fun googleLogin(dataLogin: HashMap<String, String>) {
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build()
-
-        // Build a GoogleSignInClient with the options specified by gso.
-        val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
-
-        val signInIntent = mGoogleSignInClient.signInIntent
+    private fun googleLogin() {
+        val signInIntent = gsc.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
-
-        val acct = GoogleSignIn.getLastSignedInAccount(this)
-        if (acct != null) {
-            viewModel.loginUser(dataLogin).observe(this) { response ->
-                if (response is Resources.Loading) {
-                    enableProgressBar()
-                }
-                else if (response is Resources.Error) {
-                    disableProgressBar()
-                    Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
-                }
-                else if (response is Resources.Success) {
-                    disableProgressBar()
-                    val result = response.data
-                    if (result?.status.equals("success")) {
-                        //saved userid
-                        val accessToken = result?.data?.accessToken.toString()
-                        val refreshToken = result?.data?.refreshToken.toString()
-                        saveSessionLogin(accessToken, refreshToken)
-
-                        Toast.makeText(this, result?.message, Toast.LENGTH_SHORT).show()
-                        Log.d("REGIS", result?.message.toString())
-
-                        //intent to home directly
-                        //home activity still under the development
-                        val intent = Intent(this@LoginActivity, HomeActivity::class.java)
-                        startActivity(intent)
-                        killActivity()
-                    }
-                }
-            }
-        }
     }
 
     private fun loginWithGoogle() {
@@ -261,7 +242,34 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 "password" to password
         )
 
-        googleLogin(dataLogin)
+        viewModel.loginUser(dataLogin).observe(this) { response ->
+            if (response is Resources.Loading) {
+                enableProgressBar()
+            }
+            else if (response is Resources.Error) {
+                disableProgressBar()
+                Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
+            }
+            else if (response is Resources.Success) {
+                disableProgressBar()
+                val result = response.data
+                if (result?.status.equals("success")) {
+                    //saved userid
+                    val accessToken = result?.data?.accessToken.toString()
+                    val refreshToken = result?.data?.refreshToken.toString()
+                    saveSessionLogin(accessToken, refreshToken)
+
+                    Toast.makeText(this, result?.message, Toast.LENGTH_SHORT).show()
+                    Log.d("REGIS", result?.message.toString())
+
+                    //intent to home directly
+                    //home activity still under the development
+                    val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+                    startActivity(intent)
+                    killActivity()
+                }
+            }
+        }
     }
 
     private fun validateButton() {
@@ -360,5 +368,38 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             )
         }
         supportActionBar?.hide()
+    }
+
+    @Deprecated("Deprecated in Java")
+    @Suppress("DEPRECATION")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == RC_SIGN_IN){
+            val task: Task<GoogleSignInAccount> =
+                GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                task.getResult(ApiException::class.java)
+                disableProgressBar()
+                finish()
+                startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+            } catch (e: ApiException) {
+                Toast.makeText(applicationContext, "Something went wrong", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+    }
+
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+
+            // Signed in successfully, show authenticated UI.
+//            updateUI(account)
+        } catch (e: ApiException) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w(TAG, "signInResult:failed code=" + e.statusCode)
+//            updateUI(null)
+        }
     }
 }

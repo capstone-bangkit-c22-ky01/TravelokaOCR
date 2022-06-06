@@ -78,7 +78,7 @@
             app:layout_constraintStart_toStartOf="@id/flightRoute_iv"
             app:layout_constraintEnd_toEndOf="@id/flightRoute_iv"
             app:layout_constraintTop_toBottomOf="@id/flightRoute_iv"
-            tools:text="@string/direct" />
+            android:text="@string/direct" />
 
         <TextView
             android:id="@+id/timeArrive_tv"

@@ -1,5 +1,6 @@
 package com.example.travelokaocr.ui.main.fragment
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,11 +9,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travelokaocr.R
 import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.data.repository.FlightRepository
 import com.example.travelokaocr.databinding.FragmentHistoryBinding
 import com.example.travelokaocr.ui.adapter.HistoryAdapter
+import com.example.travelokaocr.ui.adapter.SearchListAdapter
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
 import com.example.travelokaocr.viewmodel.AuthViewModel
@@ -63,7 +67,7 @@ class HistoryFragment : Fragment() {
 
         //SETUP
         savedPref = SavedPreference(requireContext())
-        list = HistoryAdapter(requireContext())
+        configRecyclerView()
 
         val tokenFromApi = savedPref.getData(Constants.ACCESS_TOKEN)
         val accessToken = "Bearer $tokenFromApi"
@@ -138,6 +142,19 @@ class HistoryFragment : Fragment() {
                     Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+    }
+
+    private fun configRecyclerView() {
+        list = HistoryAdapter(requireContext())
+        binding.rvHistoryTickets.apply {
+            adapter = list
+            layoutManager =
+                if (this.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    GridLayoutManager(context, 2)
+                } else {
+                    LinearLayoutManager(context)
+                }
         }
     }
 }

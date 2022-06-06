@@ -14,6 +14,8 @@ import com.example.travelokaocr.data.model.flight.Flights
 import com.example.travelokaocr.databinding.ItemRowFlightBinding
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.viewmodel.preference.SavedPreference
+import java.text.NumberFormat
+import java.util.*
 
 
 class SearchListAdapter(
@@ -68,7 +70,13 @@ class SearchListAdapter(
             holder.binding.timeDepartTv.text = data.depart_time
             holder.binding.timeArriveTv.text = data.arrival_time
             holder.binding.airplaneNameTv.text = data.airline
-            holder.binding.priceTv.text = data.price.toString()
+
+            val myIndonesianLocale = Locale("in", "ID")
+            val numberFormat = NumberFormat.getCurrencyInstance(myIndonesianLocale)
+            numberFormat.maximumFractionDigits = 0;
+            val convert = numberFormat.format(data.price)
+
+            holder.binding.priceTv.text = convert
             holder.binding.cityDepartCodeTv.text = savedPref.getData(Constants.FROM_CODE)
             holder.binding.cityArriveCodeTv.text = savedPref.getData(Constants.TO_CODE)
 
@@ -100,6 +108,7 @@ class SearchListAdapter(
             }
 
             holder.binding.flightDurationTv.text = "${hour}h ${minute}m"
+            holder.binding.flightTypeTv.text = "Direct"
 
             setOnClickListener {
                 onItemClickListener?.let {

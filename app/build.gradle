@@ -58,11 +58,17 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1"
     implementation 'androidx.datastore:datastore-preferences:1.0.0'
 
-    //CAMERAX
+    // CameraX
     def camerax_version = "1.1.0-beta02"
+    implementation "androidx.camera:camera-core:${camerax_version}"
     implementation "androidx.camera:camera-camera2:${camerax_version}"
     implementation "androidx.camera:camera-lifecycle:${camerax_version}"
     implementation "androidx.camera:camera-view:${camerax_version}"
+
+    // TFLite
+    implementation 'org.tensorflow:tensorflow-lite-task-vision:0.4.0'
+    implementation 'org.tensorflow:tensorflow-lite-gpu-delegate-plugin:0.4.0'
+    implementation 'org.tensorflow:tensorflow-lite-support:0.4.0'
 
     //RETROFIT
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

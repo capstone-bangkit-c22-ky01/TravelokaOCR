@@ -166,6 +166,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                     if (result.status.equals("success")) {
                         //delete session
                         savedPreference.clear()
+                        savedPreference.putInstall(Constants.FIRST_INSTALL, false)
                         Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
 
                         killActivity()

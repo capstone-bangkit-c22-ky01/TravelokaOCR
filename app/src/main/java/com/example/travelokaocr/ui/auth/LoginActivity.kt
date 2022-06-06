@@ -24,6 +24,7 @@ import com.example.travelokaocr.R
 import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.databinding.ActivityLoginBinding
 import com.example.travelokaocr.ui.main.HomeActivity
+import com.example.travelokaocr.ui.onboarding.OnBoardingActivity
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
 import com.example.travelokaocr.viewmodel.AuthViewModel
@@ -53,6 +54,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onStart() {
         super.onStart()
+        if (savedPref.getInstall(Constants.FIRST_INSTALL)) {
+            savedPref.putInstall(Constants.FIRST_INSTALL, false)
+            startActivity(Intent(this@LoginActivity, OnBoardingActivity::class.java))
+            killActivity()
+        }
+
         if(savedPref.getSession(Constants.IS_LOGIN)){
             startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
             killActivity()

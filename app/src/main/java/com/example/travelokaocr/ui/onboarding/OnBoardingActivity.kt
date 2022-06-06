@@ -24,6 +24,8 @@ class OnBoardingActivity : AppCompatActivity(), View.OnClickListener {
 
         //SETUP
         setUpView()
+
+        binding.btnRegister.setOnClickListener(this)
     }
 
     @Suppress("DEPRECATION")

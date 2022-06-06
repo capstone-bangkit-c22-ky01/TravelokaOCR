@@ -1,6 +1,7 @@
 package com.example.travelokaocr.ui.flightsearchresult
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
@@ -18,6 +19,7 @@ import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.data.repository.FlightRepository
 import com.example.travelokaocr.databinding.ActivityFlightSearchResultBinding
 import com.example.travelokaocr.ui.adapter.SearchListAdapter
+import com.example.travelokaocr.ui.main.fragment.FlightFragment
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
 import com.example.travelokaocr.viewmodel.AuthViewModel
@@ -67,6 +69,10 @@ class FlightSearchResultActivity : AppCompatActivity() {
         binding.dateTv.text = savedPref.getData(Constants.DATE)
         binding.paxTv.text = " · ${savedPref.getData(Constants.PAX)} pax · "
         binding.seatClassTv.text = savedPref.getData(Constants.SEAT)
+
+        binding.ivBack.setOnClickListener {
+            startActivity(Intent(this@FlightSearchResultActivity, FlightFragment::class.java))
+        }
     }
 
     private fun observerFlightSearch(accessToken: String, cityFrom: String?, cityTo: String?) {

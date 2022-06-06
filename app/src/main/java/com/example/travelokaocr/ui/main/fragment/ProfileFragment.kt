@@ -67,8 +67,9 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
         savedPreference = SavedPreference(requireContext())
 
-        val dataUser = savedPreference.getData(Constants.ACCESS_TOKEN)
-        showDataUser(dataUser!!)
+        val token = savedPreference.getData(Constants.ACCESS_TOKEN)
+        val accessToken = "Bearer $token"
+        showDataUser(accessToken)
     }
 
     private fun showDataUser(dataUser: String){
@@ -97,6 +98,83 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                             .into(binding.ivProfilePicture)
                     } else {
                         Log.d("PROFILE", result.status.toString())
+
+                        Log.d("REGIS", result.status.toString())
+                        val dataToken = hashMapOf(
+                            "refreshToken" to savedPreference.getData(Constants.REFRESH_TOKEN)
+                        )
+
+                        Log.d("REFRESH TOKEN", "observerFlightSearch: $dataToken")
+//                        Log.d("ACCESS TOKEN", "observerFlightSearch: $accessToken")
+                        observeUpdateToken(dataToken)
+                    }
+                } else {
+                    Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun observeUpdateToken(dataToken: HashMap<String, String?>) {
+        authViewModel.updateToken(dataToken).observe(viewLifecycleOwner) { response ->
+            if (response is Resources.Loading) {
+                progressBar(true)
+            }
+            else if (response is Resources.Error) {
+                progressBar(false)
+                Toast.makeText(requireContext(), response.error, Toast.LENGTH_SHORT).show()
+            }
+            else if (response is Resources.Success) {
+                progressBar(false)
+                val result = response.data
+                if (result != null) {
+                    if (result.status.equals("success")) {
+                        val newAccessToken = result.data?.accessToken.toString()
+                        //save new token
+                        savedPreference.putData(Constants.ACCESS_TOKEN, newAccessToken)
+
+                        //get new token
+                        val tokenFromAPI = (savedPreference.getData(Constants.ACCESS_TOKEN))
+                        val accessToken = "Bearer $tokenFromAPI"
+
+                        Log.d("NEW ACCESS TOKEN", "observeUpdateToken: $accessToken")
+
+                        observerShowData(accessToken)
+                    }
+                    else {
+                        Log.d("REGIS", result.status.toString())
+                    }
+                } else {
+                    Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun observerShowData(accessToken: String) {
+        viewModel.profileUser(accessToken).observe(viewLifecycleOwner) { response ->
+            if (response is Resources.Loading) {
+                progressBar(true)
+            }
+            else if (response is Resources.Error) {
+                progressBar(false)
+                Toast.makeText(requireContext(), response.error, Toast.LENGTH_SHORT).show()
+            }
+            else if (response is Resources.Success) {
+                progressBar(false)
+                val result = response.data
+                if (result != null) {
+                    if (result.status.equals("success")) {
+                        progressBar(false)
+                    }
+                    else {
+                        Log.d("REGIS", result.status.toString())
+                        val dataToken = hashMapOf(
+                            "refreshToken" to savedPreference.getData(Constants.REFRESH_TOKEN)
+                        )
+                        Log.d("REFRESH TOKEN", "observerFlightSearch: $dataToken")
+                        Log.d("ACCESS TOKEN", "observerFlightSearch: $accessToken")
+                        observeUpdateToken(dataToken)
                     }
                 } else {
                     Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show()

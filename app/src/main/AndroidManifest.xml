@@ -40,6 +40,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.main.HomeActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
             android:exported="false" />
         <activity
             android:name=".ui.flightsearchresult.FlightSearchResultActivity"

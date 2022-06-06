@@ -28,4 +28,6 @@
 
     <color name="bg_btn_logout">#EA4335</color>
 
+    <color name="notFoundBackgroundCamera">#DD222222</color>
+
 </resources>

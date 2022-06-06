@@ -118,7 +118,6 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             }
             R.id.btn_logout -> {
                 //logout, go to login activity
-                progressBar(true)
                 alertLogout()
             }
             R.id.tv_about_traveloka -> {
@@ -138,6 +137,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             }
             .setPositiveButton("Yes") { _, _ ->
                 //call api logout
+                progressBar(true)
                 val refreshToken = savedPreference.getData(Constants.REFRESH_TOKEN)
 
                 //api process

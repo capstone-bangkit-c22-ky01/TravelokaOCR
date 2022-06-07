@@ -52,6 +52,9 @@ class FlightSearchResultActivity : AppCompatActivity() {
 
         val cityTo = (savedPref.getData(Constants.TO_ONLY_CITY))?.lowercase()
         val cityFrom = (savedPref.getData(Constants.FROM_ONLY_CITY))?.lowercase()
+
+        println(cityTo + cityFrom)
+
         Log.d("CITY RESULT", "onCreate: $cityTo and $cityFrom")
         val tokenFromAPI = (savedPref.getData(Constants.ACCESS_TOKEN))
         val accessToken = "Bearer $tokenFromAPI"
@@ -71,7 +74,7 @@ class FlightSearchResultActivity : AppCompatActivity() {
         binding.seatClassTv.text = savedPref.getData(Constants.SEAT)
 
         binding.ivBack.setOnClickListener {
-            startActivity(Intent(this@FlightSearchResultActivity, FlightFragment::class.java))
+            finish()
         }
     }
 

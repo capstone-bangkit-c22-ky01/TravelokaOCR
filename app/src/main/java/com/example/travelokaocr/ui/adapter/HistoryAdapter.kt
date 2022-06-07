@@ -24,7 +24,7 @@ class HistoryAdapter(
             newItem: Bookings
         ): Boolean {
             //COMPARE ID BECAUSE IT'S UNIQUE
-            return oldItem.id == newItem.id
+            return oldItem.booking_code == newItem.booking_code
         }
 
         override fun areContentsTheSame(

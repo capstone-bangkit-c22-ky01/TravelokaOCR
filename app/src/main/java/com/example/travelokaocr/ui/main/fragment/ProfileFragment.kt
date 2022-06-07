@@ -94,6 +94,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                         binding.tvEmail.text = email
                         Glide.with(this)
                             .load(fotoProfil)
+                            .placeholder(R.drawable.avatar)
                             .centerCrop()
                             .into(binding.ivProfilePicture)
                     } else {

@@ -1,6 +1,7 @@
 package com.example.travelokaocr.ui.main.fragment
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -24,6 +25,9 @@ import com.example.travelokaocr.viewmodel.AuthViewModel
 import com.example.travelokaocr.viewmodel.factory.AccessProfileFactory
 import com.example.travelokaocr.viewmodel.factory.AuthViewModelFactory
 import com.example.travelokaocr.viewmodel.preference.SavedPreference
+
+const val HTTPS_LINK = "https://"
+const val URL_LINK = "capstone-bangkit-c22-ky01.github.io/traveloka-ocr-landingpage/"
 
 class ProfileFragment : Fragment(), View.OnClickListener {
     //BINDING
@@ -184,6 +188,17 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         }
     }
 
+    private fun browserIntent(){
+        val url: String
+        if (!URL_LINK.startsWith(HTTPS_LINK) && !URL_LINK.startsWith(HTTPS_LINK)) {
+            url = HTTPS_LINK + URL_LINK
+        } else {
+            url = URL_LINK
+        }
+
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+    }
+
     private fun itemOnClickListener(){
         binding.btnEditProfile.setOnClickListener(this)
         binding.btnLogout.setOnClickListener(this)
@@ -200,7 +215,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                 alertLogout()
             }
             R.id.tv_about_traveloka -> {
-
+                browserIntent()
             }
         }
     }

@@ -93,7 +93,7 @@ class FlightSearchResultActivity : AppCompatActivity() {
                 val result = response.data
                 if (result != null) {
                     if (result.status.equals("success")) {
-                        list.differAsync.submitList(result.data?.flights)
+                        list.differAsync.submitList((result.data?.flights)?.reversed())
                     }
                     else {
                         Log.d("REGIS", result.status.toString())

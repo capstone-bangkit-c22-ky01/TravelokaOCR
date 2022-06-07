@@ -168,11 +168,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         viewModel.loginUser(dataLogin).observe(this) { response ->
             if (response is Resources.Loading) {
                 enableProgressBar()
-                Toast.makeText(this, "Login gagal, password/email salah", Toast.LENGTH_LONG).show()
-                disableProgressBar()
-                val intent = Intent(this@LoginActivity, LoginActivity::class.java)
-                startActivity(intent)
-                killActivity()
             }
             else if (response is Resources.Error) {
                 disableProgressBar()

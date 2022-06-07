@@ -92,7 +92,7 @@ class HistoryFragment : Fragment() {
                         if((result.data?.bookings)!!.isEmpty()){
                             binding.containerLl.visibility = View.VISIBLE
                         } else{
-                            list.differAsync.submitList(result.data.bookings)
+                            list.differAsync.submitList((result.data.bookings).reversed())
                         }
                     }
                     else {

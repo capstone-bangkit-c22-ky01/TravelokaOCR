@@ -154,6 +154,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             )
 
             observerLogin(dataLogin)
+        } else {
+            Toast.makeText(this, "Login gagal, password/email salah", Toast.LENGTH_LONG).show()
+            disableProgressBar()
+            binding.btnLogin.isEnabled = false
+//            val intent = Intent(this@LoginActivity, LoginActivity::class.java)
+//            startActivity(intent)
+//            killActivity()
         }
     }
 
@@ -161,6 +168,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         viewModel.loginUser(dataLogin).observe(this) { response ->
             if (response is Resources.Loading) {
                 enableProgressBar()
+                Toast.makeText(this, "Login gagal, password/email salah", Toast.LENGTH_LONG).show()
+                disableProgressBar()
+                val intent = Intent(this@LoginActivity, LoginActivity::class.java)
+                startActivity(intent)
+                killActivity()
             }
             else if (response is Resources.Error) {
                 disableProgressBar()
@@ -204,7 +216,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private fun setUpButton() {
         binding.etvEmail.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                //DO NOTHING
+                validateButton()
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -212,13 +224,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             override fun afterTextChanged(p0: Editable?) {
-                //DO NOTHING
+                validateButton()
             }
         })
 
         binding.etvPassword.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                //DO NOTHING
+                validateButton()
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -226,7 +238,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             override fun afterTextChanged(p0: Editable?) {
-                //DO NOTHING
+                validateButton()
             }
         })
     }

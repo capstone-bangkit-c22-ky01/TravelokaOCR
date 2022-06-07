@@ -117,6 +117,13 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             )
 
             observerRegis(dataRegis, dataLogin)
+        } else {
+            Toast.makeText(this, "Login gagal, password/email salah", Toast.LENGTH_LONG).show()
+            disableProgressBar()
+            binding.btnSignup.isEnabled = false
+//            val intent = Intent(this@LoginActivity, LoginActivity::class.java)
+//            startActivity(intent)
+//            killActivity()
         }
     }
 

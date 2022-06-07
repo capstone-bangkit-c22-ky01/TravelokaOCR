@@ -58,7 +58,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        setupView()
+        supportActionBar?.hide()
         itemOnClickListener()
 
         //CREATE API CONNECTION
@@ -273,19 +273,6 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
 //        isPhotoChange(dataUser)
 
         Toast.makeText(this, "Changes Saved", Toast.LENGTH_SHORT).show()
-    }
-
-    private fun setupView() {
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
-        supportActionBar?.hide()
     }
 
     private fun itemOnClickListener(){

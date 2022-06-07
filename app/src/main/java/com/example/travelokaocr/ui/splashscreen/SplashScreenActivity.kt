@@ -24,7 +24,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
         //SETUP
         setUpAction()
-        setUpView()
+        supportActionBar?.hide()
     }
 
     private fun setUpAction() {
@@ -33,20 +33,5 @@ class SplashScreenActivity : AppCompatActivity() {
             startActivity(Intent(this@SplashScreenActivity, LoginActivity::class.java))
             finish()
         }, 2000)
-    }
-
-    @Suppress("DEPRECATION")
-    private fun setUpView(){
-        //hide the action bar
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        }else{
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
-        //turn off action bar
-        supportActionBar?.hide()
     }
 }

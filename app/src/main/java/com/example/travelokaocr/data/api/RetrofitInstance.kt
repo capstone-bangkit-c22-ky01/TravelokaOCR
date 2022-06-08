@@ -1,13 +1,19 @@
 package com.example.travelokaocr.data.api
 
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+
 class RetrofitInstance {
     companion object {
         private val retrofit by lazy {
+            val gson = GsonBuilder()
+                .setLenient()
+                .create()
+
             val logging = HttpLoggingInterceptor()
             val level = HttpLoggingInterceptor.Level.BODY
             logging.setLevel(level)
@@ -18,7 +24,7 @@ class RetrofitInstance {
                 .build()
             Retrofit.Builder()
                 .baseUrl("https://ocr-app-eoyzxrvqla-et.a.run.app/")
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build()
         }

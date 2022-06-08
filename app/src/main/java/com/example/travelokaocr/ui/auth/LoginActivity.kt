@@ -143,6 +143,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
+            //get account info
             val account: GoogleSignInAccount = completedTask.getResult(ApiException::class.java)
 
             //api process
@@ -173,6 +174,49 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w("ERROR_LOGIN", "signInResult:failed code=" + e.statusCode)
+            disableProgressBar()
+        }
+    }
+
+    private fun navigateToHomeActivity() {
+        observerLoginGoogle()
+    }
+
+    private fun observerLoginGoogle() {
+        viewModel.loginWithGoogle().observe(this) { response ->
+            if (response is Resources.Loading) {
+                enableProgressBar()
+            }
+            else if (response is Resources.Error) {
+                disableProgressBar()
+                Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
+            }
+            else if (response is Resources.Success) {
+                disableProgressBar()
+                val result = response.data
+                if (result != null) {
+                    if (result.status.equals("success")) {
+                        //saved userid
+                        val accessToken = result.data?.accessToken.toString()
+                        val refreshToken = result.data?.refreshToken.toString()
+                        saveSessionLogin(accessToken, refreshToken)
+
+                        Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
+                        Log.d("REGIS", result.message.toString())
+
+                        //intent to home directly
+                        val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+                        startActivity(intent)
+                        killActivity()
+
+                    } else {
+                        alertUserError(result.message.toString())
+                        Log.d("REGIS", result.message.toString())
+                    }
+                } else {
+                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
@@ -201,8 +245,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         observerLogin(dataLogin)
 
                     } else {
-                        alertUserError(result.message.toString())
-                        Log.d("REGIS", result.message.toString())
+                        val acct = GoogleSignIn.getLastSignedInAccount(this)
+                        if(acct != null){
+                            observerLogin(dataLogin)
+                        } else{
+                            alertUserError(result.message.toString())
+                            Log.d("REGIS", result.message.toString())
+                        }
                     }
                 } else {
                     Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()

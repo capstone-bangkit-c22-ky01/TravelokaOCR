@@ -284,12 +284,12 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                         if(acct != null){
                             gsc.signOut()
                                 .addOnCompleteListener(requireActivity(), OnCompleteListener<Void?> {
-                                    killActivity()
-                                    startActivity(Intent(requireActivity(), LoginActivity::class.java))
+                                    revokeAccess()
                                 })
+                        } else {
+                            killActivity()
+                            startActivity(Intent(requireActivity(), LoginActivity::class.java))
                         }
-                        killActivity()
-                        startActivity(Intent(requireActivity(), LoginActivity::class.java))
                     }
                     else {
                         Log.d("REGIS", result.message.toString())
@@ -299,6 +299,14 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                 }
             }
         }
+    }
+
+    private fun revokeAccess() {
+        gsc.revokeAccess()
+            .addOnCompleteListener(requireActivity(), OnCompleteListener<Void?> {
+                killActivity()
+                startActivity(Intent(requireActivity(), LoginActivity::class.java))
+            })
     }
 
     private fun killActivity() {

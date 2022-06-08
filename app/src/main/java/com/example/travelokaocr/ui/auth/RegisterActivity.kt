@@ -22,6 +22,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.travelokaocr.R
 import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.databinding.ActivityRegisterBinding
+import com.example.travelokaocr.ui.eula.EulaActivity
 import com.example.travelokaocr.ui.main.HomeActivity
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
@@ -67,6 +68,10 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                 //go to login activity
                 startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                 finish()
+            }
+            R.id.eula_hyperlink -> {
+                //go to eula page
+                startActivity(Intent(this@RegisterActivity, EulaActivity::class.java))
             }
         }
     }
@@ -321,6 +326,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     private fun itemOnClickListener() {
         binding.btnSignup.setOnClickListener(this)
         binding.login.setOnClickListener(this)
+        binding.eulaHyperlink.setOnClickListener(this)
     }
 
     private fun alertUserError(message: String) {

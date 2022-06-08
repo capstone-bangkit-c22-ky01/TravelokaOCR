@@ -144,7 +144,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
                         Log.d("NEW ACCESS TOKEN", "observeUpdateToken: $accessToken")
 
-                        observerShowData(accessToken)
+                        showDataUser(accessToken)
                     }
                     else {
                         Log.d("REGIS", result.status.toString())
@@ -156,37 +156,37 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun observerShowData(accessToken: String) {
-        viewModel.profileUser(accessToken).observe(viewLifecycleOwner) { response ->
-            if (response is Resources.Loading) {
-                progressBar(true)
-            }
-            else if (response is Resources.Error) {
-                progressBar(false)
-                Toast.makeText(requireContext(), response.error, Toast.LENGTH_SHORT).show()
-            }
-            else if (response is Resources.Success) {
-                progressBar(false)
-                val result = response.data
-                if (result != null) {
-                    if (result.status.equals("success")) {
-                        progressBar(false)
-                    }
-                    else {
-                        Log.d("REGIS", result.status.toString())
-                        val dataToken = hashMapOf(
-                            "refreshToken" to savedPreference.getData(Constants.REFRESH_TOKEN)
-                        )
-                        Log.d("REFRESH TOKEN", "observerFlightSearch: $dataToken")
-                        Log.d("ACCESS TOKEN", "observerFlightSearch: $accessToken")
-                        observeUpdateToken(dataToken)
-                    }
-                } else {
-                    Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-    }
+//    private fun observerShowData(accessToken: String) {
+//        viewModel.profileUser(accessToken).observe(viewLifecycleOwner) { response ->
+//            if (response is Resources.Loading) {
+//                progressBar(true)
+//            }
+//            else if (response is Resources.Error) {
+//                progressBar(false)
+//                Toast.makeText(requireContext(), response.error, Toast.LENGTH_SHORT).show()
+//            }
+//            else if (response is Resources.Success) {
+//                progressBar(false)
+//                val result = response.data
+//                if (result != null) {
+//                    if (result.status.equals("success")) {
+//                        progressBar(false)
+//                    }
+//                    else {
+//                        Log.d("REGIS", result.status.toString())
+//                        val dataToken = hashMapOf(
+//                            "refreshToken" to savedPreference.getData(Constants.REFRESH_TOKEN)
+//                        )
+//                        Log.d("REFRESH TOKEN", "observerFlightSearch: $dataToken")
+//                        Log.d("ACCESS TOKEN", "observerFlightSearch: $accessToken")
+//                        observeUpdateToken(dataToken)
+//                    }
+//                } else {
+//                    Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//        }
+//    }
 
     private fun browserIntent(){
         val url: String

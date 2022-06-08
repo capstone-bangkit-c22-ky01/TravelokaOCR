@@ -146,14 +146,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             //get account info
             val account: GoogleSignInAccount = completedTask.getResult(ApiException::class.java)
 
-            //api process
-//            val dataLogin = hashMapOf(
-//                "email" to (account.email).toString(),
-//                "password" to (account.id).toString()
-//            )
-//
-//            observerLogin(dataLogin)
-
             val dataRegis = hashMapOf(
                 "name" to (account.displayName).toString(),
                 "email" to (account.email).toString(),

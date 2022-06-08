@@ -285,6 +285,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                             gsc.signOut()
                                 .addOnCompleteListener(requireActivity(), OnCompleteListener<Void?> {
                                     revokeAccess()
+
                                 })
                         } else {
                             killActivity()

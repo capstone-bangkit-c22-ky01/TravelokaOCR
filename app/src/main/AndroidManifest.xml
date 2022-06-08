@@ -51,6 +51,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.ocr.OCRScreenActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.ocr.OCRResultActivity"
             android:exported="false" />
 

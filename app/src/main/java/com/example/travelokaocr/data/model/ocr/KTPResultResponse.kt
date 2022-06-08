@@ -1,6 +1,8 @@
 package com.example.travelokaocr.data.model.ocr
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class KTPResultResponse(
     @field:SerializedName("status")
@@ -10,9 +12,10 @@ data class KTPResultResponse(
     val data: DataKTPResult? = null
 )
 
+@Parcelize
 data class DataKTPResult(
     @field:SerializedName("nik")
-    val nik: Long? = null,
+    val nik: String? = null,
 
     @field:SerializedName("name")
     val name: String? = null,
@@ -28,4 +31,4 @@ data class DataKTPResult(
 
     @field:SerializedName("title")
     val title: String? = null,
-)
+) : Parcelable

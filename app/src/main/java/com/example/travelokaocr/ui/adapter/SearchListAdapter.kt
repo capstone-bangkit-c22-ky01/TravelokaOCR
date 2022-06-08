@@ -42,7 +42,12 @@ class SearchListAdapter(
     }
 
     val differAsync = AsyncListDiffer(this, differCallback)
-    private var onItemClickListener: ((Flights) -> Unit)? = null
+
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
+        this.onItemClickCallback = onItemClickCallback
+    }
 
     inner class ListUsersViewHolder(var binding: ItemRowFlightBinding): RecyclerView
     .ViewHolder(binding.root)
@@ -110,15 +115,19 @@ class SearchListAdapter(
             holder.binding.flightDurationTv.text = "${hour}h ${minute}m"
             holder.binding.flightTypeTv.text = "Direct"
 
-            setOnClickListener {
-                onItemClickListener?.let {
-                    it(data) }
+            holder.binding.buyBtn.setOnClickListener{
+                onItemClickCallback.onItemClicked(data.id)
             }
+
         }
     }
 
     override fun getItemCount(): Int {
         return differAsync.currentList.size
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(id: String?)
     }
 
 }

@@ -40,7 +40,7 @@ fun createFile(application: Application): File {
     return File(outputDirectory, "$timeStamp.jpg")
 }
 
-fun bitmapToFile(file: File, pictureBitmap: Bitmap, context: Context): File {
+fun bitmapToFile(file: File, pictureBitmap: Bitmap): File {
 
     val fOut = FileOutputStream(file)
 

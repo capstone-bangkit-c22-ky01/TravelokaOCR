@@ -20,6 +20,7 @@ import com.example.travelokaocr.data.repository.FlightRepository
 import com.example.travelokaocr.databinding.ActivityFlightSearchResultBinding
 import com.example.travelokaocr.ui.adapter.SearchListAdapter
 import com.example.travelokaocr.ui.main.fragment.FlightFragment
+import com.example.travelokaocr.ui.ocr.OCRScreenActivity
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
 import com.example.travelokaocr.viewmodel.AuthViewModel
@@ -34,6 +35,7 @@ class FlightSearchResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFlightSearchResultBinding
 
     private lateinit var savedPref: SavedPreference
+    private lateinit var accessToken: String
     private lateinit var list: SearchListAdapter
 
     //API
@@ -53,8 +55,8 @@ class FlightSearchResultActivity : AppCompatActivity() {
         val cityTo = (savedPref.getData(Constants.TO_ONLY_CITY))?.lowercase()
         val cityFrom = (savedPref.getData(Constants.FROM_ONLY_CITY))?.lowercase()
         Log.d("CITY RESULT", "onCreate: $cityTo and $cityFrom")
-        val tokenFromAPI = (savedPref.getData(Constants.ACCESS_TOKEN))
-        val accessToken = "Bearer $tokenFromAPI"
+        val tokenFromAPI = (savedPref.getData(Constants.ACCESS_TOKEN))!!
+        accessToken = "Bearer $tokenFromAPI"
 
         //CREATE API CONNECTION
         val factory = FlightViewModelFactory(FlightRepository())
@@ -72,6 +74,39 @@ class FlightSearchResultActivity : AppCompatActivity() {
 
         binding.ivBack.setOnClickListener {
             startActivity(Intent(this@FlightSearchResultActivity, FlightFragment::class.java))
+        }
+    }
+
+    private fun observerFlightBook(accessToken: String, flightID: HashMap<String, Int>){
+        viewModel.flightBook(accessToken, flightID).observe(this) { response ->
+            if (response is Resources.Loading){
+                enableProgressBar()
+            }
+            else if (response is Resources.Error){
+                disableProgressBar()
+                Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
+            }
+            else if (response is Resources.Success) {
+                val result = response.data
+                if (result != null){
+                    if (result.status == "success"){
+                        disableProgressBar()
+                        val intent = Intent(this@FlightSearchResultActivity, OCRScreenActivity::class.java)
+                        intent.putExtra("id", result.data?.bookingId)
+                        startActivity(intent)
+                    }
+                    else {
+                        val dataToken = hashMapOf(
+                            "refreshToken" to savedPref.getData(Constants.REFRESH_TOKEN)
+                        )
+                        Log.d("REFRESH TOKEN", "observerFlightSearch: $dataToken")
+                        Log.d("ACCESS TOKEN", "observerFlightSearch: $accessToken")
+                        observeUpdateToken(dataToken)
+                    }
+                } else {
+                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
@@ -148,6 +183,7 @@ class FlightSearchResultActivity : AppCompatActivity() {
     }
 
     private fun configRecyclerView() {
+
         list = SearchListAdapter(this)
         binding.rvSearchResultTickets.apply {
             adapter = list
@@ -158,6 +194,19 @@ class FlightSearchResultActivity : AppCompatActivity() {
                     LinearLayoutManager(context)
                 }
         }
+
+        list.setOnItemClickCallback(object: SearchListAdapter.OnItemClickCallback{
+            override fun onItemClicked(id: String?) {
+
+                val flightID = hashMapOf(
+                    "id" to id?.toInt()!!
+                )
+
+                observerFlightBook(accessToken, flightID)
+            }
+
+        })
+
     }
 
     @Suppress("DEPRECATION")

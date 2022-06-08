@@ -36,6 +36,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 
+
 const val RC_SIGN_IN = 200
 
 @Suppress("DEPRECATION")
@@ -53,6 +54,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onStart() {
         super.onStart()
+
         if(savedPref.getSession(Constants.IS_LOGIN)){
             startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
             killActivity()
@@ -238,8 +240,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         val password = binding.etvPassword.text.toString()
 
         val dataLogin = hashMapOf(
-                "email" to email,
-                "password" to password
+            "email" to email,
+            "password" to password
         )
 
         viewModel.loginUser(dataLogin).observe(this) { response ->

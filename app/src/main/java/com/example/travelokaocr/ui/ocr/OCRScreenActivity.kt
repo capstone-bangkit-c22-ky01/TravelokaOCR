@@ -1,26 +1,46 @@
 package com.example.travelokaocr.ui.ocr
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.*
+import android.os.Build.VERSION
+import android.os.Build.VERSION_CODES
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.SurfaceHolder
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModelProvider
 import com.example.travelokaocr.R
+import com.example.travelokaocr.data.repository.AuthRepository
+import com.example.travelokaocr.data.repository.OCRRepository
 import com.example.travelokaocr.databinding.ActivityOcrscreenBinding
+import com.example.travelokaocr.utils.Constants
+import com.example.travelokaocr.utils.LoadingOCRScreenDialog
+import com.example.travelokaocr.utils.Resources
 import com.example.travelokaocr.utils.imageanalysis.ImageAnalyzer
 import com.example.travelokaocr.utils.imageanalysis.createTempFile
+import com.example.travelokaocr.viewmodel.AuthViewModel
 import com.example.travelokaocr.viewmodel.OCRScreenViewModel
+import com.example.travelokaocr.viewmodel.factory.AuthViewModelFactory
+import com.example.travelokaocr.viewmodel.factory.OCRScreenViewModelFactory
+import com.example.travelokaocr.viewmodel.preference.SavedPreference
 import com.google.gson.Gson
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -29,10 +49,17 @@ import kotlin.math.ln
 import kotlin.math.max
 import kotlin.math.min
 
+
 class OCRScreenActivity : AppCompatActivity() {
 
     //BINDING
     private lateinit var binding: ActivityOcrscreenBinding
+
+    // Session
+    private lateinit var savedPref: SavedPreference
+    private lateinit var accessToken: String
+    private lateinit var bookingID: String
+    private lateinit var data: RequestBody
 
     // image controller stuff
     private lateinit var cameraController: CameraControl
@@ -47,7 +74,12 @@ class OCRScreenActivity : AppCompatActivity() {
     private var imageAnalyzer: ImageAnalysis? = null
     private lateinit var cameraAnalysisExecutor: ExecutorService
 
-    private val viewModel: OCRScreenViewModel by viewModels()
+    // dialog stuff
+    private lateinit var loadingDialog: LoadingOCRScreenDialog
+
+    // ViewModel
+    private lateinit var viewModel: OCRScreenViewModel
+    private lateinit var authViewModel: AuthViewModel
 
     companion object{
 
@@ -73,6 +105,26 @@ class OCRScreenActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
+        loadingDialog = LoadingOCRScreenDialog(this)
+
+        setupBookingIDAndToken()
+
+        // instantiate View Model
+
+        val authFactory = AuthViewModelFactory(AuthRepository())
+        authViewModel = ViewModelProvider(this, authFactory)[AuthViewModel::class.java]
+
+        val factory = OCRScreenViewModelFactory(OCRRepository())
+        viewModel = ViewModelProvider(this, factory)[OCRScreenViewModel::class.java]
+
+        viewModel.setLoadingOCRScreenDialog.observe(this){
+            if (it == true){
+                loadingDialog.startLoadingDialog()
+            }else if (it == false){
+                loadingDialog.dismissLoadingDialog()
+            }
+        }
+
         if (!allPermissionGranted()){
             ActivityCompat.requestPermissions(
                 this,
@@ -85,6 +137,10 @@ class OCRScreenActivity : AppCompatActivity() {
 
             photoFile = createTempFile(this).also {
                 currentPhotoFilePath = it.absolutePath
+            }
+
+            binding.tvBackButton.setOnClickListener{
+                finish()
             }
 
             binding.viewFinder.post {
@@ -151,6 +207,16 @@ class OCRScreenActivity : AppCompatActivity() {
         cameraAnalysisExecutor.shutdown()
     }
 
+    private fun setupBookingIDAndToken(){
+
+        savedPref = SavedPreference(this)
+        val tokenFromAPI = (savedPref.getData(Constants.ACCESS_TOKEN))!!
+        accessToken = "Bearer $tokenFromAPI"
+
+        bookingID = intent.extras?.getString("id").toString()
+
+    }
+
     private fun bindCameraUseCases(){
 
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
@@ -200,9 +266,15 @@ class OCRScreenActivity : AppCompatActivity() {
                         , ImageAnalyzer(
                             this,
                             photoFile,
-                            viewModel.imageCropPercentages
+                            viewModel.imageCropPercentages,
+                            viewModel.setLoadingOCRScreenDialog
                         ){ detectedObjectList ->
-                            Log.d("asiapRahasia", Gson().toJson(detectedObjectList))
+
+                            it.clearAnalyzer()
+
+                            data = Gson().toJson(detectedObjectList).toRequestBody("text/plain".toMediaType())
+
+                            observerOCRScanning(accessToken, bookingID, photoFile, data)
                         }
                     )
                 }
@@ -228,6 +300,152 @@ class OCRScreenActivity : AppCompatActivity() {
 
         }, ContextCompat.getMainExecutor(this))
 
+    }
+
+    private fun observerOCRScanning(accessToken: String, bookingID: String, photoFile: File, data: RequestBody) {
+
+        val requestImageFile = photoFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
+        val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
+            "file",
+            photoFile.name,
+            requestImageFile
+        )
+
+        val isUiThread =
+            if (VERSION.SDK_INT >= VERSION_CODES.M) Looper.getMainLooper().isCurrentThread else Thread.currentThread() === Looper.getMainLooper().thread
+
+        Log.d("wkkwkwkwk", "$isUiThread")
+
+        Handler(Looper.getMainLooper()).post {
+            viewModel.scanIDCard(accessToken, imageMultipart, data).observe(this) { response ->
+
+                if (response is Resources.Error) {
+                    viewModel.setLoadingOCRScreenDialog.value = false
+                    Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
+                } else if (response is Resources.Success) {
+                    val result = response.data
+                    if (result != null) {
+                        if (result.status == "Success") {
+
+                            observerOCRResult(accessToken, bookingID)
+
+                        } else {
+                            Log.d("REGIS", result.status)
+                            val dataToken = hashMapOf(
+                                "refreshToken" to savedPref.getData(Constants.REFRESH_TOKEN)
+                            )
+                            Log.d("REFRESH TOKEN", "observerFlightSearch: $dataToken")
+                            Log.d("ACCESS TOKEN", "observerFlightSearch: $accessToken")
+                            observeUpdateTokenForObserverOCRScanning(dataToken)
+                        }
+                    } else {
+                        Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+            }
+        }
+
+    }
+
+    private fun observerOCRResult(accessToken: String, bookingID: String){
+
+        viewModel.retrieveIDCardResult(accessToken).observe(this){ response ->
+
+            if (response is Resources.Error){
+                viewModel.setLoadingOCRScreenDialog.value = false
+                Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
+            }else if (response is Resources.Success){
+                val result = response.data
+                if (result != null){
+                    if (result.status == "success"){
+                        val intent = Intent(this, OCRResultActivity::class.java)
+                        intent.putExtra("IDCardResult", result.data)
+                        intent.putExtra("BookingID", bookingID)
+
+                        viewModel.setLoadingOCRScreenDialog.value = false
+
+                        startActivity(intent)
+                        finish()
+                    }else {
+                        val dataToken = hashMapOf(
+                            "refreshToken" to savedPref.getData(Constants.REFRESH_TOKEN)
+                        )
+                        observeUpdateTokenForOCRResult(dataToken)
+                    }
+                } else {
+                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        }
+
+    }
+
+    private fun observeUpdateTokenForObserverOCRScanning(dataToken: HashMap<String, String?>) {
+        authViewModel.updateToken(dataToken).observe(this) { response ->
+            if (response is Resources.Error) {
+                viewModel.setLoadingOCRScreenDialog.value = false
+                Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
+            }
+            else if (response is Resources.Success) {
+                val result = response.data
+                if (result != null) {
+                    if (result.status.equals("success")) {
+
+                        val newAccessToken = result.data?.accessToken.toString()
+                        //save new token
+                        savedPref.putData(Constants.ACCESS_TOKEN, newAccessToken)
+
+                        //get new token
+                        val tokenFromAPI = (savedPref.getData(Constants.ACCESS_TOKEN))
+                        val accessToken = "Bearer $tokenFromAPI"
+
+                        Log.d("NEW ACCESS TOKEN", "observeUpdateToken: $accessToken")
+
+                        observerOCRScanning(accessToken, bookingID, photoFile, data)
+                    }
+                    else {
+                        Log.d("REGIS", result.status.toString())
+                    }
+                } else {
+                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun observeUpdateTokenForOCRResult(dataToken: HashMap<String, String?>) {
+        authViewModel.updateToken(dataToken).observe(this) { response ->
+            if (response is Resources.Error) {
+                viewModel.setLoadingOCRScreenDialog.value = false
+                Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
+            }
+            else if (response is Resources.Success) {
+                val result = response.data
+                if (result != null) {
+                    if (result.status.equals("success")) {
+
+                        val newAccessToken = result.data?.accessToken.toString()
+                        //save new token
+                        savedPref.putData(Constants.ACCESS_TOKEN, newAccessToken)
+
+                        //get new token
+                        val tokenFromAPI = (savedPref.getData(Constants.ACCESS_TOKEN))
+                        val accessToken = "Bearer $tokenFromAPI"
+
+                        Log.d("NEW ACCESS TOKEN", "observeUpdateToken: $accessToken")
+
+                        observerOCRResult(accessToken, bookingID)
+                    }
+                    else {
+                        Log.d("REGIS", result.status.toString())
+                    }
+                } else {
+                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
     private fun drawOverlay(

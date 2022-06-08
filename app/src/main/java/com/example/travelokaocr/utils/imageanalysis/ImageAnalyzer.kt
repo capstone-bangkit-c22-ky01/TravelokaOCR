@@ -23,6 +23,7 @@ class ImageAnalyzer(
     private val context: Context,
     private val imageFile: File,
     private val imageCropPercentages: MutableLiveData<Pair<Int, Int>>,
+    private val setLoadingOCRScreenDialog: MutableLiveData<Boolean>,
     private val listener: ObjectDetectorCallback
 ): ImageAnalysis.Analyzer {
 
@@ -117,7 +118,7 @@ class ImageAnalyzer(
         val options = ObjectDetector.ObjectDetectorOptions.builder()
             .setBaseOptions(baseOptions)
             .setMaxResults(5)
-            .setScoreThreshold(0.9f)
+            .setScoreThreshold(0.70f)
             .build()
 
         val detector = ObjectDetector.createFromFileAndOptions(
@@ -130,6 +131,8 @@ class ImageAnalyzer(
         val results = detector.detect(tensorImage)
 
         if (results.size == 5){
+
+            setLoadingOCRScreenDialog.postValue(true)
 
             results.forEach {
 
@@ -167,7 +170,7 @@ class ImageAnalyzer(
                 }
 
             }
-
+            bitmapToFile(imageFile, bitmap)
             identityCardImageCoordinate = IdentityCardImageCoordinate(JsonMemberClass(nikBoundingBoxCoordinate, nameBoundingBoxCoordinate, sexBoundingBoxCoordinate, marriedBoundingBoxCoordinate, nationalityBoundingBoxCoordinate))
             listener(identityCardImageCoordinate)
         }

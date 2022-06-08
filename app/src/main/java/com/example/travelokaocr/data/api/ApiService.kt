@@ -9,6 +9,9 @@ import com.example.travelokaocr.data.model.auth.LogoutResponse
 import com.example.travelokaocr.data.model.flight.BookingResponse
 import com.greentea.travelokaocr_gt.data.model.auth.RegisResponse
 import com.example.travelokaocr.data.model.auth.UpdateTokenResponse
+import com.example.travelokaocr.data.model.ocr.ScanIDCardResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -27,6 +30,7 @@ const val DESTINATION_QUERY = "destination"
 const val ID_QUERY = "id"
 
 //OCR
+const val KTP_SCANIDCARD_ENDPOINT = "/ktp"
 const val KTP_RESULT_ENDPOINT = "ktpresult"
 
 //EDIT PROFIL
@@ -96,12 +100,20 @@ interface ApiService {
     ): Response<FlightSearchResponse>
 
     //POST BOOKING
-    //still under development
     @POST(FLIGHT_BOOKING)
     suspend fun flightBooking(
         @Header(TOKEN_HEADER) accessToken: String,
-        @Body data: HashMap<String, String>
+        @Body data: HashMap<String, Int>
     ): Response<BookingResponse>
+
+    // POST Scan ID Card
+    @Multipart
+    @POST(KTP_SCANIDCARD_ENDPOINT)
+    suspend fun scanIDCard(
+        @Header(TOKEN_HEADER) accessToken: String,
+        @Part file: MultipartBody.Part,
+        @Part("data") data: RequestBody
+    ) : Response<ScanIDCardResponse>
 
     //GET LIST HISTORY
     @GET(FLIGHT_BOOKING)

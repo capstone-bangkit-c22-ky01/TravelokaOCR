@@ -46,12 +46,16 @@ class FlightSearchResultActivity : AppCompatActivity() {
         binding = ActivityFlightSearchResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         savedPref = SavedPreference(this)
         configRecyclerView()
-        setUpView()
 
         val cityTo = (savedPref.getData(Constants.TO_ONLY_CITY))?.lowercase()
         val cityFrom = (savedPref.getData(Constants.FROM_ONLY_CITY))?.lowercase()
+
+        println(cityTo + cityFrom)
+
         Log.d("CITY RESULT", "onCreate: $cityTo and $cityFrom")
         val tokenFromAPI = (savedPref.getData(Constants.ACCESS_TOKEN))
         val accessToken = "Bearer $tokenFromAPI"
@@ -71,7 +75,7 @@ class FlightSearchResultActivity : AppCompatActivity() {
         binding.seatClassTv.text = savedPref.getData(Constants.SEAT)
 
         binding.ivBack.setOnClickListener {
-            startActivity(Intent(this@FlightSearchResultActivity, FlightFragment::class.java))
+            finish()
         }
     }
 
@@ -89,7 +93,7 @@ class FlightSearchResultActivity : AppCompatActivity() {
                 val result = response.data
                 if (result != null) {
                     if (result.status.equals("success")) {
-                        list.differAsync.submitList(result.data?.flights)
+                        list.differAsync.submitList((result.data?.flights)?.reversed())
                     }
                     else {
                         Log.d("REGIS", result.status.toString())
@@ -158,20 +162,6 @@ class FlightSearchResultActivity : AppCompatActivity() {
                     LinearLayoutManager(context)
                 }
         }
-    }
-
-    @Suppress("DEPRECATION")
-    private fun setUpView(){
-        //hide the action bar
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        }else{
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
-        supportActionBar?.hide()
     }
 
     private fun enableProgressBar(){

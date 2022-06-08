@@ -46,7 +46,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
 
         //SETUP
-        setUpView()
+        supportActionBar?.hide()
         setUpButton()
         setUpEditText()
         itemOnClickListener()
@@ -122,6 +122,13 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             )
 
             observerRegis(dataRegis, dataLogin)
+        } else {
+            Toast.makeText(this, "Login gagal, password/email salah", Toast.LENGTH_LONG).show()
+            disableProgressBar()
+            binding.btnSignup.isEnabled = false
+//            val intent = Intent(this@LoginActivity, LoginActivity::class.java)
+//            startActivity(intent)
+//            killActivity()
         }
     }
 
@@ -350,19 +357,5 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun killActivity() {
         finish()
-    }
-
-    @Suppress("DEPRECATION")
-    private fun setUpView(){
-        //hide the action bar
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        }else{
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
-        supportActionBar?.hide()
     }
 }

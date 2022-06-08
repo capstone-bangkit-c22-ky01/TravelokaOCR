@@ -10,6 +10,9 @@ class AuthViewModel(private val repo: AuthRepository): ViewModel() {
     //LOGIN
     fun loginUser(data: HashMap<String, String>) = repo.loginUser(data)
 
+    //LOGIN GOOGLE
+    fun loginWithGoogle() = repo.loginWithGoogle()
+
     //UPDATE TOKEN
     fun updateToken(data: HashMap<String, String?>) = repo.updateToken(data)
 

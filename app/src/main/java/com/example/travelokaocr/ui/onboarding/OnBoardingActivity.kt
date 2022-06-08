@@ -23,24 +23,9 @@ class OnBoardingActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
 
         //SETUP
-        setUpView()
+        supportActionBar?.hide()
 
         binding.btnRegister.setOnClickListener(this)
-    }
-
-    @Suppress("DEPRECATION")
-    private fun setUpView(){
-        //hide the action bar
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        }else{
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
-        //turn off action bar
-        supportActionBar?.hide()
     }
 
     override fun onClick(v: View?) {

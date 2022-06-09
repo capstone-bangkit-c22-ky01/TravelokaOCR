@@ -1,10 +1,7 @@
 package com.example.travelokaocr.ui.eula
 
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.WindowInsets
-import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import com.example.travelokaocr.R
 
 class EulaActivity : AppCompatActivity() {

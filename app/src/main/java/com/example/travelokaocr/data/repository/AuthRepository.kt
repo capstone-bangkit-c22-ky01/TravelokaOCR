@@ -8,7 +8,7 @@ import com.example.travelokaocr.data.model.auth.LoginResponse
 import com.example.travelokaocr.utils.Resources
 import com.google.gson.Gson
 import com.example.travelokaocr.data.model.auth.LogoutResponse
-import com.greentea.travelokaocr_gt.data.model.auth.RegisResponse
+import com.example.travelokaocr.data.model.auth.RegisResponse
 import com.example.travelokaocr.data.model.auth.UpdateTokenResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

@@ -1,6 +1,5 @@
 package com.example.travelokaocr.ui.adapter
 
-import android.R.attr.path
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
@@ -78,7 +77,7 @@ class SearchListAdapter(
 
             val myIndonesianLocale = Locale("in", "ID")
             val numberFormat = NumberFormat.getCurrencyInstance(myIndonesianLocale)
-            numberFormat.maximumFractionDigits = 0;
+            numberFormat.maximumFractionDigits = 0
             val convert = numberFormat.format(data.price)
 
             holder.binding.priceTv.text = convert

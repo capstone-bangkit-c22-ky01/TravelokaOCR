@@ -8,10 +8,8 @@ import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import android.widget.EditText
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
-import androidx.core.widget.doBeforeTextChanged
 import com.example.travelokaocr.R
 
 class CustomEditText: AppCompatEditText, View.OnTouchListener {

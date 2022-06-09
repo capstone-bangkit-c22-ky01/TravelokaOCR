@@ -1,13 +1,13 @@
 package com.example.travelokaocr.data.api
 
 import com.example.travelokaocr.data.model.profile.AccessProfileResponse
-import com.example.travelokaocr.data.model.HistoryResponse
+import com.example.travelokaocr.data.model.flight.HistoryResponse
 import com.example.travelokaocr.data.model.ocr.KTPResultResponse
 import com.example.travelokaocr.data.model.flight.FlightSearchResponse
 import com.example.travelokaocr.data.model.auth.LoginResponse
 import com.example.travelokaocr.data.model.auth.LogoutResponse
 import com.example.travelokaocr.data.model.flight.BookingResponse
-import com.greentea.travelokaocr_gt.data.model.auth.RegisResponse
+import com.example.travelokaocr.data.model.auth.RegisResponse
 import com.example.travelokaocr.data.model.auth.UpdateTokenResponse
 import com.example.travelokaocr.data.model.ocr.ScanIDCardResponse
 import com.example.travelokaocr.data.model.ocr.UpdateBookingStatus

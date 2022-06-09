@@ -3,12 +3,9 @@ package com.example.travelokaocr.ui.flightsearchresult
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.WindowInsets
-import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -19,7 +16,6 @@ import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.data.repository.FlightRepository
 import com.example.travelokaocr.databinding.ActivityFlightSearchResultBinding
 import com.example.travelokaocr.ui.adapter.SearchListAdapter
-import com.example.travelokaocr.ui.main.fragment.FlightFragment
 import com.example.travelokaocr.ui.ocr.OCRScreenActivity
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources

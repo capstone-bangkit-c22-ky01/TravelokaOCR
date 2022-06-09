@@ -2,15 +2,11 @@ package com.example.travelokaocr.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.example.travelokaocr.data.repository.FlightRepository
 import com.example.travelokaocr.data.repository.OCRRepository
 import com.example.travelokaocr.ui.ocr.OCRScreenActivity.Companion.DESIRED_HEIGHT_CROP_PERCENT
 import com.example.travelokaocr.ui.ocr.OCRScreenActivity.Companion.DESIRED_WIDTH_CROP_PERCENT
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import java.io.File
-import java.lang.IllegalArgumentException
 
 class OCRScreenViewModel(private val repo: OCRRepository) : ViewModel() {
 

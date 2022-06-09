@@ -113,7 +113,7 @@ class ImageAnalyzer(
 
         // Step 2: Initialize the detector object
 
-        val baseOptions = BaseOptions.builder().useNnapi().build();
+        val baseOptions = BaseOptions.builder().useNnapi().build()
 
         val options = ObjectDetector.ObjectDetectorOptions.builder()
             .setBaseOptions(baseOptions)

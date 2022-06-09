@@ -16,7 +16,6 @@ import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.data.repository.FlightRepository
 import com.example.travelokaocr.databinding.FragmentHistoryBinding
 import com.example.travelokaocr.ui.adapter.HistoryAdapter
-import com.example.travelokaocr.ui.adapter.SearchListAdapter
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
 import com.example.travelokaocr.viewmodel.AuthViewModel

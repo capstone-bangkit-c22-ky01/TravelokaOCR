@@ -36,7 +36,7 @@ class AccessProfileRepository {
         val response = if (imageMultipart == null) {
             RetrofitInstance.API_OBJECT.updateProfile(accessToken, dataUsername!!, dataEmail!!)
         } else {
-            RetrofitInstance.API_OBJECT.updateProfileWithImage(accessToken, dataUsername!!, dataEmail!!, imageMultipart!!)
+            RetrofitInstance.API_OBJECT.updateProfileWithImage(accessToken, dataUsername!!, dataEmail!!, imageMultipart)
         }
         if(response.isSuccessful) {
             returnValue.value = Resources.Success(response.body())

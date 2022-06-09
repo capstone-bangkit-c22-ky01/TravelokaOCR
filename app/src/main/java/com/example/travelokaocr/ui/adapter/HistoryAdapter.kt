@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.travelokaocr.data.model.Bookings
+import com.example.travelokaocr.data.model.flight.Bookings
 import com.example.travelokaocr.databinding.ItemRowHistoryTicketsBinding
-import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.*
 
@@ -57,7 +56,7 @@ class HistoryAdapter(
 
             val myIndonesianLocale = Locale("in", "ID")
             val numberFormat = NumberFormat.getCurrencyInstance(myIndonesianLocale)
-            numberFormat.maximumFractionDigits = 0;
+            numberFormat.maximumFractionDigits = 0
             val convert = numberFormat.format(data.price)
 
             holder.binding.ticketPriceTv.text = convert

@@ -2,12 +2,9 @@ package com.example.travelokaocr.ui.splashscreen
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.WindowInsets
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.travelokaocr.databinding.ActivitySplashScreenBinding
 import com.example.travelokaocr.ui.auth.LoginActivity

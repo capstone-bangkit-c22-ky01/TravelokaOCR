@@ -12,7 +12,7 @@ class LoadingOCRResultDialog(val activity: Activity) {
         val builder = AlertDialog.Builder(activity)
         val inflater = activity.layoutInflater
 
-        builder.setView(inflater.inflate(R.layout.please_wait_while_app_submitting_booking_dialog, null));
+        builder.setView(inflater.inflate(R.layout.please_wait_while_app_submitting_booking_dialog, null))
         builder.setCancelable(false)
 
         dialog = builder.create()

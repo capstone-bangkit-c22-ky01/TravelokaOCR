@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.example.travelokaocr.data.api.RetrofitInstance
-import com.example.travelokaocr.data.model.HistoryResponse
+import com.example.travelokaocr.data.model.flight.HistoryResponse
 import com.example.travelokaocr.data.model.flight.BookingResponse
 import com.example.travelokaocr.utils.Resources
 import com.google.gson.Gson

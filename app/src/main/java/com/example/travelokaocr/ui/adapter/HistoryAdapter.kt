@@ -13,7 +13,6 @@ import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.*
 
-
 class HistoryAdapter(
     val context: Context
 ) : RecyclerView.Adapter<HistoryAdapter.ListUsersViewHolder>() {

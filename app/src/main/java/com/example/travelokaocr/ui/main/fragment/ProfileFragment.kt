@@ -1,6 +1,7 @@
 package com.example.travelokaocr.ui.main.fragment
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -24,6 +25,14 @@ import com.example.travelokaocr.viewmodel.AuthViewModel
 import com.example.travelokaocr.viewmodel.factory.AccessProfileFactory
 import com.example.travelokaocr.viewmodel.factory.AuthViewModelFactory
 import com.example.travelokaocr.viewmodel.preference.SavedPreference
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.tasks.OnCompleteListener
+
+
+const val HTTPS_LINK = "https://"
+const val URL_LINK = "capstone-bangkit-c22-ky01.github.io/traveloka-ocr-landingpage/"
 
 class ProfileFragment : Fragment(), View.OnClickListener {
     //BINDING
@@ -37,6 +46,10 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
     //SESSION
     private lateinit var savedPreference: SavedPreference
+
+    //GOOGLE
+    private lateinit var gsc: GoogleSignInClient
+    private lateinit var gso: GoogleSignInOptions
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,8 +80,17 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
         savedPreference = SavedPreference(requireContext())
 
-        val dataUser = savedPreference.getData(Constants.ACCESS_TOKEN)
-        showDataUser(dataUser!!)
+        //GOOGLE SIGN IN
+        gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken("66670183590-cfunc7u16g4d5n74nhk37mv9cl4garbl.apps.googleusercontent.com")
+            .requestEmail()
+            .build()
+
+        gsc = GoogleSignIn.getClient(requireActivity(), gso)
+
+        val token = savedPreference.getData(Constants.ACCESS_TOKEN)
+        val accessToken = "Bearer $token"
+        showDataUser(accessToken)
     }
 
     private fun showDataUser(dataUser: String){
@@ -93,16 +115,105 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                         binding.tvEmail.text = email
                         Glide.with(this)
                             .load(fotoProfil)
+                            .placeholder(R.drawable.avatar)
                             .centerCrop()
                             .into(binding.ivProfilePicture)
                     } else {
                         Log.d("PROFILE", result.status.toString())
+
+                        Log.d("REGIS", result.status.toString())
+                        val dataToken = hashMapOf(
+                            "refreshToken" to savedPreference.getData(Constants.REFRESH_TOKEN)
+                        )
+
+                        Log.d("REFRESH TOKEN", "observerFlightSearch: $dataToken")
+//                        Log.d("ACCESS TOKEN", "observerFlightSearch: $accessToken")
+                        observeUpdateToken(dataToken)
                     }
                 } else {
                     Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show()
                 }
             }
         }
+    }
+
+    private fun observeUpdateToken(dataToken: HashMap<String, String?>) {
+        authViewModel.updateToken(dataToken).observe(viewLifecycleOwner) { response ->
+            if (response is Resources.Loading) {
+                progressBar(true)
+            }
+            else if (response is Resources.Error) {
+                progressBar(false)
+                Toast.makeText(requireContext(), response.error, Toast.LENGTH_SHORT).show()
+            }
+            else if (response is Resources.Success) {
+                progressBar(false)
+                val result = response.data
+                if (result != null) {
+                    if (result.status.equals("success")) {
+                        val newAccessToken = result.data?.accessToken.toString()
+                        //save new token
+                        savedPreference.putData(Constants.ACCESS_TOKEN, newAccessToken)
+
+                        //get new token
+                        val tokenFromAPI = (savedPreference.getData(Constants.ACCESS_TOKEN))
+                        val accessToken = "Bearer $tokenFromAPI"
+
+                        Log.d("NEW ACCESS TOKEN", "observeUpdateToken: $accessToken")
+
+                        showDataUser(accessToken)
+                    }
+                    else {
+                        Log.d("REGIS", result.status.toString())
+                    }
+                } else {
+                    Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+//    private fun observerShowData(accessToken: String) {
+//        viewModel.profileUser(accessToken).observe(viewLifecycleOwner) { response ->
+//            if (response is Resources.Loading) {
+//                progressBar(true)
+//            }
+//            else if (response is Resources.Error) {
+//                progressBar(false)
+//                Toast.makeText(requireContext(), response.error, Toast.LENGTH_SHORT).show()
+//            }
+//            else if (response is Resources.Success) {
+//                progressBar(false)
+//                val result = response.data
+//                if (result != null) {
+//                    if (result.status.equals("success")) {
+//                        progressBar(false)
+//                    }
+//                    else {
+//                        Log.d("REGIS", result.status.toString())
+//                        val dataToken = hashMapOf(
+//                            "refreshToken" to savedPreference.getData(Constants.REFRESH_TOKEN)
+//                        )
+//                        Log.d("REFRESH TOKEN", "observerFlightSearch: $dataToken")
+//                        Log.d("ACCESS TOKEN", "observerFlightSearch: $accessToken")
+//                        observeUpdateToken(dataToken)
+//                    }
+//                } else {
+//                    Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//        }
+//    }
+
+    private fun browserIntent(){
+        val url: String
+        if (!URL_LINK.startsWith(HTTPS_LINK) && !URL_LINK.startsWith(HTTPS_LINK)) {
+            url = HTTPS_LINK + URL_LINK
+        } else {
+            url = URL_LINK
+        }
+
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
     }
 
     private fun itemOnClickListener(){
@@ -118,11 +229,10 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             }
             R.id.btn_logout -> {
                 //logout, go to login activity
-                progressBar(true)
                 alertLogout()
             }
             R.id.tv_about_traveloka -> {
-
+                browserIntent()
             }
         }
     }
@@ -138,6 +248,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             }
             .setPositiveButton("Yes") { _, _ ->
                 //call api logout
+                progressBar(true)
                 val refreshToken = savedPreference.getData(Constants.REFRESH_TOKEN)
 
                 //api process
@@ -166,10 +277,19 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                     if (result.status.equals("success")) {
                         //delete session
                         savedPreference.clear()
+                        savedPreference.putInstall(Constants.FIRST_INSTALL, false)
                         Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
 
-                        killActivity()
-                        startActivity(Intent(requireActivity(), LoginActivity::class.java))
+                        val acct = GoogleSignIn.getLastSignedInAccount(requireActivity())
+                        if(acct != null){
+                            gsc.signOut()
+                                .addOnCompleteListener(requireActivity(), OnCompleteListener<Void?> {
+                                    revokeAccess()
+                                })
+                        } else {
+                            killActivity()
+                            startActivity(Intent(requireActivity(), LoginActivity::class.java))
+                        }
                     }
                     else {
                         Log.d("REGIS", result.message.toString())
@@ -179,6 +299,14 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                 }
             }
         }
+    }
+
+    private fun revokeAccess() {
+        gsc.revokeAccess()
+            .addOnCompleteListener(requireActivity(), OnCompleteListener<Void?> {
+                killActivity()
+                startActivity(Intent(requireActivity(), LoginActivity::class.java))
+            })
     }
 
     private fun killActivity() {

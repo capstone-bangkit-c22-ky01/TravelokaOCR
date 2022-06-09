@@ -28,7 +28,8 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //SETUP
-        setUpView()
+        supportActionBar?.hide()
+
         //CONNECT BOTTOM NAVIGATION TO THIS ACTIVITY
         bottomNavigationView = binding.bottomNavigationView
         val navController = findNavController(R.id.mainNavHostFragment)
@@ -52,19 +53,5 @@ class HomeActivity : AppCompatActivity() {
             }
         }
         return super.dispatchTouchEvent(ev)
-    }
-
-    @Suppress("DEPRECATION")
-    private fun setUpView(){
-        //hide the action bar
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        }else{
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
-        supportActionBar?.hide()
     }
 }

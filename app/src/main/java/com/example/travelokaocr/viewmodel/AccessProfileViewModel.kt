@@ -2,10 +2,11 @@ package com.example.travelokaocr.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.example.travelokaocr.data.repository.AccessProfileRepository
-import retrofit2.http.Url
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 class AccessProfileViewModel(private val repo: AccessProfileRepository): ViewModel() {
     fun profileUser(data: String) = repo.profileUser(data)
 
-    fun updateUser(name: String, email: String, foto_profil: Url) = repo.updateUser(name, email, foto_profil)
+    fun updateUser(accessToken: String, dataUsername: RequestBody?, dataEmail: RequestBody?, imageMultipart: MultipartBody.Part?) = repo.updateUser(accessToken, dataUsername, dataEmail, imageMultipart)
 }

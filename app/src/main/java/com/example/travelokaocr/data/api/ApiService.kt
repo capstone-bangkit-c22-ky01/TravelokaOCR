@@ -14,6 +14,7 @@ import com.example.travelokaocr.data.model.ocr.UpdateBookingStatus
 import com.example.travelokaocr.data.model.ocr.UpdatedKTPResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import com.example.travelokaocr.data.model.profile.AccessEditProfileResponse
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -79,13 +80,23 @@ interface ApiService {
 
     //UPDATE PROFILE
     //still confused, because should we use raw json on here too?
-    @FormUrlEncoded
+    @Multipart
     @PUT (REGIS_ENDPOINT)
     suspend fun updateProfile(
-        @Field(NAME) name: String?,
-        @Field(EMAIL) email: String?,
-        @Field(PROFILE_PICTURE) foto_profil: Url?
-    ): Response<AccessProfileResponse>
+        @Header (TOKEN_HEADER) accessToken: String,
+        @Part (NAME) name: RequestBody,
+        @Part (EMAIL) email: RequestBody
+    ): Response<AccessEditProfileResponse>
+
+    //UPDATE PROFILE W Image
+    @Multipart
+    @PUT (REGIS_ENDPOINT)
+    suspend fun updateProfileWithImage(
+        @Header (TOKEN_HEADER) accessToken: String,
+        @Part (NAME) name: RequestBody,
+        @Part (EMAIL) email: RequestBody,
+        @Part foto_profile: MultipartBody.Part
+    ): Response<AccessEditProfileResponse>
 
     //GET FLIGHT SEARCH
     //still under the development
@@ -103,6 +114,7 @@ interface ApiService {
     ): Response<FlightSearchResponse>
 
     //POST BOOKING
+    //still under development
     @POST(FLIGHT_BOOKING)
     suspend fun flightBooking(
         @Header(TOKEN_HEADER) accessToken: String,

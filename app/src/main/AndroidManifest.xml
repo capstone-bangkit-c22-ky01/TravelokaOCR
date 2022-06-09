@@ -16,10 +16,15 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelokaOCR">
-
+        <activity
+            android:name=".ui.eula.EulaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.onboarding.OnBoardingActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.splashscreen.SplashScreenActivity"
             android:exported="true">
@@ -32,16 +37,21 @@
 
         <activity
             android:name=".ui.auth.LoginActivity"
-            android:exported="false" />
+            android:exported="false">
+            <intent-filter>
+                <action android:name="name.student.MainActivity" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.auth.RegisterActivity"
             android:exported="false" />
 
         <activity
             android:name=".ui.main.HomeActivity"
-            android:exported="false" />
-
+            android:exported="false"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".ui.flightsearchresult.FlightSearchResultActivity"
             android:exported="false" />

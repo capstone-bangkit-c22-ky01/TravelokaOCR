@@ -7,6 +7,7 @@ class Constants {
         const val ACCESS_TOKEN = "access_token"
         const val REFRESH_TOKEN = "refresh_token"
         const val IS_LOGIN = "is_login"
+        const val FIRST_INSTALL = "is_install"
 
         //FLIGHT
         const val FROM_ONLY_CITY = "from_only_city"

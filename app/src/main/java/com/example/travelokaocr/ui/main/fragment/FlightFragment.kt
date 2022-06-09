@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.travelokaocr.R
 import com.example.travelokaocr.databinding.FragmentFlightBinding
@@ -27,6 +28,10 @@ class FlightFragment : Fragment(), View.OnClickListener {
 
     //SESSION
     private lateinit var savedPref: SavedPreference
+
+    private var checkTo = false
+    private var checkFrom = false
+    private var checkDate = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,7 +60,11 @@ class FlightFragment : Fragment(), View.OnClickListener {
         when (p0?.id) {
             R.id.searchBtn -> {
                 //logout, go to flight search result
-                startActivity(Intent(requireActivity(), FlightSearchResultActivity::class.java))
+                if(checkFrom && checkTo && checkDate){
+                    startActivity(Intent(requireActivity(), FlightSearchResultActivity::class.java))
+                } else{
+                    Toast.makeText(requireContext(), "The form is still empty", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -119,6 +128,7 @@ class FlightFragment : Fragment(), View.OnClickListener {
         val adapterPassengers: ArrayAdapter<String> =
             ArrayAdapter<String>(requireContext(), R.layout.dropdown_item, dataPassengers)
         //when clicked
+        binding.passengersEditText.setText(dataPassengers[0])
         binding.passengersEditText.threshold = 1 //will start working from first character
         binding.passengersEditText.setAdapter(adapterPassengers) //setting the adapter data into the AutoCompleteTextView
         binding.passengersEditText.onItemClickListener =
@@ -137,6 +147,7 @@ class FlightFragment : Fragment(), View.OnClickListener {
         val adapterSeatClass: ArrayAdapter<String> =
             ArrayAdapter<String>(requireContext(), R.layout.dropdown_item, dataSeatClass)
         //when clicked
+        binding.seatClassEditText.setText(dataSeatClass[0])
         binding.seatClassEditText.threshold = 1 //will start working from first character
         binding.seatClassEditText.setAdapter(adapterSeatClass) //setting the adapter data into the AutoCompleteTextView
         binding.seatClassEditText.onItemClickListener =
@@ -151,11 +162,25 @@ class FlightFragment : Fragment(), View.OnClickListener {
     private fun saveDataToCity(onlyToCity: String?, codeTo: String?) {
         savedPref.putData(Constants.TO_ONLY_CITY, onlyToCity!!)
         savedPref.putData(Constants.TO_CODE, codeTo!!)
+
+        if (
+            savedPref.getData(Constants.TO_ONLY_CITY) != null &&
+            savedPref.getData(Constants.TO_CODE) != null
+        ){
+            checkTo = true
+        }
     }
 
     private fun saveDataFromCity(fromOnlyCity: String?, codeFrom: String?) {
         savedPref.putData(Constants.FROM_ONLY_CITY, fromOnlyCity!!)
         savedPref.putData(Constants.FROM_CODE, codeFrom!!)
+
+        if (
+            savedPref.getData(Constants.FROM_ONLY_CITY) != null &&
+            savedPref.getData(Constants.FROM_CODE) != null
+        ){
+            checkFrom = true
+        }
     }
 
     private fun setupDateEditText() {
@@ -182,6 +207,10 @@ class FlightFragment : Fragment(), View.OnClickListener {
 
                 val date = binding.dateEditText.text.toString()
                 savedPref.putData(Constants.DATE, date)
+
+                if(savedPref.getData(Constants.DATE) != null){
+                    checkDate = true
+                }
                 println("date : $date")
             }
 

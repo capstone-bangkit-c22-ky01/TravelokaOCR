@@ -24,6 +24,14 @@ class SavedPreference (context: Context) {
         return pref.getBoolean(key, false)
     }
 
+    fun getInstall(key: String): Boolean{
+        return pref.getBoolean(key, true)
+    }
+
+    fun putInstall(key: String, value: Boolean){
+        editor.putBoolean(key, value).apply()
+    }
+
     fun clear(){
         editor.clear()
             .apply()

@@ -78,16 +78,22 @@ class HistoryFragment : Fragment() {
     private fun observerHistory(accessToken: String) {
         viewModel.history(accessToken).observe(viewLifecycleOwner) { response ->
             if (response is Resources.Loading) {
-                //DO NOTHING
+                enableProgressBar()
             }
             else if (response is Resources.Error) {
+                disableProgressBar()
                 Toast.makeText(requireContext(), response.error, Toast.LENGTH_SHORT).show()
             }
             else if (response is Resources.Success) {
+                disableProgressBar()
                 val result = response.data
                 if (result != null) {
                     if (result.status.equals("success")) {
-                        list.differAsync.submitList(result.data?.bookings)
+                        if((result.data?.bookings)!!.isEmpty()){
+                            binding.containerLl.visibility = View.VISIBLE
+                        } else{
+                            list.differAsync.submitList((result.data.bookings).reversed())
+                        }
                     }
                     else {
                         println("Result : ${result.status.toString()}")
@@ -111,12 +117,14 @@ class HistoryFragment : Fragment() {
     private fun observeUpdateToken(dataToken: HashMap<String, String?>) {
         authViewModel.updateToken(dataToken).observe(viewLifecycleOwner) { response ->
             if (response is Resources.Loading) {
-                //DO NOTHING
+                enableProgressBar()
             }
             else if (response is Resources.Error) {
+                disableProgressBar()
                 Toast.makeText(requireContext(), response.error, Toast.LENGTH_SHORT).show()
             }
             else if (response is Resources.Success) {
+                disableProgressBar()
                 val result = response.data
                 if (result != null) {
                     if (result.status.equals("success")) {
@@ -156,5 +164,14 @@ class HistoryFragment : Fragment() {
                     LinearLayoutManager(context)
                 }
         }
+    }
+
+    private fun enableProgressBar(){
+        binding.progressBar.visibility = View.VISIBLE
+    }
+
+    private fun disableProgressBar(){
+        binding.progressBar.visibility = View.INVISIBLE
+        binding.containerLl.visibility = View.INVISIBLE
     }
 }

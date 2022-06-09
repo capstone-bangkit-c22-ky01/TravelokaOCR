@@ -47,6 +47,22 @@ class AuthRepository {
         }
     }
 
+    //LOGIN WITH GOOGLE
+    fun loginWithGoogle(): LiveData<Resources<LoginResponse?>> = liveData {
+        emit(Resources.Loading)
+        val returnValue = MutableLiveData<Resources<LoginResponse?>>()
+        val response = RetrofitInstance.API_OBJECT.googleLogin()
+        if(response.isSuccessful) {
+            returnValue.value = Resources.Success(response.body())
+            emitSource(returnValue)
+        } else {
+            val error = Gson().fromJson(response.errorBody()?.stringSuspending(), LoginResponse::class.java)
+            response.errorBody()?.close()
+            returnValue.value = Resources.Success(error)
+            emitSource(returnValue)
+        }
+    }
+
     //UPDATE TOKEN
     fun updateToken(data: HashMap<String, String?>): LiveData<Resources<UpdateTokenResponse?>> = liveData {
         emit(Resources.Loading)

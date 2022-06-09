@@ -311,11 +311,6 @@ class OCRScreenActivity : AppCompatActivity() {
             requestImageFile
         )
 
-        val isUiThread =
-            if (VERSION.SDK_INT >= VERSION_CODES.M) Looper.getMainLooper().isCurrentThread else Thread.currentThread() === Looper.getMainLooper().thread
-
-        Log.d("wkkwkwkwk", "$isUiThread")
-
         Handler(Looper.getMainLooper()).post {
             viewModel.scanIDCard(accessToken, imageMultipart, data).observe(this) { response ->
 

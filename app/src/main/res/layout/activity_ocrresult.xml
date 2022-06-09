@@ -144,7 +144,7 @@
                 android:textSize="14sp"
                 android:hint="@string/id_card_number_nik"
                 android:text="@string/nik_dummy"
-                android:inputType="text" />
+                android:inputType="number" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

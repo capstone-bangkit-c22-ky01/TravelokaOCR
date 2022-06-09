@@ -10,6 +10,8 @@ import com.example.travelokaocr.data.model.flight.BookingResponse
 import com.greentea.travelokaocr_gt.data.model.auth.RegisResponse
 import com.example.travelokaocr.data.model.auth.UpdateTokenResponse
 import com.example.travelokaocr.data.model.ocr.ScanIDCardResponse
+import com.example.travelokaocr.data.model.ocr.UpdateBookingStatus
+import com.example.travelokaocr.data.model.ocr.UpdatedKTPResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -25,6 +27,7 @@ const val TOKEN_HEADER = "Authorization"
 //FLIGHT
 const val FLIGHT_ENDPOINT = "flights"
 const val FLIGHT_BOOKING = "flights/booking"
+const val FLIGHT_BOOKING_UPDATE = "flights/booking/{id}"
 const val DEPARTURE_QUERY = "departure"
 const val DESTINATION_QUERY = "destination"
 const val ID_QUERY = "id"
@@ -122,7 +125,12 @@ interface ApiService {
     ): Response<HistoryResponse>
 
     //UPDATE BOOKING STATUS
-    //still under development
+    @PUT(FLIGHT_BOOKING_UPDATE)
+    suspend fun updateBookingStatus(
+        @Path("id") id: String,
+        @Header(TOKEN_HEADER) accessToken: String
+    ): Response<UpdateBookingStatus>
+
     @GET(FLIGHT_BOOKING)
     suspend fun updateBooking(
         @Header(TOKEN_HEADER) accessToken: String,
@@ -142,5 +150,10 @@ interface ApiService {
     ): Response<KTPResultResponse>
 
     //UPDATE OCR RESULT
-    //still under development
+    @PUT(KTP_RESULT_ENDPOINT)
+    suspend fun updateRetrievedDataToDatabase(
+        @Header(TOKEN_HEADER) accessToken: String,
+        @Body data: HashMap<String, String>
+    ): Response<UpdatedKTPResponse>
+
 }

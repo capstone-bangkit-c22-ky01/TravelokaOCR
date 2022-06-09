@@ -8,11 +8,14 @@ import com.example.travelokaocr.data.model.HistoryResponse
 import com.example.travelokaocr.data.model.flight.BookingResponse
 import com.example.travelokaocr.data.model.ocr.KTPResultResponse
 import com.example.travelokaocr.data.model.ocr.ScanIDCardResponse
+import com.example.travelokaocr.data.model.ocr.UpdateBookingStatus
+import com.example.travelokaocr.data.model.ocr.UpdatedKTPResponse
 import com.example.travelokaocr.utils.Resources
 import com.google.gson.Gson
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
+import java.util.HashMap
 
 class OCRRepository {
 
@@ -48,6 +51,42 @@ class OCRRepository {
             returnValue.value = Resources.Success(error)
             emitSource(returnValue)
         }
+    }
+
+    fun updateRetrievedDataToDatabase(accessToken: String, dataToBeSendToAPI: HashMap<String, String>):
+        LiveData<Resources<UpdatedKTPResponse?>> = liveData {
+
+        emit(Resources.Loading)
+        val returnValue = MutableLiveData<Resources<UpdatedKTPResponse?>>()
+        val response = RetrofitInstance.API_OBJECT.updateRetrievedDataToDatabase(accessToken, dataToBeSendToAPI)
+        if (response.isSuccessful){
+            returnValue.value = Resources.Success(response.body())
+            emitSource(returnValue)
+        }else{
+            val error = Gson().fromJson(response.errorBody()?.stringSuspending(), UpdatedKTPResponse::class.java)
+            response.errorBody()?.close()
+            returnValue.value = Resources.Success(error)
+            emitSource(returnValue)
+        }
+
+    }
+
+    fun updateBookingStatus(accessToken: String, dataBookingID: String):
+        LiveData<Resources<UpdateBookingStatus?>> = liveData {
+
+        emit(Resources.Loading)
+        val returnValue = MutableLiveData<Resources<UpdateBookingStatus?>>()
+        val response = RetrofitInstance.API_OBJECT.updateBookingStatus(dataBookingID, accessToken)
+        if (response.isSuccessful){
+            returnValue.value = Resources.Success(response.body())
+            emitSource(returnValue)
+        }else{
+            val error = Gson().fromJson(response.errorBody()?.stringSuspending(), UpdateBookingStatus::class.java)
+            response.errorBody()?.close()
+            returnValue.value = Resources.Success(error)
+            emitSource(returnValue)
+        }
+
     }
 
 

@@ -862,4 +862,6 @@
     <string name="eula_register_agreement">By registering, you are agreeing to our</string>
     <string name="eula_agreement">EULA Agreement</string>
     <string name="eula_login_agreement">By logging in, you are agreeing to our</string>
+    <string name="wait_submitting">Please wait while the app submitting booking</string>
+    <string name="wait_scanning">Please wait while the app scanning</string>
 </resources>

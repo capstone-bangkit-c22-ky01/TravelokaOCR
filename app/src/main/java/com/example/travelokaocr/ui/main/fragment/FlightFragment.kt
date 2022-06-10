@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +12,20 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.travelokaocr.R
+import com.example.travelokaocr.data.repository.AccessProfileRepository
+import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.databinding.FragmentFlightBinding
+import com.example.travelokaocr.databinding.FragmentProfileBinding
 import com.example.travelokaocr.ui.flightsearchresult.FlightSearchResultActivity
 import com.example.travelokaocr.utils.Constants
+import com.example.travelokaocr.utils.Resources
+import com.example.travelokaocr.viewmodel.AccessProfileViewModel
+import com.example.travelokaocr.viewmodel.AuthViewModel
+import com.example.travelokaocr.viewmodel.factory.AccessProfileFactory
+import com.example.travelokaocr.viewmodel.factory.AuthViewModelFactory
 import com.example.travelokaocr.viewmodel.preference.SavedPreference
 import com.google.android.material.textfield.TextInputEditText
 import java.text.SimpleDateFormat
@@ -26,8 +37,16 @@ class FlightFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentFlightBinding? = null
     private val binding get() = _binding!!
 
+    //BINDING PROFILE
+    private var _bindingProfile : FragmentProfileBinding? = null
+    private val bindingProfile get() = _binding!!
+
     //SESSION
     private lateinit var savedPref: SavedPreference
+
+    //VIEW MODELS
+    private lateinit var viewModel: AccessProfileViewModel
+    private lateinit var authViewModel: AuthViewModel
 
     private var checkTo = false
     private var checkFrom = false
@@ -50,10 +69,93 @@ class FlightFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //CREATE API CONNECTION
+        val factory = AccessProfileFactory(AccessProfileRepository())
+        viewModel = ViewModelProvider(this, factory)[AccessProfileViewModel::class.java]
+
+        val authFactory = AuthViewModelFactory(AuthRepository())
+        authViewModel = ViewModelProvider(this, authFactory)[AuthViewModel::class.java]
+
         //SETUP
         savedPref = SavedPreference(requireContext())
         setupDateEditText()
         itemOnClickListener()
+
+        //GET DATA USER
+        val token = savedPref.getData(Constants.ACCESS_TOKEN)
+        val accessToken = "Bearer $token"
+        getDataUser(accessToken)
+    }
+
+    private fun getDataUser(dataUser: String){
+        viewModel.profileUser(dataUser).observe(viewLifecycleOwner){ response ->
+            if (response is Resources.Loading) {
+                progressBar(true)
+            } else if (response is Resources.Error) {
+                progressBar(false)
+                Toast.makeText(requireContext(), response.error, Toast.LENGTH_SHORT).show()
+            } else if (response is Resources.Success) {
+                progressBar(false)
+                val result = response.data
+                if (result != null) {
+                    if (result.status.equals("success")) {
+
+                        val username = result.data?.user?.name.toString()
+                        val email = result.data?.user?.email.toString()
+                        val fotoProfil = result.data?.user?.foto_profil
+                    } else {
+                        Log.d("PROFILE", result.status.toString())
+
+                        Log.d("REGIS", result.status.toString())
+                        val dataToken = hashMapOf(
+                            "refreshToken" to savedPref.getData(Constants.REFRESH_TOKEN)
+                        )
+
+                        Log.d("REFRESH TOKEN", "observerFlightSearch: $dataToken")
+//                        Log.d("ACCESS TOKEN", "observerFlightSearch: $accessToken")
+                        observeUpdateToken(dataToken)
+                    }
+                } else {
+                    Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun observeUpdateToken(dataToken: HashMap<String, String?>) {
+        authViewModel.updateToken(dataToken).observe(viewLifecycleOwner) { response ->
+            if (response is Resources.Loading) {
+                progressBar(true)
+            }
+            else if (response is Resources.Error) {
+                progressBar(false)
+                Toast.makeText(requireContext(), response.error, Toast.LENGTH_SHORT).show()
+            }
+            else if (response is Resources.Success) {
+                progressBar(false)
+                val result = response.data
+                if (result != null) {
+                    if (result.status.equals("success")) {
+                        val newAccessToken = result.data?.accessToken.toString()
+                        //save new token
+                        savedPref.putData(Constants.ACCESS_TOKEN, newAccessToken)
+
+                        //get new token
+                        val tokenFromAPI = (savedPref.getData(Constants.ACCESS_TOKEN))
+                        val accessToken = "Bearer $tokenFromAPI"
+
+                        Log.d("NEW ACCESS TOKEN", "observeUpdateToken: $accessToken")
+
+                        getDataUser(accessToken)
+                    }
+                    else {
+                        Log.d("REGIS", result.status.toString())
+                    }
+                } else {
+                    Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
     override fun onClick(p0: View?) {
@@ -228,5 +330,13 @@ class FlightFragment : Fragment(), View.OnClickListener {
 
     private fun itemOnClickListener() {
         binding.searchBtn.setOnClickListener(this)
+    }
+
+    private fun progressBar(isLoading: Boolean) = with(binding){
+        if (isLoading) {
+            this.progressBar.visibility = View.VISIBLE
+        } else {
+            this.progressBar.visibility = View.GONE
+        }
     }
 }

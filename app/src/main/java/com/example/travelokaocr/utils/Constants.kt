@@ -10,6 +10,9 @@ class Constants {
         const val FIRST_INSTALL = "is_install"
 
         //FLIGHT
+        const val USERNAME = "username"
+        const val EMAIL = "email"
+        const val PROFILE_PICTURE = "profile_picture"
         const val FROM_ONLY_CITY = "from_only_city"
         const val FROM_CODE = "from_code"
         const val TO_ONLY_CITY = "to_only_city"

@@ -44,14 +44,43 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
         //SETUP
         supportActionBar?.hide()
+        nameFocusListener()
+        emailFocusListener()
+        passwordFocusListener()
         setUpButton()
-        setUpEditText()
         itemOnClickListener()
 
         //CREATE API CONNECTION
         val factory = AuthViewModelFactory(AuthRepository())
         viewModel = ViewModelProvider(this, factory)[AuthViewModel::class.java]
         savedPref = SavedPreference(this)
+    }
+
+    private fun nameFocusListener() {
+        binding.etvName.setOnFocusChangeListener { _, focused ->
+            //WHEN THE EMAIL EDIT TEXT ISN'T FOCUS
+            if(!focused){
+                binding.tilName.helperText = validateName()
+            }
+        }
+    }
+
+    private fun emailFocusListener() {
+        binding.etvEmail.setOnFocusChangeListener { _, focused ->
+            //WHEN THE EMAIL EDIT TEXT ISN'T FOCUS
+            if(!focused){
+                binding.tilEmail.helperText = validateEmail()
+            }
+        }
+    }
+
+    private fun passwordFocusListener() {
+        binding.etvPassword.setOnFocusChangeListener { _, focused ->
+            //WHEN THE EMAIL EDIT TEXT ISN'T FOCUS
+            if(!focused){
+                binding.tilPassword.helperText = validatePassword()
+            }
+        }
     }
 
     override fun onClick(p0: View?) {
@@ -73,24 +102,24 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    @Suppress("IMPLICIT_BOXING_IN_IDENTITY_EQUALS")
-    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-        //the focus on edit text will be cleared when user touch anything outside the edittext
-        if (ev?.action === MotionEvent.ACTION_DOWN) {
-            val v = currentFocus
-            if (v is EditText) {
-                val outRect = Rect()
-                v.getGlobalVisibleRect(outRect)
-                if (!outRect.contains(ev.rawX.toInt(), ev.rawY.toInt())) {
-                    v.clearFocus()
-                    val imm: InputMethodManager =
-                        getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0)
-                }
-            }
-        }
-        return super.dispatchTouchEvent(ev)
-    }
+//    @Suppress("IMPLICIT_BOXING_IN_IDENTITY_EQUALS")
+//    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+//        //the focus on edit text will be cleared when user touch anything outside the edittext
+//        if (ev?.action === MotionEvent.ACTION_DOWN) {
+//            val v = currentFocus
+//            if (v is EditText) {
+//                val outRect = Rect()
+//                v.getGlobalVisibleRect(outRect)
+//                if (!outRect.contains(ev.rawX.toInt(), ev.rawY.toInt())) {
+//                    v.clearFocus()
+//                    val imm: InputMethodManager =
+//                        getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+//                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0)
+//                }
+//            }
+//        }
+//        return super.dispatchTouchEvent(ev)
+//    }
 
     private fun signUpForm() {
         binding.tilName.helperText = validateName()
@@ -254,10 +283,6 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun validateButton() {
-        binding.tilName.helperText = validateName()
-        binding.tilEmail.helperText = validateEmail()
-        binding.tilPassword.helperText = validatePassword()
-
         val validName = binding.tilName.helperText == null
         val validEmail = binding.tilEmail.helperText == null
         val validPassword = binding.tilPassword.helperText == null
@@ -270,29 +295,6 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             binding.btnSignup.isEnabled =
                 (name.isNotEmpty()) && (email.isNotEmpty()) &&
                         (password.isNotEmpty())
-        }
-    }
-
-    private fun setUpEditText() {
-        //FOR NAME
-        binding.etvName.setOnFocusChangeListener { _, focus ->
-            if(!focus){
-                binding.tilName.helperText = validateName()
-            }
-        }
-
-        //FOR EMAIL
-        binding.etvEmail.setOnFocusChangeListener { _, focus ->
-            if(!focus){
-                binding.tilEmail.helperText = validateEmail()
-            }
-        }
-
-        //FOR PASSWORD
-        binding.etvPassword.setOnFocusChangeListener { _, focus ->
-            if (!focus) {
-                binding.tilPassword.helperText = validatePassword()
-            }
         }
     }
 

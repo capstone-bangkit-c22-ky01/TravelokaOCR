@@ -20,7 +20,7 @@
     <string name="regis_title">Sign Up</string>
     <string name="regis_enter_name">Please enter your name</string>
     <string name="regis_options">Already have an account?</string>
-    <string name="regis_redirect_login">Login</string>
+    <string name="regis_redirect_login"><u>Login</u></string>
 
     <!--LOGIN TEXT-->
     <string name="login_clouds_icon">Clouds Icon</string>

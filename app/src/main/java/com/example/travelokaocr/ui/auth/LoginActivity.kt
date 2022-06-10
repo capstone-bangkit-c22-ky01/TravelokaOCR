@@ -72,8 +72,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         //SETUP
         supportActionBar?.hide()
         emailFocusListener()
-        passwordFocusListener()
-
         setUpButton()
         itemOnClickListener()
 
@@ -96,13 +94,15 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             //WHEN THE EMAIL EDIT TEXT ISN'T FOCUS
             if(!focused){
                 binding.tilEmail.helperText = validateEmail()
+            } else{
+                passwordFocusListener()
             }
         }
     }
 
     private fun passwordFocusListener() {
         binding.etvPassword.setOnFocusChangeListener { _, focused ->
-            //WHEN THE EMAIL EDIT TEXT ISN'T FOCUS
+            //WHEN THE PASSWORD EDIT TEXT ISN'T FOCUS
             if(!focused){
                 binding.tilPassword.helperText = validatePassword()
             }
@@ -338,9 +338,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun validateButton() {
-        binding.tilEmail.helperText = validateEmail()
-        binding.tilPassword.helperText = validatePassword()
-
         val validEmail = binding.tilEmail.helperText == null
         val validPassword = binding.tilPassword.helperText == null
 

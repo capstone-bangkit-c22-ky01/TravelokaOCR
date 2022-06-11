@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.travelokaocr">
-
     <!-- PERMISSION USED -->
     <uses-feature android:name="android.hardware.camera" />
 
@@ -12,6 +11,16 @@
         android:maxSdkVersion="18" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+
+            <category android:name="android.intent.category.BROWSABLE" />
+
+            <data android:scheme="https" />
+        </intent>
+    </queries>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,6 +28,9 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelokaOCR">
+        <activity
+            android:name=".HistoryDetailActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.eula.EulaActivity"
             android:exported="false" />
@@ -34,7 +46,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.auth.LoginActivity"
             android:exported="false">
@@ -47,7 +58,6 @@
         <activity
             android:name=".ui.auth.RegisterActivity"
             android:exported="false" />
-
         <activity
             android:name=".ui.main.HomeActivity"
             android:exported="false"
@@ -55,19 +65,15 @@
         <activity
             android:name=".ui.flightsearchresult.FlightSearchResultActivity"
             android:exported="false" />
-
         <activity
             android:name=".ui.profile.EditProfileActivity"
             android:exported="false" />
-
         <activity
             android:name=".ui.ocr.OCRScreenActivity"
             android:exported="false" />
-
         <activity
             android:name=".ui.ocr.OCRResultActivity"
             android:exported="false" />
-
         <activity
             android:name=".ui.ocr.SuccessPageActivity"
             android:exported="false" />
@@ -81,15 +87,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/image_file_paths" />
         </provider>
-
     </application>
-
-    <queries>
-        <intent>
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.BROWSABLE" />
-            <data android:scheme="https" />
-        </intent>
-    </queries>
 
 </manifest>

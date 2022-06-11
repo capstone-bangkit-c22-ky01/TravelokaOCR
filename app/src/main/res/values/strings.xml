@@ -864,4 +864,11 @@
     <string name="eula_login_agreement">By logging in, you are agreeing to our</string>
     <string name="wait_submitting">Please wait while the app submitting booking</string>
     <string name="wait_scanning">Please wait while the app scanning</string>
+    <string name="flight_eticket">Flight E-ticket</string>
+    <string name="airline_booking_code">Airline Booking Code</string>
+    <string name="booking_code">C22KY01</string>
+    <string name="depart_time">14:40</string>
+    <string name="arrival_time">15:40</string>
+    <string name="passenger">Passenger</string>
+    <string name="info">This airline doesn’t allow passenger name correction</string>
 </resources>

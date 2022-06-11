@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -36,7 +37,7 @@ import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
-class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
+class EditProfileActivity : AppCompatActivity() {
 
     //BINDING
     private lateinit var binding: ActivityEditProfileBinding
@@ -48,17 +49,15 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var savedPreference: SavedPreference
     private lateinit var accessToken: String
 
-    private var selectedImg: Uri? = null
     private var getFile: File? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        setupView()
-        itemOnClickListener()
-        setUpButton()
+        supportActionBar?.hide()
 
         //CREATE API CONNECTION
         val factory = AccessProfileFactory(AccessProfileRepository())
@@ -72,7 +71,22 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         val token = savedPreference.getData(Constants.ACCESS_TOKEN)
         accessToken = "Bearer $token"
 
+        binding.tvEditProfile.setOnClickListener{
+            finish()
+        }
+        binding.tvUploadImage.setOnClickListener{
+            startGallery()
+        }
+        binding.btnSaveChanges.setOnClickListener{
+            update()
+            val fragment: Fragment = ProfileFragment()
+            supportFragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
+        }
+
+        setUpButton()
+
         showDataUser()
+
     }
 
     //SHOW DATA
@@ -85,15 +99,12 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         binding.edtUsername.setText(username)
         binding.edtEmail.setText(email)
 
-        if (profilePicture != null){
-            Glide.with(this)
-                .load(profilePicture)
-                .placeholder(R.drawable.avatar)
-                .centerCrop()
-                .into(binding.ivProfilePicture)
+        if (profilePicture == "null"){
+            binding.ivProfilePicture.setImageURI(null)
         }else{
-            binding.ivProfilePicture.setImageResource(R.drawable.avatar)
+            binding.ivProfilePicture.setImageURI(profilePicture?.toUri())
         }
+
     }
 
     private fun validateUsername(): String? {
@@ -173,14 +184,15 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
 
     private val launcherIntentGallery = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
-    ) { result ->
-        if (result.resultCode == RESULT_OK) {
-            selectedImg = result.data?.data as Uri
-            val myFile = uriToFile(selectedImg!!, this@EditProfileActivity)
+    ){ result ->
+        if (result.resultCode == RESULT_OK){
+            val selectedImg: Uri = result.data?.data as Uri
+            val myFile = uriToFile(selectedImg, this)
 
             getFile = myFile
 
-            binding.ivProfilePicture.setImageBitmap(BitmapFactory.decodeFile(myFile.path))
+            binding.ivProfilePicture.setImageURI(selectedImg)
+
         }
     }
 
@@ -287,7 +299,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
 
                         savedPreference.putData(Constants.USERNAME, username!!)
                         savedPreference.putData(Constants.EMAIL, email!!)
-//                        savedPreference.putData(Constants.PROFILE_PICTURE, photoProfile)
+                        savedPreference.putData(Constants.PROFILE_PICTURE, photoProfile!!)
 
                     } else {
                         val dataToken = hashMapOf(
@@ -348,31 +360,6 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun setupView() {
-        supportActionBar?.hide()
-    }
-
-    private fun itemOnClickListener(){
-        binding.tvEditProfile.setOnClickListener(this)
-        binding.tvUploadImage.setOnClickListener(this)
-        binding.btnSaveChanges.setOnClickListener(this)
-    }
-
-    override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.tv_edit_profile -> {
-                finish()
-            }
-            R.id.tv_upload_image -> {
-                startGallery()
-            }
-            R.id.btn_save_changes -> {
-                update()
-                val fragment: Fragment = ProfileFragment()
-                supportFragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
-            }
-        }
-    }
 
     private fun progressBar(isLoading: Boolean) = with(binding){
         if (isLoading) {

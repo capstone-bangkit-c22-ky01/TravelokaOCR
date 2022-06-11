@@ -8,6 +8,10 @@ class SavedPreference (context: Context) {
     private var pref = context.getSharedPreferences(Constants.PREFS_NAME, Context.MODE_PRIVATE)
     private val editor: SharedPreferences.Editor = pref.edit()
 
+    fun checkIfKeyExist(key: String): Boolean{
+        return pref.contains(key)
+    }
+
     fun putData(key: String, value: String){
         editor.putString(key, value).apply()
     }

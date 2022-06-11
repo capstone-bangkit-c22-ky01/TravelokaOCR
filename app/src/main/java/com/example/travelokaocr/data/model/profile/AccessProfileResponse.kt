@@ -30,5 +30,5 @@ data class User(
     val password: String? = null,
 
     @field:SerializedName("foto_profil")
-    val foto_profil: Url? = null
+    val foto_profil: String? = null
 )

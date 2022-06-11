@@ -33,13 +33,10 @@ import java.util.*
 
 
 class FlightFragment : Fragment(), View.OnClickListener {
+
     //BINDING
     private var _binding: FragmentFlightBinding? = null
     private val binding get() = _binding!!
-
-    //BINDING PROFILE
-    private var _bindingProfile : FragmentProfileBinding? = null
-    private val bindingProfile get() = _binding!!
 
     //SESSION
     private lateinit var savedPref: SavedPreference
@@ -84,7 +81,12 @@ class FlightFragment : Fragment(), View.OnClickListener {
         //GET DATA USER
         val token = savedPref.getData(Constants.ACCESS_TOKEN)
         val accessToken = "Bearer $token"
-        getDataUser(accessToken)
+
+        // get user data if savedPref does not contain user data
+        if (!savedPref.checkIfKeyExist(Constants.USERNAME)){
+            getDataUser(accessToken)
+        }
+
     }
 
     private fun getDataUser(dataUser: String){
@@ -102,7 +104,12 @@ class FlightFragment : Fragment(), View.OnClickListener {
 
                         val username = result.data?.user?.name.toString()
                         val email = result.data?.user?.email.toString()
-                        val fotoProfil = result.data?.user?.foto_profil
+                        val fotoProfil = result.data?.user?.foto_profil ?: "null"
+
+                        savedPref.putData(Constants.USERNAME, username)
+                        savedPref.putData(Constants.EMAIL, email)
+                        savedPref.putData(Constants.PROFILE_PICTURE, fotoProfil)
+
                     } else {
                         Log.d("PROFILE", result.status.toString())
 

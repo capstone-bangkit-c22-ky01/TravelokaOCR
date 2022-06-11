@@ -88,10 +88,10 @@ class HistoryFragment : Fragment() {
                 val result = response.data
                 if (result != null) {
                     if (result.status.equals("success")) {
+                        list.differAsync.submitList((result.data?.bookings)?.reversed())
+
                         if((result.data?.bookings)!!.isEmpty()){
                             binding.containerLl.visibility = View.VISIBLE
-                        } else{
-                            list.differAsync.submitList((result.data.bookings).reversed())
                         }
                     }
                     else {

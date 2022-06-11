@@ -75,6 +75,8 @@ class FlightSearchResultActivity : AppCompatActivity() {
 
         binding.ivBack.setOnClickListener {
             finish()
+            savedPref.putData(Constants.PAX, null)
+            savedPref.putData(Constants.SEAT, null)
             startActivity(Intent(this@FlightSearchResultActivity, HomeActivity::class.java))
         }
     }

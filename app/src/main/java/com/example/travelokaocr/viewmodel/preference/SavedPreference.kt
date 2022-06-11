@@ -12,7 +12,7 @@ class SavedPreference (context: Context) {
         return pref.contains(key)
     }
 
-    fun putData(key: String, value: String){
+    fun putData(key: String, value: String?){
         editor.putString(key, value).apply()
     }
 

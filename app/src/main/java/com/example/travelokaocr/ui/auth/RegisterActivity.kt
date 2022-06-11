@@ -102,24 +102,24 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-//    @Suppress("IMPLICIT_BOXING_IN_IDENTITY_EQUALS")
-//    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-//        //the focus on edit text will be cleared when user touch anything outside the edittext
-//        if (ev?.action === MotionEvent.ACTION_DOWN) {
-//            val v = currentFocus
-//            if (v is EditText) {
-//                val outRect = Rect()
-//                v.getGlobalVisibleRect(outRect)
-//                if (!outRect.contains(ev.rawX.toInt(), ev.rawY.toInt())) {
-//                    v.clearFocus()
-//                    val imm: InputMethodManager =
-//                        getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-//                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0)
-//                }
-//            }
-//        }
-//        return super.dispatchTouchEvent(ev)
-//    }
+    @Suppress("IMPLICIT_BOXING_IN_IDENTITY_EQUALS")
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        //the focus on edit text will be cleared when user touch anything outside the edittext
+        if (ev?.action === MotionEvent.ACTION_DOWN) {
+            val v = currentFocus
+            if (v is EditText) {
+                val outRect = Rect()
+                v.getGlobalVisibleRect(outRect)
+                if (!outRect.contains(ev.rawX.toInt(), ev.rawY.toInt())) {
+                    v.clearFocus()
+                    val imm: InputMethodManager =
+                        getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0)
+                }
+            }
+        }
+        return super.dispatchTouchEvent(ev)
+    }
 
     private fun signUpForm() {
         binding.tilName.helperText = validateName()
@@ -152,9 +152,6 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             Toast.makeText(this, "Login gagal, password/email salah", Toast.LENGTH_LONG).show()
             disableProgressBar()
             binding.btnSignup.isEnabled = false
-//            val intent = Intent(this@LoginActivity, LoginActivity::class.java)
-//            startActivity(intent)
-//            killActivity()
         }
     }
 
@@ -179,7 +176,6 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                         Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
                         Log.d("REGIS", result.message.toString())
 
-                        //observer login (result.data.email, result.data.password)
                         observerLogin(dataLogin)
 
                     } else {
@@ -342,7 +338,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             .setTitle(message)
             .setView(view)
             .setPositiveButton("Back to Register") { _, _ ->
-                startActivity(Intent(this@RegisterActivity, RegisterActivity::class.java))
+                //DO NOTHING
             }.show()
     }
 

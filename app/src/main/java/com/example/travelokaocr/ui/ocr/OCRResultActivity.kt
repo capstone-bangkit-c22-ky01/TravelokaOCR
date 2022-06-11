@@ -344,6 +344,8 @@ class OCRResultActivity : AppCompatActivity() {
         val arrayAdapterMaritalStatus = ArrayAdapter(this, R.layout.dropdown_item_ocr_result, maritalStatus)
         binding.edtMaritalStatus.setAdapter(arrayAdapterMaritalStatus)
 
+        binding.tvContactDesc.text = savedPreference.getData(Constants.USERNAME)
+        binding.tvContactDesc2.text = savedPreference.getData(Constants.EMAIL)
     }
 
 

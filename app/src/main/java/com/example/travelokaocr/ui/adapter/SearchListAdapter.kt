@@ -100,10 +100,10 @@ class SearchListAdapter(
             println("$timeArriveToInt - $timeDepartToInt = $durationTotal")
             println(durationTotal.length)
 
-            var hour = ""
-            var minute = ""
+            val hour: String
+            val minute: String
 
-            if(durationTotal.length < 3){
+            if(durationTotal.length == 4){
                 hour = (durationTotal[0]).toString() + (durationTotal[1]).toString()
                 minute = (durationTotal[2]).toString() + (durationTotal[3]).toString()
             }else{

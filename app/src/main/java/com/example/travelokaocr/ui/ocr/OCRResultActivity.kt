@@ -1,5 +1,6 @@
 package com.example.travelokaocr.ui.ocr
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -291,6 +292,7 @@ class OCRResultActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setupResult(
         nikFromAPI: String?,
         nameFromAPI: String?,
@@ -309,9 +311,9 @@ class OCRResultActivity : AppCompatActivity() {
         val title = resources.getStringArray(R.array.data_title)
 
         when(titleFromAPI){
-            "Mr." -> binding.edtTitle.setText(title[0])
-            "Ms." -> binding.edtTitle.setText(title[1])
-            "Mrs." -> binding.edtTitle.setText(title[2])
+            "Mr" -> binding.edtTitle.setText(title[0])
+            "Ms" -> binding.edtTitle.setText(title[1])
+            "Mrs" -> binding.edtTitle.setText(title[2])
         }
 
         val arrayAdapterTitle = ArrayAdapter(this, R.layout.dropdown_item_ocr_result, title)

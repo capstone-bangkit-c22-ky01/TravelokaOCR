@@ -269,7 +269,10 @@ class EditProfileActivity : AppCompatActivity() {
                     requestImageFile
                 )
 
+                println("kwkwkw")
+
                 observeUpdateProfile(accessToken, dataLoginUsername, dataLoginEmail, imageMultipart)
+
             } else {
                 //api process
                 observeUpdateProfile(accessToken, dataLoginUsername, dataLoginEmail, null)

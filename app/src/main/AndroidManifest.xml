@@ -29,7 +29,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelokaOCR">
         <activity
-            android:name=".HistoryDetailActivity"
+            android:name=".ui.main.historydetail.HistoryDetailActivity"
             android:exported="false" />
         <activity
             android:name=".ui.eula.EulaActivity"

@@ -16,5 +16,5 @@ data class AccessEditProfileResponse(
 
 data class DataEditProfile(
     @field:SerializedName("imageUri")
-    val imageUri: Uri? = null
+    val imageUri: String? = null
 )

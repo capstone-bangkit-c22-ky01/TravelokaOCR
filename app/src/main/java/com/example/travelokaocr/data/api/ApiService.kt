@@ -140,14 +140,9 @@ interface ApiService {
     @PUT(FLIGHT_BOOKING_UPDATE)
     suspend fun updateBookingStatus(
         @Path("id") id: String,
-        @Header(TOKEN_HEADER) accessToken: String
-    ): Response<UpdateBookingStatus>
-
-    @GET(FLIGHT_BOOKING)
-    suspend fun updateBooking(
         @Header(TOKEN_HEADER) accessToken: String,
-        @Query(ID_QUERY) id: String
-    ): Response<BookingResponse>
+        @Body data: HashMap<String, String>
+    ): Response<UpdateBookingStatus>
 
     //SCAN ID CARD
     //still under development

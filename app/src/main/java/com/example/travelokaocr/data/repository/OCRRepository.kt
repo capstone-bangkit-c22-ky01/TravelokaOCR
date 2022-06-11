@@ -68,12 +68,12 @@ class OCRRepository {
 
     }
 
-    fun updateBookingStatus(accessToken: String, dataBookingID: String):
+    fun updateBookingStatus(accessToken: String, dataBookingID: String, dataToBeSendToAPI1: HashMap<String, String>):
         LiveData<Resources<UpdateBookingStatus?>> = liveData {
 
         emit(Resources.Loading)
         val returnValue = MutableLiveData<Resources<UpdateBookingStatus?>>()
-        val response = RetrofitInstance.API_OBJECT.updateBookingStatus(dataBookingID, accessToken)
+        val response = RetrofitInstance.API_OBJECT.updateBookingStatus(dataBookingID, accessToken, dataToBeSendToAPI1)
         if (response.isSuccessful){
             returnValue.value = Resources.Success(response.body())
             emitSource(returnValue)

@@ -1,6 +1,7 @@
 package com.example.travelokaocr.ui.profile
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
@@ -71,46 +72,27 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         val token = savedPreference.getData(Constants.ACCESS_TOKEN)
         accessToken = "Bearer $token"
 
-        showDataUser(accessToken)
+        showDataUser()
     }
 
     //SHOW DATA
-    private fun showDataUser(dataUser: String){
-        viewModel.profileUser(dataUser).observe(this){ response ->
-            if (response is Resources.Loading) {
-                progressBar(true)
-            } else if (response is Resources.Error) {
-                progressBar(false)
-                Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
-            } else if (response is Resources.Success) {
-                progressBar(false)
-                val result = response.data
-                if (result != null) {
-                    if (result.status.equals("success")) {
+    private fun showDataUser(){
+        val username = savedPreference.getData(Constants.USERNAME)
+        val email = savedPreference.getData(Constants.EMAIL)
+        val profilePicture = savedPreference.getData(Constants.PROFILE_PICTURE)
 
-                        val username = result.data?.user?.name.toString()
-                        val email = result.data?.user?.email.toString()
-                        val fotoProfil = result.data?.user?.foto_profil
+        //SHOW DATA
+        binding.edtUsername.setText(username)
+        binding.edtEmail.setText(email)
 
-                        binding.edtUsername.setText(username)
-                        binding.edtEmail.setText(email)
-                        Glide.with(this)
-                            .load(fotoProfil)
-                            .centerCrop()
-                            .placeholder(R.drawable.avatar)
-                            .into(binding.ivProfilePicture)
-                    } else {
-                        val dataToken = hashMapOf(
-                            "refreshToken" to savedPreference.getData(Constants.REFRESH_TOKEN)
-                        )
-
-                        observeUpdateToken(dataToken)
-
-                    }
-                } else {
-                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
-                }
-            }
+        if (profilePicture != null){
+            Glide.with(this)
+                .load(profilePicture)
+                .placeholder(R.drawable.avatar)
+                .centerCrop()
+                .into(binding.ivProfilePicture)
+        }else{
+            binding.ivProfilePicture.setImageResource(R.drawable.avatar)
         }
     }
 
@@ -194,12 +176,11 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
     ) { result ->
         if (result.resultCode == RESULT_OK) {
             selectedImg = result.data?.data as Uri
-
             val myFile = uriToFile(selectedImg!!, this@EditProfileActivity)
 
             getFile = myFile
 
-            binding.ivProfilePicture.setImageURI(selectedImg)
+            binding.ivProfilePicture.setImageBitmap(BitmapFactory.decodeFile(myFile.path))
         }
     }
 
@@ -302,16 +283,12 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
 
                         val username = binding.edtUsername.text?.toString()?.trim()
                         val email = binding.edtEmail.text?.toString()?.trim()
-                        val profilePicture = binding.ivProfilePicture.setImageURI(selectedImg)
+                        val photoProfile = result.data?.imageUri
 
-                        //update profile
-                        binding.edtUsername.setText(username)
-                        binding.edtEmail.setText(email)
-                        Glide.with(this)
-                            .load(profilePicture)
-                            .centerCrop()
-                            .placeholder(R.drawable.avatar)
-                            .into(binding.ivProfilePicture)
+                        savedPreference.putData(Constants.USERNAME, username!!)
+                        savedPreference.putData(Constants.EMAIL, email!!)
+//                        savedPreference.putData(Constants.PROFILE_PICTURE, photoProfile)
+
                     } else {
                         val dataToken = hashMapOf(
                             "refreshToken" to savedPreference.getData(Constants.REFRESH_TOKEN)
@@ -323,42 +300,6 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
                             observeUpdateTokenProfile(dataToken, dataUserUsername, dataUserEmail, imageMultipart)
                         }
 
-                    }
-                } else {
-                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-    }
-
-    private fun observeUpdateToken(dataToken: HashMap<String, String?>) {
-        authViewModel.updateToken(dataToken).observe(this) { response ->
-            if (response is Resources.Loading) {
-                progressBar(true)
-            }
-            else if (response is Resources.Error) {
-                progressBar(false)
-                Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
-            }
-            else if (response is Resources.Success) {
-                progressBar(false)
-                val result = response.data
-                if (result != null) {
-                    if (result.status.equals("success")) {
-                        val newAccessToken = result.data?.accessToken.toString()
-                        //save new token
-                        savedPreference.putData(Constants.ACCESS_TOKEN, newAccessToken)
-
-                        //get new token
-                        val tokenFromAPI = (savedPreference.getData(Constants.ACCESS_TOKEN))
-                        val accessToken = "Bearer $tokenFromAPI"
-
-                        Log.d("NEW ACCESS TOKEN", "observeUpdateToken: $accessToken")
-
-                        showDataUser(accessToken)
-                    }
-                    else {
-                        Log.d("REGIS", result.status.toString())
                     }
                 } else {
                     Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()

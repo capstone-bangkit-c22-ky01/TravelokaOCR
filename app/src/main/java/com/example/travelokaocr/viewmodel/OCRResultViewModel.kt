@@ -13,7 +13,7 @@ class OCRResultViewModel(private val repo: OCRRepository) : ViewModel() {
     fun updateRetrievedDataToDatabase(accessToken: String, dataToBeSendToAPI: HashMap<String, String>) =
         repo.updateRetrievedDataToDatabase(accessToken, dataToBeSendToAPI)
 
-    fun updateBookingStatus(accessToken: String, dataBookingID: String) =
-        repo.updateBookingStatus(accessToken, dataBookingID)
+    fun updateBookingStatus(accessToken: String, dataBookingID: String, dataToBeSendToAPI1: HashMap<String, String>) =
+        repo.updateBookingStatus(accessToken, dataBookingID, dataToBeSendToAPI1)
 
 }

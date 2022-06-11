@@ -156,7 +156,12 @@ class OCRResultActivity : AppCompatActivity() {
                 if (result != null) {
                     if (result.status == "success") {
 
-                        observerUpdateBookingStatus(accessToken, dataBookingID)
+                        val dataToBeSendToAPI1 = hashMapOf(
+                            "title" to dataToBeSendToAPI["title"]!!,
+                            "name" to dataToBeSendToAPI["name"]!!
+                        )
+
+                        observerUpdateBookingStatus(accessToken, dataBookingID, dataToBeSendToAPI1)
 
                     } else {
                         Log.d("REGIS", result.status)
@@ -176,8 +181,8 @@ class OCRResultActivity : AppCompatActivity() {
 
     }
 
-    private fun observerUpdateBookingStatus(accessToken: String, dataBookingID: String) {
-        viewModel.updateBookingStatus(accessToken, dataBookingID).observe(this) { response ->
+    private fun observerUpdateBookingStatus(accessToken: String, dataBookingID: String, dataToBeSendToAPI1: HashMap<String, String>) {
+        viewModel.updateBookingStatus(accessToken, dataBookingID, dataToBeSendToAPI1).observe(this) { response ->
 
             if (response is Resources.Error) {
                 viewModel.setLoadingOCRResultDialog.value = false
@@ -198,7 +203,7 @@ class OCRResultActivity : AppCompatActivity() {
                         val dataToken = hashMapOf(
                             "refreshToken" to savedPreference.getData(Constants.REFRESH_TOKEN)
                         )
-                        observeUpdateTokenForObserverUpdateBookingStatus(dataToken, dataBookingID)
+                        observeUpdateTokenForObserverUpdateBookingStatus(dataToken, dataBookingID, dataToBeSendToAPI1)
                     }
                 } else {
                     Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
@@ -210,7 +215,8 @@ class OCRResultActivity : AppCompatActivity() {
 
     private fun observeUpdateTokenForObserverUpdateBookingStatus(
         dataToken: HashMap<String, String?>,
-        dataBookingID: String
+        dataBookingID: String,
+        dataToBeSendToAPI1: HashMap<String, String>
     ){
         authViewModel.updateToken(dataToken).observe(this) { response ->
 
@@ -233,7 +239,7 @@ class OCRResultActivity : AppCompatActivity() {
 
                         Log.d("NEW ACCESS TOKEN", "observeUpdateToken: $accessToken")
 
-                        observerUpdateBookingStatus(accessToken, dataBookingID)
+                        observerUpdateBookingStatus(accessToken, dataBookingID, dataToBeSendToAPI1)
                     }
                     else {
                         Log.d("REGIS", result.status.toString())

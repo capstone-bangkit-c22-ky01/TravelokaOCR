@@ -125,12 +125,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_card_profile"
+                android:background="@drawable/bg_button_logout"
                 android:layout_width="328dp"
+                android:textAllCaps="false"
                 android:layout_height="55dp"
                 android:layout_marginTop="30dp"
                 android:fontFamily="@font/nunito_bold"
                 android:textSize="16sp"
-                android:text="@string/profile_btn_logout" />
+                android:text="@string/profile_btn_logout"
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/tv_about_traveloka"

@@ -71,8 +71,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         //SETUP
         supportActionBar?.hide()
+        emailFocusListener()
         setUpButton()
-        setUpEditText()
         itemOnClickListener()
 
         //CREATE API CONNECTION
@@ -87,6 +87,26 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             .build()
 
         gsc = GoogleSignIn.getClient(this, gso)
+    }
+
+    private fun emailFocusListener() {
+        binding.etvEmail.setOnFocusChangeListener { _, focused ->
+            //WHEN THE EMAIL EDIT TEXT ISN'T FOCUS
+            if(!focused){
+                binding.tilEmail.helperText = validateEmail()
+            } else{
+                passwordFocusListener()
+            }
+        }
+    }
+
+    private fun passwordFocusListener() {
+        binding.etvPassword.setOnFocusChangeListener { _, focused ->
+            //WHEN THE PASSWORD EDIT TEXT ISN'T FOCUS
+            if(!focused){
+                binding.tilPassword.helperText = validatePassword()
+            }
+        }
     }
 
     override fun onBackPressed() {
@@ -163,57 +183,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             )
 
             observerRegis(dataRegis, dataLogin)
-
-
-            // Signed in successfully, show authenticated UI.
-//            navigateToHomeActivity()
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w("ERROR_LOGIN", "signInResult:failed code=" + e.statusCode)
             disableProgressBar()
-        }
-    }
-
-    private fun navigateToHomeActivity() {
-        observerLoginGoogle()
-    }
-
-    private fun observerLoginGoogle() {
-        viewModel.loginWithGoogle().observe(this) { response ->
-            if (response is Resources.Loading) {
-                enableProgressBar()
-            }
-            else if (response is Resources.Error) {
-                disableProgressBar()
-                Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
-            }
-            else if (response is Resources.Success) {
-                disableProgressBar()
-                val result = response.data
-                if (result != null) {
-                    if (result.status.equals("success")) {
-                        //saved userid
-                        val accessToken = result.data?.accessToken.toString()
-                        val refreshToken = result.data?.refreshToken.toString()
-                        saveSessionLogin(accessToken, refreshToken)
-
-                        Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
-                        Log.d("REGIS", result.message.toString())
-
-                        //intent to home directly
-                        val intent = Intent(this@LoginActivity, HomeActivity::class.java)
-                        startActivity(intent)
-                        killActivity()
-
-                    } else {
-                        alertUserError(result.message.toString())
-                        Log.d("REGIS", result.message.toString())
-                    }
-                } else {
-                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
-                }
-            }
         }
     }
 
@@ -364,9 +338,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun validateButton() {
-        binding.tilEmail.helperText = validateEmail()
-        binding.tilPassword.helperText = validatePassword()
-
         val validEmail = binding.tilEmail.helperText == null
         val validPassword = binding.tilPassword.helperText == null
 
@@ -380,26 +351,10 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun setUpEditText() {
-        //FOR EMAIL
-        binding.etvEmail.setOnFocusChangeListener { _, focus ->
-            if(!focus){
-                binding.tilEmail.helperText = validateEmail()
-            }
-        }
-
-        //FOR PASSWORD
-        binding.etvPassword.setOnFocusChangeListener { _, focus ->
-            if (!focus) {
-                binding.tilPassword.helperText = validatePassword()
-            }
-        }
-    }
-
     private fun validateEmail(): String? {
         val email = binding.etvEmail.text.toString()
 
-        if (email.isEmpty()) {
+        if (email.isEmpty() && email.isBlank()) {
             return getString(R.string.error_empty_message)
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             return getString(R.string.error_invalid_email_message)
@@ -410,7 +365,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private fun validatePassword(): String? {
         val password = binding.etvPassword.text.toString()
 
-        if (password.isEmpty()) {
+        if (password.isEmpty() && password.isBlank()) {
             return getString(R.string.error_empty_message)
         } else if (password.length < 6) {
             return getString(R.string.error_password_message)

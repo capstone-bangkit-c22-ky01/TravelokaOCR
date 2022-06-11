@@ -16,6 +16,7 @@ import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.data.repository.FlightRepository
 import com.example.travelokaocr.databinding.ActivityFlightSearchResultBinding
 import com.example.travelokaocr.ui.adapter.SearchListAdapter
+import com.example.travelokaocr.ui.main.HomeActivity
 import com.example.travelokaocr.ui.ocr.OCRScreenActivity
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
@@ -74,6 +75,7 @@ class FlightSearchResultActivity : AppCompatActivity() {
 
         binding.ivBack.setOnClickListener {
             finish()
+            startActivity(Intent(this@FlightSearchResultActivity, HomeActivity::class.java))
         }
     }
 

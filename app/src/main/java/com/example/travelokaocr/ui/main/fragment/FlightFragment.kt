@@ -236,8 +236,6 @@ class FlightFragment : Fragment(), View.OnClickListener {
         binding.passengersEditText.threshold = 1 //will start working from first character
         binding.passengersEditText.setAdapter(adapterPassengers) //setting the adapter data into the AutoCompleteTextView
 
-        var accessPosition : Int
-
         binding.passengersEditText.onItemClickListener =
             AdapterView.OnItemClickListener { parent, _, position, _ ->
                 val passenger = parent.getItemAtPosition(position).toString()

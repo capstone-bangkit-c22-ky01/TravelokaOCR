@@ -35,14 +35,14 @@
 
             <TextView
                 android:id="@+id/tv_profile"
-                android:layout_width="328dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
                 android:layout_marginTop="50dp"
-                android:layout_marginEnd="50dp"
                 android:fontFamily="@font/nunito_extra_bold"
                 android:text="@string/profile_title"
                 android:textColor="@color/customColorPrimary50"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
                 android:textSize="32sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +51,9 @@
 
             <ImageView
                 android:id="@+id/iv_card_profile"
-                android:layout_width="328dp"
+                android:layout_width="match_parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:layout_height="446dp"
                 android:contentDescription="@string/profile_card"
                 android:layout_marginTop="16dp"
@@ -122,18 +124,20 @@
 
             <com.example.travelokaocr.ui.customview.CustomButton
                 android:id="@+id/btn_logout"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_card_profile"
                 android:background="@drawable/bg_button_logout"
-                android:layout_width="328dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:textAllCaps="false"
-                android:layout_height="55dp"
                 android:layout_marginTop="30dp"
                 android:fontFamily="@font/nunito_bold"
                 android:textSize="16sp"
                 android:text="@string/profile_btn_logout"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"/>
 
             <TextView
                 android:id="@+id/tv_about_traveloka"

@@ -100,10 +100,10 @@ interface ApiService {
 
     //GET FLIGHT SEARCH
     //still under the development
-    @GET(FLIGHT_ENDPOINT)
-    suspend fun getFlightSearch(
-        @Header(TOKEN_HEADER) accessToken: String,
-    ): Response<FlightSearchResponse>
+//    @GET(FLIGHT_ENDPOINT)
+//    suspend fun getFlightSearch(
+//        @Header(TOKEN_HEADER) accessToken: String,
+//    ): Response<FlightSearchResponse>
 
     //GET FLIGHT SEARCH BASED ON QUERY
     @GET(FLIGHT_ENDPOINT)

@@ -30,4 +30,8 @@
 
     <color name="notFoundBackgroundCamera">#DD222222</color>
 
+    <color name="success">#DD62C200</color>
+    <color name="pending">#DDC9770B</color>
+    <color name="failed">#DDEC0A0A</color>
+
 </resources>

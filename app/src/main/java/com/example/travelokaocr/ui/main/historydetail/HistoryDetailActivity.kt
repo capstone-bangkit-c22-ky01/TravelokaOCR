@@ -93,8 +93,14 @@ class HistoryDetailActivity : AppCompatActivity() {
                         binding.tvDeparture.text = result.data?.departure
                         binding.tvDestination.text = result.data?.destination
 
-                        binding.tvDefaultStatus.text = result.data?.passenger_title
-                        binding.tvDefaultUser.text = result.data?.passenger_name
+                        if((result.data?.passenger_title != null) && (result.data.passenger_name != null)){
+                            binding.tvDefaultStatus.text = result.data.passenger_title
+                            binding.tvDefaultUser.text = result.data.passenger_name
+                        }else{
+                            binding.tvDefaultStatus.text = result.data?.passenger_title
+                            binding.tvDefaultUser.text = "User haven't filled out the form"
+                            binding.tvDefaultUser.setTextColor(R.color.failed)
+                        }
 
                         //CONVERT PRICE TO RP
                         val myIndonesianLocale = Locale("in", "ID")
@@ -105,7 +111,13 @@ class HistoryDetailActivity : AppCompatActivity() {
 
                         val status = result.data?.status
 
-                        binding.tvStatus.text = "Purchase $status"
+                        if(status == "success"){
+                            binding.tvStatus.text = "Purchase $status"
+                            binding.tvStatus.setTextColor(R.color.success)
+                        } else{
+                            binding.tvStatus.text = "Purchase $status"
+                            binding.tvStatus.setTextColor(R.color.pending)
+                        }
 
                     }
                     else {

@@ -39,7 +39,7 @@ class ManualInputActivity : AppCompatActivity() {
         val tokenFromPreferences = savedPreference.getData(Constants.ACCESS_TOKEN)
         accessToken = "Bearer $tokenFromPreferences"
 
-//        dataBookingID = (intent.getStringExtra("BookingID") as String).toString()
+        dataBookingID = (intent.getStringExtra("id") as String).toString()
 
         val factory = OCRResultViewModelFactory(OCRRepository())
         viewModel = ViewModelProvider(this, factory)[OCRResultViewModel::class.java]

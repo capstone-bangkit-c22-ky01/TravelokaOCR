@@ -123,6 +123,22 @@ class OCRScreenActivity : AppCompatActivity() {
             }
         }
 
+        cameraAnalysisExecutor = Executors.newSingleThreadExecutor()
+
+        photoFile = createTempFile(this).also {
+            currentPhotoFilePath = it.absolutePath
+        }
+
+        binding.tvBackButton.setOnClickListener{
+            finish()
+        }
+
+    }
+
+    override fun onResume() {
+
+        super.onResume()
+
         if (!allPermissionGranted()){
             ActivityCompat.requestPermissions(
                 this,
@@ -131,69 +147,33 @@ class OCRScreenActivity : AppCompatActivity() {
             )
         }else{
 
-            cameraAnalysisExecutor = Executors.newSingleThreadExecutor()
+            setUpCameraAndCameraUtilityWhenCameraPermissionGranted()
 
-            photoFile = createTempFile(this).also {
-                currentPhotoFilePath = it.absolutePath
-            }
+        }
 
-            binding.tvBackButton.setOnClickListener{
-                finish()
-            }
+        binding.viewFinder.post {
 
-            binding.viewFinder.post {
+            binding.overlay.apply {
 
-                bindCameraUseCases()
+                setZOrderOnTop(true)
+                holder.setFormat(PixelFormat.TRANSPARENT)
+                holder.addCallback(object : SurfaceHolder.Callback {
 
-                binding.overlay.apply {
-
-                    setZOrderOnTop(true)
-                    holder.setFormat(PixelFormat.TRANSPARENT)
-                    holder.addCallback(object : SurfaceHolder.Callback {
-
-                        override fun surfaceCreated(p0: SurfaceHolder) {
-                            holder?.let {
-                                drawOverlay(it, DESIRED_HEIGHT_CROP_PERCENT, DESIRED_WIDTH_CROP_PERCENT)
-                            }
+                    override fun surfaceCreated(p0: SurfaceHolder) {
+                        holder?.let {
+                            drawOverlay(it, DESIRED_HEIGHT_CROP_PERCENT, DESIRED_WIDTH_CROP_PERCENT)
                         }
-
-                        override fun surfaceChanged(p0: SurfaceHolder, p1: Int, p2: Int, p3: Int) {
-
-                        }
-
-                        override fun surfaceDestroyed(p0: SurfaceHolder) {
-
-                        }
-
-                    })
-                }
-
-                binding.switchTorch.setOnClickListener{
-
-                    if (toggleTorch){
-
-                        toggleTorch = false
-                        binding.switchTorch.setImageResource(R.drawable.ic_flash_off)
-
-                    }else{
-
-                        toggleTorch = true
-                        binding.switchTorch.setImageResource(R.drawable.ic_flash_on)
                     }
 
-                    cameraController.enableTorch(toggleTorch)
+                    override fun surfaceChanged(p0: SurfaceHolder, p1: Int, p2: Int, p3: Int) {
 
-                }
+                    }
 
-                binding.switchCamera.setOnClickListener {
+                    override fun surfaceDestroyed(p0: SurfaceHolder) {
 
-                    lensFacing = if (lensFacing.equals(CameraSelector.LENS_FACING_BACK)) CameraSelector.LENS_FACING_FRONT
-                    else CameraSelector.LENS_FACING_BACK
+                    }
 
-                    bindCameraUseCases()
-
-                }
-
+                })
             }
 
         }
@@ -203,6 +183,38 @@ class OCRScreenActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         cameraAnalysisExecutor.shutdown()
+    }
+
+    private fun setUpCameraAndCameraUtilityWhenCameraPermissionGranted(){
+
+        bindCameraUseCases()
+
+        binding.switchTorch.setOnClickListener{
+
+            if (toggleTorch){
+
+                toggleTorch = false
+                binding.switchTorch.setImageResource(R.drawable.ic_flash_off)
+
+            }else{
+
+                toggleTorch = true
+                binding.switchTorch.setImageResource(R.drawable.ic_flash_on)
+            }
+
+            cameraController.enableTorch(toggleTorch)
+
+        }
+
+        binding.switchCamera.setOnClickListener {
+
+            lensFacing = if (lensFacing.equals(CameraSelector.LENS_FACING_BACK)) CameraSelector.LENS_FACING_FRONT
+            else CameraSelector.LENS_FACING_BACK
+
+            bindCameraUseCases()
+
+        }
+
     }
 
     private fun setupBookingIDAndToken(){
@@ -503,6 +515,8 @@ class OCRScreenActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
                 finish()
+            } else {
+                setUpCameraAndCameraUtilityWhenCameraPermissionGranted()
             }
         }
     }

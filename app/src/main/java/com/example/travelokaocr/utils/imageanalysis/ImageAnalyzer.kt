@@ -118,7 +118,7 @@ class ImageAnalyzer(
         val options = ObjectDetector.ObjectDetectorOptions.builder()
             .setBaseOptions(baseOptions)
             .setMaxResults(5)
-            .setScoreThreshold(0.9f)
+            .setScoreThreshold(0.7f)
             .build()
 
         val detector = ObjectDetector.createFromFileAndOptions(

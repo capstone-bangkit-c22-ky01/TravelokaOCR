@@ -29,6 +29,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelokaOCR">
         <activity
+            android:name=".ManualInputActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.main.historydetail.HistoryDetailActivity"
             android:exported="false" />
         <activity

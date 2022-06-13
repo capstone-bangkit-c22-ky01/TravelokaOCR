@@ -6,6 +6,7 @@ import androidx.lifecycle.liveData
 import com.example.travelokaocr.data.api.RetrofitInstance
 import com.example.travelokaocr.data.model.flight.HistoryResponse
 import com.example.travelokaocr.data.model.flight.BookingResponse
+import com.example.travelokaocr.data.model.flight.DetailHistoryResponse
 import com.example.travelokaocr.utils.Resources
 import com.google.gson.Gson
 import com.example.travelokaocr.data.model.flight.FlightSearchResponse
@@ -65,7 +66,22 @@ class FlightRepository {
         }
     }
 
-    //UPDATE BOOKING
-    //still under development
+    //DETAIL HISTORY
+    //HISTORY
+    fun detailHistory(dataBookingID: String, accessToken: String):
+            LiveData<Resources<DetailHistoryResponse?>> = liveData {
+        emit(Resources.Loading)
+        val returnValue = MutableLiveData<Resources<DetailHistoryResponse?>>()
+        val response = RetrofitInstance.API_OBJECT.getDetailHistory(dataBookingID, accessToken)
+        if(response.isSuccessful) {
+            returnValue.value = Resources.Success(response.body())
+            emitSource(returnValue)
+        } else {
+            val error = Gson().fromJson(response.errorBody()?.stringSuspending(), DetailHistoryResponse::class.java)
+            response.errorBody()?.close()
+            returnValue.value = Resources.Success(error)
+            emitSource(returnValue)
+        }
+    }
 }
 

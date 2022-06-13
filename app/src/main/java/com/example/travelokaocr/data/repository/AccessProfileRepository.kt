@@ -29,15 +29,17 @@ class AccessProfileRepository {
     }
 
     //EDIT PROFILE
-    //still under development
+
     fun updateUser(accessToken: String, dataUsername: RequestBody?, dataEmail: RequestBody?, imageMultipart: MultipartBody.Part?): LiveData<Resources<AccessEditProfileResponse?>> = liveData{
         emit(Resources.Loading)
         val returnValue = MutableLiveData<Resources<AccessEditProfileResponse?>>()
-        val response = if (imageMultipart == null) {
+
+        val response = if (imageMultipart != null){
+            RetrofitInstance.API_OBJECT.updateProfileWithImage(accessToken, dataUsername!!, dataEmail!!, imageMultipart!!)
+        }else{
             RetrofitInstance.API_OBJECT.updateProfile(accessToken, dataUsername!!, dataEmail!!)
-        } else {
-            RetrofitInstance.API_OBJECT.updateProfileWithImage(accessToken, dataUsername!!, dataEmail!!, imageMultipart)
         }
+
         if(response.isSuccessful) {
             returnValue.value = Resources.Success(response.body())
             emitSource(returnValue)

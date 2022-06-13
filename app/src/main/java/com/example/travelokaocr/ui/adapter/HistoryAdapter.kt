@@ -34,6 +34,7 @@ class HistoryAdapter(
     }
 
     val differAsync = AsyncListDiffer(this, differCallback)
+    private var onItemClickListener: ((Bookings) -> Unit)? = null
 
     inner class ListUsersViewHolder(var binding: ItemRowHistoryTicketsBinding): RecyclerView
     .ViewHolder(binding.root)
@@ -65,11 +66,21 @@ class HistoryAdapter(
 
             val status = (data.status)?.replaceFirstChar { it.uppercase() }
             holder.binding.statusHistoryTicketTv.text = "Purchase $status"
+
+            setOnClickListener {
+                onItemClickListener?.let {
+                    it(data)
+                }
+            }
         }
     }
 
     override fun getItemCount(): Int {
         return differAsync.currentList.size
+    }
+
+    fun setOnItemClickListener(listener: (Bookings) -> Unit){
+        onItemClickListener = listener
     }
 
 }

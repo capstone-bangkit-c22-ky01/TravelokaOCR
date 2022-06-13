@@ -102,11 +102,11 @@ class FlightFragment : Fragment(), View.OnClickListener {
 
                         val username = result.data?.user?.name.toString()
                         val email = result.data?.user?.email.toString()
-                        val photoProfile = result.data?.user?.foto_profil ?: "null"
+                        val photoProfile = result.data?.user?.foto_profil
 
                         savedPref.putData(Constants.USERNAME, username)
                         savedPref.putData(Constants.EMAIL, email)
-                        savedPref.putData(Constants.PROFILE_PICTURE, photoProfile)
+                        savedPref.putDataStringNullable(Constants.PROFILE_PICTURE, photoProfile)
 
                     } else {
                         Log.d("PROFILE", result.status.toString())

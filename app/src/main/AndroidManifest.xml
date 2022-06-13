@@ -69,9 +69,6 @@
             android:name=".ui.flightsearchresult.FlightSearchResultActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.profile.EditProfileActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.ocr.OCRScreenActivity"
             android:exported="false" />
         <activity

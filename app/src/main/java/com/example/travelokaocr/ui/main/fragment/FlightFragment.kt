@@ -117,7 +117,6 @@ class FlightFragment : Fragment(), View.OnClickListener {
                         )
 
                         Log.d("REFRESH TOKEN", "observerFlightSearch: $dataToken")
-//                        Log.d("ACCESS TOKEN", "observerFlightSearch: $accessToken")
                         observeUpdateToken(dataToken)
                     }
                 } else {
@@ -183,8 +182,6 @@ class FlightFragment : Fragment(), View.OnClickListener {
 
     private fun setupAutoTextView() {
         val city = resources.getStringArray(R.array.data_dummy_city)
-//        val code = resources.getStringArray(R.array.code_city)
-//        val cityCode = city.zip(code) { ct, cd -> "$ct-$cd" }
 
         val adapterCity: ArrayAdapter<String> =
             ArrayAdapter<String>(requireContext(), android.R.layout.select_dialog_item, city)
@@ -238,6 +235,7 @@ class FlightFragment : Fragment(), View.OnClickListener {
         binding.passengersEditText.setText(dataPassengers[0])
         binding.passengersEditText.threshold = 1 //will start working from first character
         binding.passengersEditText.setAdapter(adapterPassengers) //setting the adapter data into the AutoCompleteTextView
+
         binding.passengersEditText.onItemClickListener =
             AdapterView.OnItemClickListener { parent, _, position, _ ->
                 val passenger = parent.getItemAtPosition(position).toString()
@@ -247,7 +245,18 @@ class FlightFragment : Fragment(), View.OnClickListener {
                 println("pax : $pax")
 
                 savedPref.putData(Constants.PAX, pax)
+
             }
+
+        val totalPax : String
+
+        val pax = savedPref.getData(Constants.PAX)
+
+        if(pax == null) {
+            totalPax = dataNumber[0]
+            savedPref.putData(Constants.PAX, totalPax)
+
+        }
 
         //SEAT CLASS
         val dataSeatClass = resources.getStringArray(R.array.data_dummy_seatClass)
@@ -262,8 +271,17 @@ class FlightFragment : Fragment(), View.OnClickListener {
                 val seatClass = parent.getItemAtPosition(position).toString()
                 println("searClass : $seatClass")
 
-                savedPref.putData(Constants.SEAT, seatClass)
+                val seat = dataSeatClass[position]
+
+                savedPref.putData(Constants.SEAT, seat)
             }
+
+        val totalSeatClass = savedPref.getData(Constants.SEAT)
+
+        if(totalSeatClass == null){
+            val totalSeat = dataSeatClass[0]
+            savedPref.putData(Constants.SEAT, totalSeat)
+        }
     }
 
     private fun saveDataToCity(onlyToCity: String?, codeTo: String?) {

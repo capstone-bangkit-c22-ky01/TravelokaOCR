@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travelokaocr.R
@@ -68,6 +69,11 @@ class HistoryFragment : Fragment() {
         savedPref = SavedPreference(requireContext())
         configRecyclerView()
 
+        list.setOnItemClickListener {
+            val bundle = Bundle().apply { putString("bookingid", it.id) }
+            findNavController().navigate(R.id.action_historyFragment_to_historyDetailActivity, bundle)
+        }
+
         val tokenFromApi = savedPref.getData(Constants.ACCESS_TOKEN)
         val accessToken = "Bearer $tokenFromApi"
 
@@ -88,10 +94,10 @@ class HistoryFragment : Fragment() {
                 val result = response.data
                 if (result != null) {
                     if (result.status.equals("success")) {
+                        list.differAsync.submitList((result.data?.bookings)?.reversed())
+
                         if((result.data?.bookings)!!.isEmpty()){
                             binding.containerLl.visibility = View.VISIBLE
-                        } else{
-                            list.differAsync.submitList((result.data.bookings).reversed())
                         }
                     }
                     else {

@@ -9,6 +9,7 @@ import com.example.travelokaocr.data.model.auth.LogoutResponse
 import com.example.travelokaocr.data.model.flight.BookingResponse
 import com.example.travelokaocr.data.model.auth.RegisResponse
 import com.example.travelokaocr.data.model.auth.UpdateTokenResponse
+import com.example.travelokaocr.data.model.flight.DetailHistoryResponse
 import com.example.travelokaocr.data.model.ocr.ScanIDCardResponse
 import com.example.travelokaocr.data.model.ocr.UpdateBookingStatus
 import com.example.travelokaocr.data.model.ocr.UpdatedKTPResponse
@@ -100,10 +101,10 @@ interface ApiService {
 
     //GET FLIGHT SEARCH
     //still under the development
-    @GET(FLIGHT_ENDPOINT)
-    suspend fun getFlightSearch(
-        @Header(TOKEN_HEADER) accessToken: String,
-    ): Response<FlightSearchResponse>
+//    @GET(FLIGHT_ENDPOINT)
+//    suspend fun getFlightSearch(
+//        @Header(TOKEN_HEADER) accessToken: String,
+//    ): Response<FlightSearchResponse>
 
     //GET FLIGHT SEARCH BASED ON QUERY
     @GET(FLIGHT_ENDPOINT)
@@ -143,6 +144,14 @@ interface ApiService {
         @Header(TOKEN_HEADER) accessToken: String,
         @Body data: HashMap<String, String>
     ): Response<UpdateBookingStatus>
+
+    //GET DETAIL BOOKING HISTORY
+    //UPDATE BOOKING STATUS
+    @GET(FLIGHT_BOOKING_UPDATE)
+    suspend fun getDetailHistory(
+        @Path("id") id: String,
+        @Header(TOKEN_HEADER) accessToken: String
+    ): Response<DetailHistoryResponse>
 
     //SCAN ID CARD
     //still under development

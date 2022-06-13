@@ -1,7 +1,6 @@
 package com.example.travelokaocr.data.model.profile
 
 import com.google.gson.annotations.SerializedName
-import retrofit2.http.Url
 
 data class AccessProfileResponse(
     @field:SerializedName("status")

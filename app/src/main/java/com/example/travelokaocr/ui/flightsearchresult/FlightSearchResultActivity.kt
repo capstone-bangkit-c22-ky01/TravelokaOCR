@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -16,6 +17,7 @@ import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.data.repository.FlightRepository
 import com.example.travelokaocr.databinding.ActivityFlightSearchResultBinding
 import com.example.travelokaocr.ui.adapter.SearchListAdapter
+import com.example.travelokaocr.ui.main.HomeActivity
 import com.example.travelokaocr.ui.ocr.OCRScreenActivity
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
@@ -74,6 +76,9 @@ class FlightSearchResultActivity : AppCompatActivity() {
 
         binding.ivBack.setOnClickListener {
             finish()
+            savedPref.putData(Constants.PAX, null)
+            savedPref.putData(Constants.SEAT, null)
+            startActivity(Intent(this@FlightSearchResultActivity, HomeActivity::class.java))
         }
     }
 
@@ -91,9 +96,21 @@ class FlightSearchResultActivity : AppCompatActivity() {
                 if (result != null){
                     if (result.status == "success"){
                         disableProgressBar()
-                        val intent = Intent(this@FlightSearchResultActivity, OCRScreenActivity::class.java)
-                        intent.putExtra("id", result.data?.bookingId)
-                        startActivity(intent)
+
+                        val view = View.inflate(this, R.layout.scanning_option_dialog, null)
+
+                        AlertDialog.Builder(this, R.style.MyAlertDialogTheme)
+                            .setView(view)
+                            .setNegativeButton("No, let me fill in manually"){ _, _ ->
+                                //Intent to manual page
+
+                            }
+                            .setPositiveButton("Continue") {_, _ ->
+                                //Intent to OCR Screen
+                                val intent = Intent(this@FlightSearchResultActivity, OCRScreenActivity::class.java)
+                                intent.putExtra("id", result.data?.bookingId)
+                                startActivity(intent)
+                            }
                     }
                     else {
                         val dataToken = hashMapOf(
@@ -206,6 +223,10 @@ class FlightSearchResultActivity : AppCompatActivity() {
             }
 
         })
+
+    }
+
+    private fun alertScanning() {
 
     }
 

@@ -15,4 +15,8 @@ class FlightViewModel(private val repo: FlightRepository) : ViewModel() {
 
     //HISTORY
     fun history(accessToken: String) = repo.history(accessToken)
+
+    //HISTORY
+    fun detailHistory(dataBookingID: String, accessToken: String) =
+        repo.detailHistory(dataBookingID, accessToken)
 }

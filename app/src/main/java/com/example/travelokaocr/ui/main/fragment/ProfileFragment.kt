@@ -29,7 +29,6 @@ import com.example.travelokaocr.viewmodel.preference.SavedPreference
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.tasks.OnCompleteListener
 
 
 const val HTTPS_LINK = "https://"
@@ -112,11 +111,10 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     }
 
     private fun browserIntent(){
-        val url: String
-        if (!URL_LINK.startsWith(HTTPS_LINK) && !URL_LINK.startsWith(HTTPS_LINK)) {
-            url = HTTPS_LINK + URL_LINK
+        val url: String = if (!URL_LINK.startsWith(HTTPS_LINK) && !URL_LINK.startsWith(HTTPS_LINK)) {
+            HTTPS_LINK + URL_LINK
         } else {
-            url = URL_LINK
+            URL_LINK
         }
 
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
@@ -190,9 +188,9 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                         val acct = GoogleSignIn.getLastSignedInAccount(requireActivity())
                         if(acct != null){
                             gsc.signOut()
-                                .addOnCompleteListener(requireActivity(), OnCompleteListener<Void?> {
+                                .addOnCompleteListener(requireActivity()) {
                                     revokeAccess()
-                                })
+                                }
                         } else {
                             killActivity()
                             startActivity(Intent(requireActivity(), LoginActivity::class.java))
@@ -210,10 +208,10 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
     private fun revokeAccess() {
         gsc.revokeAccess()
-            .addOnCompleteListener(requireActivity(), OnCompleteListener<Void?> {
+            .addOnCompleteListener(requireActivity()) {
                 killActivity()
                 startActivity(Intent(requireActivity(), LoginActivity::class.java))
-            })
+            }
     }
 
     private fun killActivity() {

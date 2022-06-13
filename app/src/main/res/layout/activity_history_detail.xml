@@ -187,7 +187,7 @@
                 android:contentDescription="@string/plane_logo"
                 app:layout_constraintStart_toEndOf="@id/tv_depart_time"
                 app:layout_constraintTop_toBottomOf="@+id/v_line2"
-                tools:src="@drawable/ic_history_detail_destination" />
+                android:src="@drawable/ic_history_detail_destination" />
 
             <TextView
                 android:id="@+id/tv_depart_time"
@@ -267,7 +267,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/v_line3"
                 app:layout_constraintVertical_bias="0.482"
-                tools:text="@string/passenger" />
+                android:text="@string/passenger" />
 
             <TextView
                 android:id="@+id/tv_default_status"
@@ -322,7 +322,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:src="@drawable/ic_circle_info" />
+                        android:src="@drawable/ic_circle_info" />
 
                     <TextView
                         android:id="@+id/tv_info"
@@ -336,11 +336,46 @@
                         app:layout_constraintStart_toEndOf="@id/iv_info"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.482"
-                        tools:text="@string/info" />
+                        android:text="@string/info" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:cardCornerRadius="10dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv_price">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="374dp"
+            android:layout_height="60dp"
+            android:background="@color/customColorSecondary10">
+
+
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_bold"
+                android:textColor="@color/customColorFont"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Purchase Success" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -371,7 +406,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/ic_coin" />
+                android:src="@drawable/ic_coin" />
 
             <TextView
                 android:id="@+id/tv_price"

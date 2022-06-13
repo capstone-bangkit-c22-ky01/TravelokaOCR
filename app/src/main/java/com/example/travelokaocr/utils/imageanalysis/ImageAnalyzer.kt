@@ -118,12 +118,12 @@ class ImageAnalyzer(
         val options = ObjectDetector.ObjectDetectorOptions.builder()
             .setBaseOptions(baseOptions)
             .setMaxResults(5)
-            .setScoreThreshold(0.70f)
+            .setScoreThreshold(0.9f)
             .build()
 
         val detector = ObjectDetector.createFromFileAndOptions(
             context,
-            "final_model_metadata_v3.tflite",
+            "final_model_metadata_v4.tflite",
             options
         )
 

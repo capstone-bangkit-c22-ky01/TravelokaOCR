@@ -66,12 +66,12 @@
                 android:layout_height="235dp"
                 android:layout_marginTop="30dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/avatar"
                 app:civ_border_width="3dp"
                 app:civ_border_color="@color/customColorSecondary10"
                 app:layout_constraintTop_toTopOf="@id/iv_card_profile"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:src="@drawable/avatar"/>
 
             <TextView
                 android:id="@+id/tv_username"

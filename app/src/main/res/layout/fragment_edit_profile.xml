@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.fragment.EditProfileFragment"
+    android:background="@color/customColorBackground">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@drawable/bg_header_profile"
+                android:contentDescription="@string/bg_header_profile" />
+
+            <TextView
+                android:id="@+id/tv_edit_profile"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="50dp"
+                android:fontFamily="@font/nunito_extra_bold"
+                android:text="@string/edit_profile"
+                android:textColor="@color/white"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlSymmetry" />
+
+            <ImageView
+                android:id="@+id/iv_card_profile"
+                android:layout_width="328dp"
+                android:layout_height="480dp"
+                android:contentDescription="@string/card_profile"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_card_profile"
+                app:layout_constraintTop_toBottomOf="@id/tv_edit_profile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_profile_picture"
+                android:layout_width="200dp"
+                android:layout_height="235dp"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center_horizontal"
+                app:civ_border_width="5dp"
+                app:civ_border_color="@color/customColorSecondary50"
+                app:layout_constraintTop_toTopOf="@id/iv_card_profile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:src="@drawable/avatar"/>
+
+            <TextView
+                android:id="@+id/tv_upload_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/iv_profile_picture"
+                app:layout_constraintStart_toStartOf="@id/iv_card_profile"
+                app:layout_constraintEnd_toEndOf="@id/iv_card_profile"
+                android:textAlignment="center"
+                android:text="@string/upload_image"
+                android:textColor="@color/customColorSecondary50"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_username"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center_horizontal"
+                app:helperText=""
+                app:helperTextTextColor="@android:color/holo_red_light"
+                app:layout_constraintTop_toBottomOf="@id/tv_upload_image"
+                app:layout_constraintStart_toStartOf="@id/iv_card_profile"
+                app:layout_constraintEnd_toEndOf="@id/iv_card_profile">
+                <com.example.travelokaocr.ui.customview.CustomEditText
+                    android:id="@+id/edt_username"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:hint="@string/username"
+                    android:textColorHint="@color/customColorFont"
+                    android:inputType="text"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/customColorSecondary90"
+                    android:background="@color/white"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_email"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:helperText=""
+                app:helperTextTextColor="@android:color/holo_red_light"
+                android:layout_marginTop="16dp"
+                android:layout_gravity="start|center_horizontal"
+                app:layout_constraintTop_toBottomOf="@id/til_username"
+                app:layout_constraintStart_toStartOf="@id/iv_card_profile"
+                app:layout_constraintEnd_toEndOf="@id/iv_card_profile">
+                <com.example.travelokaocr.ui.customview.CustomEditText
+                    android:id="@+id/edt_email"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/til_username"
+                    app:layout_constraintStart_toStartOf="@id/iv_card_profile"
+                    app:layout_constraintEnd_toEndOf="@id/iv_card_profile"
+                    android:fontFamily="@font/nunito_bold"
+                    android:layout_gravity="start|center_horizontal"
+                    android:hint="@string/email"
+                    android:textColorHint="@color/customColorFont"
+                    android:inputType="text"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/customColorSecondary90"
+                    android:background="@color/white"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.example.travelokaocr.ui.customview.CustomButton
+                android:id="@+id/btn_save_changes"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_card_profile"
+                android:layout_width="328dp"
+                android:layout_height="55dp"
+                android:layout_marginBottom="80dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/bg_button_enabled"
+                android:enabled="true"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/save_changes"
+                android:textColor="@color/white" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="208dp"
+                android:layout_height="20dp"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/customColorNeutral50"
+                android:indeterminateTintMode="src_atop"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.3" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

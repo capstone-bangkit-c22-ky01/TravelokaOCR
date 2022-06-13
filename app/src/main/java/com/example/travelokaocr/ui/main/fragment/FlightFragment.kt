@@ -13,12 +13,10 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.bumptech.glide.Glide
 import com.example.travelokaocr.R
 import com.example.travelokaocr.data.repository.AccessProfileRepository
 import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.databinding.FragmentFlightBinding
-import com.example.travelokaocr.databinding.FragmentProfileBinding
 import com.example.travelokaocr.ui.flightsearchresult.FlightSearchResultActivity
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
@@ -104,11 +102,11 @@ class FlightFragment : Fragment(), View.OnClickListener {
 
                         val username = result.data?.user?.name.toString()
                         val email = result.data?.user?.email.toString()
-                        val photoProfile = result.data?.user?.foto_profil ?: "null"
+                        val photoProfile = result.data?.user?.foto_profil
 
                         savedPref.putData(Constants.USERNAME, username)
                         savedPref.putData(Constants.EMAIL, email)
-                        savedPref.putData(Constants.PROFILE_PICTURE, photoProfile)
+                        savedPref.putDataStringNullable(Constants.PROFILE_PICTURE, photoProfile)
 
                     } else {
                         Log.d("PROFILE", result.status.toString())

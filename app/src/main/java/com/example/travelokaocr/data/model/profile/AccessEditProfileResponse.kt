@@ -1,6 +1,5 @@
 package com.example.travelokaocr.data.model.profile
 
-import android.net.Uri
 import com.google.gson.annotations.SerializedName
 
 data class AccessEditProfileResponse(

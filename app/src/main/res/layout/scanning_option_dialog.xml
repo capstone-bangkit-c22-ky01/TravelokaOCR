@@ -5,11 +5,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
+        android:id="@+id/iv_scanning"
         android:layout_width="250dp"
         android:layout_height="250dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/onboarding_image1"/>
+        android:src="@drawable/onboarding_image1"
+        android:contentDescription="@string/scanning_option" />
 
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/scanning_alert"
+        android:textColor="@color/customColorFont"
+        android:gravity="center_horizontal"
+        android:textSize="12sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintStart_toStartOf="@id/iv_scanning"
+        app:layout_constraintEnd_toEndOf="@id/iv_scanning"
+        app:layout_constraintTop_toBottomOf="@id/iv_scanning"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

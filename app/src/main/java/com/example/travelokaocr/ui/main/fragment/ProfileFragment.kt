@@ -18,7 +18,6 @@ import com.example.travelokaocr.data.repository.AccessProfileRepository
 import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.databinding.FragmentProfileBinding
 import com.example.travelokaocr.ui.auth.LoginActivity
-import com.example.travelokaocr.ui.profile.EditProfileActivity
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
 import com.example.travelokaocr.viewmodel.AccessProfileViewModel

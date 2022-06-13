@@ -35,6 +35,8 @@ class ManualInputActivity : AppCompatActivity() {
         binding = ActivityManualInputBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         savedPreference = SavedPreference(this)
         val tokenFromPreferences = savedPreference.getData(Constants.ACCESS_TOKEN)
         accessToken = "Bearer $tokenFromPreferences"

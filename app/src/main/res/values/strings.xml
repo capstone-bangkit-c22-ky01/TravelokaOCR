@@ -120,6 +120,8 @@
     <string name="plane_name_default">Lion Air</string>
     <string name="luggage">luggage</string>
     <string name="buy_btn">Buy</string>
+    <string name="SearchListAdapter_flightDuration">%1sh %2sm</string>
+    <string name="SearchListAdapter_direct">Direct</string>
 
     <!-- Flight History Activity -->
     <string name="booking_id">Booking ID</string>
@@ -130,6 +132,7 @@
     <string name="destination_default">Batam</string>
     <string name="verified">verified</string>
     <string name="travel_insurance_flight">Travel Insurance (Flight)</string>
+    <string name="HistoryAdapter_PurchaseStatus">Purchase %1s</string>
 
     <!--ERROR TEXT-->
     <string name="error_400">400 Error</string>

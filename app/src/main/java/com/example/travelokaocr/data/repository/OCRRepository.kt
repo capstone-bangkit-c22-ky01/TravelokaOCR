@@ -65,7 +65,6 @@ class OCRRepository {
             returnValue.value = Resources.Success(error)
             emitSource(returnValue)
         }
-
     }
 
     fun updateBookingStatus(accessToken: String, dataBookingID: String, dataToBeSendToAPI1: HashMap<String, String>):
@@ -83,8 +82,6 @@ class OCRRepository {
             returnValue.value = Resources.Success(error)
             emitSource(returnValue)
         }
-
     }
-
 
 }

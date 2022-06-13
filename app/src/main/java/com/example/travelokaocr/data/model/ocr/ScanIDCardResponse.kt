@@ -12,10 +12,12 @@ data class ScanIDCardResponse(
 
 	@field:SerializedName("status")
 	val status: String
+
 )
 
 data class Data(
 
 	@field:SerializedName("imageId")
 	val imageId: String
+
 )

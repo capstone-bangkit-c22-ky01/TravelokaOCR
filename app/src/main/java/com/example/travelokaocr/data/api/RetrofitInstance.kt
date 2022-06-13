@@ -7,6 +7,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+const val BASE_URL = "https://ocr-app-eoyzxrvqla-et.a.run.app/"
+const val TIME_OUT = 120L
 
 class RetrofitInstance {
     companion object {
@@ -20,13 +22,13 @@ class RetrofitInstance {
             logging.setLevel(level)
 
             val client = OkHttpClient.Builder()
-                .connectTimeout(120, TimeUnit.SECONDS)
-                .writeTimeout(120, TimeUnit.SECONDS)
-                .readTimeout(120, TimeUnit.SECONDS)
+                .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
+                .writeTimeout(TIME_OUT, TimeUnit.SECONDS)
+                .readTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .addInterceptor(logging)
                 .build()
             Retrofit.Builder()
-                .baseUrl("https://ocr-app-eoyzxrvqla-et.a.run.app/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build()

@@ -1,6 +1,5 @@
 package com.example.travelokaocr.ui.adapter
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.travelokaocr.R
 import com.example.travelokaocr.data.model.flight.Flights
 import com.example.travelokaocr.databinding.ItemRowFlightBinding
 import com.example.travelokaocr.utils.Constants
@@ -60,7 +60,6 @@ class SearchListAdapter(
         return ListUsersViewHolder(binding)
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ListUsersViewHolder, position: Int) {
         val data = differAsync.currentList[position]
         savedPref = SavedPreference(context)
@@ -91,14 +90,9 @@ class SearchListAdapter(
             val getTimeArrive: List<String> = timeArrive!!.split(":")
 
             val timeDepartToInt = (getTimeDepart[0] + getTimeDepart[1]).toInt()
-            println("time depart [0] : $timeDepartToInt")
-            println("time depart [1]: ${getTimeDepart[1]}")
-
             val timeArriveToInt = (getTimeArrive[0] + getTimeArrive[1]).toInt()
 
             val durationTotal = (timeArriveToInt - timeDepartToInt).toString()
-            println("$timeArriveToInt - $timeDepartToInt = $durationTotal")
-            println(durationTotal.length)
 
             val hour: String
             val minute: String
@@ -111,8 +105,8 @@ class SearchListAdapter(
                 minute = (durationTotal[1]).toString() + (durationTotal[2]).toString()
             }
 
-            holder.binding.flightDurationTv.text = "${hour}h ${minute}m"
-            holder.binding.flightTypeTv.text = "Direct"
+            holder.binding.flightDurationTv.text = String.format(resources.getString(R.string.SearchListAdapter_flightDuration), hour, minute)
+            holder.binding.flightTypeTv.text = resources.getString(R.string.SearchListAdapter_direct)
 
             holder.binding.buyBtn.setOnClickListener{
                 onItemClickCallback.onItemClicked(data.id)

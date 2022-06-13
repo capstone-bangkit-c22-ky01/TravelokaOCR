@@ -12,7 +12,7 @@ data class AccessProfileResponse(
 
 data class AccessProfileData(
     @field:SerializedName("user")
-    val user: User? = null,
+    val user: User? = null
 )
 
 data class User(

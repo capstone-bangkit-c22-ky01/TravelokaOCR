@@ -30,5 +30,5 @@ data class DataKTPResult(
     val nationality: String? = null,
 
     @field:SerializedName("title")
-    val title: String? = null,
+    val title: String? = null
 ) : Parcelable

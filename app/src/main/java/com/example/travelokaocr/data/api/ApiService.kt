@@ -32,7 +32,6 @@ const val FLIGHT_BOOKING = "flights/booking"
 const val FLIGHT_BOOKING_UPDATE = "flights/booking/{id}"
 const val DEPARTURE_QUERY = "departure"
 const val DESTINATION_QUERY = "destination"
-const val ID_QUERY = "id"
 
 //OCR
 const val KTP_SCANIDCARD_ENDPOINT = "/ktp"
@@ -41,7 +40,6 @@ const val KTP_RESULT_ENDPOINT = "ktpresult"
 //EDIT PROFIL
 const val NAME = "name"
 const val EMAIL = "email"
-const val PROFILE_PICTURE = "foto_profil"
 
 interface ApiService {
 
@@ -80,7 +78,6 @@ interface ApiService {
     ): Response<AccessProfileResponse>
 
     //UPDATE PROFILE
-    //still confused, because should we use raw json on here too?
     @Multipart
     @PUT (REGIS_ENDPOINT)
     suspend fun updateProfile(
@@ -99,13 +96,6 @@ interface ApiService {
         @Part foto_profile: MultipartBody.Part
     ): Response<AccessEditProfileResponse>
 
-    //GET FLIGHT SEARCH
-    //still under the development
-//    @GET(FLIGHT_ENDPOINT)
-//    suspend fun getFlightSearch(
-//        @Header(TOKEN_HEADER) accessToken: String,
-//    ): Response<FlightSearchResponse>
-
     //GET FLIGHT SEARCH BASED ON QUERY
     @GET(FLIGHT_ENDPOINT)
     suspend fun getFlightSearchWithQuery(
@@ -115,7 +105,6 @@ interface ApiService {
     ): Response<FlightSearchResponse>
 
     //POST BOOKING
-    //still under development
     @POST(FLIGHT_BOOKING)
     suspend fun flightBooking(
         @Header(TOKEN_HEADER) accessToken: String,
@@ -146,18 +135,11 @@ interface ApiService {
     ): Response<UpdateBookingStatus>
 
     //GET DETAIL BOOKING HISTORY
-    //UPDATE BOOKING STATUS
     @GET(FLIGHT_BOOKING_UPDATE)
     suspend fun getDetailHistory(
         @Path("id") id: String,
         @Header(TOKEN_HEADER) accessToken: String
     ): Response<DetailHistoryResponse>
-
-    //SCAN ID CARD
-    //still under development
-
-    //RE-SCAN ID CARD
-    //still under development
 
     //GET OCR RESULT
     @GET(KTP_RESULT_ENDPOINT)

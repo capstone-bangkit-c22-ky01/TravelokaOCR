@@ -15,6 +15,5 @@ data class BookingResponse(
 
 data class DataBooking(
     @field:SerializedName("bookingId")
-    val bookingId: String? = null,
-
+    val bookingId: String? = null
 )

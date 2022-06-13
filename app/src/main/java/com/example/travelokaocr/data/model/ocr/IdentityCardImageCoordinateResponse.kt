@@ -22,6 +22,7 @@ data class NIKBoundingBoxCoordinate(
 
     @field:SerializedName("Xmax")
     val xmax: Int
+
 )
 
 data class NameBoundingBoxCoordinate(
@@ -37,6 +38,7 @@ data class NameBoundingBoxCoordinate(
 
     @field:SerializedName("Xmax")
     val xmax: Int
+
 )
 
 data class SexBoundingBoxCoordinate(
@@ -52,6 +54,7 @@ data class SexBoundingBoxCoordinate(
 
     @field:SerializedName("Xmax")
     val xmax: Int
+
 )
 
 data class MarriedBoundingBoxCoordinate(
@@ -67,6 +70,7 @@ data class MarriedBoundingBoxCoordinate(
 
     @field:SerializedName("Xmax")
     val xmax: Int
+
 )
 
 data class NationalityBoundingBoxCoordinate(
@@ -82,6 +86,7 @@ data class NationalityBoundingBoxCoordinate(
 
     @field:SerializedName("Xmax")
     val xmax: Int
+
 )
 
 data class JsonMemberClass(

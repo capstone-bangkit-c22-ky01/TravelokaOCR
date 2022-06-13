@@ -17,6 +17,7 @@
         <item name="colorPrimary">@color/customColorSecondary50</item>
         <item name="colorAccent">@color/customColorSecondary90</item>
         <item name="fontFamily">@font/nunito_bold</item>
+        <item name="android:windowBackground">@drawable/bg_dialog</item>
     </style>
 
     <style name="BottomNavigationViewTextStyle">

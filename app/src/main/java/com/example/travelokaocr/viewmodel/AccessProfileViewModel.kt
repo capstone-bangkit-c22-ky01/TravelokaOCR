@@ -9,4 +9,5 @@ class AccessProfileViewModel(private val repo: AccessProfileRepository): ViewMod
     fun profileUser(data: String) = repo.profileUser(data)
 
     fun updateUser(accessToken: String, dataUsername: RequestBody?, dataEmail: RequestBody?, imageMultipart: MultipartBody.Part?) = repo.updateUser(accessToken, dataUsername, dataEmail, imageMultipart)
+
 }

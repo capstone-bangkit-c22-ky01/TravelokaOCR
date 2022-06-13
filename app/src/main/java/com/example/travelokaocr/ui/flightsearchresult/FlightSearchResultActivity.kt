@@ -18,6 +18,7 @@ import com.example.travelokaocr.data.repository.FlightRepository
 import com.example.travelokaocr.databinding.ActivityFlightSearchResultBinding
 import com.example.travelokaocr.ui.adapter.SearchListAdapter
 import com.example.travelokaocr.ui.main.HomeActivity
+import com.example.travelokaocr.ui.ocr.ManualInputActivity
 import com.example.travelokaocr.ui.ocr.OCRScreenActivity
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
@@ -102,8 +103,10 @@ class FlightSearchResultActivity : AppCompatActivity() {
                         AlertDialog.Builder(this, R.style.MyAlertDialogTheme)
                             .setView(view)
                             .setNegativeButton("No, let me fill in manually"){ _, _ ->
-                                //Intent to manual page
-
+                                //Intent to manual input screen
+                                val intent = Intent(this@FlightSearchResultActivity, ManualInputActivity::class.java)
+                                intent.putExtra("id", result.data?.bookingId)
+                                startActivity(intent)
                             }
                             .setPositiveButton("Continue") {_, _ ->
                                 //Intent to OCR Screen
@@ -111,6 +114,7 @@ class FlightSearchResultActivity : AppCompatActivity() {
                                 intent.putExtra("id", result.data?.bookingId)
                                 startActivity(intent)
                             }
+                            .show()
                     }
                     else {
                         val dataToken = hashMapOf(
@@ -223,10 +227,6 @@ class FlightSearchResultActivity : AppCompatActivity() {
             }
 
         })
-
-    }
-
-    private fun alertScanning() {
 
     }
 

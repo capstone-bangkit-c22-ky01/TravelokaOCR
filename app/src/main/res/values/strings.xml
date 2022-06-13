@@ -872,5 +872,7 @@
     <string name="passenger">Passenger</string>
     <string name="info">This airline doesn’t allow passenger name correction</string>
     <string name="scanning_option">Scanning Option</string>
-    <string name="scanning_alert">You are about to complete your details, do you want to fill it in automatically buy scanning your ID Card?</string>
+    <string name="scanning_alert">You are about to complete your details, do you want to fill it in automatically by scanning your ID Card?</string>
+    <string name="manual_input_desc">Please enter your data below</string>
+    <string name="manual_input">User Identity Form</string>
 </resources>

@@ -11,13 +11,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.travelokaocr.R
 import com.example.travelokaocr.data.repository.AccessProfileRepository
 import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.databinding.FragmentProfileBinding
 import com.example.travelokaocr.ui.auth.LoginActivity
-import com.example.travelokaocr.ui.profile.EditProfileActivity
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
 import com.example.travelokaocr.viewmodel.AccessProfileViewModel
@@ -100,15 +100,12 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         binding.tvUsername.text = username
         binding.tvEmail.text = email
 
-        if (profilePicture != null){
-            Glide.with(this)
-                .load(profilePicture)
-                .placeholder(R.drawable.avatar)
-                .centerCrop()
-                .into(binding.ivProfilePicture)
-        }else{
-            binding.ivProfilePicture.setImageResource(R.drawable.avatar)
-        }
+        Toast.makeText(requireContext(), "$username", Toast.LENGTH_SHORT).show()
+
+        Glide.with(requireContext())
+            .load(profilePicture)
+            .placeholder(R.drawable.avatar)
+            .into(binding.ivProfilePicture)
 
     }
 
@@ -131,7 +128,8 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btn_edit_profile -> {
-                startActivity(Intent(requireActivity(), EditProfileActivity::class.java))
+                val toEditProfileFragment = ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment()
+                binding.root.findNavController().navigate(toEditProfileFragment)
             }
             R.id.btn_logout -> {
                 //logout, go to login activity

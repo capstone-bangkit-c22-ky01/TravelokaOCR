@@ -23,4 +23,8 @@ class FlightViewModel(private val repo: FlightRepository) : ViewModel() {
     //DELETE BOOKING BY ID
     fun deleteBookingById(dataBookingID: String, accessToken: String) =
         repo.deleteBookingById(dataBookingID, accessToken)
+
+    //DELETE ALL BOOKING
+    fun deleteAllBooking(accessToken: String) = repo.deleteAllBooking(accessToken)
     }
+

@@ -75,12 +75,12 @@ class HistoryFragment : Fragment() {
             findNavController().navigate(R.id.action_historyFragment_to_historyDetailActivity, bundle)
         }
 
-        binding.ivDelete.setOnClickListener {
-            alertDelete()
-        }
-
         val tokenFromApi = savedPref.getData(Constants.ACCESS_TOKEN)
         val accessToken = "Bearer $tokenFromApi"
+
+        binding.ivDelete.setOnClickListener {
+            observerDeleteAll(accessToken)
+        }
 
         observerHistory(accessToken)
     }
@@ -176,21 +176,56 @@ class HistoryFragment : Fragment() {
         }
     }
 
-    private fun alertDelete() {
-        val view = View.inflate(context, R.layout.delete_all_dialog, null)
+    private fun observerDeleteAll(accessToken: String) {
+        viewModel.deleteAllBooking(accessToken).observe(viewLifecycleOwner) { response ->
+            if (response is Resources.Loading) {
+                enableProgressBar()
+            }
+            else if (response is Resources.Error) {
+                disableProgressBar()
+                Toast.makeText(requireContext(), response.error, Toast.LENGTH_SHORT).show()
+            }
+            else if (response is Resources.Success) {
+                disableProgressBar()
+                val result = response.data
+                if (result != null) {
+                    if (result.status.equals("success")) {
 
-        context?.let {
-            AlertDialog.Builder(it, R.style.MyAlertDialogTheme)
-                .setView(view)
-                .setNegativeButton("No"){ _, _ ->
-                    //Do Nothing
-                }
-                .setPositiveButton("Continue") {_, _ ->
-                    //Delete
+                        val view = View.inflate(context, R.layout.delete_all_dialog, null)
 
-                    //Do Nothing
+                        context?.let {
+                            AlertDialog.Builder(it, R.style.MyAlertDialogTheme)
+                                .setView(view)
+                                .setNegativeButton("No"){ _, _ ->
+                                    //Do Nothing
+                                }
+                                .setPositiveButton("Yes") {_, _ ->
+                                    //Delete
+
+//                                    if(delete is success){
+//                                        binding.containerLl.visibility = View.VISIBLE
+//                                    }
+                                }
+                                .show()
+                        }
+
+                    }
+                    else {
+                        println("Result : ${result.status.toString()}")
+
+                        val tokenFromApi = savedPref.getData(Constants.REFRESH_TOKEN)
+                        println("refresh token : $tokenFromApi")
+
+                        val dataToken = hashMapOf(
+                            "refreshToken" to tokenFromApi
+                        )
+
+                        observeUpdateToken(dataToken)
+                    }
+                } else {
+                    Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show()
                 }
-                .show()
+            }
         }
     }
 

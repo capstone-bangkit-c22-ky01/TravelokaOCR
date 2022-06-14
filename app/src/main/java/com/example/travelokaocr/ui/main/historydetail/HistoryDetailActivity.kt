@@ -1,6 +1,5 @@
 package com.example.travelokaocr.ui.main.historydetail
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -16,8 +15,6 @@ import com.example.travelokaocr.R
 import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.data.repository.FlightRepository
 import com.example.travelokaocr.databinding.ActivityHistoryDetailBinding
-import com.example.travelokaocr.ui.ocr.ManualInputActivity
-import com.example.travelokaocr.ui.ocr.OCRScreenActivity
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
 import com.example.travelokaocr.viewmodel.AuthViewModel
@@ -34,6 +31,7 @@ class HistoryDetailActivity : AppCompatActivity() {
 
     //SESSION
     private lateinit var savedPref: SavedPreference
+    private lateinit var accessToken: String
 
     //API
     private lateinit var viewModel: FlightViewModel
@@ -57,7 +55,7 @@ class HistoryDetailActivity : AppCompatActivity() {
         //SETUP
         savedPref = SavedPreference(this)
         val tokenFromApi = savedPref.getData(Constants.ACCESS_TOKEN)
-        val accessToken = "Bearer $tokenFromApi"
+        accessToken = "Bearer $tokenFromApi"
 
         val bookingID = args.bookingid
 
@@ -68,7 +66,7 @@ class HistoryDetailActivity : AppCompatActivity() {
         }
 
         binding.ivDelete.setOnClickListener {
-            alertDelete()
+            alertDelete(bookingID, accessToken)
         }
 
     }
@@ -194,21 +192,58 @@ class HistoryDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun alertDelete() {
-        val view = View.inflate(this, R.layout.delete_dialog, null)
-
-        AlertDialog.Builder(this, R.style.MyAlertDialogTheme)
-            .setView(view)
-            .setNegativeButton("No"){ _, _ ->
-                //Do Nothing
+    private fun alertDelete(bookingID: String, accessToken: String) {
+        viewModel.deleteBookingById(bookingID, accessToken).observe(this) { response ->
+            if (response is Resources.Loading){
+                progressBar(true)
             }
-            .setPositiveButton("Continue") {_, _ ->
-                //Delete
-
-                //intent to fragment
-                finish()
+            else if (response is Resources.Error){
+                progressBar(false)
+                Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
             }
-            .show()
+            else if (response is Resources.Success) {
+                val result = response.data
+                if (result != null){
+                    if (result.status == "success"){
+
+                        val view = View.inflate(this, R.layout.delete_dialog, null)
+
+                        AlertDialog.Builder(this, R.style.MyAlertDialogTheme)
+                            .setView(view)
+                            .setNegativeButton("No"){ _, _ ->
+                                //DO NOTHING
+                            }
+                            .setPositiveButton("YES") {_, _ ->
+                                //Delete
+                                //Toast.makeText(this, "delete success", Toast.LENGTH_SHORT).show()
+
+                                //Intent to History Fragment
+                                finish()
+                            }
+                            .show()
+                        progressBar(false)
+                    }
+                    else {
+                        val dataToken = hashMapOf(
+                            "refreshToken" to savedPref.getData(Constants.REFRESH_TOKEN)
+                        )
+                        Log.d("REFRESH TOKEN", "observerFlightSearch: $dataToken")
+                        Log.d("ACCESS TOKEN", "observerFlightSearch: $accessToken")
+                        observeUpdateToken(dataToken)
+                    }
+                } else {
+                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun progressBar(isLoading: Boolean) = with(binding){
+        if (isLoading) {
+            this.progressBar.visibility = View.VISIBLE
+        } else {
+            this.progressBar.visibility = View.GONE
+        }
     }
 
 }

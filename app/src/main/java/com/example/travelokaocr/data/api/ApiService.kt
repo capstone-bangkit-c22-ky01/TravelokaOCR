@@ -112,6 +112,12 @@ interface ApiService {
         @Body data: HashMap<String, Int>
     ): Response<BookingResponse>
 
+    //DELETE BOOKING
+    @DELETE(FLIGHT_BOOKING)
+    suspend fun deleteAllBooking(
+        @Header(TOKEN_HEADER) accessToken: String
+    ): Response<DeleteBookingResponse>
+
     // POST Scan ID Card
     @Multipart
     @POST(KTP_SCANIDCARD_ENDPOINT)

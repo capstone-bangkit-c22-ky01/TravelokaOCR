@@ -94,5 +94,22 @@ class FlightRepository {
             emitSource(returnValue)
         }
     }
+
+    //DELETE BOOKING
+    fun deleteAllBooking(accessToken: String):
+            LiveData<Resources<DeleteBookingResponse?>> = liveData {
+        emit(Resources.Loading)
+        val returnValue = MutableLiveData<Resources<DeleteBookingResponse?>>()
+        val response = RetrofitInstance.API_OBJECT.deleteAllBooking(accessToken)
+        if(response.isSuccessful) {
+            returnValue.value = Resources.Success(response.body())
+            emitSource(returnValue)
+        } else {
+            val error = Gson().fromJson(response.errorBody()?.stringSuspending(), DeleteBookingResponse::class.java)
+            response.errorBody()?.close()
+            returnValue.value = Resources.Success(error)
+            emitSource(returnValue)
+        }
+    }
 }
 

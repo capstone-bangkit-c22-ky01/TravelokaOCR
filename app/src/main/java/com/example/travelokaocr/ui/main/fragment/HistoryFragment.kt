@@ -81,7 +81,25 @@ class HistoryFragment : Fragment() {
         accessToken = "Bearer $tokenFromApi"
 
         binding.ivDelete.setOnClickListener {
-            observerDeleteAll(accessToken)
+
+            if (list.itemCount > 0){
+                val viewDialog = View.inflate(context, R.layout.delete_all_dialog, null)
+
+                context?.let {
+                    AlertDialog.Builder(it, R.style.MyAlertDialogTheme)
+                        .setView(viewDialog)
+                        .setNegativeButton("No"){ p0, _ ->
+                            p0.dismiss()
+                        }
+                        .setPositiveButton("Yes") {_, _ ->
+                            observerDeleteAll(accessToken)
+                        }
+                        .show()
+                }
+            }else{
+                observerDeleteAll(accessToken)
+            }
+
         }
     }
 
@@ -196,21 +214,8 @@ class HistoryFragment : Fragment() {
                 if (result != null) {
                     if (result.status.equals("success")) {
 
-                        val view = View.inflate(context, R.layout.delete_all_dialog, null)
-
-                        context?.let {
-                            AlertDialog.Builder(it, R.style.MyAlertDialogTheme)
-                                .setView(view)
-                                .setNegativeButton("No"){ _, _ ->
-                                    //Do Nothing
-                                }
-                                .setPositiveButton("Yes") {_, _ ->
-                                    //Delete
-                                    val fragmentHistory = HistoryFragmentDirections.actionHistoryFragmentSelf()
-                                    binding.root.findNavController().navigate(fragmentHistory)
-                                }
-                                .show()
-                        }
+                        val fragmentHistory = HistoryFragmentDirections.actionHistoryFragmentSelf()
+                        binding.root.findNavController().navigate(fragmentHistory)
 
                     }
                     else {

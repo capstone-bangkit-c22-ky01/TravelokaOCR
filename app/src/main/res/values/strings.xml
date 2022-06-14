@@ -35,7 +35,7 @@
     <string name="success_desc">Please make a payment according to the booked ticket and please check your email for E-Ticket information.</string>
     <string name="success_btn">Book another Flight</string>
     <string name="success_btn1">Go to History Page</string>
-    <string name="success_title">Data saved successfully</string>
+    <string name="success_title">Transaction Completed</string>
 
     <!--OCR SCREEN ACTIVITY-->
     <string name="scan_ktp_title">Scan ID Card (KTP)</string>

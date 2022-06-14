@@ -100,8 +100,6 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         binding.tvUsername.text = username
         binding.tvEmail.text = email
 
-        Toast.makeText(requireContext(), "$username", Toast.LENGTH_SHORT).show()
-
         Glide.with(requireContext())
             .load(profilePicture)
             .placeholder(R.drawable.avatar)

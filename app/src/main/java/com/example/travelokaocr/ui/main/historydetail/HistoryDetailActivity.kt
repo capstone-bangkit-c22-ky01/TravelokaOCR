@@ -1,5 +1,6 @@
 package com.example.travelokaocr.ui.main.historydetail
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -66,7 +67,18 @@ class HistoryDetailActivity : AppCompatActivity() {
         }
 
         binding.ivDelete.setOnClickListener {
-            alertDelete(bookingID, accessToken)
+
+            val view = View.inflate(this, R.layout.delete_dialog, null)
+
+            AlertDialog.Builder(this, R.style.MyAlertDialogTheme)
+                .setView(view)
+                .setNegativeButton("No") { p0, _ ->
+                    p0.dismiss()
+                }
+                .setPositiveButton("YES") {_, _ ->
+                    alertDelete(bookingID, accessToken)
+                }
+                .show()
         }
 
     }
@@ -206,19 +218,9 @@ class HistoryDetailActivity : AppCompatActivity() {
                 if (result != null){
                     if (result.status == "success"){
 
-                        val view = View.inflate(this, R.layout.delete_dialog, null)
-
-                        AlertDialog.Builder(this, R.style.MyAlertDialogTheme)
-                            .setView(view)
-                            .setNegativeButton("No"){ _, _ ->
-                                //DO NOTHING
-                            }
-                            .setPositiveButton("YES") {_, _ ->
-                                //Intent to History Fragment
-                                finish()
-                            }
-                            .show()
                         progressBar(false)
+                        finish()
+
                     }
                     else {
                         val dataToken = hashMapOf(

@@ -330,6 +330,7 @@ class OCRScreenActivity : AppCompatActivity() {
                 } else if (response is Resources.Success) {
                     val result = response.data
                     if (result != null) {
+
                         if (result.status == "Success") {
 
                             observerOCRResult(accessToken, bookingID)
@@ -343,6 +344,7 @@ class OCRScreenActivity : AppCompatActivity() {
                             Log.d("ACCESS TOKEN", "observerFlightSearch: $accessToken")
                             observeUpdateTokenForObserverOCRScanning(dataToken)
                         }
+
                     } else {
                         viewModel.setLoadingOCRScreenDialog.value = false
                         Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()

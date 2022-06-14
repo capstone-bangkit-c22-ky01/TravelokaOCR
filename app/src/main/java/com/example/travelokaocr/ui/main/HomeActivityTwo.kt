@@ -2,34 +2,36 @@ package com.example.travelokaocr.ui.main
 
 import android.content.Context
 import android.graphics.Rect
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.travelokaocr.R
-import com.example.travelokaocr.databinding.ActivityHomeBinding
+import com.example.travelokaocr.databinding.ActivityHomeTwoBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivityTwo : AppCompatActivity() {
+
     //BINDING
-    private lateinit var binding: ActivityHomeBinding
+
+    private lateinit var binding: ActivityHomeTwoBinding
 
     private lateinit var bottomNavigationView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityHomeBinding.inflate(layoutInflater)
+        binding = ActivityHomeTwoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         //SETUP
         supportActionBar?.hide()
 
         //CONNECT BOTTOM NAVIGATION TO THIS ACTIVITY
-        bottomNavigationView = binding.bottomNavigationView
-        val navController = findNavController(R.id.mainNavHostFragment)
+        bottomNavigationView = binding.bottomNavigationView1
+        val navController = findNavController(R.id.mainNavHostFragment1)
         bottomNavigationView.setupWithNavController(navController)
     }
 

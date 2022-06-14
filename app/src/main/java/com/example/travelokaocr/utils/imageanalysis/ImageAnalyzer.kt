@@ -27,15 +27,11 @@ class ImageAnalyzer(
     private val listener: ObjectDetectorCallback
 ): ImageAnalysis.Analyzer {
 
-    companion object{
-        const val TAG = "ImageAnalyzer"
-    }
-
-    private lateinit var nikBoundingBoxCoordinate: NIKBoundingBoxCoordinate
-    private lateinit var nameBoundingBoxCoordinate: NameBoundingBoxCoordinate
-    private lateinit var sexBoundingBoxCoordinate: SexBoundingBoxCoordinate
-    private lateinit var marriedBoundingBoxCoordinate: MarriedBoundingBoxCoordinate
-    private lateinit var nationalityBoundingBoxCoordinate: NationalityBoundingBoxCoordinate
+    private var nikBoundingBoxCoordinate: NIKBoundingBoxCoordinate? = null
+    private var nameBoundingBoxCoordinate: NameBoundingBoxCoordinate? = null
+    private var sexBoundingBoxCoordinate: SexBoundingBoxCoordinate? = null
+    private var marriedBoundingBoxCoordinate: MarriedBoundingBoxCoordinate? = null
+    private var nationalityBoundingBoxCoordinate: NationalityBoundingBoxCoordinate? = null
 
     private lateinit var identityCardImageCoordinate: IdentityCardImageCoordinate
 
@@ -170,9 +166,23 @@ class ImageAnalyzer(
                 }
 
             }
-            bitmapToFile(imageFile, bitmap)
-            identityCardImageCoordinate = IdentityCardImageCoordinate(JsonMemberClass(nikBoundingBoxCoordinate, nameBoundingBoxCoordinate, sexBoundingBoxCoordinate, marriedBoundingBoxCoordinate, nationalityBoundingBoxCoordinate))
-            listener(identityCardImageCoordinate)
+
+            if (nikBoundingBoxCoordinate != null &&
+                nameBoundingBoxCoordinate != null &&
+                sexBoundingBoxCoordinate != null &&
+                marriedBoundingBoxCoordinate != null &&
+                nationalityBoundingBoxCoordinate != null){
+
+                bitmapToFile(imageFile, bitmap)
+
+                identityCardImageCoordinate = IdentityCardImageCoordinate(
+                    JsonMemberClass(nikBoundingBoxCoordinate!!, nameBoundingBoxCoordinate!!, sexBoundingBoxCoordinate!!, marriedBoundingBoxCoordinate!!, nationalityBoundingBoxCoordinate!!)
+                )
+
+                listener(identityCardImageCoordinate)
+
+            }
+
         }
 
     }

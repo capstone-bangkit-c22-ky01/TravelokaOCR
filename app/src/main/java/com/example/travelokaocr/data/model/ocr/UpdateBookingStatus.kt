@@ -18,4 +18,5 @@ data class DataUpdateBookingStatus(
 
 	@field:SerializedName("bookingId")
 	val bookingId: String
+
 )

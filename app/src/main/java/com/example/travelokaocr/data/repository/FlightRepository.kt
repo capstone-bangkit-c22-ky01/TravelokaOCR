@@ -12,8 +12,6 @@ import com.google.gson.Gson
 import com.example.travelokaocr.data.model.flight.FlightSearchResponse
 
 class FlightRepository {
-    //FLIGHT SEARCH
-    //still under development
 
     //FLIGHT SEARCH WITH QUERY
     fun flightSearch(accessToken: String, departure: String, destination: String):
@@ -67,7 +65,6 @@ class FlightRepository {
     }
 
     //DETAIL HISTORY
-    //HISTORY
     fun detailHistory(dataBookingID: String, accessToken: String):
             LiveData<Resources<DetailHistoryResponse?>> = liveData {
         emit(Resources.Loading)
@@ -83,5 +80,6 @@ class FlightRepository {
             emitSource(returnValue)
         }
     }
+
 }
 

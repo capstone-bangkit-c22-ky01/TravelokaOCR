@@ -15,7 +15,7 @@ data class HistoryResponse(
 
 data class UserDataHistory(
     @field:SerializedName("bookings")
-    val bookings: List<Bookings>? = null,
+    val bookings: List<Bookings>? = null
 )
 
 data class Bookings(

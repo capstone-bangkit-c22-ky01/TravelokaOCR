@@ -96,7 +96,6 @@ class FlightSearchResultActivity : AppCompatActivity() {
                 val result = response.data
                 if (result != null){
                     if (result.status == "success"){
-                        disableProgressBar()
 
                         val view = View.inflate(this, R.layout.scanning_option_dialog, null)
 
@@ -115,6 +114,7 @@ class FlightSearchResultActivity : AppCompatActivity() {
                                 startActivity(intent)
                             }
                             .show()
+                        disableProgressBar()
                     }
                     else {
                         val dataToken = hashMapOf(

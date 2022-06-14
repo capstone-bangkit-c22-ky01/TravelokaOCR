@@ -162,7 +162,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         if (requestCode == 1000){
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             handleSignInResult(task)
-
         }
     }
 
@@ -210,9 +209,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         savedPref.putData(Constants.USER_ID, userId)
 
                         Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
-                        Log.d("REGIS", result.message.toString())
 
-                        //observer login (result.data.email, result.data.password)
                         observerLogin(dataLogin)
 
                     } else {
@@ -221,7 +218,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                             observerLogin(dataLogin)
                         } else{
                             alertUserError(result.message.toString())
-                            Log.d("REGIS", result.message.toString())
                         }
                     }
                 } else {
@@ -239,7 +235,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun loginForm() {
-        binding.tilEmail.helperText = validatePassword()
+        binding.tilEmail.helperText = validateEmail()
         binding.tilPassword.helperText = validatePassword()
 
         val validEmail = binding.tilEmail.helperText == null
@@ -256,6 +252,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             )
 
             observerLogin(dataLogin)
+
         } else {
             Toast.makeText(this, "Login gagal, password/email salah", Toast.LENGTH_LONG).show()
             disableProgressBar()

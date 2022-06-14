@@ -13,11 +13,6 @@ data class DetailHistoryResponse(
     val data: BookingDetail? = null
 )
 
-//data class UserDetailHistory(
-//    @field:SerializedName("bookings")
-//    val bookings: BookingDetail? = null,
-//)
-
 data class BookingDetail(
     @field:SerializedName("id")
     val id: String? = null,

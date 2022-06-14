@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.travelokaocr">
+
     <!-- PERMISSION USED -->
     <uses-feature android:name="android.hardware.camera" />
-
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission
@@ -51,13 +51,7 @@
         </activity>
         <activity
             android:name=".ui.auth.LoginActivity"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="name.student.MainActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".ui.auth.RegisterActivity"
             android:exported="false" />
@@ -87,6 +81,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/image_file_paths" />
         </provider>
+
     </application>
 
 </manifest>

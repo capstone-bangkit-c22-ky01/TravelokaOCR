@@ -1,12 +1,12 @@
 package com.example.travelokaocr.ui.adapter
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.travelokaocr.R
 import com.example.travelokaocr.data.model.flight.Bookings
 import com.example.travelokaocr.databinding.ItemRowHistoryTicketsBinding
 import java.text.NumberFormat
@@ -48,7 +48,6 @@ class HistoryAdapter(
         return ListUsersViewHolder(binding)
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ListUsersViewHolder, position: Int) {
         val data = differAsync.currentList[position]
 
@@ -65,7 +64,7 @@ class HistoryAdapter(
             holder.binding.cityArriveHistoryTicketTv.text = data.destination
 
             val status = (data.status)?.replaceFirstChar { it.uppercase() }
-            holder.binding.statusHistoryTicketTv.text = "Purchase $status"
+            holder.binding.statusHistoryTicketTv.text = String.format(resources.getString(R.string.HistoryAdapter_PurchaseStatus), status)
 
             setOnClickListener {
                 onItemClickListener?.let {

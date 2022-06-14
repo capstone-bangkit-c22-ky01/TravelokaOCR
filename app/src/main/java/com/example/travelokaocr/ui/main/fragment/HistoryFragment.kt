@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,6 +37,7 @@ class HistoryFragment : Fragment() {
 
     //SESSION
     private lateinit var savedPref: SavedPreference
+    private lateinit var accessToken: String
 
     //API
     private lateinit var viewModel: FlightViewModel
@@ -76,12 +78,15 @@ class HistoryFragment : Fragment() {
         }
 
         val tokenFromApi = savedPref.getData(Constants.ACCESS_TOKEN)
-        val accessToken = "Bearer $tokenFromApi"
+        accessToken = "Bearer $tokenFromApi"
 
         binding.ivDelete.setOnClickListener {
             observerDeleteAll(accessToken)
         }
+    }
 
+    override fun onResume() {
+        super.onResume()
         observerHistory(accessToken)
     }
 
@@ -201,10 +206,8 @@ class HistoryFragment : Fragment() {
                                 }
                                 .setPositiveButton("Yes") {_, _ ->
                                     //Delete
-
-//                                    if(delete is success){
-//                                        binding.containerLl.visibility = View.VISIBLE
-//                                    }
+                                    val fragmentHistory = HistoryFragmentDirections.actionHistoryFragmentSelf()
+                                    binding.root.findNavController().navigate(fragmentHistory)
                                 }
                                 .show()
                         }

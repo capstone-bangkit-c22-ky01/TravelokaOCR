@@ -122,11 +122,11 @@ class HistoryDetailActivity : AppCompatActivity() {
                         val status = result.data?.status
 
                         if(status == "success"){
-                            binding.tvStatus.text = "Purchase $status"
+                            binding.tvStatus.text = String.format(getString(R.string.HistoryAdapter_PurchaseStatus, status))
                             binding.tvStatus.setTextColor(ContextCompat.getColor(this, R.color.customColorFont))
                             binding.purchaseStatus.setBackgroundResource(R.color.success)
                         } else{
-                            binding.tvStatus.text = "Purchase $status"
+                            binding.tvStatus.text = String.format(getString(R.string.HistoryAdapter_PurchaseStatus, status))
                             binding.tvStatus.setTextColor(ContextCompat.getColor(this, R.color.customColorFont))
                             binding.purchaseStatus.setBackgroundResource(R.color.pending)
                         }
@@ -214,9 +214,6 @@ class HistoryDetailActivity : AppCompatActivity() {
                                 //DO NOTHING
                             }
                             .setPositiveButton("YES") {_, _ ->
-                                //Delete
-                                //Toast.makeText(this, "delete success", Toast.LENGTH_SHORT).show()
-
                                 //Intent to History Fragment
                                 finish()
                             }

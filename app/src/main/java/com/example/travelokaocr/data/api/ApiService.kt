@@ -112,7 +112,7 @@ interface ApiService {
         @Body data: HashMap<String, Int>
     ): Response<BookingResponse>
 
-    //DELETE BOOKING
+    //DELETE ALL BOOKING
     @DELETE(FLIGHT_BOOKING)
     suspend fun deleteAllBooking(
         @Header(TOKEN_HEADER) accessToken: String

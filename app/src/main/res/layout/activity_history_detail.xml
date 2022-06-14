@@ -358,6 +358,7 @@
         app:layout_constraintTop_toBottomOf="@id/cv_price">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/purchase_status"
             android:layout_width="374dp"
             android:layout_height="60dp"
             android:background="@color/customColorSecondary10">

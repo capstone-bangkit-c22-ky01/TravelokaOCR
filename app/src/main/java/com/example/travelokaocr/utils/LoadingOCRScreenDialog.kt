@@ -9,7 +9,7 @@ class LoadingOCRScreenDialog(val activity: Activity) {
     private var dialog: AlertDialog? = null
 
     fun startLoadingDialog(){
-        val builder = AlertDialog.Builder(activity)
+        val builder = AlertDialog.Builder(activity, R.style.MyAlertDialogTheme)
         val inflater = activity.layoutInflater
 
         builder.setView(inflater.inflate(R.layout.please_wait_while_app_scanning_dialog, null))

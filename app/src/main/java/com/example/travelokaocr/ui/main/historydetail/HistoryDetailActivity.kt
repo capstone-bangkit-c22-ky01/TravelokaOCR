@@ -100,7 +100,8 @@ class HistoryDetailActivity : AppCompatActivity() {
                         }else{
                             binding.tvDefaultStatus.text = result.data?.passenger_title
                             binding.tvDefaultUser.text = "User haven't filled out the form"
-                            binding.tvDefaultUser.setTextColor(ContextCompat.getColor(this, R.color.failed))
+                            binding.tvDefaultUser.setTextColor(ContextCompat.getColor(this, R.color.customColorFont))
+                            binding.purchaseStatus.setBackgroundResource(R.color.failed)
                         }
 
                         //CONVERT PRICE TO RP
@@ -114,10 +115,12 @@ class HistoryDetailActivity : AppCompatActivity() {
 
                         if(status == "success"){
                             binding.tvStatus.text = "Purchase $status"
-                            binding.tvStatus.setTextColor(ContextCompat.getColor(this, R.color.success))
+                            binding.tvStatus.setTextColor(ContextCompat.getColor(this, R.color.customColorFont))
+                            binding.purchaseStatus.setBackgroundResource(R.color.success)
                         } else{
                             binding.tvStatus.text = "Purchase $status"
-                            binding.tvStatus.setTextColor(ContextCompat.getColor(this, R.color.pending))
+                            binding.tvStatus.setTextColor(ContextCompat.getColor(this, R.color.customColorFont))
+                            binding.purchaseStatus.setBackgroundResource(R.color.pending)
                         }
 
                     }

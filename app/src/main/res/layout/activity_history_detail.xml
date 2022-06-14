@@ -56,12 +56,23 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/nunito_bold"
-            android:text="Jakarta"
+            android:text="@string/jakarta"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_right_arrow"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="@string/delete" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -80,11 +91,12 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_flight_info"
-        android:layout_width="388dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
         app:cardCornerRadius="20dp"
         android:background="@color/white"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_flight_eticket">
@@ -298,10 +310,12 @@
                 tools:text="@string/username_user" />
 
             <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="74dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginTop="15dp"
-                app:cardCornerRadius="10dp"
+                app:cardCornerRadius="15dp"
                 android:layout_marginBottom="15dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -309,15 +323,15 @@
                 app:layout_constraintBottom_toBottomOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="374dp"
-                    android:layout_height="74dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:background="#C0E0F5">
 
                     <ImageView
                         android:id="@+id/iv_info"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:layout_marginStart="28dp"
+                        android:layout_marginStart="16dp"
                         android:contentDescription="@string/plane_logo"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -326,14 +340,16 @@
 
                     <TextView
                         android:id="@+id/tv_info"
-                        android:layout_width="300dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginEnd="16dp"
                         android:fontFamily="@font/nunito_semi_bold"
                         android:textColor="@color/customColorHint"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/iv_info"
+                        app:layout_constraintStart_toEndOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.482"
                         android:text="@string/info" />
@@ -348,8 +364,9 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_status"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
         android:layout_marginTop="15dp"
         app:cardCornerRadius="10dp"
         android:layout_marginBottom="15dp"
@@ -359,7 +376,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/purchase_status"
-            android:layout_width="374dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@color/customColorSecondary10">
 
@@ -382,10 +399,26 @@
 
     </androidx.cardview.widget.CardView>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="208dp"
+        android:layout_height="20dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/customColorNeutral50"
+        android:indeterminateTintMode="src_atop"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_price"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
         android:layout_marginTop="15dp"
         app:cardCornerRadius="10dp"
         android:layout_marginBottom="15dp"

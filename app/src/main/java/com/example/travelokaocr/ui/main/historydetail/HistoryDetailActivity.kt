@@ -2,7 +2,9 @@ package com.example.travelokaocr.ui.main.historydetail
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -29,6 +31,7 @@ class HistoryDetailActivity : AppCompatActivity() {
 
     //SESSION
     private lateinit var savedPref: SavedPreference
+    private lateinit var accessToken: String
 
     //API
     private lateinit var viewModel: FlightViewModel
@@ -52,7 +55,7 @@ class HistoryDetailActivity : AppCompatActivity() {
         //SETUP
         savedPref = SavedPreference(this)
         val tokenFromApi = savedPref.getData(Constants.ACCESS_TOKEN)
-        val accessToken = "Bearer $tokenFromApi"
+        accessToken = "Bearer $tokenFromApi"
 
         val bookingID = args.bookingid
 
@@ -61,6 +64,11 @@ class HistoryDetailActivity : AppCompatActivity() {
         binding.ivBack.setOnClickListener {
             finish()
         }
+
+        binding.ivDelete.setOnClickListener {
+            alertDelete(bookingID, accessToken)
+        }
+
     }
 
     private fun observeDetailHistory(bookingID: String, accessToken: String) {
@@ -99,7 +107,7 @@ class HistoryDetailActivity : AppCompatActivity() {
                             binding.tvDefaultUser.text = result.data.passenger_name
                         }else{
                             binding.tvDefaultStatus.text = result.data?.passenger_title
-                            binding.tvDefaultUser.text = "User haven't filled out the form"
+                            binding.tvDefaultUser.text = getString(R.string.detail_user_info)
                             binding.tvDefaultUser.setTextColor(ContextCompat.getColor(this, R.color.customColorFont))
                             binding.purchaseStatus.setBackgroundResource(R.color.failed)
                         }
@@ -114,11 +122,11 @@ class HistoryDetailActivity : AppCompatActivity() {
                         val status = result.data?.status
 
                         if(status == "success"){
-                            binding.tvStatus.text = "Purchase $status"
+                            binding.tvStatus.text = String.format(getString(R.string.HistoryAdapter_PurchaseStatus, status))
                             binding.tvStatus.setTextColor(ContextCompat.getColor(this, R.color.customColorFont))
                             binding.purchaseStatus.setBackgroundResource(R.color.success)
                         } else{
-                            binding.tvStatus.text = "Purchase $status"
+                            binding.tvStatus.text = String.format(getString(R.string.HistoryAdapter_PurchaseStatus, status))
                             binding.tvStatus.setTextColor(ContextCompat.getColor(this, R.color.customColorFont))
                             binding.purchaseStatus.setBackgroundResource(R.color.pending)
                         }
@@ -183,4 +191,56 @@ class HistoryDetailActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun alertDelete(bookingID: String, accessToken: String) {
+        viewModel.deleteBookingById(bookingID, accessToken).observe(this) { response ->
+            if (response is Resources.Loading){
+                progressBar(true)
+            }
+            else if (response is Resources.Error){
+                progressBar(false)
+                Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
+            }
+            else if (response is Resources.Success) {
+                val result = response.data
+                if (result != null){
+                    if (result.status == "success"){
+
+                        val view = View.inflate(this, R.layout.delete_dialog, null)
+
+                        AlertDialog.Builder(this, R.style.MyAlertDialogTheme)
+                            .setView(view)
+                            .setNegativeButton("No"){ _, _ ->
+                                //DO NOTHING
+                            }
+                            .setPositiveButton("YES") {_, _ ->
+                                //Intent to History Fragment
+                                finish()
+                            }
+                            .show()
+                        progressBar(false)
+                    }
+                    else {
+                        val dataToken = hashMapOf(
+                            "refreshToken" to savedPref.getData(Constants.REFRESH_TOKEN)
+                        )
+                        Log.d("REFRESH TOKEN", "observerFlightSearch: $dataToken")
+                        Log.d("ACCESS TOKEN", "observerFlightSearch: $accessToken")
+                        observeUpdateToken(dataToken)
+                    }
+                } else {
+                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun progressBar(isLoading: Boolean) = with(binding){
+        if (isLoading) {
+            this.progressBar.visibility = View.VISIBLE
+        } else {
+            this.progressBar.visibility = View.GONE
+        }
+    }
+
 }

@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,6 +37,7 @@ class HistoryFragment : Fragment() {
 
     //SESSION
     private lateinit var savedPref: SavedPreference
+    private lateinit var accessToken: String
 
     //API
     private lateinit var viewModel: FlightViewModel
@@ -75,8 +78,15 @@ class HistoryFragment : Fragment() {
         }
 
         val tokenFromApi = savedPref.getData(Constants.ACCESS_TOKEN)
-        val accessToken = "Bearer $tokenFromApi"
+        accessToken = "Bearer $tokenFromApi"
 
+        binding.ivDelete.setOnClickListener {
+            observerDeleteAll(accessToken)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
         observerHistory(accessToken)
     }
 
@@ -168,6 +178,57 @@ class HistoryFragment : Fragment() {
                 } else {
                     LinearLayoutManager(context)
                 }
+        }
+    }
+
+    private fun observerDeleteAll(accessToken: String) {
+        viewModel.deleteAllBooking(accessToken).observe(viewLifecycleOwner) { response ->
+            if (response is Resources.Loading) {
+                enableProgressBar()
+            }
+            else if (response is Resources.Error) {
+                disableProgressBar()
+                Toast.makeText(requireContext(), response.error, Toast.LENGTH_SHORT).show()
+            }
+            else if (response is Resources.Success) {
+                disableProgressBar()
+                val result = response.data
+                if (result != null) {
+                    if (result.status.equals("success")) {
+
+                        val view = View.inflate(context, R.layout.delete_all_dialog, null)
+
+                        context?.let {
+                            AlertDialog.Builder(it, R.style.MyAlertDialogTheme)
+                                .setView(view)
+                                .setNegativeButton("No"){ _, _ ->
+                                    //Do Nothing
+                                }
+                                .setPositiveButton("Yes") {_, _ ->
+                                    //Delete
+                                    val fragmentHistory = HistoryFragmentDirections.actionHistoryFragmentSelf()
+                                    binding.root.findNavController().navigate(fragmentHistory)
+                                }
+                                .show()
+                        }
+
+                    }
+                    else {
+                        println("Result : ${result.status.toString()}")
+
+                        val tokenFromApi = savedPref.getData(Constants.REFRESH_TOKEN)
+                        println("refresh token : $tokenFromApi")
+
+                        val dataToken = hashMapOf(
+                            "refreshToken" to tokenFromApi
+                        )
+
+                        observeUpdateToken(dataToken)
+                    }
+                } else {
+                    Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 

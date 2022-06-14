@@ -10,6 +10,7 @@ import com.example.travelokaocr.data.model.flight.BookingResponse
 import com.example.travelokaocr.data.model.auth.RegisResponse
 import com.example.travelokaocr.data.model.auth.UpdateTokenResponse
 import com.example.travelokaocr.data.model.flight.DetailHistoryResponse
+import com.example.travelokaocr.data.model.flight.DeleteBookingResponse
 import com.example.travelokaocr.data.model.ocr.ScanIDCardResponse
 import com.example.travelokaocr.data.model.ocr.UpdateBookingStatus
 import com.example.travelokaocr.data.model.ocr.UpdatedKTPResponse
@@ -111,6 +112,12 @@ interface ApiService {
         @Body data: HashMap<String, Int>
     ): Response<BookingResponse>
 
+    //DELETE ALL BOOKING
+    @DELETE(FLIGHT_BOOKING)
+    suspend fun deleteAllBooking(
+        @Header(TOKEN_HEADER) accessToken: String
+    ): Response<DeleteBookingResponse>
+
     // POST Scan ID Card
     @Multipart
     @POST(KTP_SCANIDCARD_ENDPOINT)
@@ -140,6 +147,13 @@ interface ApiService {
         @Path("id") id: String,
         @Header(TOKEN_HEADER) accessToken: String
     ): Response<DetailHistoryResponse>
+
+    //DELETE BOOKING BY ID
+    @DELETE(FLIGHT_BOOKING_UPDATE)
+    suspend fun deleteBookingById(
+        @Path("id") id: String,
+        @Header(TOKEN_HEADER) accessToken: String
+    ): Response<DeleteBookingResponse>
 
     //GET OCR RESULT
     @GET(KTP_RESULT_ENDPOINT)

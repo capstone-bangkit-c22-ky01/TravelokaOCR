@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_historyFragment_to_historyDetailActivity"
             app:destination="@id/historyDetailActivity" />
+        <action
+            android:id="@+id/action_historyFragment_self"
+            app:destination="@id/historyFragment" />
     </fragment>
 
     <activity

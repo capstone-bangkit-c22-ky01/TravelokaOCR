@@ -1,6 +1,5 @@
 package com.example.travelokaocr.ui.ocr
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -174,6 +173,7 @@ class OCRResultActivity : AppCompatActivity() {
                         observeUpdateTokenForObserverUpdateRetrievedDataToDatabase(dataToken, dataToBeSendToAPI, dataBookingID)
                     }
                 } else {
+                    viewModel.setLoadingOCRResultDialog.value = false
                     Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
                 }
             }
@@ -207,6 +207,7 @@ class OCRResultActivity : AppCompatActivity() {
                         observeUpdateTokenForObserverUpdateBookingStatus(dataToken, dataBookingID, dataToBeSendToAPI1)
                     }
                 } else {
+                    viewModel.setLoadingOCRResultDialog.value = false
                     Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
                 }
             }
@@ -246,6 +247,7 @@ class OCRResultActivity : AppCompatActivity() {
                         Log.d("REGIS", result.status.toString())
                     }
                 } else {
+                    viewModel.setLoadingOCRResultDialog.value = false
                     Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
                 }
             }
@@ -285,6 +287,7 @@ class OCRResultActivity : AppCompatActivity() {
                         Log.d("REGIS", result.status.toString())
                     }
                 } else {
+                    viewModel.setLoadingOCRResultDialog.value = false
                     Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
                 }
             }
@@ -292,7 +295,6 @@ class OCRResultActivity : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
     private fun setupResult(
         nikFromAPI: String?,
         nameFromAPI: String?,

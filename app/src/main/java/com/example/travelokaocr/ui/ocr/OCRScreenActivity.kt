@@ -344,6 +344,7 @@ class OCRScreenActivity : AppCompatActivity() {
                             observeUpdateTokenForObserverOCRScanning(dataToken)
                         }
                     } else {
+                        viewModel.setLoadingOCRScreenDialog.value = false
                         Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -379,6 +380,7 @@ class OCRScreenActivity : AppCompatActivity() {
                         observeUpdateTokenForOCRResult(dataToken)
                     }
                 } else {
+                    viewModel.setLoadingOCRScreenDialog.value = false
                     Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
                 }
             }
@@ -414,6 +416,7 @@ class OCRScreenActivity : AppCompatActivity() {
                         Log.d("REGIS", result.status.toString())
                     }
                 } else {
+                    viewModel.setLoadingOCRScreenDialog.value = false
                     Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
                 }
             }
@@ -447,6 +450,7 @@ class OCRScreenActivity : AppCompatActivity() {
                         Log.d("REGIS", result.status.toString())
                     }
                 } else {
+                    viewModel.setLoadingOCRScreenDialog.value = false
                     Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
                 }
             }

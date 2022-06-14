@@ -1,6 +1,5 @@
 package com.example.travelokaocr.ui.main.historydetail
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -86,14 +85,14 @@ class HistoryDetailActivity : AppCompatActivity() {
     private fun observeDetailHistory(bookingID: String, accessToken: String) {
         viewModel.detailHistory(bookingID, accessToken).observe(this) { response ->
             if (response is Resources.Loading) {
-                //DO NOTHING
+                progressBar(true)
             }
             else if (response is Resources.Error) {
-//                disableProgressBar()
+                progressBar(false)
                 Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
             }
             else if (response is Resources.Success) {
-//                disableProgressBar()
+                progressBar(false)
                 val result = response.data
                 if (result != null) {
                     if (result.status.equals("success")) {
@@ -145,10 +144,8 @@ class HistoryDetailActivity : AppCompatActivity() {
 
                     }
                     else {
-                        println("Result : ${result.status.toString()}")
 
                         val tokenFromApi = savedPref.getData(Constants.REFRESH_TOKEN)
-                        println("refresh token : $tokenFromApi")
 
                         val dataToken = hashMapOf(
                             "refreshToken" to tokenFromApi
@@ -166,29 +163,26 @@ class HistoryDetailActivity : AppCompatActivity() {
     private fun observeUpdateToken(dataToken: HashMap<String, String?>) {
         authViewModel.updateToken(dataToken).observe(this) { response ->
             if (response is Resources.Loading) {
-//                enableProgressBar()
+                progressBar(true)
             }
             else if (response is Resources.Error) {
-//                disableProgressBar()
+                progressBar(false)
                 Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
             }
             else if (response is Resources.Success) {
-//                disableProgressBar()
+                progressBar(false)
                 val result = response.data
                 if (result != null) {
                     if (result.status.equals("success")) {
                         val newAccessToken = result.data?.accessToken.toString()
-                        println("new access token : $newAccessToken")
 
                         //save new token
                         savedPref.putData(Constants.ACCESS_TOKEN, newAccessToken)
 
                         //get new token
                         val tokenFromAPI = (savedPref.getData(Constants.ACCESS_TOKEN))
-                        println("token from api : $tokenFromAPI")
 
                         val accessToken = "Bearer $tokenFromAPI"
-                        println("access token : $accessToken")
 
                         val bookingID = args.bookingid
 
@@ -226,8 +220,6 @@ class HistoryDetailActivity : AppCompatActivity() {
                         val dataToken = hashMapOf(
                             "refreshToken" to savedPref.getData(Constants.REFRESH_TOKEN)
                         )
-                        Log.d("REFRESH TOKEN", "observerFlightSearch: $dataToken")
-                        Log.d("ACCESS TOKEN", "observerFlightSearch: $accessToken")
                         observeUpdateToken(dataToken)
                     }
                 } else {

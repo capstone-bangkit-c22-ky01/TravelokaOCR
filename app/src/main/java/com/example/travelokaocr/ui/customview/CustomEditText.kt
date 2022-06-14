@@ -14,7 +14,6 @@ import com.example.travelokaocr.R
 
 class CustomEditText: AppCompatEditText, View.OnTouchListener {
     private lateinit var deleteButtonIcon: Drawable
-    private lateinit var test: Drawable
 
     //pembuatan constructor karena kita ingin men-extend AppCompatEditText
     constructor(context: Context): super(context){
@@ -37,7 +36,6 @@ class CustomEditText: AppCompatEditText, View.OnTouchListener {
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         textAlignment = View.TEXT_ALIGNMENT_VIEW_START
-//        setBackgroundDrawable(test)
     }
 
     //when EditText is being clicked
@@ -135,7 +133,6 @@ class CustomEditText: AppCompatEditText, View.OnTouchListener {
                 //if yes, then show the delete icon
                 //if not, then hide the delete icon
                 if(p0.toString().isNotEmpty()){
-//                    setBackgroundDrawable(test)
                     showDeleteButton()
                 } else{
                     hideDeleteButton()

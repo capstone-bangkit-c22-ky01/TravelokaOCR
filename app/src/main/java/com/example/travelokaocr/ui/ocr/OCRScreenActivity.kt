@@ -336,12 +336,11 @@ class OCRScreenActivity : AppCompatActivity() {
                             observerOCRResult(accessToken, bookingID)
 
                         } else {
-                            Log.d("REGIS", result.status)
+
                             val dataToken = hashMapOf(
                                 "refreshToken" to savedPref.getData(Constants.REFRESH_TOKEN)
                             )
-                            Log.d("REFRESH TOKEN", "observerFlightSearch: $dataToken")
-                            Log.d("ACCESS TOKEN", "observerFlightSearch: $accessToken")
+
                             observeUpdateTokenForObserverOCRScanning(dataToken)
                         }
 
@@ -410,7 +409,6 @@ class OCRScreenActivity : AppCompatActivity() {
                         val tokenFromAPI = (savedPref.getData(Constants.ACCESS_TOKEN))
                         val accessToken = "Bearer $tokenFromAPI"
 
-                        Log.d("NEW ACCESS TOKEN", "observeUpdateToken: $accessToken")
 
                         observerOCRScanning(accessToken, bookingID, photoFile, data)
                     }
@@ -444,7 +442,6 @@ class OCRScreenActivity : AppCompatActivity() {
                         val tokenFromAPI = (savedPref.getData(Constants.ACCESS_TOKEN))
                         val accessToken = "Bearer $tokenFromAPI"
 
-                        Log.d("NEW ACCESS TOKEN", "observeUpdateToken: $accessToken")
 
                         observerOCRResult(accessToken, bookingID)
                     }

@@ -123,7 +123,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun signUpForm() {
         binding.tilName.helperText = validateName()
-        binding.tilEmail.helperText = validatePassword()
+        binding.tilEmail.helperText = validateEmail()
         binding.tilPassword.helperText = validatePassword()
 
         val validName = binding.tilName.helperText == null
@@ -209,7 +209,6 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                         saveSessionLogin(accessToken, refreshToken)
 
                         Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
-                        Log.d("REGIS", result.message.toString())
 
                         //intent to home directly
                         val intent = Intent(this@RegisterActivity, HomeActivity::class.java)
@@ -218,7 +217,6 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
                     } else {
                         alertUserError(result.message.toString())
-                        Log.d("REGIS", result.message.toString())
                     }
                 } else {
                     Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
@@ -337,8 +335,8 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         AlertDialog.Builder(this, R.style.MyAlertDialogTheme)
             .setTitle(message)
             .setView(view)
-            .setPositiveButton("Back to Register") { _, _ ->
-                //DO NOTHING
+            .setPositiveButton("Back to Register") { p0, _ ->
+                p0.dismiss()
             }.show()
     }
 

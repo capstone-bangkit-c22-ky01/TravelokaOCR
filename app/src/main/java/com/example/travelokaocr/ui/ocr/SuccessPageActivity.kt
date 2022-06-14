@@ -2,13 +2,10 @@ package com.example.travelokaocr.ui.ocr
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.example.travelokaocr.R
 import com.example.travelokaocr.databinding.ActivitySuccessPageBinding
 import com.example.travelokaocr.ui.main.HomeActivity
 import com.example.travelokaocr.ui.main.HomeActivityTwo
-import com.example.travelokaocr.ui.main.fragment.HistoryFragment
 
 class SuccessPageActivity : AppCompatActivity() {
     //BINDING

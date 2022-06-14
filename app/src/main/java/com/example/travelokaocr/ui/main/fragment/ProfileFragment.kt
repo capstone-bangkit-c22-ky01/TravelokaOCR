@@ -145,8 +145,8 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         AlertDialog.Builder(requireContext(), R.style.MyAlertDialogTheme)
             .setTitle("Are you sure want to Logout?")
             .setView(view)
-            .setNegativeButton("No"){ _, _ ->
-                //DO NOTHING
+            .setNegativeButton("No"){ p0, _ ->
+                p0.dismiss()
             }
             .setPositiveButton("Yes") { _, _ ->
                 //call api logout

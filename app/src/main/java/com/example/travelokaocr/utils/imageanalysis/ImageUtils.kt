@@ -1,17 +1,19 @@
 package com.example.travelokaocr.utils.imageanalysis
 
-import android.app.Application
+import android.content.ContentResolver
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.ImageFormat
 import android.graphics.Matrix
 import android.graphics.Rect
 import android.media.Image
+import android.net.Uri
 import android.os.Environment
 import androidx.annotation.ColorInt
-import com.example.travelokaocr.R
 import java.io.File
 import java.io.FileOutputStream
+import java.io.InputStream
+import java.io.OutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,16 +30,24 @@ fun createTempFile(context: Context): File {
     return File.createTempFile(timeStamp, ".jpg", storageDir)
 }
 
-fun createFile(application: Application): File {
-    val mediaDir = application.externalMediaDirs.firstOrNull()?.let {
-        File(it, application.resources.getString(R.string.app_name)).apply { mkdirs() }
-    }
+fun createCustomTempFile(context: Context): File {
+    val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+    return File.createTempFile(com.example.travelokaocr.utils.imageanalysis.timeStamp, ".jpg", storageDir)
+}
 
-    val outputDirectory = if (
-        mediaDir != null && mediaDir.exists()
-    ) mediaDir else application.filesDir
+fun uriToFile(selectedImg: Uri, context: Context): File {
+    val contentResolver: ContentResolver = context.contentResolver
+    val myFile = createCustomTempFile(context)
 
-    return File(outputDirectory, "$timeStamp.jpg")
+    val inputStream = contentResolver.openInputStream(selectedImg) as InputStream
+    val outputStream: OutputStream = FileOutputStream(myFile)
+    val buf = ByteArray(1024)
+    var len: Int
+    while (inputStream.read(buf).also { len = it } > 0) outputStream.write(buf, 0, len)
+    outputStream.close()
+    inputStream.close()
+
+    return myFile
 }
 
 fun bitmapToFile(file: File, pictureBitmap: Bitmap): File {

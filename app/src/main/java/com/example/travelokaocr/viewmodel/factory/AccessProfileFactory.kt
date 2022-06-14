@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.travelokaocr.data.repository.AccessProfileRepository
 import com.example.travelokaocr.viewmodel.AccessProfileViewModel
 
+@Suppress("UNCHECKED_CAST")
 class AccessProfileFactory(private val repo: AccessProfileRepository)
     : ViewModelProvider.Factory{
         override fun <T : ViewModel> create(modelClass: Class<T>): T {

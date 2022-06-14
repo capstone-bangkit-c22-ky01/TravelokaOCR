@@ -112,13 +112,13 @@ class ManualInputActivity : AppCompatActivity() {
                         observerUpdateBookingStatus(accessToken, dataBookingID, dataToBeSendToAPI1)
 
                     } else {
-                        Log.d("REGIS", result.status)
+
                         val dataToken = hashMapOf(
                             "refreshToken" to savedPreference.getData(Constants.REFRESH_TOKEN)
                         )
-                        Log.d("REFRESH TOKEN", "observerFlightSearch: $dataToken")
-                        Log.d("ACCESS TOKEN", "observerFlightSearch: $accessToken")
+
                         observeUpdateTokenForObserverUpdateRetrievedDataToDatabase(dataToken, dataToBeSendToAPI, dataBookingID)
+
                     }
                 } else {
                     Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
@@ -183,8 +183,6 @@ class ManualInputActivity : AppCompatActivity() {
                         //get new token
                         val tokenFromAPI = (savedPreference.getData(Constants.ACCESS_TOKEN))
                         val accessToken = "Bearer $tokenFromAPI"
-
-                        Log.d("NEW ACCESS TOKEN", "observeUpdateToken: $accessToken")
 
                         observerUpdateRetrievedDataToDatabase(accessToken, dataToBeSendToAPI, dataBookingID)
                     }
@@ -254,7 +252,6 @@ class ManualInputActivity : AppCompatActivity() {
                         val tokenFromAPI = (savedPreference.getData(Constants.ACCESS_TOKEN))
                         val accessToken = "Bearer $tokenFromAPI"
 
-                        Log.d("NEW ACCESS TOKEN", "observeUpdateToken: $accessToken")
 
                         observerUpdateBookingStatus(accessToken, dataBookingID, dataToBeSendToAPI1)
                     }

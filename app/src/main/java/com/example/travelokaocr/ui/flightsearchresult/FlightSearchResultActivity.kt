@@ -115,8 +115,6 @@ class FlightSearchResultActivity : AppCompatActivity() {
                         val dataToken = hashMapOf(
                             "refreshToken" to savedPref.getData(Constants.REFRESH_TOKEN)
                         )
-                        Log.d("REFRESH TOKEN", "observerFlightSearch: $dataToken")
-                        Log.d("ACCESS TOKEN", "observerFlightSearch: $accessToken")
                         observeUpdateTokenObserverFlightBook(dataToken, flightID)
                     }
                 } else {
@@ -174,13 +172,13 @@ class FlightSearchResultActivity : AppCompatActivity() {
                         disableProgressBar()
                         list.differAsync.submitList((result.data?.flights)?.reversed())
                     } else {
-                        Log.d("REGIS", result.status.toString())
+
                         val dataToken = hashMapOf(
                             "refreshToken" to savedPref.getData(Constants.REFRESH_TOKEN)
                         )
-                        Log.d("REFRESH TOKEN", "observerFlightSearch: $dataToken")
-                        Log.d("ACCESS TOKEN", "observerFlightSearch: $accessToken")
+
                         observeUpdateTokenObserverFlightSearch(dataToken)
+
                     }
                 } else {
                     disableProgressBar()

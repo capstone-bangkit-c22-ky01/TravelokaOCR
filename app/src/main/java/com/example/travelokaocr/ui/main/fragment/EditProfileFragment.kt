@@ -7,13 +7,13 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.util.Patterns
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
@@ -23,7 +23,7 @@ import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.databinding.FragmentEditProfileBinding
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
-import com.example.travelokaocr.utils.uriToFile
+import com.example.travelokaocr.utils.imageanalysis.uriToFile
 import com.example.travelokaocr.viewmodel.AccessProfileViewModel
 import com.example.travelokaocr.viewmodel.AuthViewModel
 import com.example.travelokaocr.viewmodel.factory.AccessProfileFactory
@@ -48,9 +48,11 @@ class EditProfileFragment : Fragment() {
     private lateinit var authViewModel: AuthViewModel
     private lateinit var viewModel: AccessProfileViewModel
 
+    //SESSION
     private lateinit var savedPreference: SavedPreference
     private lateinit var accessToken: String
 
+    //FILE
     private var getFile: File? = null
 
     override fun onCreateView(
@@ -86,9 +88,15 @@ class EditProfileFragment : Fragment() {
 
         showDataUser()
 
+        binding.ivBackFragmentEditProfile.setOnClickListener {
+            val fragmentProfile = EditProfileFragmentDirections.actionEditProfileFragmentToProfileFragment()
+            binding.root.findNavController().navigate(fragmentProfile)
+        }
+
         binding.tvUploadImage.setOnClickListener{
             startGallery()
         }
+
         binding.btnSaveChanges.setOnClickListener{
             update()
         }
@@ -146,6 +154,8 @@ class EditProfileFragment : Fragment() {
             binding.btnSaveChanges.isEnabled =
                 (username.isNotEmpty()) &&
                         (email.isNotEmpty())
+        }else{
+            binding.btnSaveChanges.isEnabled = false
         }
     }
 
@@ -156,11 +166,11 @@ class EditProfileFragment : Fragment() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                //DO NOTHING
+                validateButton()
             }
 
             override fun afterTextChanged(p0: Editable?) {
-//                validateButton()
+                //DO NOTHING
             }
         })
 
@@ -170,11 +180,11 @@ class EditProfileFragment : Fragment() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                //DO NOTHING
+                validateButton()
             }
 
             override fun afterTextChanged(p0: Editable?) {
-//                validateButton()
+                //DO NOTHING
             }
         })
     }
@@ -299,8 +309,6 @@ class EditProfileFragment : Fragment() {
                         //get new token
                         val tokenFromAPI = (savedPreference.getData(Constants.ACCESS_TOKEN))
                         val accessToken = "Bearer $tokenFromAPI"
-
-                        Log.d("NEW ACCESS TOKEN", "observeUpdateToken: $accessToken")
 
                         observeUpdateProfile(accessToken, dataUser, dataEmail, imageMultipart)
 

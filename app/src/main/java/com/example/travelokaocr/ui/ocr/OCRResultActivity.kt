@@ -164,12 +164,11 @@ class OCRResultActivity : AppCompatActivity() {
                         observerUpdateBookingStatus(accessToken, dataBookingID, dataToBeSendToAPI1)
 
                     } else {
-                        Log.d("REGIS", result.status)
+
                         val dataToken = hashMapOf(
                             "refreshToken" to savedPreference.getData(Constants.REFRESH_TOKEN)
                         )
-                        Log.d("REFRESH TOKEN", "observerFlightSearch: $dataToken")
-                        Log.d("ACCESS TOKEN", "observerFlightSearch: $accessToken")
+
                         observeUpdateTokenForObserverUpdateRetrievedDataToDatabase(dataToken, dataToBeSendToAPI, dataBookingID)
                     }
                 } else {
@@ -239,8 +238,6 @@ class OCRResultActivity : AppCompatActivity() {
                         val tokenFromAPI = (savedPreference.getData(Constants.ACCESS_TOKEN))
                         val accessToken = "Bearer $tokenFromAPI"
 
-                        Log.d("NEW ACCESS TOKEN", "observeUpdateToken: $accessToken")
-
                         observerUpdateBookingStatus(accessToken, dataBookingID, dataToBeSendToAPI1)
                     }
                     else {
@@ -278,8 +275,6 @@ class OCRResultActivity : AppCompatActivity() {
                         //get new token
                         val tokenFromAPI = (savedPreference.getData(Constants.ACCESS_TOKEN))
                         val accessToken = "Bearer $tokenFromAPI"
-
-                        Log.d("NEW ACCESS TOKEN", "observeUpdateToken: $accessToken")
 
                         observerUpdateRetrievedDataToDatabase(accessToken, dataToBeSendToAPI, dataBookingID)
                     }
@@ -380,6 +375,5 @@ class OCRResultActivity : AppCompatActivity() {
         val arrayAdapterMaritalStatus = ArrayAdapter(this, R.layout.dropdown_item_ocr_result, maritalStatus)
         binding.edtMaritalStatus.setAdapter(arrayAdapterMaritalStatus)
     }
-
 
 }

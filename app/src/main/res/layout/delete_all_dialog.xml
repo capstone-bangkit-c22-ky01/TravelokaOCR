@@ -16,7 +16,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/nunito_bold"
-        android:text="@string/delete_it_dialog"
+        android:text="@string/delete_all_dialog"
         android:textColor="@color/customColorFont"
         android:gravity="center_horizontal"
         android:textSize="12sp"

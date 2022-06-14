@@ -1,8 +1,11 @@
 package com.example.travelokaocr.ui.main.historydetail
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -13,6 +16,8 @@ import com.example.travelokaocr.R
 import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.data.repository.FlightRepository
 import com.example.travelokaocr.databinding.ActivityHistoryDetailBinding
+import com.example.travelokaocr.ui.ocr.ManualInputActivity
+import com.example.travelokaocr.ui.ocr.OCRScreenActivity
 import com.example.travelokaocr.utils.Constants
 import com.example.travelokaocr.utils.Resources
 import com.example.travelokaocr.viewmodel.AuthViewModel
@@ -61,6 +66,11 @@ class HistoryDetailActivity : AppCompatActivity() {
         binding.ivBack.setOnClickListener {
             finish()
         }
+
+        binding.ivDelete.setOnClickListener {
+            alertDelete()
+        }
+
     }
 
     private fun observeDetailHistory(bookingID: String, accessToken: String) {
@@ -99,7 +109,7 @@ class HistoryDetailActivity : AppCompatActivity() {
                             binding.tvDefaultUser.text = result.data.passenger_name
                         }else{
                             binding.tvDefaultStatus.text = result.data?.passenger_title
-                            binding.tvDefaultUser.text = "User haven't filled out the form"
+                            binding.tvDefaultUser.text = getString(R.string.detail_user_info)
                             binding.tvDefaultUser.setTextColor(ContextCompat.getColor(this, R.color.customColorFont))
                             binding.purchaseStatus.setBackgroundResource(R.color.failed)
                         }
@@ -183,4 +193,22 @@ class HistoryDetailActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun alertDelete() {
+        val view = View.inflate(this, R.layout.delete_dialog, null)
+
+        AlertDialog.Builder(this, R.style.MyAlertDialogTheme)
+            .setView(view)
+            .setNegativeButton("No"){ _, _ ->
+                //Do Nothing
+            }
+            .setPositiveButton("Continue") {_, _ ->
+                //Delete
+
+                //intent to fragment
+                finish()
+            }
+            .show()
+    }
+
 }

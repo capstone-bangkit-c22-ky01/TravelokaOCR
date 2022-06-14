@@ -879,4 +879,8 @@
     <string name="manual_input_desc">Please enter your data below</string>
     <string name="manual_input">User Identity Form</string>
     <string name="delete_all_dialog">Are you sure want to delete all?</string>
+    <string name="detail_user_info">User haven\'t filled out the form</string>
+    <string name="delete">delete</string>
+    <string name="jakarta">Jakarta</string>
+    <string name="delete_it_dialog">Are you sure want to delete this booking?</string>
 </resources>

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -72,6 +73,10 @@ class HistoryFragment : Fragment() {
         list.setOnItemClickListener {
             val bundle = Bundle().apply { putString("bookingid", it.id) }
             findNavController().navigate(R.id.action_historyFragment_to_historyDetailActivity, bundle)
+        }
+
+        binding.ivDelete.setOnClickListener {
+            alertDelete()
         }
 
         val tokenFromApi = savedPref.getData(Constants.ACCESS_TOKEN)
@@ -168,6 +173,24 @@ class HistoryFragment : Fragment() {
                 } else {
                     LinearLayoutManager(context)
                 }
+        }
+    }
+
+    private fun alertDelete() {
+        val view = View.inflate(context, R.layout.delete_all_dialog, null)
+
+        context?.let {
+            AlertDialog.Builder(it, R.style.MyAlertDialogTheme)
+                .setView(view)
+                .setNegativeButton("No"){ _, _ ->
+                    //Do Nothing
+                }
+                .setPositiveButton("Continue") {_, _ ->
+                    //Delete
+
+                    //Do Nothing
+                }
+                .show()
         }
     }
 

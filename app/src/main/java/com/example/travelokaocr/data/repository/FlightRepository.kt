@@ -4,12 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.example.travelokaocr.data.api.RetrofitInstance
-import com.example.travelokaocr.data.model.flight.HistoryResponse
-import com.example.travelokaocr.data.model.flight.BookingResponse
-import com.example.travelokaocr.data.model.flight.DetailHistoryResponse
+import com.example.travelokaocr.data.model.flight.*
 import com.example.travelokaocr.utils.Resources
 import com.google.gson.Gson
-import com.example.travelokaocr.data.model.flight.FlightSearchResponse
 
 class FlightRepository {
 
@@ -81,5 +78,21 @@ class FlightRepository {
         }
     }
 
+    //DELETE BOOKING BY ID
+    fun deleteBookingById(dataBookingID: String, accessToken: String):
+            LiveData<Resources<DeleteBookingResponse?>> = liveData {
+        emit(Resources.Loading)
+        val returnValue = MutableLiveData<Resources<DeleteBookingResponse?>>()
+        val response = RetrofitInstance.API_OBJECT.deleteBookingById(dataBookingID, accessToken)
+        if(response.isSuccessful) {
+            returnValue.value = Resources.Success(response.body())
+            emitSource(returnValue)
+        } else {
+            val error = Gson().fromJson(response.errorBody()?.stringSuspending(), DeleteBookingResponse::class.java)
+            response.errorBody()?.close()
+            returnValue.value = Resources.Success(error)
+            emitSource(returnValue)
+        }
+    }
 }
 

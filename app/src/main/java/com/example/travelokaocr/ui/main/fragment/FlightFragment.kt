@@ -106,7 +106,7 @@ class FlightFragment : Fragment(), View.OnClickListener {
 
                         savedPref.putData(Constants.USERNAME, username)
                         savedPref.putData(Constants.EMAIL, email)
-                        savedPref.putDataStringNullable(Constants.PROFILE_PICTURE, photoProfile)
+                        savedPref.putData(Constants.PROFILE_PICTURE, photoProfile)
 
                     } else {
                         Log.d("PROFILE", result.status.toString())

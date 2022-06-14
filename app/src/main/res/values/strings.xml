@@ -122,6 +122,7 @@
     <string name="buy_btn">Buy</string>
     <string name="SearchListAdapter_flightDuration">%1sh %2sm</string>
     <string name="SearchListAdapter_direct">Direct</string>
+    <string name="FlightSearchResultActivity_paxTv"> · %1s pax · </string>
 
     <!-- Flight History Activity -->
     <string name="booking_id">Booking ID</string>

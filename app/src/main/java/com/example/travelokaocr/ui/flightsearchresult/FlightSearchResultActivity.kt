@@ -1,6 +1,5 @@
 package com.example.travelokaocr.ui.flightsearchresult
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
@@ -17,7 +16,6 @@ import com.example.travelokaocr.data.repository.AuthRepository
 import com.example.travelokaocr.data.repository.FlightRepository
 import com.example.travelokaocr.databinding.ActivityFlightSearchResultBinding
 import com.example.travelokaocr.ui.adapter.SearchListAdapter
-import com.example.travelokaocr.ui.main.HomeActivity
 import com.example.travelokaocr.ui.ocr.ManualInputActivity
 import com.example.travelokaocr.ui.ocr.OCRScreenActivity
 import com.example.travelokaocr.utils.Constants
@@ -41,7 +39,6 @@ class FlightSearchResultActivity : AppCompatActivity() {
     private lateinit var viewModel: FlightViewModel
     private lateinit var authViewModel: AuthViewModel
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFlightSearchResultBinding.inflate(layoutInflater)
@@ -55,9 +52,6 @@ class FlightSearchResultActivity : AppCompatActivity() {
         val cityTo = (savedPref.getData(Constants.TO_ONLY_CITY))?.lowercase()
         val cityFrom = (savedPref.getData(Constants.FROM_ONLY_CITY))?.lowercase()
 
-        println(cityTo + cityFrom)
-
-        Log.d("CITY RESULT", "onCreate: $cityTo and $cityFrom")
         val tokenFromAPI = (savedPref.getData(Constants.ACCESS_TOKEN))!!
         accessToken = "Bearer $tokenFromAPI"
 
@@ -72,14 +66,13 @@ class FlightSearchResultActivity : AppCompatActivity() {
         binding.fromTv.text = savedPref.getData(Constants.FROM_ONLY_CITY)
         binding.toTv.text = savedPref.getData(Constants.TO_ONLY_CITY)
         binding.dateTv.text = savedPref.getData(Constants.DATE)
-        binding.paxTv.text = " · ${savedPref.getData(Constants.PAX)} pax · "
+        binding.paxTv.text = String.format(getString(R.string.FlightSearchResultActivity_paxTv), savedPref.getData(Constants.PAX))
         binding.seatClassTv.text = savedPref.getData(Constants.SEAT)
 
         binding.ivBack.setOnClickListener {
-            finish()
             savedPref.putData(Constants.PAX, null)
             savedPref.putData(Constants.SEAT, null)
-            startActivity(Intent(this@FlightSearchResultActivity, HomeActivity::class.java))
+            finish()
         }
     }
 
@@ -99,6 +92,8 @@ class FlightSearchResultActivity : AppCompatActivity() {
 
                         val view = View.inflate(this, R.layout.scanning_option_dialog, null)
 
+                        disableProgressBar()
+
                         AlertDialog.Builder(this, R.style.MyAlertDialogTheme)
                             .setView(view)
                             .setNegativeButton("No, let me fill in manually"){ _, _ ->
@@ -114,7 +109,7 @@ class FlightSearchResultActivity : AppCompatActivity() {
                                 startActivity(intent)
                             }
                             .show()
-                        disableProgressBar()
+
                     }
                     else {
                         val dataToken = hashMapOf(
@@ -122,9 +117,41 @@ class FlightSearchResultActivity : AppCompatActivity() {
                         )
                         Log.d("REFRESH TOKEN", "observerFlightSearch: $dataToken")
                         Log.d("ACCESS TOKEN", "observerFlightSearch: $accessToken")
-                        observeUpdateToken(dataToken)
+                        observeUpdateTokenObserverFlightBook(dataToken, flightID)
                     }
                 } else {
+                    disableProgressBar()
+                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun observeUpdateTokenObserverFlightBook(dataToken: HashMap<String, String?>, flightID: HashMap<String, Int>) {
+        authViewModel.updateToken(dataToken).observe(this){ response ->
+            if (response is Resources.Error) {
+                disableProgressBar()
+                Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
+            } else if (response is Resources.Success) {
+                val result = response.data
+                if (result != null) {
+                    if (result.status.equals("success")) {
+
+                        val newAccessToken = result.data?.accessToken.toString()
+                        //save new token
+                        savedPref.putData(Constants.ACCESS_TOKEN, newAccessToken)
+
+                        //get new token
+                        val tokenFromAPI = (savedPref.getData(Constants.ACCESS_TOKEN))
+                        val accessToken = "Bearer $tokenFromAPI"
+
+                        observerFlightBook(accessToken, flightID)
+
+                    } else {
+                        Log.d("REGIS", result.status.toString())
+                    }
+                } else {
+                    disableProgressBar()
                     Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
                 }
             }
@@ -141,45 +168,40 @@ class FlightSearchResultActivity : AppCompatActivity() {
                 Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
             }
             else if (response is Resources.Success) {
-                disableProgressBar()
                 val result = response.data
                 if (result != null) {
                     if (result.status.equals("success")) {
+                        disableProgressBar()
                         list.differAsync.submitList((result.data?.flights)?.reversed())
-                    }
-                    else {
+                    } else {
                         Log.d("REGIS", result.status.toString())
                         val dataToken = hashMapOf(
                             "refreshToken" to savedPref.getData(Constants.REFRESH_TOKEN)
                         )
                         Log.d("REFRESH TOKEN", "observerFlightSearch: $dataToken")
                         Log.d("ACCESS TOKEN", "observerFlightSearch: $accessToken")
-                        observeUpdateToken(dataToken)
+                        observeUpdateTokenObserverFlightSearch(dataToken)
                     }
                 } else {
+                    disableProgressBar()
                     Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
 
-    private fun observeUpdateToken(dataToken: HashMap<String, String?>) {
+    private fun observeUpdateTokenObserverFlightSearch(dataToken: HashMap<String, String?>) {
         authViewModel.updateToken(dataToken).observe(this) { response ->
-            if (response is Resources.Loading) {
-                enableProgressBar()
-            }
-            else if (response is Resources.Error) {
+            if (response is Resources.Error) {
                 disableProgressBar()
                 Toast.makeText(this, response.error, Toast.LENGTH_SHORT).show()
             }
             else if (response is Resources.Success) {
-                disableProgressBar()
                 val result = response.data
                 if (result != null) {
                     if (result.status.equals("success")) {
                         val cityTo = (savedPref.getData(Constants.TO_ONLY_CITY))?.lowercase()
                         val cityFrom = (savedPref.getData(Constants.FROM_ONLY_CITY))?.lowercase()
-                        Log.d("CITY RESULT", "onCreate: $cityTo and $cityFrom")
 
                         val newAccessToken = result.data?.accessToken.toString()
                         //save new token
@@ -189,14 +211,12 @@ class FlightSearchResultActivity : AppCompatActivity() {
                         val tokenFromAPI = (savedPref.getData(Constants.ACCESS_TOKEN))
                         val accessToken = "Bearer $tokenFromAPI"
 
-                        Log.d("NEW ACCESS TOKEN", "observeUpdateToken: $accessToken")
-
                         observerFlightSearch(accessToken, cityFrom, cityTo)
-                    }
-                    else {
+                    } else {
                         Log.d("REGIS", result.status.toString())
                     }
                 } else {
+                    disableProgressBar()
                     Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
                 }
             }

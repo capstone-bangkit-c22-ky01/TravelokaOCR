@@ -16,10 +16,6 @@ class SavedPreference (context: Context) {
         editor.putString(key, value).apply()
     }
 
-    fun putDataStringNullable(key: String, value: String?){
-        editor.putString(key, value).apply()
-    }
-
     fun putSession(key: String, value: Boolean){
         editor.putBoolean(key, value).apply()
     }

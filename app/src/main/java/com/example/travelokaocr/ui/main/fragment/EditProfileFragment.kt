@@ -252,7 +252,7 @@ class EditProfileFragment : Fragment() {
 
                         if (imageMultipart != null){
                             val photoProfile = result.data?.imageUri
-                            savedPreference.putDataStringNullable(Constants.PROFILE_PICTURE, photoProfile)
+                            savedPreference.putData(Constants.PROFILE_PICTURE, photoProfile)
                         }
 
                         savedPreference.putData(Constants.USERNAME, username!!)

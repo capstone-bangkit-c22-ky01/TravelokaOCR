@@ -795,9 +795,6 @@
         <item>Married</item>
     </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <!--HOMEPAGE TEXT-->
     <string name="fragment_flight">Flight</string>
     <string name="fragment_history">History</string>

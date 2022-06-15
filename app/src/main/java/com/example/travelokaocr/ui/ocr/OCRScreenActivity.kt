@@ -147,8 +147,6 @@ class OCRScreenActivity : AppCompatActivity() {
             )
         }else{
 
-            setUpCameraAndCameraUtilityWhenCameraPermissionGranted()
-
             binding.viewFinder.post {
 
                 binding.overlay.apply {
@@ -174,10 +172,16 @@ class OCRScreenActivity : AppCompatActivity() {
                     })
                 }
 
+                setUpCameraAndCameraUtilityWhenCameraPermissionGranted()
+
             }
 
         }
 
+    }
+
+    override fun onBackPressed() {
+        finish()
     }
 
     override fun onDestroy() {
@@ -373,6 +377,7 @@ class OCRScreenActivity : AppCompatActivity() {
                         viewModel.setLoadingOCRScreenDialog.value = false
 
                         startActivity(intent)
+                        finish()
 
                     }else {
                         val dataToken = hashMapOf(

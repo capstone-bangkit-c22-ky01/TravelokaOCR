@@ -75,6 +75,9 @@ class OCRResultActivity : AppCompatActivity() {
         }
 
         binding.ivRetry.setOnClickListener {
+            val intent = Intent(this, OCRScreenActivity::class.java)
+            intent.putExtra("id", dataBookingID)
+            startActivity(intent)
             finish()
         }
 
@@ -84,7 +87,13 @@ class OCRResultActivity : AppCompatActivity() {
 
         }
 
+    }
 
+    override fun onBackPressed() {
+        val intent = Intent(this, OCRScreenActivity::class.java)
+        intent.putExtra("id", dataBookingID)
+        startActivity(intent)
+        finish()
     }
 
     override fun onResume() {
@@ -195,7 +204,7 @@ class OCRResultActivity : AppCompatActivity() {
                         viewModel.setLoadingOCRResultDialog.value = false
 
                         startActivity(intent)
-                        finishAffinity()
+                        finish()
 
                     } else {
                         val dataToken = hashMapOf(

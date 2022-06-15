@@ -82,7 +82,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         //GOOGLE SIGN IN
         gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("66670183590-cfunc7u16g4d5n74nhk37mv9cl4garbl.apps.googleusercontent.com")
+            .requestIdToken("599627530691-rgl8bn0spg3folegu6ev01kftbpjotcd.apps.googleusercontent.com")
             .requestEmail()
             .build()
 

@@ -276,7 +276,11 @@ class EditProfileFragment : Fragment() {
                         val toProfileFragment = EditProfileFragmentDirections.actionEditProfileFragmentToProfileFragment()
                         binding.root.findNavController().navigate(toProfileFragment)
 
-                    } else {
+                    } else if (result.status == null && result.message.equals("Payload content length greater than maximum allowed: 512000")){
+
+                        Toast.makeText(requireContext(), "File size is too big, please try again to upload image with size below 512kb", Toast.LENGTH_SHORT).show()
+
+                    }else {
                         val dataToken = hashMapOf(
                             "refreshToken" to savedPreference.getData(Constants.REFRESH_TOKEN)
                         )

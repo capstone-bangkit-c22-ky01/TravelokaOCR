@@ -136,6 +136,17 @@
     <string name="travel_insurance_flight">Travel Insurance (Flight)</string>
     <string name="HistoryAdapter_PurchaseStatus">Purchase %1s</string>
 
+    <!-- Flight History Detail Activity -->
+    <string name="flight_eticket">Flight E-ticket</string>
+    <string name="airline_booking_code">Airline Booking Code</string>
+    <string name="booking_code">C22KY01</string>
+    <string name="depart_time">14:40</string>
+    <string name="arrival_time">15:40</string>
+    <string name="passenger">Passenger</string>
+    <string name="jakarta">Jakarta</string>
+    <string name="detail_user_info">User haven\'t filled out the form</string>
+    <string name="info">This airline doesn’t allow passenger name correction</string>
+
     <!--ERROR TEXT-->
     <string name="error_400">400 Error</string>
     <string name="error">Something went wrong</string>
@@ -795,6 +806,10 @@
         <item>Married</item>
     </string-array>
 
+    <!--MANUAL INPUT PAGE-->
+    <string name="manual_input">User Identity Form</string>
+    <string name="manual_input_desc">Please enter your data below</string>
+
     <!--HOMEPAGE TEXT-->
     <string name="fragment_flight">Flight</string>
     <string name="fragment_history">History</string>
@@ -841,7 +856,7 @@
     <string name="logo_menu_1">logo menu 1</string>
     <string name="title_menu_4">Ready to Start?</string>
 
-    <!--    EULA PAGE-->
+    <!--EULA PAGE-->
     <string name="eula_title">End-User License Agreement (EULA) of TravelokaOCR</string>
     <string name="eula_p1">This End-User License Agreement (\"EULA\") is a legal agreement between you and Traveloka Singapore. Our EULA was created by EULA Template for TravelokaOCR.</string>
     <string name="eula_p2">This EULA agreement governs your acquisition and use of our TravelokaOCR software (\"Software\") directly from Traveloka Singapore or indirectly through a Traveloka Singapore authorized reseller or distributor (a \"Reseller\").</string>
@@ -865,20 +880,12 @@
     <string name="eula_login_agreement">By logging in, you are agreeing to our</string>
     <string name="wait_submitting">Please wait while the app submitting booking</string>
     <string name="wait_scanning">Please wait while the app scanning</string>
-    <string name="flight_eticket">Flight E-ticket</string>
-    <string name="airline_booking_code">Airline Booking Code</string>
-    <string name="booking_code">C22KY01</string>
-    <string name="depart_time">14:40</string>
-    <string name="arrival_time">15:40</string>
-    <string name="passenger">Passenger</string>
-    <string name="info">This airline doesn’t allow passenger name correction</string>
+
+    <!--Dialog Alert-->
     <string name="scanning_option">Scanning Option</string>
     <string name="scanning_alert">You are about to complete your details, do you want to fill it in automatically by scanning your ID Card?</string>
-    <string name="manual_input_desc">Please enter your data below</string>
-    <string name="manual_input">User Identity Form</string>
     <string name="delete_all_dialog">Are you sure want to delete all?</string>
-    <string name="detail_user_info">User haven\'t filled out the form</string>
     <string name="delete">delete</string>
-    <string name="jakarta">Jakarta</string>
     <string name="delete_it_dialog">Are you sure want to delete this booking?</string>
+
 </resources>

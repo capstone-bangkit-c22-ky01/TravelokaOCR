@@ -149,31 +149,31 @@ class OCRScreenActivity : AppCompatActivity() {
 
             setUpCameraAndCameraUtilityWhenCameraPermissionGranted()
 
-        }
+            binding.viewFinder.post {
 
-        binding.viewFinder.post {
+                binding.overlay.apply {
 
-            binding.overlay.apply {
+                    setZOrderOnTop(true)
+                    holder.setFormat(PixelFormat.TRANSPARENT)
+                    holder.addCallback(object : SurfaceHolder.Callback {
 
-                setZOrderOnTop(true)
-                holder.setFormat(PixelFormat.TRANSPARENT)
-                holder.addCallback(object : SurfaceHolder.Callback {
-
-                    override fun surfaceCreated(p0: SurfaceHolder) {
-                        holder?.let {
-                            drawOverlay(it, DESIRED_HEIGHT_CROP_PERCENT, DESIRED_WIDTH_CROP_PERCENT)
+                        override fun surfaceCreated(p0: SurfaceHolder) {
+                            holder?.let {
+                                drawOverlay(it, DESIRED_HEIGHT_CROP_PERCENT, DESIRED_WIDTH_CROP_PERCENT)
+                            }
                         }
-                    }
 
-                    override fun surfaceChanged(p0: SurfaceHolder, p1: Int, p2: Int, p3: Int) {
+                        override fun surfaceChanged(p0: SurfaceHolder, p1: Int, p2: Int, p3: Int) {
 
-                    }
+                        }
 
-                    override fun surfaceDestroyed(p0: SurfaceHolder) {
+                        override fun surfaceDestroyed(p0: SurfaceHolder) {
 
-                    }
+                        }
 
-                })
+                    })
+                }
+
             }
 
         }
@@ -373,7 +373,7 @@ class OCRScreenActivity : AppCompatActivity() {
                         viewModel.setLoadingOCRScreenDialog.value = false
 
                         startActivity(intent)
-                        finish()
+
                     }else {
                         val dataToken = hashMapOf(
                             "refreshToken" to savedPref.getData(Constants.REFRESH_TOKEN)

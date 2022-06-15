@@ -206,7 +206,10 @@ class EditProfileFragment : Fragment() {
 
             getFile = myFile
 
-            binding.ivProfilePicture.setImageURI(selectedImg)
+            Glide.with(this)
+                .load(getFile)
+                .placeholder(R.drawable.avatar)
+                .into(binding.ivProfilePicture)
 
         }
     }

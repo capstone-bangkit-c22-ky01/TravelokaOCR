@@ -75,9 +75,7 @@ class OCRResultActivity : AppCompatActivity() {
         }
 
         binding.ivRetry.setOnClickListener {
-            val intent = Intent(this, OCRScreenActivity::class.java)
-            intent.putExtra("id", dataBookingID)
-            startActivity(intent)
+            finish()
         }
 
         binding.btnSubmit.setOnClickListener {
@@ -197,7 +195,7 @@ class OCRResultActivity : AppCompatActivity() {
                         viewModel.setLoadingOCRResultDialog.value = false
 
                         startActivity(intent)
-                        finish()
+                        finishAffinity()
 
                     } else {
                         val dataToken = hashMapOf(

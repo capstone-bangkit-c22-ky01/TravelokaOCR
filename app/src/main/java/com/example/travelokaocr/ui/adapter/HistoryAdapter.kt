@@ -3,6 +3,7 @@ package com.example.travelokaocr.ui.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -64,6 +65,15 @@ class HistoryAdapter(
             holder.binding.cityArriveHistoryTicketTv.text = data.destination
 
             val status = (data.status)?.replaceFirstChar { it.uppercase() }
+
+            if (status == "Success"){
+                holder.binding.statusHistoryTicketTv.setTextColor(ContextCompat.getColor(context, R.color.success))
+            } else if (status == "Pending"){
+                holder.binding.statusHistoryTicketTv.setTextColor(ContextCompat.getColor(context, R.color.pending))
+            } else if (status == "Canceled"){
+                holder.binding.statusHistoryTicketTv.setTextColor(ContextCompat.getColor(context, R.color.failed))
+            }
+
             holder.binding.statusHistoryTicketTv.text = String.format(resources.getString(R.string.HistoryAdapter_PurchaseStatus), status)
 
             setOnClickListener {

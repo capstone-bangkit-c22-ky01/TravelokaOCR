@@ -132,15 +132,26 @@ class HistoryDetailActivity : AppCompatActivity() {
 
                         val status = result.data?.status
 
-                        if(status == "success"){
-                            binding.tvStatus.text = String.format(getString(R.string.HistoryAdapter_PurchaseStatus, status))
-                            binding.tvStatus.setTextColor(ContextCompat.getColor(this, R.color.customColorFont))
-                            binding.purchaseStatus.setBackgroundResource(R.color.success)
-                        } else{
-                            binding.tvStatus.text = String.format(getString(R.string.HistoryAdapter_PurchaseStatus, status))
-                            binding.tvStatus.setTextColor(ContextCompat.getColor(this, R.color.customColorFont))
-                            binding.purchaseStatus.setBackgroundResource(R.color.pending)
+                        when (status) {
+                            "success" -> {
+
+                                binding.purchaseStatus.setBackgroundResource(R.color.success)
+
+                            }
+                            "pending" -> {
+
+                                binding.purchaseStatus.setBackgroundResource(R.color.pending)
+
+                            }
+                            "canceled" -> {
+
+                                binding.purchaseStatus.setBackgroundResource(R.color.failed)
+
+                            }
                         }
+
+                        binding.tvStatus.text = String.format(getString(R.string.HistoryAdapter_PurchaseStatus, status))
+                        binding.tvStatus.setTextColor(ContextCompat.getColor(this, R.color.customColorFont))
 
                     }
                     else {

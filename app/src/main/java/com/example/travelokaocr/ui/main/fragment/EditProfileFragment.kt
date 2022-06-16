@@ -276,7 +276,11 @@ class EditProfileFragment : Fragment() {
                         val toProfileFragment = EditProfileFragmentDirections.actionEditProfileFragmentToProfileFragment()
                         binding.root.findNavController().navigate(toProfileFragment)
 
-                    } else if (result.status == null && result.message.equals("Payload content length greater than maximum allowed: 512000")){
+                    } else if (result.status.equals("fail") && result.message.equals("Failed to edit email. Email is already in use.")) {
+
+                        Toast.makeText(requireContext(), "Failed to edit email. Email is already in use. Please use another email address", Toast.LENGTH_SHORT).show()
+
+                    }else if (result.status == null && result.message.equals("Payload content length greater than maximum allowed: 512000")){
 
                         Toast.makeText(requireContext(), "File size is too big, please try again to upload image with size below 512kb", Toast.LENGTH_SHORT).show()
 

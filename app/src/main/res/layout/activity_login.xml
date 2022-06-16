@@ -127,74 +127,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/til_password"/>
 
-        <View
-            android:id="@+id/v_left_line"
-            android:layout_width="110dp"
-            android:layout_height="2dp"
-            android:background="@color/customColorFont"
-            android:layout_marginTop="27dp"
-            android:layout_marginStart="15dp"
-            app:layout_constraintEnd_toStartOf="@id/tv_or_login_with"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_login"/>
-
-        <TextView
-            android:id="@+id/tv_or_login_with"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/nunito_bold"
-            android:text="@string/login_options"
-            android:layout_marginTop="15dp"
-            android:textColor="@color/customColorFont"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/v_right_line"
-            app:layout_constraintStart_toEndOf="@id/v_left_line"
-            app:layout_constraintTop_toBottomOf="@id/btn_login"/>
-
-        <View
-            android:id="@+id/v_right_line"
-            android:layout_width="110dp"
-            android:layout_height="2dp"
-            android:layout_marginEnd="15dp"
-            android:background="@color/customColorFont"
-            android:layout_marginTop="27dp"
-            app:layout_constraintStart_toEndOf="@id/tv_or_login_with"
-            app:layout_constraintTop_toBottomOf="@id/btn_login"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_login_with_google"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/bg_button_google"
-            android:drawableStart="@drawable/ic_google"
-            android:fontFamily="@font/nunito_bold"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:text="@string/login_google"
-            android:textAllCaps="false"
-            android:textColor="@color/customColorFont"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_or_login_with" />
-
         <LinearLayout
             android:id="@+id/ll_sign_up_hyperlink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="80dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_login_with_google">
+            app:layout_constraintTop_toBottomOf="@+id/btn_login">
 
             <TextView
                 android:id="@+id/tv_dont_have_an_account"

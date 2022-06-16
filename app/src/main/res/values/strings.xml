@@ -42,7 +42,7 @@
     <string name="scan_ktp_desc">Adjust your ID Card (KTP) according to the box above to start scanning</string>
     <string name="back">Back</string>
     <string name="error_image">Error Image</string>
-    <string name="error_text_ocr">An error occurred while scanning, please do a re-scan</string>
+    <string name="error_text_ocr">An error occurred while scanning, please do a rescan</string>
     <string name="ok">OK</string>
 
     <!--OCR RESULT ACTIVITY-->

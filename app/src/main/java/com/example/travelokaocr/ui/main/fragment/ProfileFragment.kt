@@ -25,9 +25,6 @@ import com.example.travelokaocr.viewmodel.AuthViewModel
 import com.example.travelokaocr.viewmodel.factory.AccessProfileFactory
 import com.example.travelokaocr.viewmodel.factory.AuthViewModelFactory
 import com.example.travelokaocr.viewmodel.preference.SavedPreference
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 
 
 const val HTTPS_LINK = "https://"
@@ -45,10 +42,6 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
     //SESSION
     private lateinit var savedPreference: SavedPreference
-
-    //GOOGLE
-    private lateinit var gsc: GoogleSignInClient
-    private lateinit var gso: GoogleSignInOptions
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -78,14 +71,6 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         authViewModel = ViewModelProvider(this, authFactory)[AuthViewModel::class.java]
 
         savedPreference = SavedPreference(requireContext())
-
-        //GOOGLE SIGN IN
-        gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("66670183590-cfunc7u16g4d5n74nhk37mv9cl4garbl.apps.googleusercontent.com")
-            .requestEmail()
-            .build()
-
-        gsc = GoogleSignIn.getClient(requireActivity(), gso)
 
         showDataUser()
     }
@@ -182,16 +167,9 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                         savedPreference.putInstall(Constants.FIRST_INSTALL, false)
                         Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
 
-                        val acct = GoogleSignIn.getLastSignedInAccount(requireActivity())
-                        if(acct != null){
-                            gsc.signOut()
-                                .addOnCompleteListener(requireActivity()) {
-                                    revokeAccess()
-                                }
-                        } else {
-                            killActivity()
-                            startActivity(Intent(requireActivity(), LoginActivity::class.java))
-                        }
+                        killActivity()
+                        startActivity(Intent(requireActivity(), LoginActivity::class.java))
+
                     }
                     else {
                         Log.d("REGIS", result.message.toString())
@@ -201,14 +179,6 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                 }
             }
         }
-    }
-
-    private fun revokeAccess() {
-        gsc.revokeAccess()
-            .addOnCompleteListener(requireActivity()) {
-                killActivity()
-                startActivity(Intent(requireActivity(), LoginActivity::class.java))
-            }
     }
 
     private fun killActivity() {

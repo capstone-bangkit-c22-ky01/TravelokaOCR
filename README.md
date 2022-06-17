@@ -42,7 +42,7 @@ Here is the official repository of Traveloka OCR Android App project. In this pr
              https://github.com/capstone-bangkit-c22-ky01/TravelokaOCR.git
       - Download and intall the APK version from the link below
           ```
-             [https://github.com/capstone-bangkit-c22-ky01/TravelokaOCR.git](https://drive.google.com/file/d/1BqOqVYSxmpZljiv7Kx4sUOi6rGLFetPE/view)             
+             [TravelokaOCR APK](https://drive.google.com/file/d/1BqOqVYSxmpZljiv7Kx4sUOi6rGLFetPE/view)             
   ## References
   * [CameraX Library Official Documentation](https://developer.android.com/training/camerax)
   * [Tensorflow Lite Library Official Documentation](https://www.tensorflow.org/lite/android/quickstart)

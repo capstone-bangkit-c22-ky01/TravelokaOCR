@@ -1,7 +1,7 @@
 ## TravelokaOCR Mobile Development Documentation
 Here is the official repository of Traveloka OCR Android App project. In this project we use XML for app layout and Kotlin to develop the application in order to complete the **[Traveloka Singapore](https://www.traveloka.com/en-sg/) x [Bangkit Academy led by Google, Tokopedia, Gojek, & Traveloka](https://grow.google/intl/id_id/bangkit/)** Company Capstone Project.
 
-  - ### Overview
+  - ### Overview <br>
   ![MD Repo Overview](https://github.com/capstone-bangkit-c22-ky01/.github/blob/main/profile/banner%20for%20md-repo.png?raw=true)
   
   We designed the UI/UX prototype and developed the application with minimum API Level 21 (Android 5.0). For layout, we use tools such as Figma and XML. The    application uses Retrofit, TFLite, and CameraX Library.

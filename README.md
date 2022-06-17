@@ -24,7 +24,7 @@ Here is the official repository of Traveloka OCR Android App project. In this pr
       - ##### [CameraX](https://developer.android.com/training/camerax)
       - ##### [TFLite](https://www.tensorflow.org/lite/android/quickstart)
       - ##### [Circle Image](https://github.com/hdodenhof/CircleImageView)
-      - ##### [Glide]([https://github.com/hdodenhof/CircleImageView](https://github.com/bumptech/glide))
+      - ##### [Glide]([https://github.com/hdodenhof/CircleImageView](https://github.com/bumptech/glide)
 
 ### Getting Started Application
   - ### Prerequisites

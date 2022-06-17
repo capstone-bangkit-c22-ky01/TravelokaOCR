@@ -18,6 +18,13 @@ Here is the official repository of Traveloka OCR Android App project. In this pr
       -  ##### **Profile Screen**, The users will be able to access their profile here. They can edit their profile by pressing edit profile button or logout from the account by pressing Logout button
       -  ##### **Edit Profile Screen**, The users will be able to edit their profile such as editing profile picture, username, and email
   - #### Dependencies
+      - ##### [Lifecycle and Live Data](https://developer.android.com/jetpack/androidx/releases/lifecycle)
+      - ##### [Navigation Component](https://developer.android.com/jetpack/androidx/releases/navigation)
+      - ##### [Retrofit 2](https://square.github.io/retrofit/)
+      - ##### [CameraX](https://developer.android.com/training/camerax)
+      - ##### [TFLite](https://www.tensorflow.org/lite/android/quickstart)
+      - ##### [Circle Image](https://github.com/hdodenhof/CircleImageView)
+      - ##### [Glide]([https://github.com/hdodenhof/CircleImageView](https://github.com/bumptech/glide))
 
 ### Getting Started Application
   - ### Prerequisites

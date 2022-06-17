@@ -7,12 +7,12 @@ Here is the official repository of Traveloka OCR Android App project. In this pr
       - ##### **Login**, Allows a user to have an access to the application by entering their username and password
       - ##### **SignUp**, Enables users to register and have an access to the application
       - ##### **Home/Flight Screen**, The starting page that is displayed when you have logged in on your device. It will allow user to enter their departure, destination, date, number of passenger, and airline classes and let the user to submit their airline details
-      - ##### **Flight Result Screen**, This page will display the list of tickets after user pressing submit button in the previous page and allow user to pick a ticket 
-      - ##### **Dialog Scanning Option**, This dialog will be displayed after the user pick the ticket and options will appeared weather the user choose to automatically scan or manually input their ID card information
+      - ##### **Flight Result Screen**, This page will be displayed the list of tickets after user pressing submit button in the previous page and allow user to pick a ticket 
+      - ##### **Dialog Scanning Option**, This dialog will be displayed after the user pick the ticket and options will appeared weather the user chooses to automatically scan or manually input their ID card information
       - ##### **Dialog Scanning Option**, This dialog will be displayed after the user pick the ticket and options will appeared weather the user choose to automatically scan (Continue) or manually input their ID card information (No, let me fill in manually)   
-      - ##### **OCR Screen**, This page will be displayed after the user choose to continue from the previous dialog. It will allow user to automatically retrieve their personal information by adjusting their ID card position in bonding box 
-      - ##### **Scan Result Verification Screen**, This page will be displayed after the user successfully scan their ID card. It will allow user to verify their information and give an option to rescan their ID card if needed. Then the user need to tap the submit button   
-      - ##### **Success Information Screen**, This page will be displayed after the user successfully scan their ID card. User also can go to history page or buy another ticket
+      - ##### **OCR Screen**, This page will be displayed after the user choose to continue from the previous dialog. It will allow user to automatically retrieve their personal information by adjusting their ID card position in bounding box 
+      - ##### **Scan Result Verification Screen**, This page will be displayed after the user successfully scans their ID card. It will allow user to verify their information and give an option to rescan their ID card if needed. Then the user need to tap the submit button   
+      - ##### **Success Information Screen**, This page will be displayed after the user successfully scans their ID card. User also can go to history page or buy another ticket
       -  ##### **History Screen**, The users will be able to see their ticket history here. They also can delete all the history by pressing delete icon
       -  ##### **History Detail Screen**, The users will be able to see their ticket history detail here. They also can delete selected history by pressing delete icon
       -  ##### **Profile Screen**, The users will be able to access their profile here. They can edit their profile by pressing edit profile button or logout from the account by pressing Logout button

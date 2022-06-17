@@ -17,6 +17,4 @@ Here is the official repository of Traveloka OCR Android App project. In this pr
              
   ## References
   * [Clean Architecture Guide](https://developer.android.com/jetpack/guide)
-  * [Android Application Fundamental](https://developer.android.com/guide/components/fundamentals)
-  * [Android Jetpack Pro](https://developer.android.com/jetpack)
-  * [Dependency injection](https://developer.android.com/training/dependency-injection)
+  * [Nama artikel](link artikel)
